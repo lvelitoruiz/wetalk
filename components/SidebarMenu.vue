@@ -4,6 +4,8 @@ const props = defineProps({
     links: Array,
 })
 
+console.log('consola here: ',props.links)
+
 </script>
 <template>
     <div class="sidebarMenu-wrapper">
