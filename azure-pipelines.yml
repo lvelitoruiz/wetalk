@@ -1,0 +1,33 @@
+trigger:
+  branches:
+    include:
+    - develop
+    - release
+    - main
+    - devops/*
+#  paths:
+#    include:
+#    - .cdk-infra/*
+
+pr: none
+
+pool:
+  name: 'lau-devops'
+
+stages:
+
+- stage: CDKSYNTH
+  displayName: "Build CDK"
+  jobs:
+  - template: azure-pipelines-cdk.yml 
+    parameters:
+      variablesGroup: 'DEV-UPC-ED.PE-LAU-FE-WETALK'
+
+- stage: BuildDevops
+  displayName: "Build App"
+  #condition: false
+  #condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/devops')
+  jobs:
+  - template: azure-pipelines-build.yml
+    parameters:
+      variablesGroup: 'DEV-UPC-ED.PE-LAU-FE-WETALK'
