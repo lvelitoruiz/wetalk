@@ -2,7 +2,7 @@ parameters:
 - name: variablesGroup
   default: 'ubuntu-latest'
 - name: nodeVersion
-  default: '16.*'
+  default: '20.*'
 
 jobs:
 - job:  'npmBUILD'
@@ -21,13 +21,13 @@ jobs:
     displayName: 'Instalar dependencias'
 
   - script: |      
-      npm run build      
-    displayName: 'npm build and export'
+      npm run generate     
+    displayName: 'npm run generate'
     # npm run export   
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: 'dist/' 
+      targetPath: '.output/public/' 
       artifact: 'app'   
     displayName: 'Publicar artefacto del directorio public'
 
