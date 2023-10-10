@@ -11,7 +11,6 @@ export const useMenuStore = defineStore({
   },
   actions: {
     async fetchMenuData(apiUrl: string, apiKey: string) {
-      console.log("buscando info");
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -19,8 +18,6 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
         };
-
-        console.log(axiosConf);
 
         const response = await axios
           .create(axiosConf)

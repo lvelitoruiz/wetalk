@@ -39,7 +39,7 @@ const copyToClipboard = () => {
 </script>
 <template>
     <div class="relative w-full h-auto">
-        <NuxtLink class="fastLink" :class="{ 'rounded-bl-none': hasCode }" to="#">
+        <NuxtLink class="fastLink" :class="{ 'rounded-bl-none': hasCode }" :to="link" target="_blank">
             <span class="fastLink-label">{{ label }}</span>
             <i class="icon-arrow-right text-white"></i>
         </NuxtLink>

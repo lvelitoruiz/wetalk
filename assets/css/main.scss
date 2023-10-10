@@ -138,7 +138,7 @@
 
 @layer components {
   .fastLink {
-    @apply bg-[#0065FF] px-4 py-2 rounded flex justify-between items-center font-solano transition-all duration-300 hover:opacity-75;
+    @apply bg-[#0065FF] px-4 py-2 rounded flex justify-between items-center font-solano transition-all duration-300 hover:bg-[#0018F8];
 
     &-label {
       @apply font-bold text-white uppercase;
@@ -152,7 +152,7 @@
       }
 
       &__activeZone {
-        @apply bg-[#5598FF66] px-1 flex items-center gap-1 rounded cursor-pointer transition-all duration-300 hover:opacity-75;
+        @apply bg-[#5598FF66] px-1 flex items-center gap-1 rounded cursor-pointer transition-all duration-300 hover:bg-[#0018F8];
 
         &--label {
           @apply text-[#404040] text-xs leading-none;
@@ -167,7 +167,7 @@
     }
 
     &-link {
-      @apply flex justify-between items-center cursor-pointer text-[#0043AA] hover:text-[#0043AA] transition-all duration-300;
+      @apply flex justify-between items-center cursor-pointer hover:text-[#0043AA] transition-all duration-300;
     }
 
     &-label {
@@ -190,7 +190,7 @@
       }
 
       &__link {
-        @apply pr-5 py-2.5 pl-14 text-sm text-[#404040] hover:bg-[#AACCFFB2] rounded-r-full hover:font-bold hover:text-[#0043AA];
+        @apply pr-5 py-2.5 pl-8 text-sm text-[#404040] hover:bg-[#AACCFFB2] rounded-r-full hover:font-bold hover:text-[#0043AA];
       }
     }
   }
