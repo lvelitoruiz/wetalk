@@ -11,10 +11,10 @@ const props = defineProps({
 
 const getButtonClasses = () => {
   return {
-    'bg-[#E50A17] text-white': props.primary && !props.disabled,
-    'bg-transparent text-[#E50A17] border border-[#E50A17]': props.secundary && props.disabled,
-    'bg-[#E50A17] text-white border border-[#E50A17]': props.secundary && !props.disabled,
-    'bg-[#808080] text-white': props.disabled && props.primary,
+    'bg-[#E50A17] text-white transition-all duration-300 ease-in-out hover:bg-[#B70812]': props.primary && !props.disabled,
+    'bg-transparent text-[#808080] border border-[#808080] transition-all duration-300 ease-in-out': props.secundary && props.disabled,
+    'bg-transparent text-[#E50A17] border border-[#E50A17] transition-all duration-300 ease-in-out hover:text-[#B70812] hover:border-[#B70812]': props.secundary && !props.disabled,
+    'bg-[#808080] text-white transition-all duration-300 ease-in-out': props.disabled && props.primary,
   };
 };
 
@@ -22,7 +22,7 @@ const getBorderClass = () => {
   return {
     'border-[#808080]': props.disabled && props.primary,
     'border-[#E50A17]': !props.disabled && (props.secundary || props.primary),
-    'border border-[#E50A17]': props.disabled && props.secundary,
+    'border border-[#808080]': props.disabled && props.secundary,
   };
 };
 </script>

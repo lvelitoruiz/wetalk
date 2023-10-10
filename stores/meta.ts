@@ -22,7 +22,7 @@ export const useMetaStore = defineStore({
           .create(axiosConf)
           .get<MetaItem>(`v1/meta/obtener?id=${id}&institucion=upc`);
 
-        // Store the fetched meta data in the state
+        
         this.metaData = response.data;
       } catch (error) {
         console.error("Error fetching meta data:", error);

@@ -7,7 +7,14 @@ const metaStore = useMetaStore();
 const metaData = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
-const selectedImage = ref("icon-plane");
+const selectedImage = ref("estudios.svg");
+
+
+const handleMeta = (event) => {
+  if (meta.value.length > 65) {
+    meta.value = meta.value.slice(0, 65);
+  }
+};
 
 const fetchMetaInfo = async () => {
   await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178"); // Provide the correct values
@@ -27,7 +34,27 @@ onMounted(async () => {
   fetchMetaInfo();
 });
 
-const hasMeta = computed(() => meta.value !== "", console.log(meta.value));
+const illustrations = [
+  {
+    name: "estudios.svg",
+    image: "_nuxt/assets/images/estudios.svg",
+    active: true,
+  },
+  {
+    name: "mundo.svg",
+    image: "_nuxt/assets/images/mundo.svg",
+    active: false,
+  },
+  {
+    name: "posgrado.svg",
+    image: "_nuxt/assets/images/posgrado.svg",
+    active: false,
+  },
+];
+
+const hasMeta = computed(() => meta.value !== "");
+
+const bigIcon = computed(() => `_nuxt/assets/images/${selectedImage.value}`);
 
 const updateMeta = async () => {
   let metaItem = {
@@ -36,7 +63,7 @@ const updateMeta = async () => {
     meta: meta.value,
     color: selectedColor.value,
   };
-  console.log(metaItem);
+
   await metaStore.registerMetaData(apiUrl, apiKey, metaItem);
   await fetchMetaInfo();
 };
@@ -44,23 +71,21 @@ const updateMeta = async () => {
 const cleanMeta = async () => {
   meta.value = "";
   selectedColor.value = "";
-  selectedImage.value = "icon-plane";
+  selectedImage.value = "estudios.svg";
   await updateMeta();
   await fetchMetaInfo();
 };
 
-const updateMetaText = (value) => {
-  meta.value = value;
-};
-
-const changeColor = (newColor) => {
-  selectedColor.value = newColor;
-}
-
-const changeImage = (newImage) => {
+const changeImage = (indexItem, newImage) => {
+  illustrations.map((item, index) => {
+    if (index === indexItem) {
+      item.active = true;
+    } else {
+      item.active = false;
+    }
+  });
   selectedImage.value = newImage;
-}
-
+};
 </script>
 <template>
   <ContainerBoxSimple>
@@ -84,9 +109,9 @@ const changeImage = (newImage) => {
       </div>
     </div>
     <div class="flex gap-[20px]">
-      <div class="min-w-[340px] border-r border-[#D9D9D9] pr-[28px]">
+      <div class="min-w-[340px] max-w-[340px] border-r border-[#D9D9D9] pr-[28px]">
         <div class="flex items-center justify-center flex-col gap-[14px]">
-          <i class="text-[93px]" :class="selectedImage" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }"></i>
+          <img class="min-w-[224px] h-[175px]" :src="bigIcon" alt="" />
           <div class="relative flex items-center flex-col justify-center">
             <div class="triangulo"></div>
             <div
@@ -100,59 +125,78 @@ const changeImage = (newImage) => {
         </div>
       </div>
       <div class="w-full flex gap-4 flex-col">
-        <div>
+        <div class="relative mb-7">
           <div class="flex items-center justify-between pb-2">
-            <p class="text-[#404040] font-bold font-solano uppercase">Meta</p>
-            <p class="text-xs text-[#808080]">Máximo de caracteres : 100</p>
+            <p class="text-[#404040] font-bold font-solano uppercase">
+              Selecciona una ilustración
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <img
+              v-for="(illustration, index) in illustrations"
+              class="min-w-[100px] h-[78px] cursor-pointer rounded-md"
+              :class="{
+                'border-2 border-gray-700': illustration.active,
+                'border border-gray-400': !illustration.active,
+              }"
+              :src="illustration.image"
+              alt=""
+              @click="() => changeImage(index, illustration.name)"
+            />
+          </div>
+        </div>
+        <div class="relative">
+          <div class="flex items-center justify-between pb-2">
+            <p class="text-[#404040] font-bold font-solano uppercase">
+              Cuéntanos tu meta
+            </p>
+            <p class="text-xs text-[#808080]">Máximo de caracteres : 65</p>
           </div>
           <input
             v-model="meta"
             class="border border-[#BFBFBF] placeholder:text-[#A6A6A6] h-[38px] px-[12px] w-full rounded text-sm"
             placeholder="Ejm: Hablar bien el idioma para cuando llegue a USA."
             type="text"
-            @change="(event) => updateMetaText(event.target.value)"
+            @input="handleMeta"
           />
         </div>
-        <div>
-          <div class="flex items-center justify-between pb-2">
-            <p class="text-[#404040] font-bold font-solano uppercase">Ícono</p>
-          </div>
-          <div class="flex gap-2">
-            <i class="icon-plane text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }" @click="() => changeImage('icon-plane')"></i>
-            <i class="icon-book text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }" @click="() => changeImage('icon-book')"></i>
-            <i class="icon-flag text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }" @click="() => changeImage('icon-flag')"></i>
-            <i class="icon-users text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }" @click="() => changeImage('icon-users')"></i>
-            <i class="icon-work text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }" @click="() => changeImage('icon-work')"></i>
-            <i
-              class="icon-graduate text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }"
-            ></i>
-            <i
-              class="icon-language text-[40px] cursor-pointer" :style="{ color: selectedColor !== '#FE91A4' ? selectedColor : '#FE91A4' }"
-            ></i>
-          </div>
-        </div>
-        <div>
+        <!-- <div>
           <div class="flex items-center justify-between pb-2">
             <p class="text-[#404040] font-bold font-solano uppercase">Color</p>
           </div>
           <div class="flex gap-2 items-center">
             <div class="cursor-pointer">
-              <div class="bg-[#6644FF] rounded-full h-[25px] w-[25px]" @click="() => changeColor('#6644FF')"></div>
+              <div
+                class="bg-[#6644FF] rounded-full h-[25px] w-[25px]"
+                @click="() => changeColor('#6644FF')"
+              ></div>
             </div>
             <div class="cursor-pointer">
-              <div class="bg-[#3399FF] rounded-full h-[25px] w-[25px]" @click="() => changeColor('#3399FF')"></div>
+              <div
+                class="bg-[#3399FF] rounded-full h-[25px] w-[25px]"
+                @click="() => changeColor('#3399FF')"
+              ></div>
             </div>
             <div class="cursor-pointer">
-              <div class="bg-[#FFA439] rounded-full h-[25px] w-[25px]" @click="() => changeColor('#FFA439')"></div>
+              <div
+                class="bg-[#FFA439] rounded-full h-[25px] w-[25px]"
+                @click="() => changeColor('#FFA439')"
+              ></div>
             </div>
             <div class="cursor-pointer">
-              <div class="bg-[#E35169] rounded-full h-[25px] w-[25px]" @click="() => changeColor('#E35169')"></div>
+              <div
+                class="bg-[#E35169] rounded-full h-[25px] w-[25px]"
+                @click="() => changeColor('#E35169')"
+              ></div>
             </div>
             <div class="cursor-pointer">
-              <div class="bg-[#2ECDA7] rounded-full h-[25px] w-[25px]" @click="() => changeColor('#2ECDA7')"></div>
+              <div
+                class="bg-[#2ECDA7] rounded-full h-[25px] w-[25px]"
+                @click="() => changeColor('#2ECDA7')"
+              ></div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </ContainerBoxSimple>
