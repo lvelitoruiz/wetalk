@@ -8,7 +8,7 @@ const metaData = ref(null);
 const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
-const selectedImage = ref("https://wetalk-directus-dev-upc.stage01.link/assets/40de04ce-a6bb-4d8e-a431-b9563592b7c8");
+const selectedImage = ref("https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0");
 
 
 const handleMeta = (event) => {
