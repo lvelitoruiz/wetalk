@@ -12,8 +12,8 @@ const props = defineProps({
 const getButtonClasses = () => {
   return {
     'bg-[#E50A17] text-white transition-all duration-300 ease-in-out hover:bg-[#B70812]': props.primary && !props.disabled,
-    'bg-transparent text-[#808080] border border-[#808080] transition-all duration-300 ease-in-out': props.secundary && props.disabled,
-    'bg-transparent text-[#E50A17] border border-[#E50A17] transition-all duration-300 ease-in-out hover:text-[#B70812] hover:border-[#B70812]': props.secundary && !props.disabled,
+    'bg-white text-[#808080] border border-[#808080] transition-all duration-300 ease-in-out': props.secundary && props.disabled,
+    'bg-white text-[#E50A17] border border-[#E50A17] transition-all duration-300 ease-in-out hover:text-[#B70812] hover:border-[#B70812]': props.secundary && !props.disabled,
     'bg-[#808080] text-white transition-all duration-300 ease-in-out': props.disabled && props.primary,
   };
 };
