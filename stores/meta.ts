@@ -3,10 +3,12 @@ import axios from "axios";
 export const useMetaStore = defineStore({
   id: "meta",
   state: () => ({
-    metaData: null as MetaItem | null, // Define the state for meta data
+    metaData: null as MetaItem | null,
+    imagesData: null as ImageItem[] | null,
   }),
   getters: {
     getMetaData: (state) => state.metaData,
+    getImages: (state) => state.imagesData,
   },
   actions: {
     async fetchMetaData(apiUrl: string, apiKey: string, id: string) {
@@ -48,6 +50,25 @@ export const useMetaStore = defineStore({
         console.error("Error registering meta data:", error);
       }
     },
+
+    async obtainImages(apiUrl: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get(`v1/meta/listar/imagenes?institucion=upc`);
+
+        this.imagesData = response.data;
+      } catch (error) {
+        console.error("Error getting images:", error);
+      }
+    },
   },
 });
 
@@ -56,4 +77,9 @@ interface MetaItem {
   imagen: string;
   meta: string;
   color: string;
+}
+
+interface ImageItem {
+  imagen: string;
+  categoria: string;
 }
