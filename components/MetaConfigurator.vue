@@ -5,9 +5,10 @@ import { useMetaStore } from "../stores/meta";
 
 const metaStore = useMetaStore();
 const metaData = ref(null);
+const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
-const selectedImage = ref("estudios.svg");
+const selectedImage = ref("https://wetalk-directus-dev-upc.stage01.link/assets/40de04ce-a6bb-4d8e-a431-b9563592b7c8");
 
 
 const handleMeta = (event) => {
@@ -17,16 +18,28 @@ const handleMeta = (event) => {
 };
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178"); // Provide the correct values
+  await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178"); 
+  await metaStore.obtainImages(apiUrl)
 };
 
 watchEffect(() => {
   const data = metaStore.getMetaData;
+  const images = metaStore.getImages;
   if (data) {
     metaData.value = data[0];
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
     selectedImage.value = metaData.value?.imagen;
+  }
+  if(images) {
+    const formattedImages = images.map(item => ({
+        imagen: item.imagen,
+        categoria: item.categoria,
+        active: false,
+      }))
+
+    console.log(formattedImages);
+    illustrations.value = formattedImages;
   }
 });
 
@@ -34,27 +47,27 @@ onMounted(async () => {
   fetchMetaInfo();
 });
 
-const illustrations = [
-  {
-    name: "estudios.svg",
-    image: "_nuxt/assets/images/estudios.svg",
-    active: true,
-  },
-  {
-    name: "mundo.svg",
-    image: "_nuxt/assets/images/mundo.svg",
-    active: false,
-  },
-  {
-    name: "posgrado.svg",
-    image: "_nuxt/assets/images/posgrado.svg",
-    active: false,
-  },
-];
+// const illustrations = [
+//   {
+//     name: "estudios.svg",
+//     image: "_nuxt/assets/images/estudios.svg",
+//     active: true,
+//   },
+//   {
+//     name: "mundo.svg",
+//     image: "_nuxt/assets/images/mundo.svg",
+//     active: false,
+//   },
+//   {
+//     name: "posgrado.svg",
+//     image: "_nuxt/assets/images/posgrado.svg",
+//     active: false,
+//   },
+// ];
 
 const hasMeta = computed(() => meta.value !== "");
 
-const bigIcon = computed(() => `_nuxt/assets/images/${selectedImage.value}`);
+const bigIcon = computed(() => `${selectedImage.value}`);
 
 const updateMeta = async () => {
   let metaItem = {
@@ -77,7 +90,7 @@ const cleanMeta = async () => {
 };
 
 const changeImage = (indexItem, newImage) => {
-  illustrations.map((item, index) => {
+  illustrations.value.map((item, index) => {
     if (index === indexItem) {
       item.active = true;
     } else {
@@ -111,7 +124,7 @@ const changeImage = (indexItem, newImage) => {
     <div class="flex gap-[20px]">
       <div class="min-w-[340px] max-w-[340px] border-r border-[#D9D9D9] pr-[28px]">
         <div class="flex items-center justify-center flex-col gap-[14px]">
-          <img class="min-w-[224px] h-[175px]" :src="bigIcon" alt="" />
+          <img class="min-w-[224px] h-[175px]" :src="selectedImage" alt="" />
           <div class="relative flex items-center flex-col justify-center">
             <div class="triangulo"></div>
             <div
@@ -139,9 +152,9 @@ const changeImage = (indexItem, newImage) => {
                 'border-2 border-gray-700': illustration.active,
                 'border border-gray-400': !illustration.active,
               }"
-              :src="illustration.image"
+              :src="illustration.imagen"
               alt=""
-              @click="() => changeImage(index, illustration.name)"
+              @click="() => changeImage(index, illustration.imagen)"
             />
           </div>
         </div>
