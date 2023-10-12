@@ -142,7 +142,7 @@ const changeImage = (indexItem, newImage) => {
               <p v-if="meta !== ''" class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]">
                 {{ meta }}
               </p>
-              <p v-if="meta === ''" class="text-base text-center text-gray-300 min-h-[16px] min-w-[40px]">Cuéntanos la meta que te motiva a estudiar inglés, y alcancémosla juntos ✈ 💼 🎉</p>
+              <p v-if="meta === ''" class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]">Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆</p>
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ const changeImage = (indexItem, newImage) => {
           <input
             v-model="meta"
             class="border border-[#BFBFBF] placeholder:text-[#A6A6A6] h-[38px] px-[12px] w-full rounded placeholder:text-sm text-base"
-            placeholder="Ejm: Hablar bien el idioma para cuando llegue a USA."
+            placeholder="Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆"
             type="text"
             @input="handleMeta"
           />
