@@ -13,9 +13,12 @@ const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
 );
 
+const graphemesNow = ref(0)
+
 const handleMeta = (event) => {
   const splitter = new GraphemeSplitter();
   const graphemes = splitter.splitGraphemes(meta.value);
+  graphemesNow.value = graphemes;
 
   if (graphemes.length > 65) {
     meta.value = graphemes.slice(0, 65).join("");
@@ -56,11 +59,12 @@ onMounted(async () => {
       item.active = false;
     }
   })
+  const splitter = new GraphemeSplitter();
+  const graphemes = splitter.splitGraphemes(meta.value);
+  graphemesNow.value = graphemes;
 });
 
 const hasMeta = computed(() => meta.value !== "");
-
-const bigIcon = computed(() => `${selectedImage.value}`);
 
 const updateMeta = async () => {
   let metaItem = {
@@ -159,7 +163,7 @@ const changeImage = (indexItem, newImage) => {
             <p class="text-[#404040] font-bold font-solano uppercase">
               Cuéntanos tu meta
             </p>
-            <p class="text-xs text-[#808080]">{{ meta.length || 0 }}/65</p>
+            <p class="text-xs text-[#808080]">{{ graphemesNow.length || 0 }}/65</p>
           </div>
           <input
             v-model="meta"

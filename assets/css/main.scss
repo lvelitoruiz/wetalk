@@ -23,6 +23,17 @@
   }
 
   @font-face {
+    font-family: "Public Sans";
+    font-style: bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/public-sans.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  @font-face {
     font-family: "zizou-bold";
     font-style: normal;
     font-weight: 700;
@@ -183,10 +194,10 @@
     }
 
     &-subMenu {
-      @apply flex flex-col mt-2 min-h-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out;
+      @apply flex flex-col min-h-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out;
 
       &.active {
-        @apply max-h-[500px] duration-500 transition-all;
+        @apply max-h-[500px] duration-500 transition-all mt-2;
       }
 
       &__link {
@@ -195,20 +206,17 @@
     }
   }
 
-  .triangulo {
-    position: relative;
-    width: 20px;
-  }
-  .triangulo:before {
+  
+  .triangle:before {
     content: "";
     position: absolute;
-    top: -10px;
-    left: 4px;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 13px solid #ffffff;
-    rotate: 360deg;
+    border-style: solid;
+    border-width: 12px 24px 12px 0;
+    border-color: transparent #ffffff transparent transparent;
   }
 }
