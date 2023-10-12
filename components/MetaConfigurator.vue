@@ -139,10 +139,10 @@ const changeImage = (indexItem, newImage) => {
             <div
               class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] px-5 py-2 w-full flex justify-between items-center rounded-lg"
             >
-              <p v-if="meta !== ''" class="text-sm text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]">
+              <p v-if="meta !== ''" class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]">
                 {{ meta }}
               </p>
-              <p v-if="meta === ''" class="text-sm text-center text-gray-300 min-h-[16px] min-w-[40px]">Cuéntanos la meta que te motiva a estudiar inglés, y alcancémosla juntos ✈ 💼 🎉</p>
+              <p v-if="meta === ''" class="text-base text-center text-gray-300 min-h-[16px] min-w-[40px]">Cuéntanos la meta que te motiva a estudiar inglés, y alcancémosla juntos ✈ 💼 🎉</p>
             </div>
           </div>
         </div>
@@ -177,7 +177,7 @@ const changeImage = (indexItem, newImage) => {
           </div>
           <input
             v-model="meta"
-            class="border border-[#BFBFBF] placeholder:text-[#A6A6A6] h-[38px] px-[12px] w-full rounded text-sm"
+            class="border border-[#BFBFBF] placeholder:text-[#A6A6A6] h-[38px] px-[12px] w-full rounded placeholder:text-sm text-base"
             placeholder="Ejm: Hablar bien el idioma para cuando llegue a USA."
             type="text"
             @input="handleMeta"
