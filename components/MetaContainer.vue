@@ -47,7 +47,7 @@ watchEffect(() => {
           <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
             {{ metaText }}
           </p>
-          <p v-if="metaText === ''" class="text-sm text-gray-300 font-light">Cuéntanos la meta que te motiva a estudiar inglés, y alcancémosla juntos ✈ 💼 🎉</p>
+          <p v-if="metaText === ''" class="text-sm text-[#A6A6A6] font-light">Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆</p>
         </div>
         <a href="" class="inline-block w-[30px]">
           <i class="icon-edit text-xl text-[#595959]"></i>
