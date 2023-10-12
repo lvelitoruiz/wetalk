@@ -17,7 +17,7 @@ watchEffect(() => {
 });
 </script>
 <template>
-  <div class="flex items-center pb-[18px] gap-[6px]">
+  <div class="flex items-center w-[1023px] mx-auto pb-[18px] gap-[6px]">
     <a class="text-[#575759] text-[15px] underline" href="">Inicio</a>
     <span class="text-[#575759] text-[15px]">></span>
     <span class="text-[#575759] text-[15px]">Mi perfil</span>
@@ -39,13 +39,15 @@ watchEffect(() => {
         class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[71px] px-5 py-2 w-full flex items-center rounded-lg triangle relative"
       >
         <div class="w-[70px]">
-          <img class="w-auto h-[55px]" :src="selectedImage" alt="" />
+          <img v-if="selectedImage !== ''" class="w-auto h-[55px]" :src="selectedImage" alt="" />
+          <img v-if="selectedImage === ''" class="w-auto h-[55px]" src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0" alt="" />
         </div>
-        <div class="w-[calc(100%-100px)] px-5">
-          <p class="text-[#404040] text-sm font-bold">Mi meta:</p>
-          <p class="text-sm text-[#404040] font-light">
+        <div class="w-[calc(100%-100px)] px-3">
+          <p class="text-[#404040] text-sm font-bold">Meta:</p>
+          <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
             {{ metaText }}
           </p>
+          <p v-if="metaText === ''" class="text-sm text-gray-300 font-light">Cuéntanos la meta que te motiva a estudiar inglés, y alcancémosla juntos ✈ 💼 🎉</p>
         </div>
         <a href="" class="inline-block w-[30px]">
           <i class="icon-edit text-xl text-[#595959]"></i>
