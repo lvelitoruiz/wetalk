@@ -1,41 +1,45 @@
 <script setup>
+import { useMenuStore } from "~/stores/menu";
 
-import { useMenuStore } from '~/stores/menu'
-import { apiUrl, apiKey } from '../consts'
+const sidebarMenuList = ref([]);
 
-
-const sidebarMenuList = ref([])
-
-const linkList = ref([])
+const linkList = ref([]);
 
 onMounted(async () => {
-  const store = useMenuStore()
-  await store.fetchMenuData(apiUrl,apiKey)
+  const store = useMenuStore();
 
-  await store.fetchAccesoDirectoData(apiUrl, apiKey)
+  watchEffect(() => {
 
-  linkList.value = store.accesoDirectoData.map((item) => ({
-    label: item.nombre,
-    link: item.url || '#',
-    hasCode: false,
-  }))
+    const accesoValues = store.getAccesoItems;
 
-  sidebarMenuList.value = store.getMenuItems.map((item) => ({
-    label: item.nombre,
-    icon: item.icono, // Use an appropriate icon here
-    hasSubMenu: !!item.submenu.length,
-    subMenu: item.submenu.map((subItem) => ({
-      text: subItem.nombre,
-      direction: subItem.url || '#',
-    })),
-  }))
-})
+    if (accesoValues) {
+      linkList.value = accesoValues.map((item) => ({
+        label: item.nombre,
+        link: item.url || "#",
+        hasCode: false,
+      }));
+    }
+    
+    const menuValues = store.getMenuItems;
 
+    if (menuValues) {
+      sidebarMenuList.value = menuValues.map((item) => ({
+        label: item.nombre,
+        icon: item.icono, 
+        hasSubMenu: !!item.submenu.length,
+        subMenu: item.submenu.map((subItem) => ({
+          text: subItem.nombre,
+          direction: subItem.url || "#",
+        })),
+      }));
+    }
+  });
+});
 </script>
 
 <template>
-    <div class="w-[275px] bg-[#E6F0FF] px-7 py-9">
-        <FastLinks :links="linkList" />
-        <SidebarMenu :links="sidebarMenuList" />
-    </div>
+  <div class="w-[275px] bg-[#E6F0FF] px-7 py-9">
+    <FastLinks :links="linkList" />
+    <SidebarMenu :links="sidebarMenuList" />
+  </div>
 </template>

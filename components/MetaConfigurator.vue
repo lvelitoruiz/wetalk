@@ -25,11 +25,6 @@ const handleMeta = (event) => {
   }
 };
 
-const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178");
-  await metaStore.obtainImages(apiUrl);
-};
-
 watchEffect(() => {
   const data = metaStore.getMetaData;
   const images = metaStore.getImages;
@@ -51,8 +46,6 @@ watchEffect(() => {
 });
 
 onMounted(async () => {
-  await fetchMetaInfo();
-  markImage();
   const splitter = new GraphemeSplitter();
   const graphemes = splitter.splitGraphemes(meta.value);
   graphemesNow.value = graphemes;
@@ -64,7 +57,7 @@ const markImage = () => {
   illustrations.value.map( (item,index) => {
     if(item.imagen === selectedImage.value) {
       item.active = true;
-    } else if(index = 0 && selectedImage.value === "") {
+    } else if(index = 0 && selectedImage.value == "") {
       item.active = true;
     } else {
       item.active = false;
