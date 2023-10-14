@@ -8,6 +8,7 @@ export const useMenuStore = defineStore({
   }),
   getters: {
     getMenuItems: (state) => state.menuData,
+    getAccesoItems: (state) => state.accesoDirectoData,
   },
   actions: {
     async fetchMenuData(apiUrl: string, apiKey: string) {
