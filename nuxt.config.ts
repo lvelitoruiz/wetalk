@@ -4,6 +4,10 @@ export default defineNuxtConfig({
     public: {
       apiUrl: process.env.NUXT_API_URL,
       apiKey: process.env.NUXT_API_KEY,
+      clientId: process.env.CLIENTID,
+      authority: process.env.AUTHORITY,
+      redirectUri: process.env.REDIRECT_URI,
+      postLogoutRedirectUri: process.env.POSTLOGOUT_REDIRECT_URI,
     }
   },
   devtools: { enabled: true },
@@ -14,6 +18,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  plugins: [{ src: "~/plugins/msal.ts", mode: "client" }],
   modules: [
     [
       "@pinia/nuxt",
