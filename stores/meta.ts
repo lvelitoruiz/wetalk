@@ -6,6 +6,7 @@ export const useMetaStore = defineStore({
     metaData: null as MetaItem | null,
     imagesData: null as ImageItem[] | null,
   }),
+  persist: true,
   getters: {
     getMetaData: (state) => state.metaData,
     getImages: (state) => state.imagesData,
