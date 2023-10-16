@@ -26,6 +26,23 @@ onMounted(async () => {
   await fetchMetaInfo();
 });
 
+const handleOpen = () => {
+    navigateTo('/dashboard');
+}
+
+const handleOpenLogin = () => {
+    navigateTo('/login');
+}
+
+const allDataLoaded = computed(() => {
+  return (
+    metaData.value !== null &&
+    imagesData.value !== null &&
+    menuData.value !== null &&
+    accesoData.value !== null
+  );
+});
+
 watchEffect(() => {
   const data = metaStore.getMetaData;
   if (data) {
@@ -43,15 +60,11 @@ watchEffect(() => {
   if(acceso) {
     accesoData.value = acceso;
   }
+
+  if (allDataLoaded.value) {
+    handleOpen();
+  }
 });
-
-const handleOpen = () => {
-    navigateTo('/dashboard');
-}
-
-const handleOpenLogin = () => {
-    navigateTo('/login');
-}
 
 </script>
 <template>
