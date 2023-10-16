@@ -26,6 +26,23 @@ onMounted(async () => {
   await fetchMetaInfo();
 });
 
+const handleOpen = () => {
+    navigateTo('/dashboard');
+}
+
+const handleOpenLogin = () => {
+    navigateTo('/login');
+}
+
+const allDataLoaded = computed(() => {
+  return (
+    metaData.value !== null &&
+    imagesData.value !== null &&
+    menuData.value !== null &&
+    accesoData.value !== null
+  );
+});
+
 watchEffect(() => {
   const data = metaStore.getMetaData;
   if (data) {
@@ -43,17 +60,17 @@ watchEffect(() => {
   if(acceso) {
     accesoData.value = acceso;
   }
-});
 
-const handleOpen = () => {
-    navigateTo('/dashboard');
-}
+  if (allDataLoaded.value) {
+    handleOpen();
+  }
+});
 
 </script>
 <template>
   <section class="container mx-auto relative px-4">
     <div class="w-full h-screen flex items-center justify-center flex-col">
-      <a class="absolute top-[40px] left-4" href="">
+      <a class="absolute top-[40px] left-4"  @click="handleOpenLogin">
         <img class="h-[39px]" src="@/assets/images/logo.svg" alt="" />
       </a>
       <div class="block min-h-[260px]">
