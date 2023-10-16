@@ -3,7 +3,7 @@
     <ul v-bind="$attrs" class="flex items-center gap-4 mb-[22px]">
       <li v-for="(tab, i) in tabs" :key="i" class="flex-shrink-0">
         <button
-          @click="handleActiveTab(`tab-${i}`)"
+          @click="handleActiveTab(`tab-${i}`,tab.value)"
           :class="[
             {
               'py-2 px-4 bg-[#FFDAE1] text-[#B70812]':
@@ -13,7 +13,7 @@
           ]"
           class="py-2 px-4 rounded font-medium font-zizou-bold text-[16px]"
         >
-          {{ tab }}
+          {{ tab.texto }}
         </button>
       </li>
     </ul>
@@ -24,27 +24,24 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+<script setup lang="ts">
+import { ref, defineProps, getCurrentInstance } from "vue";
 
-export default defineComponent({
-  props: {
-    tabs: {
-      type: Array as PropType<string[]>,
-      required: true,
-    },
-  },
-  setup() {
-    const tabActive = ref("tab-0");
-
-    const handleActiveTab = (tab: string) => {
-      tabActive.value = tab;
-    };
-
-    return {
-      tabActive,
-      handleActiveTab,
-    };
+const props = defineProps({
+  tabs: {
+    type: Array as PropType<any[]>,
+    required: true,
   },
 });
+
+const tabActive = ref("tab-0");
+const instance = getCurrentInstance();
+
+const handleActiveTab = (tab: string,value: boolean) => {
+  tabActive.value = tab;
+  const isActive = tab === tabActive.value;
+  console.log(value);
+  instance?.emit("tabChange", value);
+};
+
 </script>

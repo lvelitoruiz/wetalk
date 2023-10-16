@@ -7,8 +7,6 @@ const metaText = ref("");
 
 const metaStore = useMetaStore();
 
-const tabs = [ 'Ciclo Actual', 'Proximo Ciclo']
-
 watchEffect(() => {
   const data = metaStore.getMetaData;
   if (data) {
@@ -408,164 +406,10 @@ watchEffect(() => {
         </BoxContainer>
       </div>
     </div> -->
-    <div class="flex gap-[28px]">
-      <div class="min-w-[65%]">
-        <div class="pb-[28px]">
-          <BoxContainer color="pink">
-            <div class="flex items-center justify-between pb-[18px]">
-              <h3 class="text-[#404040] text-2xl font-bold uppercase">
-                Contenido
-              </h3>
-              <a class="flex items-center gap-2" href="">
-                <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
-                <i class="icon-arrow-right text-[#E50A17]"></i>
-              </a>
-            </div>
-            <div class="flex items-center gap-4 mb-[22px]">
-              <TabContent :tabs="tabs"></TabContent>
-            </div>
-            <div class="h-[222px] overflow-y-scroll">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span
-                    class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
-                    >1</span
-                  >
-                  <p class="text-sm text-[#A9616D] font-bold">Step forward</p>
-                </div>
-                <div
-                  class="relative pt-[10px] pl-[30px] pb-[19px] before:content-[''] before:left-[9px] before:absolute before:top-0 before:w-[2px] before:bottom-0 before:bg-[#A9616D]"
-                >
-                  <ul class="list-disc text-[#808080] ml-4 text-sm">
-                    <li class="pb-2">
-                      Hablar sobre cómo lidiamos con el cambio
-                    </li>
-                    <li class="pb-2">
-                      Hablar sobre cómo lidiamos con el cambio
-                    </li>
-                    <li>Hablar sobre cómo lidiamos con el cambio</li>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span
-                    class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
-                    >2</span
-                  >
-                  <p class="text-sm text-[#A9616D] font-bold">Natural limits</p>
-                </div>
-                <div
-                  class="relative pt-[10px] pl-[30px] pb-[19px] before:content-[''] before:left-[9px] before:absolute before:top-0 before:w-[2px] before:bottom-0 before:bg-[#A9616D]"
-                >
-                  <ul class="list-disc text-[#808080] ml-4 text-sm">
-                    <li class="pb-2">
-                      Hablar sobre cómo lidiamos con el cambio
-                    </li>
-                    <li class="pb-2">
-                      Hablar sobre cómo lidiamos con el cambio
-                    </li>
-                    <li>Hablar sobre cómo lidiamos con el cambio</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </BoxContainer>
-        </div>
-        <!-- <BoxContainer color="black">
-          <div class="flex items-center justify-between pb-[18px]">
-            <h3 class="text-[#404040] text-2xl font-bold uppercase">
-              Actividades
-            </h3>
-            <a class="flex items-center gap-2" href="">
-              <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
-              <i class="icon-arrow-right text-[#E50A17]"></i>
-            </a>
-          </div>
-          <div class="grid md:grid-cols-3 ld:grid-cols-3 gap-6">
-            <div class="p-2">
-              <img
-                class="h-[135px] w-full object-cover mb-2"
-                src="@/assets/images/act-1.png"
-                alt=""
-              />
-              <span
-                class="leading-none py-1 px-2 text-[10px] font-bold rounded text-white bg-[#0065FF]"
-                >Actividad cultural</span
-              >
-              <h3 class="text-[#270B73] font-semibold pt-2 pb-1">
-                ARTSY FUNFAIR
-              </h3>
-              <p class="text-[#191919] text-xs">
-                ¡Vive el arte, disfrutando y haciendo!
-              </p>
-              <p class="text-[#191919] text-xs">
-                Pasa una tarde llena de teatro, música, danza, artes visuales y
-                literatura.
-              </p>
-            </div>
-            <div class="p-2">
-              <img
-                class="h-[135px] w-full object-cover mb-2"
-                src="@/assets/images/act-2.png"
-                alt=""
-              />
-              <span
-                class="leading-none py-1 px-2 text-[10px] font-bold rounded text-white bg-[#039C6D]"
-                >Taller</span
-              >
-              <h3 class="text-[#270B73] font-semibold pt-2 pb-1">
-                ARTSY FUNFAIR
-              </h3>
-              <p class="text-[#191919] text-xs">
-                ¡Vive el arte, disfrutando y haciendo!
-              </p>
-              <p class="text-[#191919] text-xs">
-                Pasa una tarde llena de teatro, música, danza, artes visuales y
-                literatura.
-              </p>
-            </div>
-            <div class="p-2">
-              <img
-                class="h-[135px] w-full object-cover mb-2"
-                src="@/assets/images/act-1.png"
-                alt=""
-              />
-              <span
-                class="leading-none py-1 px-2 text-[10px] font-bold rounded text-white bg-[#0065FF]"
-                >Actividad cultural</span
-              >
-              <h3 class="text-[#270B73] font-semibold pt-2 pb-1">
-                ARTSY FUNFAIR
-              </h3>
-              <p class="text-[#191919] text-xs">
-                ¡Vive el arte, disfrutando y haciendo!
-              </p>
-              <p class="text-[#191919] text-xs">
-                Pasa una tarde llena de teatro, música, danza, artes visuales y
-                literatura.
-              </p>
-            </div>
-          </div>
-        </BoxContainer> -->
-      </div>
-      <div class="min-w-[30%]">
-        <BoxContainer color="greenLigth">
-          <div class="flex flex-col justify-between pb-[18px]">
-            <h3 class="text-[#404040] text-2xl font-bold uppercase">Ayuda</h3>
-            <p class="text-[#404040] text-sm">Consultas generales:</p>
-          </div>
-          <div class="flex flex-col gap-2">
-            <a href="" class="flex items-center gap-[6px]">
-              <i class="icon-phone text-4xl text-[#57BD9E]"></i>
-              <span class="text-[#404040] font-medium">(01) 604 2400</span>
-            </a>
-            <a href="" class="flex items-center gap-[6px]">
-              <i class="icon-wsp text-4xl text-[#57BD9E]"></i>
-              <span class="text-[#404040] font-medium">962 222 408</span>
-            </a>
-          </div>
-        </BoxContainer>
+    <div class="w-[1023px] mx-auto">
+      <div class="flex gap-[28px]">
+        <SyllabusBox />
+        <HelpBox />
       </div>
     </div>
   </div>
