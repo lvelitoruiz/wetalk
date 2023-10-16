@@ -1,12 +1,13 @@
 <script setup>
-
 import { useMetaStore } from "../stores/meta";
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
 );
-const metaText = ref("")
+const metaText = ref("");
 
 const metaStore = useMetaStore();
+
+const tabs = [ 'Ciclo Actual', 'Proximo Ciclo']
 
 watchEffect(() => {
   const data = metaStore.getMetaData;
@@ -39,19 +40,532 @@ watchEffect(() => {
         class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[71px] px-5 py-2 w-full flex items-center rounded-lg triangle relative"
       >
         <div class="w-[70px]">
-          <img v-if="selectedImage !== ''" class="w-auto h-[55px]" :src="selectedImage" alt="" />
-          <img v-if="selectedImage === ''" class="w-auto h-[55px]" src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0" alt="" />
+          <img
+            v-if="selectedImage !== ''"
+            class="w-auto h-[55px]"
+            :src="selectedImage"
+            alt=""
+          />
+          <img
+            v-if="selectedImage === ''"
+            class="w-auto h-[55px]"
+            src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
+            alt=""
+          />
         </div>
         <div class="w-[calc(100%-100px)] px-3">
           <p class="text-[#404040] text-sm font-bold">Meta:</p>
           <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
             {{ metaText }}
           </p>
-          <p v-if="metaText === ''" class="text-sm text-[#A6A6A6] font-light">Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆</p>
+          <p v-if="metaText === ''" class="text-sm text-[#A6A6A6] font-light">
+            Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
+          </p>
         </div>
         <a href="" class="inline-block w-[30px]">
           <i class="icon-edit text-xl text-[#595959]"></i>
         </a>
+      </div>
+    </div>
+    <!-- <div class="flex items-center justify-between gap-[28px] pb-[28px]">
+      <div class="min-w-[35%]">
+        <BoxContainer size="550" color="green">
+          <div class="flex items-center justify-between pb-[18px] px-[9px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">Notas</h3>
+            <a class="flex items-center gap-2" href="">
+              <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+              <i class="icon-arrow-right text-[#E50A17]"></i>
+            </a>
+          </div>
+          <div class="px-[9px] h-[410px] overflow-y-auto">
+            <table class="table-auto w-full">
+              <thead class="border-b border-[#BFBFBF]">
+                <tr>
+                  <th class="text-start text-sm text-[#404040] pb-3">Tipo</th>
+                  <th class="text-start text-sm text-[#404040] pb-3">
+                    Evaluación
+                  </th>
+                  <th class="text-start text-sm text-[#404040] pb-3">Peso</th>
+                  <th class="text-end text-sm text-[#404040] pb-3">Nota</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#039C6D] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >20</span
+                    >
+                  </td>
+                </tr>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#039C6D] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >13</span
+                    >
+                  </td>
+                </tr>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#039C6D] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >18</span
+                    >
+                  </td>
+                </tr>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#E50A17] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >20</span
+                    >
+                  </td>
+                </tr>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#BFBFBF] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >-</span
+                    >
+                  </td>
+                </tr>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#BFBFBF] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >-</span
+                    >
+                  </td>
+                </tr>
+                <tr class="h-[52px]">
+                  <td class="text-start text-sm text-[#404040]">PA1</td>
+                  <td class="text-start text-sm text-[#404040]">
+                    Prod. oral - sesión sinc.
+                  </td>
+                  <td class="text-start text-sm text-[#404040]">20%</td>
+                  <td class="text-end flex justify-end items-center h-[52px]">
+                    <span
+                      class="bg-[#BFBFBF] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                      >-</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]"
+          >
+            <p class="text-[#404040] text-sm font-bold">Promedio final</p>
+            <span
+              class="bg-[#BFBFBF] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+              >-</span
+            >
+          </div>
+        </BoxContainer>
+      </div>
+      <div class="flex flex-col gap-[28px] w-full min-w-[30%]">
+        <BoxContainer color="yellow">
+          <div class="flex items-center justify-between pb-[18px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">
+              Profesor
+            </h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="icon-user text-[33px] text-[#404040]"></i>
+            <div class="w-full">
+              <p class="text-[#404040] font-bold">Caterina Sumina Molina</p>
+              <div class="flex items-center justify-between cursor-pointer">
+                <span class="text-sm text-[#404040]">csumina@wetalk.com</span>
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </div>
+            </div>
+          </div>
+        </BoxContainer>
+        <BoxContainer color="cyan">
+          <div class="flex items-center justify-between pb-[18px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">
+              Estudiantes
+            </h3>
+            <a class="flex items-center gap-2" href="">
+              <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+              <i class="icon-arrow-right text-[#E50A17]"></i>
+            </a>
+          </div>
+          <div class="h-[282px] overflow-y-scroll pr-3">
+            <div class="flex items-center justify-between pb-2">
+              <div>
+                <p class="text-[#404040] font-bold">Enrique Rojas Molina</p>
+                <p class="text-[#808080] text-sm">Inglés 1</p>
+              </div>
+              <a href="">
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </a>
+            </div>
+            <div class="flex items-center justify-between pb-2">
+              <div>
+                <p class="text-[#404040] font-bold">Enrique Rojas Molina</p>
+                <p class="text-[#808080] text-sm">Inglés 1</p>
+              </div>
+              <a href="">
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </a>
+            </div>
+            <div class="flex items-center justify-between pb-2">
+              <div>
+                <p class="text-[#404040] font-bold">Enrique Rojas Molina</p>
+                <p class="text-[#808080] text-sm">Inglés 1</p>
+              </div>
+              <a href="">
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </a>
+            </div>
+            <div class="flex items-center justify-between pb-2">
+              <div>
+                <p class="text-[#404040] font-bold">Enrique Rojas Molina</p>
+                <p class="text-[#808080] text-sm">Inglés 1</p>
+              </div>
+              <a href="">
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </a>
+            </div>
+            <div class="flex items-center justify-between pb-2">
+              <div>
+                <p class="text-[#404040] font-bold">Enrique Rojas Molina</p>
+                <p class="text-[#808080] text-sm">Inglés 1</p>
+              </div>
+              <a href="">
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </a>
+            </div>
+            <div class="flex items-center justify-between pb-2">
+              <div>
+                <p class="text-[#404040] font-bold">Enrique Rojas Molina</p>
+                <p class="text-[#808080] text-sm">Inglés 1</p>
+              </div>
+              <a href="">
+                <i class="icon-file-copy text-xl text-[#699A8F]"></i>
+              </a>
+            </div>
+          </div>
+        </BoxContainer>
+      </div>
+      <div class="flex flex-col gap-[28px] w-full min-w-[30%]">
+        <BoxContainer color="blueLigth">
+          <div class="flex items-center justify-between pb-[18px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">
+              Calendario
+            </h3>
+            <a class="flex items-center gap-2" href="">
+              <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+              <i class="icon-arrow-right text-[#E50A17]"></i>
+            </a>
+          </div>
+          <div class="flex items-center flex-col gap-2">
+            <div
+              class="flex items-center px-4 py-2 w-full cursor-pointer group bg-[#E6F0FF] rounded"
+            >
+              <div
+                class="pr-2 mr-2 border-r border-[#5598FF] group-hover:border-[#5598FF] w-[50px]"
+              >
+                <p
+                  class="text-[#0043AA] group-hover:text-[#0043AA] text-sm font-bold"
+                >
+                  Mar
+                </p>
+                <p
+                  class="text-[#0043AA] group-hover:text-[#0043AA] text-sm font-bold"
+                >
+                  10/10
+                </p>
+              </div>
+              <div class="flex flex-col">
+                <p
+                  class="uppercase text-[#0043AA] group-hover:text-[#0043AA] text-lg font-bold leading-none"
+                >
+                  Básico 1
+                </p>
+                <p
+                  class="text-[#0043AA] text-sm group-hover:text-[#0043AA] leading-none"
+                >
+                  10:00 - 13:00
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-center px-4 py-2 w-full cursor-pointer group hover:bg-[#E6F0FF] rounded"
+            >
+              <div
+                class="pr-2 mr-2 border-r border-[#039C6D] group-hover:border-[#5598FF] w-[50px]"
+              >
+                <p
+                  class="text-[#013424] group-hover:text-[#0043AA] text-sm font-bold"
+                >
+                  Mar
+                </p>
+                <p
+                  class="text-[#013424] group-hover:text-[#0043AA] text-sm font-bold"
+                >
+                  10/10
+                </p>
+              </div>
+              <div class="flex flex-col">
+                <p
+                  class="uppercase text-[#013424] group-hover:text-[#0043AA] text-lg font-bold leading-none"
+                >
+                  Básico 1
+                </p>
+                <p
+                  class="text-[#026849] text-sm group-hover:text-[#0043AA] leading-none"
+                >
+                  10:00 - 13:00
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-center px-4 py-2 w-full cursor-pointer group hover:bg-[#E6F0FF] rounded"
+            >
+              <div
+                class="pr-2 mr-2 border-r border-[#039C6D] group-hover:border-[#5598FF] w-[50px]"
+              >
+                <p
+                  class="text-[#013424] group-hover:text-[#0043AA] text-sm font-bold"
+                >
+                  Mar
+                </p>
+                <p
+                  class="text-[#013424] group-hover:text-[#0043AA] text-sm font-bold"
+                >
+                  10/10
+                </p>
+              </div>
+              <div class="flex flex-col">
+                <p
+                  class="uppercase text-[#013424] group-hover:text-[#0043AA] text-lg font-bold leading-none"
+                >
+                  Básico 1
+                </p>
+                <p
+                  class="text-[#026849] text-sm group-hover:text-[#0043AA] leading-none"
+                >
+                  10:00 - 13:00
+                </p>
+              </div>
+            </div>
+          </div>
+        </BoxContainer>
+        <BoxContainer color="red">
+          <div class="flex items-center justify-between pb-[18px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">
+              Mis pagos
+            </h3>
+            <a class="flex items-center gap-2" href="">
+              <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+              <i class="icon-arrow-right text-[#E50A17]"></i>
+            </a>
+          </div>
+          <div class="flex items-center justify-center flex-col gap-1">
+            <p class="text-[#404040]">Pago pendiente</p>
+            <p class="text-[#E50A17] text-lg font-bold">S/ 233.00</p>
+            <p class="text-[#595959]">Vence: 30/9/23</p>
+            <button
+              class="bg-[#E50A17] h-[44px] w-[132px] text-white font-bold mt-2 relative before:content-[''] before:w-full before:h-full before:absolute before:border before:border-[#E50A17] before:left-[5px] before:top-[5px]"
+            >
+              <span>Pagar</span>
+            </button>
+          </div>
+        </BoxContainer>
+      </div>
+    </div> -->
+    <div class="flex gap-[28px]">
+      <div class="min-w-[65%]">
+        <div class="pb-[28px]">
+          <BoxContainer color="pink">
+            <div class="flex items-center justify-between pb-[18px]">
+              <h3 class="text-[#404040] text-2xl font-bold uppercase">
+                Contenido
+              </h3>
+              <a class="flex items-center gap-2" href="">
+                <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+                <i class="icon-arrow-right text-[#E50A17]"></i>
+              </a>
+            </div>
+            <div class="flex items-center gap-4 mb-[22px]">
+              <TabContent :tabs="tabs"></TabContent>
+            </div>
+            <div class="h-[222px] overflow-y-scroll">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
+                    >1</span
+                  >
+                  <p class="text-sm text-[#A9616D] font-bold">Step forward</p>
+                </div>
+                <div
+                  class="relative pt-[10px] pl-[30px] pb-[19px] before:content-[''] before:left-[9px] before:absolute before:top-0 before:w-[2px] before:bottom-0 before:bg-[#A9616D]"
+                >
+                  <ul class="list-disc text-[#808080] ml-4 text-sm">
+                    <li class="pb-2">
+                      Hablar sobre cómo lidiamos con el cambio
+                    </li>
+                    <li class="pb-2">
+                      Hablar sobre cómo lidiamos con el cambio
+                    </li>
+                    <li>Hablar sobre cómo lidiamos con el cambio</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
+                    >2</span
+                  >
+                  <p class="text-sm text-[#A9616D] font-bold">Natural limits</p>
+                </div>
+                <div
+                  class="relative pt-[10px] pl-[30px] pb-[19px] before:content-[''] before:left-[9px] before:absolute before:top-0 before:w-[2px] before:bottom-0 before:bg-[#A9616D]"
+                >
+                  <ul class="list-disc text-[#808080] ml-4 text-sm">
+                    <li class="pb-2">
+                      Hablar sobre cómo lidiamos con el cambio
+                    </li>
+                    <li class="pb-2">
+                      Hablar sobre cómo lidiamos con el cambio
+                    </li>
+                    <li>Hablar sobre cómo lidiamos con el cambio</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </BoxContainer>
+        </div>
+        <!-- <BoxContainer color="black">
+          <div class="flex items-center justify-between pb-[18px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">
+              Actividades
+            </h3>
+            <a class="flex items-center gap-2" href="">
+              <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+              <i class="icon-arrow-right text-[#E50A17]"></i>
+            </a>
+          </div>
+          <div class="grid md:grid-cols-3 ld:grid-cols-3 gap-6">
+            <div class="p-2">
+              <img
+                class="h-[135px] w-full object-cover mb-2"
+                src="@/assets/images/act-1.png"
+                alt=""
+              />
+              <span
+                class="leading-none py-1 px-2 text-[10px] font-bold rounded text-white bg-[#0065FF]"
+                >Actividad cultural</span
+              >
+              <h3 class="text-[#270B73] font-semibold pt-2 pb-1">
+                ARTSY FUNFAIR
+              </h3>
+              <p class="text-[#191919] text-xs">
+                ¡Vive el arte, disfrutando y haciendo!
+              </p>
+              <p class="text-[#191919] text-xs">
+                Pasa una tarde llena de teatro, música, danza, artes visuales y
+                literatura.
+              </p>
+            </div>
+            <div class="p-2">
+              <img
+                class="h-[135px] w-full object-cover mb-2"
+                src="@/assets/images/act-2.png"
+                alt=""
+              />
+              <span
+                class="leading-none py-1 px-2 text-[10px] font-bold rounded text-white bg-[#039C6D]"
+                >Taller</span
+              >
+              <h3 class="text-[#270B73] font-semibold pt-2 pb-1">
+                ARTSY FUNFAIR
+              </h3>
+              <p class="text-[#191919] text-xs">
+                ¡Vive el arte, disfrutando y haciendo!
+              </p>
+              <p class="text-[#191919] text-xs">
+                Pasa una tarde llena de teatro, música, danza, artes visuales y
+                literatura.
+              </p>
+            </div>
+            <div class="p-2">
+              <img
+                class="h-[135px] w-full object-cover mb-2"
+                src="@/assets/images/act-1.png"
+                alt=""
+              />
+              <span
+                class="leading-none py-1 px-2 text-[10px] font-bold rounded text-white bg-[#0065FF]"
+                >Actividad cultural</span
+              >
+              <h3 class="text-[#270B73] font-semibold pt-2 pb-1">
+                ARTSY FUNFAIR
+              </h3>
+              <p class="text-[#191919] text-xs">
+                ¡Vive el arte, disfrutando y haciendo!
+              </p>
+              <p class="text-[#191919] text-xs">
+                Pasa una tarde llena de teatro, música, danza, artes visuales y
+                literatura.
+              </p>
+            </div>
+          </div>
+        </BoxContainer> -->
+      </div>
+      <div class="min-w-[30%]">
+        <BoxContainer color="greenLigth">
+          <div class="flex flex-col justify-between pb-[18px]">
+            <h3 class="text-[#404040] text-2xl font-bold uppercase">Ayuda</h3>
+            <p class="text-[#404040] text-sm">Consultas generales:</p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <a href="" class="flex items-center gap-[6px]">
+              <i class="icon-phone text-4xl text-[#57BD9E]"></i>
+              <span class="text-[#404040] font-medium">(01) 604 2400</span>
+            </a>
+            <a href="" class="flex items-center gap-[6px]">
+              <i class="icon-wsp text-4xl text-[#57BD9E]"></i>
+              <span class="text-[#404040] font-medium">962 222 408</span>
+            </a>
+          </div>
+        </BoxContainer>
       </div>
     </div>
   </div>
