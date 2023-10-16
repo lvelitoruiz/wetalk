@@ -6,6 +6,7 @@ export const useMenuStore = defineStore({
     menuData: [] as MenuItem[],
     accesoDirectoData: [] as AccesoDirectoItem[],
   }),
+  persist: true,
   getters: {
     getMenuItems: (state) => state.menuData,
     getAccesoItems: (state) => state.accesoDirectoData,
