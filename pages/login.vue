@@ -12,6 +12,7 @@ async function logoutPopup() {
         console.log($msal().getAccounts())
         console.log($msal().isAuthenticated())
         console.log($msal().acquireTokenSilent())
+        // await $msal().signOut('67287b0b-38a4-4201-b19a-b5c1906b2001')
     // console.log($msal().signOut('ef14064f-69bf-4ba5-8501-f8847ad654f9'), 'logout')
     // await $msal().signOut('ef14064f-69bf-4ba5-8501-f8847ad654f9')
 }
