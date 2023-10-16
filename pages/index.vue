@@ -49,11 +49,15 @@ const handleOpen = () => {
     navigateTo('/dashboard');
 }
 
+const handleOpenLogin = () => {
+    navigateTo('/login');
+}
+
 </script>
 <template>
   <section class="container mx-auto relative px-4">
     <div class="w-full h-screen flex items-center justify-center flex-col">
-      <a class="absolute top-[40px] left-4" href="">
+      <a class="absolute top-[40px] left-4"  @click="handleOpenLogin">
         <img class="h-[39px]" src="@/assets/images/logo.svg" alt="" />
       </a>
       <div class="block min-h-[260px]">
