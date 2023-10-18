@@ -33,8 +33,8 @@ Pinia: due to an *ERESOLVE unable to resolve dependency tree* error, the followi
 
 CLIENTID=ef14064f-69bf-4ba5-8501-f8847ad654f9
 AUTHORITY=https://login.microsoftonline.com/ae544a57-aecb-4bf9-828a-5b520732b110
-REDIRECT_URI=https://wetalk-portal-dev.stage01.link/callback/auth
-POSTLOGOUT_REDIRECT_URI=https://wetalk-portal-dev.stage01.link/callback/auth
+REDIRECT_URI=https://portal-dev.wetalk.pe/callback/auth
+POSTLOGOUT_REDIRECT_URI=https://portal-dev.wetalk.pe/callback/auth
 NUXT_API_BASE=https://wetalkbe-dev-lau.stage01.link
 NUXT_API_KEY=f5f7f62a-6e41-463e-8ce1-463cccd07848
 ```
@@ -83,11 +83,11 @@ NUXT_API_KEY=
 - key: Content-Security-Policy
   value: 
     default-src 'self';
-    img-src 'self' www.google.com.pe *.upc.edu.pe *.stage01.link res.cloudinary.com *.chattigo.com;
+    img-src 'self' www.google.com.pe *.upc.edu.pe *.stage01.link *.wetalk.pe res.cloudinary.com *.chattigo.com;
     font-src 'self' data: *.chattigo.com *.mouseflow.com;
     frame-src *.youtube.com;
     media-src *.chattigo.com;
-    connect-src 'self' stats.g.doubleclick.net *.upc.edu.pe *.stage01.link *.chattigo.com wss://channels.chattigo.com *.googletagmanager.com *.mouseflow.com *.google-analytics.com analytics.google.com *.sentry.io *.ingest.sentry.io;
+    connect-src 'self' stats.g.doubleclick.net *.upc.edu.pe *.stage01.link *.wetalk.pe *.chattigo.com wss://channels.chattigo.com *.googletagmanager.com *.mouseflow.com *.google-analytics.com analytics.google.com *.sentry.io *.ingest.sentry.io;
     style-src 'self' 'unsafe-inline' *.chattigo.com ;
     script-src 'self' 'unsafe-inline' *.chattigo.com *.googletagmanager.com *.mouseflow.com *.google-analytics.com  www.youtube.com;
 ```
