@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   ssr: false,
   runtimeConfig: {
     public: {
-      apiUrl: process.env.NUXT_API_URL,
+      apiUrl: process.env.NUXT_API_BASE,
       apiKey: process.env.NUXT_API_KEY,
       clientId: process.env.CLIENTID,
       authority: process.env.AUTHORITY,
