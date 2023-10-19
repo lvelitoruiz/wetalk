@@ -22,13 +22,11 @@ const data = [
         <p class="text-[#404040] text-sm">Consultas generales:</p>
       </div>
       <div class="flex flex-col gap-2">
-
         <a v-for="item in data" href="" class="flex items-center gap-[6px]">
           <!-- <i class="icon-phone text-4xl text-[#57BD9E]"></i> -->
           <img :src="item.icono" />
           <span class="text-[#404040] font-medium">{{ item.numero }}</span>
         </a>
-        
       </div>
     </BoxContainer>
   </div>

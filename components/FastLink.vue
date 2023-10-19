@@ -43,8 +43,8 @@ const copyToClipboard = () => {
             <span class="fastLink-label">{{ label }}</span>
             <i class="icon-arrow-right text-white"></i>
         </NuxtLink>
-        <div v-if="hasCode" class="fastLink-code">
-            <span class="fastLink-code__label">{{ labelCode }}</span>
+        <div v-if="code !== ''" class="fastLink-code">
+            <span class="block fastLink-code__label">Cód. de activación:</span>
             <div class="fastLink-code__activeZone" @click="copyToClipboard">
                 <span class="fastLink-code__activeZone--label">{{ code }}</span>
                 <i class="text-[#404040] text-xs icon-file-copy"></i>

@@ -15,18 +15,18 @@ watchEffect(() => {
   }
 });
 
-const isOpen = true;
-const haveLink = true;
+const isOpen = false;
+const haveLink = false;
 
 </script>
 <template>
   <div class="flex items-center w-[1023px] mx-auto pb-[18px] gap-[6px]">
     <a class="text-[#575759] text-[15px] underline" href="">Inicio</a>
     <span class="text-[#575759] text-[15px]">></span>
-    <span class="text-[#575759] text-[15px]">Dashboard</span>
+    <span class="text-[#575759] text-[15px]">Contenido</span>
   </div>
   <div class="flex flex-col gap-6">
-    <div class="flex items-center w-[1023px] mx-auto gap-5 pb-[28px]">
+    <!-- <div class="flex items-center w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
         <h1
           class="text-[#191919] text-[32px] font-bold font-solano uppercase whitespace-nowrap"
@@ -68,7 +68,7 @@ const haveLink = true;
           <i class="icon-edit text-xl text-[#595959]"></i>
         </a>
       </div>
-    </div>
+    </div> -->
     <!-- <div class="flex items-center justify-between gap-[28px] pb-[28px]">
       <div class="min-w-[35%]">
         <BoxContainer size="550" color="green">
