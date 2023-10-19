@@ -5,7 +5,7 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-    console.log(props.links);
+    // console.log(props.links);
 })
 
 </script>

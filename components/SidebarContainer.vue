@@ -13,7 +13,6 @@ onMounted(async () => {
     const accesoValues = store.getAccesoItems;
 
     if (accesoValues) {
-      console.log('working with new values: ',accesoValues);
       linkList.value = accesoValues.map((item) => ({
         label: item.titulo,
         link: item.url || "#",

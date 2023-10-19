@@ -40,7 +40,7 @@ const instance = getCurrentInstance();
 const handleActiveTab = (tab: string,value: boolean) => {
   tabActive.value = tab;
   const isActive = tab === tabActive.value;
-  console.log(value);
+  // console.log(value);
   instance?.emit("tabChange", value);
 };
 
