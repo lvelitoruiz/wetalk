@@ -156,7 +156,7 @@
     }
 
     &-code {
-      @apply bg-[#AACCFF] flex items-center justify-start gap-1 px-3 py-1 w-fit rounded-b;
+      @apply bg-[#AACCFF] flex flex-col justify-start gap-1 px-3 py-1 w-fit rounded-b;
 
       &__label {
         @apply text-[#404040] text-xs;
@@ -166,7 +166,7 @@
         @apply bg-[#5598FF66] px-1 flex items-center gap-1 rounded cursor-pointer transition-all duration-300 hover:bg-[#0018F8];
 
         &--label {
-          @apply text-[#404040] text-xs leading-none;
+          @apply text-[#404040] text-[10px] leading-none;
         }
       }
     }

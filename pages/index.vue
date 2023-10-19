@@ -1,6 +1,6 @@
 <script setup ts>
 import { computed, watchEffect } from "vue";
-import { apiKey, apiUrl } from "~/consts";
+import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from '../stores/menu'
 
@@ -19,7 +19,7 @@ const fetchMetaInfo = async () => {
   await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178");
   await metaStore.obtainImages(apiUrl);
   await menuStore.fetchMenuData(apiUrl,apiKey)
-  await menuStore.fetchAccesoDirectoData(apiUrl, apiKey)
+  await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey)
 };
 
 onMounted(async () => {
