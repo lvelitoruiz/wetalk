@@ -3,7 +3,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { CdkInfraStack } from '../lib/cdk-infra-stack';
 
-const appName='lau-wetalk-fe-devops3';
+const appName='lau-wetalk-fe';
  
 const app = new cdk.App();
 
