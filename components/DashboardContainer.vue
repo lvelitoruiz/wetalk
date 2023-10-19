@@ -64,9 +64,9 @@ const haveLink = true;
             Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
           </p>
         </div>
-        <a href="" class="inline-block w-[30px]">
+        <router-link to="/meta" class="inline-block w-[30px]">
           <i class="icon-edit text-xl text-[#595959]"></i>
-        </a>
+        </router-link>
       </div>
     </div>
     <!-- <div class="flex items-center justify-between gap-[28px] pb-[28px]">
