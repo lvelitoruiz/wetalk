@@ -10,6 +10,8 @@ const metaData = ref(null);
 const imagesData = ref(null);
 const accesoData = ref(null);
 const menuData = ref(null);
+const ayudaData = ref(null);
+const syllabusData = ref(null);
 
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
@@ -20,6 +22,8 @@ const fetchMetaInfo = async () => {
   await metaStore.obtainImages(apiUrl);
   await menuStore.fetchMenuData(apiUrl,apiKey)
   await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey)
+  await menuStore.fetchAyudaData(apiUrlAlter, apiKey)
+  await menuStore.fetchContenidoData(apiUrlAlter, apiKey)
 };
 
 onMounted(async () => {
@@ -39,6 +43,8 @@ const allDataLoaded = computed(() => {
     metaData.value !== null &&
     imagesData.value !== null &&
     menuData.value !== null &&
+    ayudaData.value !== null &&
+    syllabusData.value !== null &&
     accesoData.value !== null
   );
 });
@@ -60,10 +66,18 @@ watchEffect(() => {
   if(acceso) {
     accesoData.value = acceso;
   }
+  const ayuda = menuStore.getAyudaItems;
+  if(ayuda) {
+    ayudaData.value = acceso;
+  }
+  const syllabus = menuStore.getContenidoItems;
+  if(syllabus) {
+    syllabusData.value = acceso;
+  }
 
-  // if (allDataLoaded.value) {
-  //   handleOpen();
-  // }
+  if (allDataLoaded.value) {
+    handleOpen();
+  }
 });
 
 </script>

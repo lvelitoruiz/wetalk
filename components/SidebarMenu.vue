@@ -4,8 +4,6 @@ const props = defineProps({
     links: Array,
 })
 
-console.log(props.links);
-
 </script>
 <template>
     <div class="sidebarMenu-wrapper">
