@@ -61,9 +61,9 @@ watchEffect(() => {
     accesoData.value = acceso;
   }
 
-  if (allDataLoaded.value) {
-    handleOpen();
-  }
+  // if (allDataLoaded.value) {
+  //   handleOpen();
+  // }
 });
 
 </script>

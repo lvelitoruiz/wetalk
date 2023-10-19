@@ -18,7 +18,7 @@ function handler(event) {
             if (uri.endsWith('/')) {
                 request.uri = removeTrailingSlash(request.uri);
             }
-            request.uri += '.html';
+            request.uri += '/index.html';
         }
     }
     return request;
