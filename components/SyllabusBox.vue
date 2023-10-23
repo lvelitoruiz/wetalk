@@ -20,11 +20,8 @@ const tabs = [
 watchEffect(() => {
   const contenido = menuStore.getContenidoItems;
   if (contenido) {
-    console.log("the content: ", contenido);
     dataSyllabus.value = contenido;
   }
-
-  console.log("the content: ", contenido[2]);
 
   cicloNow.value = dataSyllabus.value[0];
   cicloNext.value = dataSyllabus.value[1];
@@ -64,7 +61,6 @@ const downloadFile = () => {
 };
 
 const triggerCycle = () => {
-  console.log(event.target.value);
   menuStore.fetchContenidoData(apiUrlAlter, event.target.value.toString())
 }
 </script>

@@ -11,8 +11,6 @@ watchEffect(() => {
   if (ayuda) {
     ayudaData.value = ayuda;
   }
-
-  console.log("the ayuda: ", ayuda);
 });
 
 
