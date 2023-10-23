@@ -31,8 +31,6 @@ export const useMetaStore = defineStore({
           .create(axiosConf)
           .get<any>(`/Perfil/v1/meta/obtener?institucion=upc&id=${id}`);
 
-        console.log("metadata working", response.data.data);
-
         this.metaData = response.data.data;
       } catch (error) {
         console.error("Error fetching meta data:", error);

@@ -2,10 +2,10 @@
 import { computed, watchEffect } from "vue";
 import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
 import { useMetaStore } from "../stores/meta";
-import { useMenuStore } from '../stores/menu'
+import { useMenuStore } from "../stores/menu";
 
 const metaStore = useMetaStore();
-const menuStore = useMenuStore()
+const menuStore = useMenuStore();
 const metaData = ref(null);
 const imagesData = ref(null);
 const accesoData = ref(null);
@@ -14,31 +14,37 @@ const ayudaData = ref(null);
 const syllabusData = ref(null);
 
 const selectedImage = ref(
-  "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
+  "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
 );
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrlAlter, apiKey, "U2020201234178").then((response) => console.log('the response: ',response));
+  await metaStore
+    .fetchMetaData(apiUrlAlter, apiKey, "U2020201234178")
+    .then((response) => console.log("the response: ", response));
   await metaStore.obtainImages(apiUrl);
-  await menuStore.fetchMenuData(apiUrl,apiKey)
-  await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey)
-  await menuStore.fetchAyudaData(apiUrlAlter, apiKey)
-  await menuStore.fetchContenidoData(apiUrlAlter, "0")
+  await menuStore.fetchMenuData(apiUrl, apiKey);
+  await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey);
+  await menuStore.fetchAyudaData(apiUrlAlter, apiKey);
+  await menuStore.fetchContenidoData(apiUrlAlter, "0");
 };
+
+onBeforeMount(() => {
+  localStorage.clear();
+});
 
 onMounted(async () => {
   await fetchMetaInfo();
 });
 
 const handleOpen = () => {
-    setTimeout(() => {
-      navigateTo('/dashboard');
-    }, 2000);
-}
+  setTimeout(() => {
+    navigateTo("/dashboard");
+  }, 4000);
+};
 
 const handleOpenLogin = () => {
-    navigateTo('/login');
-}
+  navigateTo("/login");
+};
 
 const allDataLoaded = computed(() => {
   return (
@@ -53,34 +59,30 @@ const allDataLoaded = computed(() => {
 
 watchEffect(async () => {
   const data = metaStore.getMetaData;
-  console.log('metadata: ',data);
+  console.log("metadata: ", data);
   if (data) {
-    console.log('metadata: ',data.data)
-    metaData.value = data.data;
+    console.log("metadata: ", data[0]);
+    metaData.value = data;
+    selectedImage.value = data[0].imagen;
   }
   const images = metaStore.getImages;
-  if(images) {
-    console.log('images: ',images)
+  if (images) {
     imagesData.value = images;
   }
   const menu = menuStore.getMenuItems;
-  if(menu) {
-    console.log('menu: ',menu)
+  if (menu) {
     menuData.value = menu;
   }
   const acceso = menuStore.getAccesoItems;
-  if(acceso) {
-    console.log('accesos: ',acceso);
+  if (acceso) {
     accesoData.value = acceso;
   }
   const ayuda = menuStore.getAyudaItems;
-  console.log('ayuda: ',ayuda)
-  if(ayuda) {
+  if (ayuda) {
     ayudaData.value = acceso;
   }
   const syllabus = menuStore.getContenidoItems;
-  console.log('syllabus: ',syllabus)
-  if(syllabus) {
+  if (syllabus) {
     syllabusData.value = acceso;
   }
 
@@ -88,16 +90,23 @@ watchEffect(async () => {
     handleOpen();
   }
 });
-
 </script>
 <template>
   <section class="container mx-auto relative px-4">
     <div class="w-full h-screen flex items-center justify-center flex-col">
-      <a class="absolute top-[40px] left-4"  @click="handleOpenLogin">
+      <a class="absolute top-[40px] left-4" @click="handleOpenLogin">
         <img class="h-[39px]" src="@/assets/images/logo.svg" alt="" />
       </a>
       <div class="block min-h-[260px]">
-        <img class="h-auto w-80" :src="selectedImage" alt="" />
+        <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
+        <client-only>
+          <Vue3Lottie
+            :animationLink="selectedImage"
+            :height="200"
+            :width="255"
+            class="min-w-[255px] h-auto"
+          />
+        </client-only>
       </div>
       <div
         class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content"
@@ -108,7 +117,7 @@ watchEffect(async () => {
             <p
               class="text-[#344D47] text-[28px] uppercase font-bold font-solano"
             >
-              {{ metaData.meta }}
+              {{ metaData[0].meta }}
             </p>
           </div>
         </Transition>
@@ -119,13 +128,20 @@ watchEffect(async () => {
         <div
           class="bg-[#E50A17] absolute rounded-full top-0 left-0 h-[10px] bottom-0 transition-all duration-300 ease-in-out"
           :class="{
-            'w-[0%] transition-all duration-500 ease-in-out':  metaData === null,
-            'w-[20%] transition-all duration-500 ease-in-out':  metaData !== null,
-            'w-[50%] transition-all duration-500 ease-in-out':  metaData !== null &&  imagesData !== null,
-            'w-[75%] transition-all duration-500 ease-in-out':  metaData !== null &&  imagesData !== null && menuData !== null,
-            'w-full transition-all duration-500 ease-in-out':  metaData !== null &&  imagesData !== null && menuData !== null && accesoData !== null,
+            'w-[0%] transition-all duration-500 ease-in-out': metaData === null,
+            'w-[20%] transition-all duration-500 ease-in-out':
+              metaData !== null,
+            'w-[50%] transition-all duration-500 ease-in-out':
+              metaData !== null && imagesData !== null,
+            'w-[75%] transition-all duration-500 ease-in-out':
+              metaData !== null && imagesData !== null && menuData !== null,
+            'w-full transition-all duration-500 ease-in-out':
+              metaData !== null &&
+              imagesData !== null &&
+              menuData !== null &&
+              accesoData !== null,
           }"
-        @click="handleOpen"
+          @click="handleOpen"
         ></div>
       </div>
     </div>
