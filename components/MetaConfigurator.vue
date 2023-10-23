@@ -27,6 +27,10 @@ const handleMeta = (event) => {
   }
 };
 
+const fetchMetaInfo = async () => {
+  await metaStore.fetchMetaData(apiUrlAlter, apiKey, "U2020201234178");
+};
+
 watchEffect(() => {
   const data = metaStore.getMetaData;
   const images = metaStore.getImages;
@@ -138,14 +142,14 @@ const changeImage = (indexItem, newImage) => {
             alt=""
           /> -->
           <client-only>
-              <Vue3Lottie
-                v-if="selectedImage !== ''"
-                :animationLink="selectedImage"
-                :height="200"
-                :width="255"
-                class="min-w-[255px] h-auto"
-              />
-            </client-only>
+            <Vue3Lottie
+              v-if="selectedImage !== ''"
+              :animationLink="selectedImage"
+              :height="200"
+              :width="255"
+              class="min-w-[255px] h-auto"
+            />
+          </client-only>
           <div class="relative flex items-center flex-col justify-center">
             <div class="triangulo"></div>
             <div
