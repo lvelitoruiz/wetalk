@@ -17,6 +17,7 @@ watchEffect(() => {
 
 const isOpen = false;
 const haveLink = false;
+const haveTabs = false;
 
 </script>
 <template>
@@ -412,7 +413,7 @@ const haveLink = false;
     </div> -->
     <div class="w-[1023px] mx-auto">
       <div class="flex gap-[28px]">
-        <SyllabusBox :open="isOpen" :link="haveLink" />
+        <SyllabusBox :open="isOpen" :link="haveLink" :tab-show="haveTabs" />
         <HelpBox />
       </div>
     </div>

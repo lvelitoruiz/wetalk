@@ -150,7 +150,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchContenidoData(apiUrl: string, apiKey: string) {
+    async fetchContenidoData(apiUrl: string, cycle: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -167,10 +167,13 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>("/Home/v1/Ciclos?institucion=upc&ciclo_actual=0");
+          .get<any>("/Home/v1/Ciclos?institucion=upc&ciclo_actual="+cycle);
+        
+        console.log('the response data: ',response.data);
 
         newData.push(response.data.data.ciclo_actual);
         newData.push(response.data.data.ciclo_siguiente);
+        newData.push(response.data.data.ruta_archivo);
 
         this.contenidoData = newData;
       } catch (error) {
@@ -470,6 +473,9 @@ export const useMenuStore = defineStore({
               ],
             },
           ],
+          [
+              "https://wetalk-directus-dev-upc.stage01.link/assets/84168706-55eb-4541-b360-6f9a71447b30"
+          ]
         ];
       }
     },

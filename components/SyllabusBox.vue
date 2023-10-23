@@ -1,5 +1,6 @@
 <script setup>
 import { useMenuStore } from "../stores/menu";
+import { apiUrlAlter } from "~/consts";
 
 const menuStore = useMenuStore();
 
@@ -9,6 +10,8 @@ const cicloNow = ref(null);
 
 const cicloNext = ref(null);
 
+const syllabusFile = ref(null);
+
 const tabs = [
   { texto: "Ciclo Actual", value: true },
   { texto: "Proximo Ciclo", value: false },
@@ -17,13 +20,15 @@ const tabs = [
 watchEffect(() => {
   const contenido = menuStore.getContenidoItems;
   if (contenido) {
+    console.log("the content: ", contenido);
     dataSyllabus.value = contenido;
   }
 
-  console.log("the content: ", contenido[0]);
+  console.log("the content: ", contenido[2]);
 
   cicloNow.value = dataSyllabus.value[0];
   cicloNext.value = dataSyllabus.value[1];
+  syllabusFile.value = dataSyllabus.value[2];
 });
 
 const props = defineProps({
@@ -35,6 +40,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  tabShow: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const actual = ref(true);
@@ -42,6 +51,22 @@ const actual = ref(true);
 const handleTabChange = (value) => {
   actual.value = value;
 };
+
+const downloadFile = () => {
+  const fileUrl = syllabusFile.value;
+
+  const newWindow = window.open(fileUrl, "_blank");
+  if (newWindow) {
+    newWindow.focus();
+  } else {
+    alert("Popup blocked. Please allow popups for this website.");
+  }
+};
+
+const triggerCycle = () => {
+  console.log(event.target.value);
+  menuStore.fetchContenidoData(apiUrlAlter, event.target.value.toString())
+}
 </script>
 <template>
   <div class="min-w-[65%]">
@@ -59,9 +84,27 @@ const handleTabChange = (value) => {
             <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
+          <Button
+            v-if="!props.link"
+            label="Descargar Syllabus"
+            primary
+            @click="downloadFile()"
+          />
         </div>
         <div class="flex items-center gap-4 mb-[22px]">
-          <TabContent :tabs="tabs" @tabChange="handleTabChange"></TabContent>
+          <TabContent v-if="props.tabShow" :tabs="tabs" @tabChange="handleTabChange"></TabContent>
+          <select
+            v-if="!props.tabShow"
+            class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-gray-900 text-sm cursor-pointer outline-none"
+            @change="triggerCycle()"
+          >
+            <option value="0">Inglés 0</option>
+            <option value="1">Inglés 1</option>
+            <option value="2">Inglés 2</option>
+            <option value="3">Inglés 3</option>
+            <option value="4">Inglés 4</option>
+            <option value="5">Inglés 5</option>
+          </select>
         </div>
         <div
           class="min-h-[222px]"

@@ -30,6 +30,7 @@
     "grapheme-splitter": "^1.0.4",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
-    "vue-toast-notification": "^3.1.1"
+    "vue-toast-notification": "^3.1.1",
+    "vue3-lottie": "^3.2.0"
   }
 }

@@ -32,6 +32,8 @@ export const useMetaStore = defineStore({
       } catch (error) {
         console.error("Error fetching meta data:", error);
       }
+
+      return this.metaData;
     },
 
     async registerMetaData(apiUrl: string, apiKey: string, metaInfo: MetaItem) {
