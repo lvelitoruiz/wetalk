@@ -4,16 +4,18 @@ import { apiKey, apiUrl } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import GraphemeSplitter from "grapheme-splitter";
 
+import animation from "@/assets/images/Ilustracion1.json";
+
 const metaStore = useMetaStore();
 const metaData = ref(null);
 const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
-  "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
+  "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
 );
 
-const graphemesNow = ref(0)
+const graphemesNow = ref(0);
 
 const handleMeta = (event) => {
   const splitter = new GraphemeSplitter();
@@ -54,16 +56,16 @@ onMounted(async () => {
 const hasMeta = computed(() => meta.value !== "");
 
 const markImage = () => {
-  illustrations.value.map( (item,index) => {
-    if(item.imagen === selectedImage.value) {
+  illustrations.value.map((item, index) => {
+    if (item.imagen === selectedImage.value) {
       item.active = true;
-    } else if(index = 0 && selectedImage.value == "") {
+    } else if ((index = 0 && selectedImage.value == "")) {
       item.active = true;
     } else {
       item.active = false;
     }
-  })
-}
+  });
+};
 
 const updateMeta = async () => {
   let metaItem = {
@@ -121,21 +123,46 @@ const changeImage = (indexItem, newImage) => {
       </div>
     </div>
     <div class="flex gap-[20px]">
-      <div
-        class="min-w-[369px] max-w-[369px] border-r border-[#D9D9D9] pr-7"
-      >
+      <div class="min-w-[369px] max-w-[369px] border-r border-[#D9D9D9] pr-7">
         <div class="flex items-center justify-center flex-col gap-[14px]">
-          <img v-if="selectedImage !== ''" class="min-w-[255px] h-auto" :src="selectedImage" alt="" />
-          <img v-if="selectedImage === ''" class="min-w-[255px] h-auto" src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0" alt="" />
+          <!-- <img
+            v-if="selectedImage !== ''"
+            class="min-w-[255px] h-auto"
+            :src="selectedImage"
+            alt=""
+          />
+          <img
+            v-if="selectedImage === ''"
+            class="min-w-[255px] h-auto"
+            src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
+            alt=""
+          /> -->
+          <client-only>
+              <Vue3Lottie
+                v-if="selectedImage !== ''"
+                :animationLink="illustrations[0].imagen"
+                :height="200"
+                :width="255"
+                class="min-w-[255px] h-auto"
+              />
+            </client-only>
           <div class="relative flex items-center flex-col justify-center">
             <div class="triangulo"></div>
             <div
               class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] px-5 py-2 w-full flex justify-between items-center rounded-lg"
             >
-              <p v-if="meta !== ''" class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]">
+              <p
+                v-if="meta !== ''"
+                class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]"
+              >
                 {{ meta }}
               </p>
-              <p v-if="meta === ''" class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]">Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆</p>
+              <p
+                v-if="meta === ''"
+                class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]"
+              >
+                Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
+              </p>
             </div>
           </div>
         </div>
@@ -148,7 +175,7 @@ const changeImage = (indexItem, newImage) => {
             </p>
           </div>
           <div class="grid grid-cols-3 gap-4">
-            <img
+            <!-- <img
               v-for="(illustration, index) in illustrations"
               class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
               :class="{
@@ -158,7 +185,20 @@ const changeImage = (indexItem, newImage) => {
               :src="illustration.imagen"
               alt=""
               @click="() => changeImage(index, illustration.imagen)"
-            />
+            /> -->
+            <client-only>
+              <Vue3Lottie
+                v-for="(illustration, index) in illustrations"
+                :animationLink="illustration.imagen"
+                :height="auto"
+                :width="187"
+                class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
+                :class="{
+                  'border-2 border-gray-700': illustration.active,
+                  'border border-gray-400': !illustration.active,
+                }"
+              />
+            </client-only>
           </div>
         </div>
         <div class="relative">
@@ -166,7 +206,9 @@ const changeImage = (indexItem, newImage) => {
             <p class="text-[#404040] font-bold font-solano uppercase">
               Cuéntanos tu meta
             </p>
-            <p class="text-xs text-[#808080]">{{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65</p>
+            <p class="text-xs text-[#808080]">
+              {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
+            </p>
           </div>
           <input
             v-model="meta"
