@@ -18,12 +18,12 @@ const selectedImage = ref(
 );
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178");
+  await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178").then((response) => console.log('the response: ',response));
   await metaStore.obtainImages(apiUrl);
   await menuStore.fetchMenuData(apiUrl,apiKey)
   await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey)
   await menuStore.fetchAyudaData(apiUrlAlter, apiKey)
-  await menuStore.fetchContenidoData(apiUrlAlter, apiKey)
+  await menuStore.fetchContenidoData(apiUrlAlter, "0")
 };
 
 onMounted(async () => {
@@ -31,7 +31,9 @@ onMounted(async () => {
 });
 
 const handleOpen = () => {
-    navigateTo('/dashboard');
+    setTimeout(() => {
+      navigateTo('/dashboard');
+    }, 2000);
 }
 
 const handleOpenLogin = () => {
@@ -49,28 +51,34 @@ const allDataLoaded = computed(() => {
   );
 });
 
-watchEffect(() => {
+watchEffect(async () => {
   const data = metaStore.getMetaData;
   if (data) {
+    console.log('metadata: ',data)
     metaData.value = data[0];
   }
   const images = metaStore.getImages;
   if(images) {
+    console.log('images: ',images)
     imagesData.value = images;
   }
   const menu = menuStore.getMenuItems;
   if(menu) {
+    console.log('menu: ',menu)
     menuData.value = menu;
   }
   const acceso = menuStore.getAccesoItems;
   if(acceso) {
+    console.log('accesos: ',acceso);
     accesoData.value = acceso;
   }
   const ayuda = menuStore.getAyudaItems;
+  console.log('ayuda: ',ayuda)
   if(ayuda) {
     ayudaData.value = acceso;
   }
   const syllabus = menuStore.getContenidoItems;
+  console.log('syllabus: ',syllabus)
   if(syllabus) {
     syllabusData.value = acceso;
   }
