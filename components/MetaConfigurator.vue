@@ -140,7 +140,7 @@ const changeImage = (indexItem, newImage) => {
           <client-only>
               <Vue3Lottie
                 v-if="selectedImage !== ''"
-                :animationLink="illustrations[0].imagen"
+                :animationLink="selectedImage"
                 :height="200"
                 :width="255"
                 class="min-w-[255px] h-auto"
@@ -197,6 +197,7 @@ const changeImage = (indexItem, newImage) => {
                   'border-2 border-gray-700': illustration.active,
                   'border border-gray-400': !illustration.active,
                 }"
+                @click="() => changeImage(index, illustration.imagen)"
               />
             </client-only>
           </div>

@@ -42,7 +42,7 @@ const haveLink = true;
         class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[71px] px-5 py-2 w-full flex items-center rounded-lg triangle relative"
       >
         <div class="w-[70px]">
-          <img
+          <!-- <img
             v-if="selectedImage !== ''"
             class="w-auto h-[55px]"
             :src="selectedImage"
@@ -53,7 +53,16 @@ const haveLink = true;
             class="w-auto h-[55px]"
             src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
             alt=""
-          />
+          /> -->
+          <client-only>
+              <Vue3Lottie
+                v-if="selectedImage !== ''"
+                :animationLink="selectedImage"
+                :height="55"
+                :width="auto"
+                class="min-h-[55px] w-auto"
+              />
+            </client-only>
         </div>
         <div class="w-[calc(100%-100px)] px-3">
           <p class="text-[#404040] text-sm font-bold">Meta:</p>
