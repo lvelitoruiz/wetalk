@@ -18,7 +18,7 @@ const selectedImage = ref(
 );
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrl, apiKey, "U2020201234178").then((response) => console.log('the response: ',response));
+  await metaStore.fetchMetaData(apiUrlAlter, apiKey, "U2020201234178").then((response) => console.log('the response: ',response));
   await metaStore.obtainImages(apiUrl);
   await menuStore.fetchMenuData(apiUrl,apiKey)
   await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey)
@@ -53,9 +53,10 @@ const allDataLoaded = computed(() => {
 
 watchEffect(async () => {
   const data = metaStore.getMetaData;
+  console.log('metadata: ',data);
   if (data) {
-    console.log('metadata: ',data)
-    metaData.value = data[0];
+    console.log('metadata: ',data.data)
+    metaData.value = data.data;
   }
   const images = metaStore.getImages;
   if(images) {
