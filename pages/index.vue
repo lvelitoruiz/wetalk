@@ -13,6 +13,13 @@ const menuData = ref(null);
 const ayudaData = ref(null);
 const syllabusData = ref(null);
 
+const keyMeta = ref(false);
+const keyImages = ref(false);
+const keyMenu = ref(false);
+const keyAcceso = ref(false);
+const keyAyuda = ref(false);
+const keyContenido = ref(false);
+
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
 );
@@ -20,12 +27,22 @@ const selectedImage = ref(
 const fetchMetaInfo = async () => {
   await metaStore
     .fetchMetaData(apiUrlAlter, apiKey, "U2020201234178")
-    .then((response) => console.log("the response: ", response));
-  await metaStore.obtainImages(apiUrl);
-  await menuStore.fetchMenuData(apiUrl, apiKey);
-  await menuStore.fetchAccesoDirectoData(apiUrlAlter, apiKey);
-  await menuStore.fetchAyudaData(apiUrlAlter, apiKey);
-  await menuStore.fetchContenidoData(apiUrlAlter, "0");
+    .then((response) => (keyMeta.value = true));
+  await metaStore
+    .obtainImages(apiUrl)
+    .then((response) => (keyImages.value = true));
+  await menuStore
+    .fetchMenuData(apiUrl, apiKey)
+    .then((response) => (keyMenu.value = true));
+  await menuStore
+    .fetchAccesoDirectoData(apiUrlAlter, apiKey)
+    .then((response) => (keyAcceso.value = true));
+  await menuStore
+    .fetchAyudaData(apiUrlAlter, apiKey)
+    .then((response) => (keyAyuda.value = true));
+  await menuStore
+    .fetchContenidoData(apiUrlAlter, "0")
+    .then((response) => (keyContenido.value = true));
 };
 
 onBeforeMount(() => {
@@ -39,7 +56,7 @@ onMounted(async () => {
 const handleOpen = () => {
   setTimeout(() => {
     navigateTo("/dashboard");
-  }, 4000);
+  }, 2000);
 };
 
 const handleOpenLogin = () => {
@@ -47,13 +64,30 @@ const handleOpenLogin = () => {
 };
 
 const allDataLoaded = computed(() => {
+  // return (
+  //   metaData.value !== null &&
+  //   imagesData.value !== null &&
+  //   menuData.value !== null &&
+  //   ayudaData.value !== null &&
+  //   syllabusData.value !== null &&
+  //   accesoData.value !== null
+  // );
+  console.log(
+    "loaded: ",
+    keyMeta.value &&
+      keyImages.value &&
+      keyMenu.value &&
+      keyAcceso.value &&
+      keyAyuda.value &&
+      keyContenido.value
+  );
   return (
-    metaData.value !== null &&
-    imagesData.value !== null &&
-    menuData.value !== null &&
-    ayudaData.value !== null &&
-    syllabusData.value !== null &&
-    accesoData.value !== null
+    keyMeta.value &&
+    keyImages.value &&
+    keyMenu.value &&
+    keyAcceso.value &&
+    keyAyuda.value &&
+    keyContenido.value
   );
 });
 
@@ -129,15 +163,28 @@ watchEffect(async () => {
           class="bg-[#E50A17] absolute rounded-full top-0 left-0 h-[10px] bottom-0 transition-all duration-300 ease-in-out"
           :class="{
             'w-[0%] transition-all duration-500 ease-in-out': metaData === null,
-            'w-[20%] transition-all duration-500 ease-in-out':
+            'w-[15%] transition-all duration-500 ease-in-out':
               metaData !== null,
-            'w-[50%] transition-all duration-500 ease-in-out':
+            'w-[35%] transition-all duration-500 ease-in-out':
               metaData !== null && imagesData !== null,
-            'w-[75%] transition-all duration-500 ease-in-out':
+            'w-[50%] transition-all duration-500 ease-in-out':
               metaData !== null && imagesData !== null && menuData !== null,
+            'w-[70%] transition-all duration-500 ease-in-out':
+              metaData !== null &&
+              imagesData !== null &&
+              menuData !== null &&
+              accesoData !== null,
+            'w-[85%] transition-all duration-500 ease-in-out':
+              metaData !== null &&
+              imagesData !== null &&
+              menuData !== null &&
+              ayudaData !== null &&
+              accesoData !== null,
             'w-full transition-all duration-500 ease-in-out':
               metaData !== null &&
               imagesData !== null &&
+              ayudaData !== null &&
+              syllabusData !== null &&
               menuData !== null &&
               accesoData !== null,
           }"
