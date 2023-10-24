@@ -29,7 +29,7 @@ const fetchMetaInfo = async () => {
     .fetchMetaData(apiUrlAlter, apiKey, "U2020201234178")
     .then((response) => (keyMeta.value = true));
   await metaStore
-    .obtainImages(apiUrl)
+    .obtainImages(apiUrlAlter)
     .then((response) => (keyImages.value = true));
   await menuStore
     .fetchMenuData(apiUrl, apiKey)
