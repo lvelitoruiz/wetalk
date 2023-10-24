@@ -43,6 +43,7 @@ watchEffect(() => {
   if (images) {
     const formattedImages = images.map((item) => ({
       imagen: item.imagen,
+      imagen_estatica: item.imagen_estatica,
       categoria: item.categoria,
       active: false,
     }));
@@ -179,18 +180,18 @@ const changeImage = (indexItem, newImage) => {
             </p>
           </div>
           <div class="grid grid-cols-3 gap-4">
-            <!-- <img
+            <img
               v-for="(illustration, index) in illustrations"
               class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
               :class="{
                 'border-2 border-gray-700': illustration.active,
                 'border border-gray-400': !illustration.active,
               }"
-              :src="illustration.imagen"
+              :src="illustration.imagen_estatica"
               alt=""
               @click="() => changeImage(index, illustration.imagen)"
-            /> -->
-            <client-only>
+            />
+            <!-- <client-only>
               <Vue3Lottie
                 v-for="(illustration, index) in illustrations"
                 :animationLink="illustration.imagen"
@@ -203,7 +204,7 @@ const changeImage = (indexItem, newImage) => {
                 }"
                 @click="() => changeImage(index, illustration.imagen)"
               />
-            </client-only>
+            </client-only> -->
           </div>
         </div>
         <div class="relative">
