@@ -1,5 +1,8 @@
 <script setup ts>
   import animation from '@/assets/images/Ilustracion1.json'
+  definePageMeta({
+    middleware: 'auth'
+  }); 
 </script>
 <template>
   <NuxtLayout>

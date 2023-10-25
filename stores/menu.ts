@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authHeader } from "~/consts";
 
 export const useMenuStore = defineStore({
   id: "menu",
@@ -18,6 +19,8 @@ export const useMenuStore = defineStore({
     getContenidoItems: (state) => state.contenidoData,
   },
   actions: {
+    
+
     async fetchMenuData(apiUrl: string, apiKey: string) {
       try {
         const axiosConf = {
@@ -48,7 +51,7 @@ export const useMenuStore = defineStore({
       //     .catch((error) => console.log("error", error));
     },
 
-    async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
+    async fetchAccesoDirectoData(apiUrl: string, apiKey: string, accesToken: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -57,10 +60,10 @@ export const useMenuStore = defineStore({
           },
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVQQyI6IlUyMDEwMTAwMTMiLCJOb21icmUiOiJNQVggQUxPTlpPIE1BUlRJTiIsIkFwZWxsaWRvIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIkVtYWlsIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiSG9yYVNlc2lvbiI6IjMvMTUvMjAyMyAxMDoyNzozNCBQTSIsIldlYnNpdGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJVMjAxMDEwMDEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiTUFYIEFMT05aTyBNQVJUSU4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIm5iZiI6MTY3ODkxOTI1NCwiZXhwIjoxODUxNzE5MjU0LCJpc3MiOiJVUEMgU1NPIiwiYXVkIjoiVVBDIFNTTyJ9.onmQZ_9rIP2v8HoX9lfECX0c2H1IfTSeI9lysGb6aGs",
+              authHeader
           },
         };
-
+        console.lo(axiosConf, 'axios conf')
         const response = await axios
           .create(axiosConf)
           .get<any>("/Masservicios/v1/AccesosRapidosPerfil?institucion=upc");
@@ -113,7 +116,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchAyudaData(apiUrl: string, apiKey: string) {
+    async fetchAyudaData(apiUrl: string, apiKey: string, accesToken: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -122,7 +125,7 @@ export const useMenuStore = defineStore({
           },
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVQQyI6IlUyMDEwMTAwMTMiLCJOb21icmUiOiJNQVggQUxPTlpPIE1BUlRJTiIsIkFwZWxsaWRvIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIkVtYWlsIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiSG9yYVNlc2lvbiI6IjMvMTUvMjAyMyAxMDoyNzozNCBQTSIsIldlYnNpdGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJVMjAxMDEwMDEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiTUFYIEFMT05aTyBNQVJUSU4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIm5iZiI6MTY3ODkxOTI1NCwiZXhwIjoxODUxNzE5MjU0LCJpc3MiOiJVUEMgU1NPIiwiYXVkIjoiVVBDIFNTTyJ9.onmQZ_9rIP2v8HoX9lfECX0c2H1IfTSeI9lysGb6aGs",
+              authHeader
           },
         };
 
@@ -150,7 +153,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchContenidoData(apiUrl: string, cycle: string) {
+    async fetchContenidoData(apiUrl: string, cycle: string, accesToken: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -159,7 +162,7 @@ export const useMenuStore = defineStore({
           },
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVQQyI6IlUyMDEwMTAwMTMiLCJOb21icmUiOiJNQVggQUxPTlpPIE1BUlRJTiIsIkFwZWxsaWRvIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIkVtYWlsIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiSG9yYVNlc2lvbiI6IjMvMTUvMjAyMyAxMDoyNzozNCBQTSIsIldlYnNpdGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJVMjAxMDEwMDEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiTUFYIEFMT05aTyBNQVJUSU4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIm5iZiI6MTY3ODkxOTI1NCwiZXhwIjoxODUxNzE5MjU0LCJpc3MiOiJVUEMgU1NPIiwiYXVkIjoiVVBDIFNTTyJ9.onmQZ_9rIP2v8HoX9lfECX0c2H1IfTSeI9lysGb6aGs",
+              authHeader
           },
         };
 

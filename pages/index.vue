@@ -4,6 +4,10 @@ import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from "../stores/menu";
 
+definePageMeta({
+    middleware: 'auth'
+});
+
 const metaStore = useMetaStore();
 const menuStore = useMenuStore();
 const metaData = ref(null);
