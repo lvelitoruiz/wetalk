@@ -1,5 +1,6 @@
 import axios from "axios";
-import { authHeader } from "~/consts";
+
+const authHeader = localStorage.getItem("tokenH");
 
 export const useMenuStore = defineStore({
   id: "menu",
@@ -63,7 +64,7 @@ export const useMenuStore = defineStore({
               authHeader
           },
         };
-        console.lo(axiosConf, 'axios conf')
+    
         const response = await axios
           .create(axiosConf)
           .get<any>("/Masservicios/v1/AccesosRapidosPerfil?institucion=upc");

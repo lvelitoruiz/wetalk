@@ -1,5 +1,7 @@
 import axios from "axios";
-import { authHeader } from "~/consts";
+
+
+const authHeader = localStorage.getItem("tokenH");
 
 export const useMetaStore = defineStore({
   id: "meta",
@@ -24,7 +26,7 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-              authHeader
+            authHeader
           },
         };
 
