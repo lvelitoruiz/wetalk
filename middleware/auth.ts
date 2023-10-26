@@ -2,7 +2,7 @@ import { useUserStore } from "../stores/auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     
-  if(process.server) return;
+  // if(process.server) return;
   console.log(process.server, 'process server')
   const { $msal } = await useNuxtApp();
   const accounts = $msal().getAccounts();
