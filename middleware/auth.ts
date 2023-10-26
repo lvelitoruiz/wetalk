@@ -1,10 +1,10 @@
-import { useUserStore } from "../stores/auth";
+import { useUserStore } from "~/stores/auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     
   // if(process.server) return;
   // console.log(process.server, 'process server')
-  const { $msal } = await useNuxtApp();
+  const { $msal } = useNuxtApp();
   const accounts = $msal().getAccounts();
   const userStore = useUserStore();
   const accessToken = await $msal().acquireTokenSilent();
@@ -25,9 +25,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
     console.log(to.name, !isAuthenticated, 'line 26')
     if (to.name !== "login" && !isAuthenticated) {
-        return navigateTo("/login", { replace: true });
-      } else if (to.name === "login" && isAuthenticated) {
-        return navigateTo("/", { replace: true });
+        return navigateTo("/login");
+      } else if (to.path !== '/' && isAuthenticated) {
+        return navigateTo("/");
       } else {
         return;
       }
