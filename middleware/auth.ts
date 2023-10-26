@@ -23,14 +23,14 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
           state.user = user;
         });
     }
-    console.log(to.name, !isAuthenticated, 'line 26')
-    if (to.name !== "login" && !isAuthenticated) {
-        return navigateTo("/login");
-      } else if (to.path !== '/' && isAuthenticated) {
-        return navigateTo("/");
-      } else {
-        return;
-      }
+    console.log(to.name, isAuthenticated, 'line 26')
+    // if (to.name !== "login" && !isAuthenticated) {
+    //     return navigateTo("/login");
+    //   } else if (to.path !== '/' && isAuthenticated) {
+    //     return navigateTo("/");
+    //   } else {
+    //     return;
+    //   }
         
     // if (!auth.value.isAuthenticated) {
     //   return navigateTo('/login')
