@@ -3,13 +3,13 @@ import { useUserStore } from "../stores/auth";
 export default defineNuxtRouteMiddleware(async (to, from) => {
     
   // if(process.server) return;
-  console.log(process.server, 'process server')
+  // console.log(process.server, 'process server')
   const { $msal } = await useNuxtApp();
   const accounts = $msal().getAccounts();
   const userStore = useUserStore();
   const accessToken = await $msal().acquireTokenSilent();
   let isAuthenticated = $msal().isAuthenticated() && accessToken;
-
+    console.log(isAuthenticated, 'isAutheticated line 12')
     if (isAuthenticated) {
         const user = {
           ...accounts[0],
@@ -23,7 +23,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
           state.user = user;
         });
     }
-
+    console.log(to.name, !isAuthenticated, 'line 26')
     if (to.name !== "login" && !isAuthenticated) {
         return navigateTo("/login", { replace: true });
       } else if (to.name === "login" && isAuthenticated) {
