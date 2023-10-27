@@ -5,6 +5,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   // if(process.server) return;
   // console.log(process.server, 'process server')
   const { $msal } = useNuxtApp();
+  console.log($msal, 'msal');
   const accounts = $msal().getAccounts();
   const userStore = useUserStore();
   const accessToken = await $msal().acquireTokenSilent();
@@ -19,9 +20,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("tokenH", JSON.stringify(accessToken))
     
-        userStore.$patch((state) => {
-          state.user = user;
-        });
+       userStore.fetchUserData(JSON.stringify(accessToken));
+      
+        // userStore.$patch((state) => {
+        //   state.user = user;
+        // });
     }
     console.log(to.name, isAuthenticated, 'line 26')
     // if (to.name !== "login" && !isAuthenticated) {

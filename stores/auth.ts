@@ -1,7 +1,20 @@
 // import { defineStore } from "pinia";
-export const useUserStore = defineStore("userdata", {
+
+
+export const useUserStore = defineStore({
+  id: "auth",
   state: () => ({
-    user: {} as any,
-    userImage: null,
+    userdata: null as any | null,
   }),
+  persist: {
+    storage: persistedState.localStorage,
+  },
+  getters: {
+    getUserData: (state) => state.userdata,
+  },
+  actions: {
+    async fetchUserData(token:string) {
+      this.userdata = token
+    }
+  },
 });
