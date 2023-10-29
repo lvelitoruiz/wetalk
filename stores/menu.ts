@@ -7,6 +7,7 @@ export const useMenuStore = defineStore({
     accesoDirectoData: [] as AccesoDirectoItem[],
     ayudaData: [] as AyudaItem[],
     contenidoData: [] as any,
+    calendarData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -16,6 +17,7 @@ export const useMenuStore = defineStore({
     getAccesoItems: (state) => state.accesoDirectoData,
     getAyudaItems: (state) => state.ayudaData,
     getContenidoItems: (state) => state.contenidoData,
+    getCalendarItems: (state) => state.calendarData,
   },
   actions: {
     async fetchMenuData(apiUrl: string, apiKey: string) {
@@ -147,6 +149,42 @@ export const useMenuStore = defineStore({
               "https://wetalk-directus-dev-upc.stage01.link/assets/861a7a84-9b91-4f65-bc80-aad4cafadb67",
           },
         ];
+      }
+    },
+
+    async fetchCalendarData(apiUrl: string, apiKey: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVQQyI6IlUyMDEwMTAwMTMiLCJOb21icmUiOiJNQVggQUxPTlpPIE1BUlRJTiIsIkFwZWxsaWRvIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIkVtYWlsIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiSG9yYVNlc2lvbiI6IjMvMTUvMjAyMyAxMDoyNzozNCBQTSIsIldlYnNpdGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJVMjAxMDEwMDEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiTUFYIEFMT05aTyBNQVJUSU4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIm5iZiI6MTY3ODkxOTI1NCwiZXhwIjoxODUxNzE5MjU0LCJpc3MiOiJVUEMgU1NPIiwiYXVkIjoiVVBDIFNTTyJ9.onmQZ_9rIP2v8HoX9lfECX0c2H1IfTSeI9lysGb6aGs",
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>("/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=U201921568&CodAlumno=201921568&CodPeriodo=202301&FechaSesion2=2023-10-24T23:00:00Z&FechaSesion1=2023-10-24T00:00:00Z&institucion=upc");
+        this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
+      } catch (error) {
+        console.error("Error fetching acceso directo data:", error);
+        // this.ayudaData = [
+        //   {
+        //     id: 1,
+        //     numero: "(01) 604 2400",
+        //     icono:
+        //       "https://wetalk-directus-dev-upc.stage01.link/assets/66bead94-8673-4426-97ef-50b78e76ca77",
+        //   },
+        //   {
+        //     id: 2,
+        //     numero: "962 222 408",
+        //     icono:
+        //       "https://wetalk-directus-dev-upc.stage01.link/assets/861a7a84-9b91-4f65-bc80-aad4cafadb67",
+        //   },
+        // ];
       }
     },
 
