@@ -13,9 +13,9 @@
         }
 }
 
-// if($msal().isAuthenticated()){
-//  navigateTo("/");
-// }
+if($msal().isAuthenticated()){
+ navigateTo("/");
+}
 
 </script>
 <template>

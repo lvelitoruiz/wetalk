@@ -1,7 +1,7 @@
 <script setup ts>
-// definePageMeta({
-//     middleware: 'auth'
-// });
+definePageMeta({
+    middleware: 'auth'
+});
 </script>
 <template>
   <NuxtLayout>
