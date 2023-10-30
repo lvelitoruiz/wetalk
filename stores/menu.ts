@@ -29,6 +29,10 @@ export const useMenuStore = defineStore({
           common: {
             Accept: "application/json, text/plain, */*",
           },
+          headers: {
+            Authorization:
+              authHeader
+          },
         };
 
         const response = await axios
@@ -52,7 +56,7 @@ export const useMenuStore = defineStore({
       //     .catch((error) => console.log("error", error));
     },
 
-    async fetchAccesoDirectoData(apiUrl: string, apiKey: string, accesToken: string) {
+    async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -154,7 +158,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchContenidoData(apiUrl: string, cycle: string, accesToken: string) {
+    async fetchContenidoData(apiUrl: string, cycle: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
