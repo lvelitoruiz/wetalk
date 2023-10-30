@@ -21,19 +21,15 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         localStorage.setItem("tokenH", JSON.stringify(accessToken))
     
        userStore.fetchUserData(JSON.stringify(accessToken));
-      
-        // userStore.$patch((state) => {
-        //   state.user = user;
-        // });
     }
     console.log(to.name, isAuthenticated, 'line 26')
-    // if (to.name !== "login" && !isAuthenticated) {
-    //     return navigateTo("/login");
-    //   } else if (to.path !== '/' && isAuthenticated) {
-    //     return navigateTo("/");
-    //   } else {
-    //     return;
-    //   }
+    if (!isAuthenticated) {
+        return navigateTo("/login");
+      } else if (to.path !== '/' && isAuthenticated) {
+        return navigateTo("/");
+      } else {
+        return;
+      }
         
     // if (!auth.value.isAuthenticated) {
     //   return navigateTo('/login')

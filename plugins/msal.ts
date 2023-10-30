@@ -15,11 +15,10 @@ export default defineNuxtPlugin(async ({ $config }) => {
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
       storeAuthStateInCookie: true,
-    }
-    // ,
-    // system: {
-    //   tokenRenewalOffsetSeconds: 300,
-    // },
+    },
+    system: {
+      tokenRenewalOffsetSeconds: 300,
+    },
   };
 
   const msalInstance = new PublicClientApplication(msalConfig);
