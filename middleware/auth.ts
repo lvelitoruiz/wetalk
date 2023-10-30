@@ -21,9 +21,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         localStorage.setItem("tokenH", JSON.stringify(accessToken))
     
        userStore.fetchUserData(JSON.stringify(accessToken));
+      
     }
     console.log(to.name, isAuthenticated, 'line 26')
-    if (!isAuthenticated) {
+    if (to.name !== "login" && !isAuthenticated) {
         return navigateTo("/login");
       } else if (to.path !== '/' && isAuthenticated) {
         return navigateTo("/");
