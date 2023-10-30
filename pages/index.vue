@@ -50,7 +50,9 @@ const fetchMetaInfo = async () => {
 };
 
 onBeforeMount(() => {
-  localStorage.clear();
+  localStorage.removeItem('menu');
+  localStorage.removeItem('meta');
+  localStorage.removeItem('scheduleState');
 });
 
 onMounted(async () => {
