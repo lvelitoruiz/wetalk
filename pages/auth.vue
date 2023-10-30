@@ -14,10 +14,9 @@
 }
 
 if($msal().isAuthenticated()){
-    return navigateTo("/");
-}else {
-    return navigateTo("/login");
+ navigateTo("/");
 }
+
 </script>
 <template>
     <div>
