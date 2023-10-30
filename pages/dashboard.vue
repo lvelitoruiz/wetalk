@@ -1,13 +1,9 @@
 <script setup ts>
   import animation from '@/assets/images/Ilustracion1.json'
-  const { $msal } = useNuxtApp();
-// definePageMeta({
-//     middleware: 'auth'
-// });
-console.log($msal().getAccounts(), $msal().isAuthenticated(), 'dashboard line 7')
-  definePageMeta({
-    middleware: 'auth'
-  }); 
+
+  // definePageMeta({
+  //   middleware: 'auth'
+  // }); 
 </script>
 <template>
   <NuxtLayout>
