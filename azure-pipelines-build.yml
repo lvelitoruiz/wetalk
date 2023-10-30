@@ -19,7 +19,9 @@ jobs:
   - script: |
       npm install --frozen-lockfile
     displayName: 'Instalar dependencias'
-
+  - script: | 
+      npm cache clean --force
+    displayName: 'Limpiar la caché de npm'
   - script: |      
       npm run generate     
     displayName: 'npm run generate'
