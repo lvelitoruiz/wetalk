@@ -1,6 +1,8 @@
 <script setup>
  const { $msal } = useNuxtApp();
 
+
+
  async function logout() {
     // await $msal().signOut();
         console.log($msal().getAccounts())
@@ -9,6 +11,12 @@
         if($msal().isAuthenticated()){
             await $msal().signOut($msal().getAccounts()[0]?.homeAccountId)
         }
+}
+
+if($msal().isAuthenticated()){
+    return navigateTo("/");
+}else {
+    return navigateTo("/login");
 }
 </script>
 <template>
