@@ -12,6 +12,7 @@ const accesoData = ref(null);
 const menuData = ref(null);
 const ayudaData = ref(null);
 const syllabusData = ref(null);
+const notificationData = ref(null);
 
 const keyMeta = ref(false);
 const keyImages = ref(false);
@@ -19,6 +20,7 @@ const keyMenu = ref(false);
 const keyAcceso = ref(false);
 const keyAyuda = ref(false);
 const keyContenido = ref(false);
+const keyNotification = ref(false);
 
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
@@ -43,10 +45,15 @@ const fetchMetaInfo = async () => {
   await menuStore
     .fetchContenidoData(apiUrlAlter, "0")
     .then((response) => (keyContenido.value = true));
+  await menuStore
+    .fetchNotificationData(apiUrlAlter, "0")
+    .then((response) => (keyContenido.value = true));
 };
 
 onBeforeMount(() => {
-  localStorage.clear();
+  localStorage.removeItem('menu');
+  localStorage.removeItem('meta');
+  localStorage.removeItem('scheduleState');
 });
 
 onMounted(async () => {
@@ -87,7 +94,8 @@ const allDataLoaded = computed(() => {
     keyMenu.value &&
     keyAcceso.value &&
     keyAyuda.value &&
-    keyContenido.value
+    keyContenido.value&&
+    keyNotification.value
   );
 });
 
