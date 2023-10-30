@@ -8,6 +8,7 @@ export const useMenuStore = defineStore({
     ayudaData: [] as AyudaItem[],
     contenidoData: [] as any,
     calendarData: [] as any,
+    notificationData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -18,6 +19,7 @@ export const useMenuStore = defineStore({
     getAyudaItems: (state) => state.ayudaData,
     getContenidoItems: (state) => state.contenidoData,
     getCalendarItems: (state) => state.calendarData,
+    getNotificationItems: (state) => state.notificationData,
   },
   actions: {
     async fetchMenuData(apiUrl: string, apiKey: string) {
@@ -149,6 +151,31 @@ export const useMenuStore = defineStore({
               "https://wetalk-directus-dev-upc.stage01.link/assets/861a7a84-9b91-4f65-bc80-aad4cafadb67",
           },
         ];
+      }
+    },
+
+    async fetchNotificationData(apiUrl: string, apiKey: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZFVQQyI6IlUyMDEwMTAwMTMiLCJOb21icmUiOiJNQVggQUxPTlpPIE1BUlRJTiIsIkFwZWxsaWRvIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIkVtYWlsIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiSG9yYVNlc2lvbiI6IjMvMTUvMjAyMyAxMDoyNzozNCBQTSIsIldlYnNpdGUiOiIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3ByaW1hcnlzaWQiOiJVMjAxMDEwMDEzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoidTIwMTAxMDAxM0B1cGMuZWR1LnBlIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiTUFYIEFMT05aTyBNQVJUSU4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zdXJuYW1lIjoiUk9EUklHVUVaIEZFUk5BTkRFWiIsIm5iZiI6MTY3ODkxOTI1NCwiZXhwIjoxODUxNzE5MjU0LCJpc3MiOiJVUEMgU1NPIiwiYXVkIjoiVVBDIFNTTyJ9.onmQZ_9rIP2v8HoX9lfECX0c2H1IfTSeI9lysGb6aGs",
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>("/Home/v1/Notificaciones?codAlumno=201010013&poblacion=AC&ciclo=10&institucion=upc");
+
+        console.log(response.data.data);
+
+        this.notificationData = response.data.data;
+      } catch (error) {
+        console.error("Error fetching acceso directo data:", error);
       }
     },
 
