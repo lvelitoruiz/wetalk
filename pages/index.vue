@@ -3,11 +3,11 @@ import { computed, watchEffect } from "vue";
 import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from "../stores/menu";
-const { $msal } = useNuxtApp();
+
 // definePageMeta({
 //     middleware: 'auth'
 // });
-console.log($msal().getAccounts(), $msal().isAuthenticated())
+
 const metaStore = useMetaStore();
 const menuStore = useMenuStore();
 const metaData = ref(null);
