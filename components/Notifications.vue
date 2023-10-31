@@ -26,12 +26,14 @@ function closeNotifications() {
         <div class="bg-white relative rounded-lg py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[390px]">
             <div class="px-4 py-2 flex items-center justify-between">
                 <p class="font-medium text-[#191919]">Notificaciones</p>
-                <i class="text-[#35158C] text-xs icon-book-open cursor-pointer leading-none"></i>
+                <i class="text-[#35158C] text-xs icon-book-open cursor-pointer leading-none"
+                    @click="closeNotifications"></i>
             </div>
             <div class="flex items-center gap-3 px-4 py-2">
 
                 <div v-for="(notification, index) in notifications">
-                    <div v-if="notification.count > 0" class="bg-[#E50A17] px-4 py-1 text-white rounded-full flex items-center gap-1 cursor-pointer">
+                    <div v-if="notification.count > 0"
+                        class="bg-[#E50A17] px-4 py-1 text-white rounded-full flex items-center gap-1 cursor-pointer">
                         <p class="text-xs font-bold uppercase">{{ notification.category }}</p>
                         <span class="bg-white rounded-full w-[18px] h-[18px] flex items-center justify-center">
                             <span class="text-[#E50A17] font-medium text-sm">{{ notification.count }}</span>
@@ -55,7 +57,25 @@ function closeNotifications() {
             </div>
             <div class="overflow-y-auto max-h-[590px]">
                 <p class="uppercase text-[#191919] text-sm font-bold px-4 py-2">Esta semana</p>
-                <div class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5">
+                <div v-for="notification in notifications">
+                    <div v-if="notification.count > 0">
+                        <div v-for="noti in notification.data" class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5">
+                            <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
+                            <div>
+                                <p class="text-sm mb-1">{{ noti.titulo }}</p>
+                                <div class="flex items-center gap-1">
+                                    <div class="bg-[#FFF4AA] p-1 flex items-center gap-1 rounded cursor-pointer">
+                                        <i class="text-[#554A00] text-sm icon-book-open"></i>
+                                        <span class="text-[#554A00] text-sm leaning-none">{{ noti.tipo }} ({{ notification.count }})</span>
+                                    </div>
+                                    <span class="text-[#0043AA] text-xs">•</span>
+                                    <p class="text-[#0043AA] text-xs">Hace {{ noti.antiguedad }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5">
                     <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
                     <div>
                         <p class="text-sm mb-1">Ya puedes visualizar todas tus notas de Inglés 5.</p>
@@ -110,8 +130,8 @@ function closeNotifications() {
                             <p class="text-[#595959] text-xs">Hace 2d</p>
                         </div>
                     </div>
-                </div>
-                <p class="uppercase text-[#191919] text-sm font-bold px-4 py-2 pt-5">Anteriores</p>
+                </div> -->
+                <!-- <p class="uppercase text-[#191919] text-sm font-bold px-4 py-2 pt-5">Anteriores</p>
                 <div class="h-[106px] flex items-center px-4 bg-white cursor-pointer gap-5">
                     <span class="min-w-[16px] min-h-[16px] bg-white rounded-full"></span>
                     <div>
@@ -125,7 +145,7 @@ function closeNotifications() {
                             <p class="text-[#595959] text-xs">Hace 2d</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

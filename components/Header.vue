@@ -1,13 +1,20 @@
 <script setup>
 
 const pres = ref(false);
+const nots = ref(false);
 
 onMounted(() => {
     pres.value = true;
     setTimeout(() => {
         pres.value = false;
+        nots.value = true;
     }, 5000);
 });
+
+const openClose = () => {
+    pres.value = false;
+    nots.value = !nots.value;
+}
 
 </script>
 
@@ -23,12 +30,12 @@ onMounted(() => {
                         <i class="text-3xl text-[#191919] icon-email"></i>
                     </button>
                     <div class="relative">
-                        <Bell />
+                        <Bell @show="openClose" />
                         <Transition>
                             <PreNotifications v-if="pres" @close="pres = false" />
                         </Transition>
                         <Transition>
-                            <Notifications v-if="!pres" @close="pres = true" />
+                            <Notifications v-if="nots" @close="nots = false" />
                         </Transition>
                     </div>
                 </div>
