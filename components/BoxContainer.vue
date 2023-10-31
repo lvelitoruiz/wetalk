@@ -9,6 +9,10 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    padding: {
+      type: Boolean,
+      default: true
+    }
   },
 });
 </script>
@@ -39,9 +43,10 @@ export default defineComponent({
        'border-[#5598FF]' : color === 'blueLigth',
        'border-[#E50A17]' : color === 'red',
        'border-[#FEB6C2]' : color === 'pink',
-       'border-[#191919]' : color === 'black'
+       'border-[#191919]' : color === 'black',
+       'pt-[14px] pb-[22px] px-7': padding
     }] "
-    class="bg-white shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] rounded-[14px] border-t-[8px] pt-[14px] pb-[22px] px-7 w-full min-h-[40px]"
+    class="bg-white shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] rounded-[14px] border-t-[8px] w-full min-h-[40px]"
   >
     <slot></slot>
   </div>

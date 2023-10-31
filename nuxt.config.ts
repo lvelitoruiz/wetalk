@@ -29,6 +29,8 @@ export default defineNuxtConfig({
       },
     ],
     "@pinia-plugin-persistedstate/nuxt",
+    '@vueuse/nuxt',
+    'nuxt-icons'
   ],
   piniaPersistedstate: {
     cookieOptions: {
