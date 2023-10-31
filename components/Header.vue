@@ -7,7 +7,6 @@ onMounted(() => {
     pres.value = true;
     setTimeout(() => {
         pres.value = false;
-        nots.value = true;
     }, 5000);
 });
 
