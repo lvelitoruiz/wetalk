@@ -16,9 +16,9 @@ async function login() {
         <div class="flex justify-center lg:justify-end w-full  ">
             <div class="content lg:mx-[100px] pt-[82px] z-10">
                 <div class="logos flex justify-between py-[33px]">
-                    <img src="@/assets/images/logoupcicon.svg" alt="UPC">
+                    <!-- <img src="@/assets/images/logoupcicon.svg" alt="UPC">
                     <img src="@/assets/images/logoUPN.svg" alt="UPN">
-                    <img src="@/assets/images/logoCIB.svg" alt="CIBERTEC">
+                    <img src="@/assets/images/logoCIB.svg" alt="CIBERTEC"> -->
                 </div>
                 <div class="content-login min-w-[100%] lg:min-w-[360px] max-w-[360px] bg-[#fff] py-[34px] px-[36px] rounded-[15px]">
                     <img src="@/assets/images/wetalkLogo.svg" class="mx-auto" alt="CIBERTEC">
