@@ -51,7 +51,7 @@ const fetchMetaInfo = async () => {
     .then((response) => (keyContenido.value = true));
   await menuStore
     .fetchNotificationData(apiUrlAlter, "0")
-    .then((response) => (keyContenido.value = true));
+    .then((response) => (keyNotification.value = true));
 };
 
 onBeforeMount(() => {
@@ -65,12 +65,12 @@ onMounted(async () => {
 });
 
 const handleOpen = () => {
-  setTimeout(() => {
+  console.log('managing redirection!!');
     navigateTo("/dashboard");
-  }, 2000);
 };
 
 const handleOpenLogin = () => {
+  console.log('yeah all is there!');
   navigateTo("/login");
 };
 
@@ -83,15 +83,16 @@ const allDataLoaded = computed(() => {
   //   syllabusData.value !== null &&
   //   accesoData.value !== null
   // );
-  console.log(
-    "loaded: ",
-    keyMeta.value &&
-      keyImages.value &&
-      keyMenu.value &&
-      keyAcceso.value &&
-      keyAyuda.value &&
-      keyContenido.value
-  );
+  // console.log(
+  //   "loaded: ",
+  //   keyMeta.value &&
+  //     keyImages.value &&
+  //     keyMenu.value &&
+  //     keyAcceso.value &&
+  //     keyAyuda.value &&
+  //     keyContenido.value
+  // );
+  console.log(keyMeta.value,keyImages.value,keyMenu.value,keyAcceso.value,keyContenido.value,keyNotification.value);
   return (
     keyMeta.value &&
     keyImages.value &&
@@ -132,7 +133,9 @@ watchEffect(async () => {
     syllabusData.value = acceso;
   }
 
-  if (allDataLoaded.value) {
+  console.log('with value: ',allDataLoaded.value);
+
+  if (allDataLoaded.value === true) {
     handleOpen();
   }
 });
