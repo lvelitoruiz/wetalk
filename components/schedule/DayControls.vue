@@ -28,7 +28,7 @@ const props = defineProps({
             :class="day <= 0 || active ? 'text-transparent' : 'text-neutral-1'">
             <nuxt-icon class="text-[14px] no-fill" name="left" />
         </button>
-        <span class="font-solano text-2xl xl:text-[22px] text-white text-center">
+        <span class="font-solano text-2xl xl:text-[20px] text-white text-center">
             {{ dayDescription(sessionDate) }}
         </span>
         <button aria-label="Icon right" class="xl:px-1 pl-1" @click="handleChange(1)" :disabled="day >= courses.length - 1 || active"
