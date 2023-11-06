@@ -23,6 +23,7 @@ onMounted(() => {
     const nowScroll = getnowMarkour(now.value);
     y.value = (nowScroll - 8) * 61.5;
 });
+
 </script>
 
 <template>

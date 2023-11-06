@@ -6,6 +6,7 @@ const props = defineProps({
     }
 });
 const coursesCalendar = ref(null);
+const coursesToday = ref(null);
 const { y } = useScroll(coursesCalendar);
 const now = ref(new Date());
 
@@ -37,6 +38,10 @@ onMounted(() => {
     const nowScroll = getnowMarkour(now.value);
     y.value = (nowScroll - 8) * 61.5;
 });
+
+watchEffect(async () => {
+    coursesToday.value = data.coursesSelectedDay('Todos').length;
+});
 </script>
 
 <template>
@@ -50,6 +55,7 @@ onMounted(() => {
                 HOY
             </span>
             <span class="capitalize text-lg font-bold">{{ getDayName(data.day) }}</span>
+            <p>Tienes {{ coursesToday }} {{ coursesToday.length >= 2 ? "clases hoy" : "clase hoy" }}.</p>
         </p>
         <div ref="coursesCalendar" class="flex pr-3 lg:pr-4"
             :class="{'scroll-horario-sch': !data.coursesListDay?.empty}"
