@@ -60,6 +60,7 @@ const isRepeated = (session, name, lastname) => {
                 'two-hours-course': courseDuration(course.HoraInicioSesion, course.HoraTerminoSesion) === 2 && !smallerThanLg,
                 'more-hours-course': courseDuration(course.HoraInicioSesion, course.HoraTerminoSesion) >= 3 || smallerThanLg
             }"
+            class="card-content"
         >
             <p><span class="text-secondary-400">Sección:</span> {{ course.Seccion }}</p>
             <p>
@@ -93,15 +94,19 @@ const isRepeated = (session, name, lastname) => {
 
 <style lang="postcss" scoped>
 .card-sc-course-detail {
-    @apply px-3 py-4 lg:w-[90%] ml-[12px] border-l-[4px] border-secondary-400 lg:absolute bg-neutral-1 mb-3 lg:mb-0 rounded;
+    @apply px-3 py-4 lg:w-[90%] ml-[2px] border-l-[4px] border-secondary-400 lg:absolute bg-neutral-1 mb-3 lg:mb-0 rounded;
+}
+
+.card-content {
+    font-size: 12px!important;
 }
 
 .card-sc-course-detail .title-curso {
-    @apply font-solano text-xl uppercase leading-[1] text-primary lg:whitespace-nowrap mb-4 lg:mb-0 lg:mr-6;
+    @apply font-solano text-sm uppercase leading-[1] text-primary lg:whitespace-nowrap mb-4 lg:mb-0 lg:mr-6;
 }
 
 .card-sc-course-detail .content {
-    @apply grid grid-cols-3 lg:block gap-4 text-sm;
+    @apply grid grid-cols-3 lg:block gap-4 text-xs;
 }
 
 .one-hour-course {

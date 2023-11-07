@@ -67,7 +67,7 @@ const modalidadActual = () => {
         <div class="flex flex-col md:flex-row items-start md:items-center">
           <strong class="mr-8 text-sm md:text-base">Periodo:</strong>
           <select @change="eventChangePeriodo()" v-model="periodoValue"
-            class="w-48 p-2 border-solid border-2 border-gray-200 base-select-purple">
+            class="w-48 p-2 border-solid border-2 border-gray-200 base-select-purple text-[#191919]">
             <option v-for="period in periodosList?.data" :key="period" :value="period.periodo">
               <span>{{ period.periodo }}</span>
             </option>

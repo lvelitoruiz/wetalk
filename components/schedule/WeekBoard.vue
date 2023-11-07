@@ -140,7 +140,7 @@ onMounted(() => {
                     class="relative border-r-[1px] border-neutral-400"
                     :class="{'h-[62px] lg:h-[55px] border-b-[1px]': i !== Object.keys(hours).length - 1}"
                 >
-                    <div class="leading-[1] text-xs lg:text-sm absolute top-[-10px] lg:top-[-15px] bg-white pr-1 w-[40px] lg:w-[42px]">
+                    <div class="leading-[1] text-xs lg:text-sm absolute top-[-10px] lg:top-[-10px] bg-white pr-1 w-[40px] lg:w-full">
                         {{ hour }}:00
                     </div>
                 </div>
@@ -193,7 +193,7 @@ onMounted(() => {
     }
 
     .dateList-item {
-        @apply flex flex-col lg:flex-row items-center justify-center pb-6;
+        @apply flex flex-col lg:flex-col items-center justify-center pb-6;
     }
     .dateList-item-text {
         @apply font-solano text-xl text-center;
@@ -263,6 +263,6 @@ onMounted(() => {
     }
 
     .limit {
-        @apply relative after:absolute after:left-[10px] after:content-[''] after:w-[1px] after:h-full after:bg-neutral-400;
+        @apply relative after:absolute after:left-[0px] after:content-[''] after:w-[1px] after:h-full after:bg-neutral-400;
     }
 </style>

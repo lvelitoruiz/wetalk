@@ -19,11 +19,11 @@ const props = defineProps({
 <div class="xl:flex items-center text-center xl:order-3">
     <span class="text-sm text-white">Curso:</span>
     <select
-        class="base-select-purple text-dark-600 pl-3 pr-5 py-3 font-solano rounded-full bg-white w-full xl:w-[145px] xl:order-3 xl:ml-4 mt-2 xl:mt-0"
+        class="base-select-purple text-[#191919] pl-3 pr-5 py-3 font-solano rounded-full bg-white w-full xl:w-[145px] xl:order-3 xl:ml-4 mt-2 xl:mt-0"
         :value="selectedCourseWeek"
         @change="handleCourse"
     >
-        <option class="text-dark-600" value="Todos" selected>Todos</option>
+        <option class="text-[#191919]" value="Todos" selected>Todos</option>
         <option
             class="text-black"
             v-for="(item, i) in allCourses"

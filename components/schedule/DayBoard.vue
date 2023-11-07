@@ -12,24 +12,24 @@ const now = ref(new Date());
 
 const data = scheduleState();
 const hours = [
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19",
-  "20",
-  "21",
-  "22",
-  "23",
-  "24"
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24"
 ];
 
 const isToday = (today) => today === 0 ? 6 : getDay(today) - 1;
@@ -46,40 +46,37 @@ watchEffect(async () => {
 
 <template>
     <div class="px-3 lg:px-4 pt-[20px] pb-[36px] bg-white">
-        <p class="mb-3"
-            :class="{
-                'lg:mb-8': !data.coursesListDay?.empty,
-            }"
-        >
+        <div class="mb-3" :class="{
+            'lg:mb-8': !data.coursesListDay?.empty,
+        }">
+        <p class="font-solano text-xl">
             <span class="text-lg font-bold" v-if="data.day === isToday(new Date())">
-                HOY
+                HOY,
             </span>
             <span class="capitalize text-lg font-bold">{{ getDayName(data.day) }}</span>
-            <p>Tienes {{ coursesToday }} {{ coursesToday.length >= 2 ? "clases hoy" : "clase hoy" }}.</p>
         </p>
-        <div ref="coursesCalendar" class="flex pr-3 lg:pr-4"
-            :class="{'scroll-horario-sch': !data.coursesListDay?.empty}"
-        >
+        <p class="p-1 font-sans text-xs rounded bg-[#FFF4AA] mt-2 inline-block">Tienes {{ coursesToday }} {{
+            coursesToday.length >= 2 ? "clases hoy" : "clase hoy" }}.</p>
+        </div>
+        <div ref="coursesCalendar" class="flex pr-3 lg:pr-4" :class="{ 'scroll-horario-sch': !data.coursesListDay?.empty }">
             <div v-if="!data.coursesListDay?.empty" class="hidden lg:block">
                 <div v-for="(hour, i) in hours" :key="hour">
-                    <div  class="leading-[1] lg:pr-3 text-[14px]"
-                        :class="{'h-[60px]': i !== hours.length - 1}"
-                    >
+                    <div class="leading-[1] lg:pr-3 lg:pt-[5px] text-[14px]" :class="{ 'h-[60px]': i !== hours.length - 1 }">
                         {{ hour }}:00
                     </div>
                 </div>
             </div>
             <div class="relative w-full mt-[12px]">
                 <template v-if="!data.coursesListDay?.empty">
-                    <ScheduleDayBoardGrid 
-                        :coursesCalendar="coursesCalendar" 
-                        :filter="filter"
-                    />
+                    <ScheduleDayBoardGrid :coursesCalendar="coursesCalendar" :filter="filter" />
                 </template>
                 <div v-else class="flex flex-col items-center justify-center">
-                    <NuxtIcon filled class="text-[52px] mb-[10px] bg-[#FFFFFF] rounded-full px-[20px] pt-[20px] pb-[13px]" name="noData" />
-                    <p v-if="data.day === isToday(new Date())" class="font-bold text-center leading-[1.2] mb-1">No tienes cursos asignados para hoy</p>
-                    <p v-if="data.day !== isToday(new Date())" class="font-bold text-center leading-[1.2] mb-1">No tienes cursos asignados este día</p>
+                    <NuxtIcon filled class="text-[52px] mb-[10px] bg-[#FFFFFF] rounded-full px-[20px] pt-[20px] pb-[13px]"
+                        name="noData" />
+                    <p v-if="data.day === isToday(new Date())" class="font-bold text-center leading-[1.2] mb-1">No tienes
+                        cursos asignados para hoy</p>
+                    <p v-if="data.day !== isToday(new Date())" class="font-bold text-center leading-[1.2] mb-1">No tienes
+                        cursos asignados este día</p>
                 </div>
             </div>
         </div>
@@ -93,32 +90,40 @@ watchEffect(async () => {
 }
 
 .scroll-horario-sch::-webkit-scrollbar {
-    border-radius: 10px;  
+    border-radius: 10px;
     background-color: #D9D9D9;
     width: 8px;
-    height: 8px; /* horizontal scrollbar height */
+    height: 8px;
+    /* horizontal scrollbar height */
     -webkit-appearance: none;
 }
+
 .scroll-horario-sch::-webkit-scrollbar {
     transform: translateY(-20px);
 }
+
 .scroll-horario-sch::-webkit-scrollbar-button {
-    height: 20px; /* vertical scrollbar height */
+    height: 20px;
+    /* vertical scrollbar height */
 }
+
 .scroll-horario-sch::-webkit-scrollbar:vertical {
-    width:8px;
+    width: 8px;
 }
+
 .scroll-horario-sch::-webkit-scrollbar-button {
     display: none;
-} 
+}
+
 .scroll-horario-sch::-webkit-scrollbar-thumb {
     position: absolute;
     right: -20px;
     background-color: #A999C6;
     border-radius: 20px;
 }
+
 .scroll-horario-sch::-webkit-scrollbar-track {
-    border-radius: 10px;  
+    border-radius: 10px;
 }
 
 .hour-mark {
@@ -131,5 +136,4 @@ watchEffect(async () => {
 
 .limit {
     @apply relative after:absolute after:left-[10px] after:content-[''] after:w-[1px] after:h-full after:bg-neutral-400;
-}
-</style>
+}</style>
