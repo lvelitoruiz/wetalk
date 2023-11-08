@@ -11,12 +11,17 @@ const menuStore = useMenuStore();
 
 watchEffect(async () => {
     const notifData = menuStore.getNotificationItems;
+    let totalNotifs = 0;
     if (notifData) {
         notifications.value = notifData;
         console.log('information about notifications: ', notifData);
     }
 
-    const totalNotifs = notifications.value.reduce((total, item) => total + item.data.length, 0);
+    notifications.value.map( (item) => {
+        totalNotifs += item.count;
+    });
+
+    // const totalNotifs = notifications.value.reduce((total, item) => total + item.data.length, 0);
     total.value = totalNotifs;
 });
 
@@ -29,6 +34,6 @@ function showNotifications() {
     <button class="relative" @click="showNotifications">
         <i class="text-3xl text-[#191919] icon-bell"></i>
         <span
-            class="flex items-center justify-center w-[15px] h-[15px] rounded-full bg-[#E50A17] font-bold text-[10px] text-white absolute top-0 right-0">{{ total }}</span>
+            class="flex items-center justify-center w-[18px] h-[18px] p-1 rounded-full bg-[#E50A17] font-bold text-[10px] text-white absolute top-0 right-0">{{ total > 9 ? "+9" : total }}</span>
     </button>
 </template>
