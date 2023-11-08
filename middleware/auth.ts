@@ -19,6 +19,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
        userStore.fetchUserData(JSON.stringify(accessToken));
       
     }
+    
+   const userEmailDomain: string | null = localStorage.getItem("user");
+    // console.log(JSON.parse(userEmailDomain))
 
     if (to.name !== "login" && !isAuthenticated) {
       return navigateTo("/login", { replace: true });

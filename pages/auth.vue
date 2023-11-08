@@ -4,6 +4,7 @@
 
     if($msal().isAuthenticated()){
     navigateTo("/");
+    console.log($msal)
     }
 
     if(!$msal().isAuthenticated()){
