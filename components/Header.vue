@@ -1,5 +1,8 @@
 <script setup>
+import { useUserStore } from "~/stores/auth";
+const userStore = useUserStore();
 
+const nameUser = userStore.getUserData?.name
 const pres = ref(false);
 const nots = ref(false);
 
@@ -13,6 +16,11 @@ onMounted(() => {
 const openClose = () => {
     pres.value = false;
     nots.value = !nots.value;
+}
+
+const showOption = ref(false) 
+const openList = ()=> {
+    showOption.value = !showOption.value
 }
 
 </script>
@@ -41,9 +49,15 @@ const openClose = () => {
             </div>
             <div class="pr-[28px]">
                 <div class="flex items-center cursor-pointer gap-2">
-                    <p class="text-[#191919] text-sm font-zizou-bold">Gianinna Roca</p>
+                    <p class="text-[#191919] text-sm font-zizou-bold">{{ nameUser }}</p>
                     <img class="h-10 w-10" src="@/assets/images/user.png" alt="">
-                    <i class="icon-arrow-down text-[#191919]"></i>
+                    <button @click="openList">
+                        <i class="icon-arrow-down text-[#191919]"></i>
+                    </button>
+                    <div v-show="showOption">
+                        <Logout></Logout>
+                    </div>
+
                 </div>
             </div>
             <div class="flex items-center gap-2">

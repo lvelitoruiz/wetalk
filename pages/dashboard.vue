@@ -4,6 +4,9 @@ import animation from '@/assets/images/Ilustracion1.json'
 import { watchEffect } from "vue";
 import { apiKey, apiUrlAlter } from "~/consts";
 import { useMenuStore } from "../stores/menu";
+definePageMeta({
+    middleware: 'auth'
+});
 
 const menuStore = useMenuStore();
 

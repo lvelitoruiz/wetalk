@@ -1,5 +1,9 @@
 <script setup>
 import { useMetaStore } from "../stores/meta";
+import { useUserStore } from "~/stores/auth";
+const userStore = useUserStore();
+
+const nameUser = userStore.getUserData?.name
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
 );
@@ -31,7 +35,7 @@ const haveLink = true;
         <h1
           class="text-[#191919] text-[32px] font-bold font-solano uppercase whitespace-nowrap"
         >
-          Welcome, Gianinna Roca
+          Welcome, {{ nameUser }}
         </h1>
         <p class="text-[#191919] text-[18px] whitespace-nowrap">
           Inglés 1 | Lun y Mar 19:00h - 22:00h
