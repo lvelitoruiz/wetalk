@@ -1,6 +1,8 @@
 import axios from "axios";
-
+import { useUserStore } from "./auth";
 const authHeader = localStorage.getItem("tokenH");
+const codUser = localStorage.getItem("codUser")
+
 
 export const useMenuStore = defineStore({
   id: "menu",
@@ -177,7 +179,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>("/Home/v1/Notificaciones?codAlumno=201010013&poblacion=AC&ciclo=10&institucion=upc");
+          .get<any>(`/Home/v1/Notificaciones?codAlumno=${codUser}&poblacion=AC&ciclo=10&institucion=upc`);
 
         console.log(response.data.data);
 

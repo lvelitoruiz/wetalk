@@ -10,7 +10,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
       authority: $config.public.authority,
       redirectUri: $config.public.redirectUri,
       postLogoutRedirectUri: $config.public.postLogoutRedirectUri,
-      navigateToLoginRequestUrl: true,
+      navigateToLoginRequestUrl: false,
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,

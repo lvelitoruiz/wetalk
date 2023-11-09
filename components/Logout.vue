@@ -10,5 +10,5 @@ async function logout() {
 }
 </script>
 <template>
-    <button @click="logout">Salir</button>
+    <button @click="logout"> Cerrar sesión</button>
 </template>
