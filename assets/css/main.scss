@@ -82,6 +82,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .icon-close:before {
+    content: "\e915";
+  }
+  .icon-general:before {
+    content: "\e916";
+  }
+  .icon-globe:before {
+    content: "\e917";
+  }
+  .icon-newtab:before {
+    content: "\e918";
+  }
   .icon-plane:before {
     content: "\e90e";
   }
