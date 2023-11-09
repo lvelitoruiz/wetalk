@@ -23,14 +23,25 @@ const userEmailDomain = accounts?.length > 0 ? accounts[0].username : "";
 const listDomain = ["upc.edu.pe", "upn.pe"];
 
 let isAuthenticated = $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
-let stringCodUser = accounts[0].username
-const userCode = stringCodUser.replace(/[^0-9]+/g, ""); 
-if (isAuthenticated) {
+let stringCodUser = accounts[0]?.username
+const userCode = stringCodUser?.replace(/[^0-9]+/g, "");
 
+const entidadActiva = ref('');
+if(stringCodUser){
+ for (let index = 0; index < listDomain.length; index++) {
+    const element = listDomain[index];
+    if(stringCodUser.includes(element)){
+      entidadActiva.value = element.substring(0, 3)
+    }
+ }
+}
+
+if (isAuthenticated) {
   const user = {
     ...accounts[0],
     bearerToken: accessToken,
     codUser: userCode,
+    institucion : entidadActiva
   };
   localStorage.setItem("tokenH", JSON.stringify(accessToken));
   localStorage.setItem("codUser", userCode);
