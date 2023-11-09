@@ -13,6 +13,7 @@ export const useMenuStore = defineStore({
     contenidoData: [] as any,
     calendarData: [] as any,
     notificationData: [] as any,
+    profileData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -24,6 +25,7 @@ export const useMenuStore = defineStore({
     getContenidoItems: (state) => state.contenidoData,
     getCalendarItems: (state) => state.calendarData,
     getNotificationItems: (state) => state.notificationData,
+    getProfileItems: (state) => state.profileData,
   },
   actions: {
     
@@ -552,6 +554,28 @@ export const useMenuStore = defineStore({
               "https://wetalk-directus-dev-upc.stage01.link/assets/84168706-55eb-4541-b360-6f9a71447b30"
           ]
         ];
+      }
+    },
+
+    async fetchProfileData(apiUrl: string, apiKey: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization:
+              authHeader
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>("v1/menu?institucion=upc");
+        this.profileData = response.data;
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
       }
     },
   },
