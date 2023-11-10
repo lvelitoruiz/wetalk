@@ -11,9 +11,6 @@ const finalItems = ref(null);
 
 const generalItems = ref(null);
 const personalItems = ref(null);
-const pagosItems = ref(null);
-const beyondItems = ref(null);
-const networkItems = ref(null);
 
 const menuStore = useMenuStore();
 
@@ -41,7 +38,7 @@ watchEffect(async () => {
     const notifData = menuStore.getNotificationItems;
     if (notifData) {
         notifData.map((item, index) => {
-            if (index === 0) {
+            if (index === 1) {
                 item.active = true
             } else {
                 item.active = false
@@ -64,11 +61,11 @@ watchEffect(async () => {
 
     if (categorizedItems.value['General'].length) {
         generalItems.value = convert('General');
-        finalItems.value = convert('General');
     }
 
     if (categorizedItems.value['Personal'].length) {
         personalItems.value = convert('Personal');
+        finalItems.value = convert('Personal');
     }
 });
 
@@ -100,7 +97,7 @@ const changeItems = (value) => {
         <div class="bg-white relative rounded-lg py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[390px]">
             <div class="px-4 py-2 flex items-center justify-between">
                 <p class="font-medium text-[#191919]">Notificaciones</p>
-                <i class="text-[#35158C] text-xs icon-book-open cursor-pointer leading-none"
+                <i class="text-[#35158C] text-xs icon-close cursor-pointer leading-none"
                     @click="closeNotifications"></i>
             </div>
             <div class="flex items-center gap-3 px-4 py-2">
