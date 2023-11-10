@@ -51,17 +51,6 @@ export const useMenuStore = defineStore({
         console.error("Error fetching menu data:", error);
       }
 
-      //   var requestOptions = {
-      //     method: "GET",
-      //     redirect: "follow" as RequestRedirect,
-      //   };
-
-      //   console.log(requestOptions);
-
-      //   fetch(`${apiUrl}v1/menu?institucion=upc`, requestOptions)
-      //     .then((response) => response.text())
-      //     .then((result) => console.log(result))
-      //     .catch((error) => console.log("error", error));
     },
 
     async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
@@ -557,7 +546,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchProfileData(apiUrl: string, apiKey: string) {
+    async fetchProfileData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -572,7 +561,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>("v1/menu?institucion=upc");
+          .get<any>(`/Accesos/v1/data_alumno?CodAlumno=${codUser}&institucion=upn`);
         this.profileData = response.data;
       } catch (error) {
         console.error("Error fetching profile data:", error);
