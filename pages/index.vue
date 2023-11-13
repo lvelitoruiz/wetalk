@@ -5,7 +5,7 @@ import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from "../stores/menu";
 
 definePageMeta({
-    middleware: 'auth'
+  middleware: 'auth'
 });
 
 const metaStore = useMetaStore();
@@ -25,6 +25,7 @@ const keyAcceso = ref(false);
 const keyAyuda = ref(false);
 const keyContenido = ref(false);
 const keyNotification = ref(false);
+const keyProfile = ref(false);
 
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
@@ -52,6 +53,9 @@ const fetchMetaInfo = async () => {
   await menuStore
     .fetchNotificationData(apiUrlAlter, "0")
     .then((response) => (keyNotification.value = true));
+  await menuStore
+    .fetchProfileData(apiUrlAlter)
+    .then((response) => (keyProfile.value = true));
 };
 
 onBeforeMount(() => {
@@ -99,7 +103,8 @@ const allDataLoaded = computed(() => {
     keyMenu.value &&
     keyAcceso.value &&
     keyAyuda.value &&
-    keyContenido.value&&
+    keyContenido.value &&
+    keyProfile.value &&
     keyNotification.value
   );
 });
@@ -149,31 +154,20 @@ watchEffect(async () => {
       <div class="block min-h-[260px]">
         <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
         <client-only>
-          <Vue3Lottie
-            :animationLink="selectedImage"
-            :height="200"
-            :width="255"
-            class="min-w-[255px] h-auto"
-          />
+          <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
         </client-only>
       </div>
-      <div
-        class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content"
-      >
+      <div class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content">
         <Transition>
           <div v-if="metaData !== null">
             <p class="text-[#344D47] text-[24px]">Tu meta:</p>
-            <p
-              class="text-[#344D47] text-[28px] uppercase font-bold font-solano"
-            >
+            <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
               {{ metaData[0].meta }}
             </p>
           </div>
         </Transition>
       </div>
-      <div
-        class="bg-[#F2F2F2] relative rounded-full h-[10px] w-full max-w-[615px]"
-      >
+      <div class="bg-[#F2F2F2] relative rounded-full h-[10px] w-full max-w-[615px]">
         <div
           class="bg-[#E50A17] absolute rounded-full top-0 left-0 h-[10px] bottom-0 transition-all duration-300 ease-in-out"
           :class="{
@@ -202,9 +196,7 @@ watchEffect(async () => {
               syllabusData !== null &&
               menuData !== null &&
               accesoData !== null,
-          }"
-          @click="handleOpen"
-        ></div>
+          }" @click="handleOpen"></div>
       </div>
     </div>
   </section>

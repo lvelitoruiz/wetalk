@@ -6,10 +6,13 @@ const menuStore = useMenuStore();
 
 const ayudaData = ref(null);
 
+const wsLink = ref("")
+
 watchEffect(() => {
   const ayuda = menuStore.getAyudaItems;
   if (ayuda) {
     ayudaData.value = ayuda;
+    wsLink.value = `https://api.whatsapp.com/send?phone=51${ayudaData.value[1].numero}&text=Hola!%20Quisiera%20m%C3%A1s%20informaci%C3%B3n!!`;
   }
 });
 
@@ -37,10 +40,15 @@ const data = [
         <p class="text-[#404040] text-sm">Consultas generales:</p>
       </div>
       <div class="flex flex-col gap-2">
-        <a v-for="item in ayudaData" href="" class="flex items-center gap-[6px]">
+        <a :href="wsLink" class="flex items-center gap-[6px]">
           <!-- <i class="icon-phone text-4xl text-[#57BD9E]"></i> -->
-          <img :src="item.icono" />
-          <span class="text-[#404040] font-medium">{{ item.numero }}</span>
+          <img class="h-[32px]" src="@/assets/images/wsicon.svg" alt="">
+          <span class="text-[#404040] font-medium">Chatea con nosotros</span>
+        </a>
+        <a href="https://contacto.upn.edu.pe/" target="_blank" class="flex items-center gap-[6px]">
+          <!-- <i class="icon-phone text-4xl text-[#57BD9E]"></i> -->
+          <img class="h-[32px]" src="@/assets/images/globe.svg" alt="">
+          <span class="text-[#404040] font-medium">https://contacto.upn.edu.pe/</span>
         </a>
       </div>
     </BoxContainer>

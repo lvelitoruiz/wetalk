@@ -13,6 +13,7 @@ export const useMenuStore = defineStore({
     contenidoData: [] as any,
     calendarData: [] as any,
     notificationData: [] as any,
+    profileData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -24,6 +25,7 @@ export const useMenuStore = defineStore({
     getContenidoItems: (state) => state.contenidoData,
     getCalendarItems: (state) => state.calendarData,
     getNotificationItems: (state) => state.notificationData,
+    getProfileItems: (state) => state.profileData,
   },
   actions: {
     
@@ -50,17 +52,6 @@ export const useMenuStore = defineStore({
         console.error("Error fetching menu data:", error);
       }
 
-      //   var requestOptions = {
-      //     method: "GET",
-      //     redirect: "follow" as RequestRedirect,
-      //   };
-
-      //   console.log(requestOptions);
-
-      //   fetch(`${apiUrl}v1/menu?institucion=upc`, requestOptions)
-      //     .then((response) => response.text())
-      //     .then((result) => console.log(result))
-      //     .catch((error) => console.log("error", error));
     },
 
     async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
@@ -553,6 +544,28 @@ export const useMenuStore = defineStore({
               "https://wetalk-directus-dev-upc.stage01.link/assets/84168706-55eb-4541-b360-6f9a71447b30"
           ]
         ];
+      }
+    },
+
+    async fetchProfileData(apiUrl: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization:
+              authHeader
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(`/Accesos/v1/data_alumno?CodAlumno=n${codUser}&institucion=upn`);
+        this.profileData = response.data;
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
       }
     },
   },
