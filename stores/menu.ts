@@ -45,7 +45,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<MenuItem[]>("v1/menu?institucion=upc");
+          .get<MenuItem[]>("Home/v1/Menu?institucion=upn");
         this.menuData = response.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
@@ -561,7 +561,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Accesos/v1/data_alumno?CodAlumno=${codUser}&institucion=upn`);
+          .get<any>(`/Accesos/v1/data_alumno?CodAlumno=n${codUser}&institucion=upn`);
         this.profileData = response.data;
       } catch (error) {
         console.error("Error fetching profile data:", error);
