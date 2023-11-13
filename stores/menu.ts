@@ -134,7 +134,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>("/Home/v1/Ayuda?institucion=upc");
+          .get<any>("/Home/v1/Ayuda?institucion=upn");
 
         this.ayudaData = response.data.data;
       } catch (error) {
