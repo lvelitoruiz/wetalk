@@ -39,6 +39,7 @@
           <td class="text-end flex justify-end items-center h-[52px]">
             <span
               class="bg-[#039C6D] font-sans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+              :class="getColorClass(data.nota)"
             >
               {{ data.nota }}
             </span>
@@ -62,6 +63,16 @@
 const props = defineProps({
   notasData: Array,
 });
+
+const getColorClass = (nota) => {
+  if (nota === "-" || nota === null) {
+    return 'bg-[#BFBFBF]'; // Sin nota (plomo)
+  } else if (nota < 13) {
+    return 'bg-[#E50A17]'; // Menor a 13 (rojo)
+  } else {
+    return 'bg-[#039C6D]'; // Mayor o igual a 13 (verde)
+  }
+};
 </script>
 
 <style>
