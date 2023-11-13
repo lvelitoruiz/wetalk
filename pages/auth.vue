@@ -43,7 +43,7 @@ if (isAuthenticated) {
     codUser: userCode,
     institucion : entidadActiva
   };
-  localStorage.setItem("tokenH", JSON.stringify(accessToken));
+  localStorage.setItem("tokenH", accessToken!);
   localStorage.setItem("codUser", userCode);
   accessDomain.value = true;
   userStore.fetchUserData(
