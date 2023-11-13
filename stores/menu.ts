@@ -45,8 +45,9 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<MenuItem[]>("Home/v1/Menu?institucion=upn");
-        this.menuData = response.data;
+          .get<any>("/Home/v1/Menu?institucion=upc");
+          console.log('this is the response we get: ',response.data);
+        this.menuData = response.data.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }

@@ -69,12 +69,12 @@ onMounted(async () => {
 });
 
 const handleOpen = () => {
-  console.log('managing redirection!!');
-  navigateTo("/dashboard");
+  // console.log('managing redirection!!');
+    navigateTo("/dashboard");
 };
 
 const handleOpenLogin = () => {
-  console.log('yeah all is there!');
+  // console.log('yeah all is there!');
   navigateTo("/login");
 };
 
@@ -96,7 +96,7 @@ const allDataLoaded = computed(() => {
   //     keyAyuda.value &&
   //     keyContenido.value
   // );
-  console.log(keyMeta.value, keyImages.value, keyMenu.value, keyAcceso.value, keyContenido.value, keyNotification.value, keyProfile.value);
+  // console.log(keyMeta.value,keyImages.value,keyMenu.value,keyAcceso.value,keyContenido.value,keyNotification.value);
   return (
     keyMeta.value &&
     keyImages.value &&
@@ -111,9 +111,9 @@ const allDataLoaded = computed(() => {
 
 watchEffect(async () => {
   const data = metaStore.getMetaData;
-  console.log("metadata: ", data);
+  // console.log("metadata: ", data);
   if (data) {
-    console.log("metadata: ", data[0]);
+    // console.log("metadata: ", data[0]);
     metaData.value = data;
     selectedImage.value = data[0].imagen;
   }
@@ -138,7 +138,7 @@ watchEffect(async () => {
     syllabusData.value = acceso;
   }
 
-  console.log('with value: ', allDataLoaded.value);
+  // console.log('with value: ',allDataLoaded.value);
 
   if (allDataLoaded.value === true) {
     handleOpen();
