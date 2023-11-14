@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <NotesTable :notasData="notasData" :dashboard="dashboard" :simulator="showSimulator" />
+        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :simulator="showSimulator" />
       </BoxContainer>
     </div>
   </div>
@@ -55,6 +55,8 @@ watchEffect(async () => {
     notasData.value = notas.notas;
     inasistencia.value = notas.inasistencias;
   }
+
+  console.log('the notes data: ',notasData.value);
 });
 
 const irSimulador = () => {

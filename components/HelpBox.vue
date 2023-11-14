@@ -9,7 +9,7 @@ const ayudaData = ref(null);
 watchEffect(() => {
   const ayuda = menuStore.getAyudaItems;
   if (ayuda) {
-    ayudaData.value = ayuda.reverse();
+    ayudaData.value = ayuda;
   }
 
   console.log("the ayuda: ", ayuda);
@@ -41,7 +41,9 @@ const data = [
       <div class="flex flex-col gap-2">
         <a v-for="item in ayudaData" :href="item.numero" class="flex items-center gap-[6px]">
           <!-- <i class="icon-phone text-4xl text-[#57BD9E]"></i> -->
-          <img :src="item.icono" />
+          <div class="w-[33px] flex justify-center">
+            <img :src="item.icono" />
+          </div>
           <span class="text-[#404040] font-medium">{{ item.id === 5 ? "Chatea con nosotros" : item.numero }}</span>
         </a>
       </div>

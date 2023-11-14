@@ -146,7 +146,7 @@ watchEffect(async () => {
 
   const notas = menuStore.getNotasItems;
   if (notas) {
-    nootasData.value = notas;
+    notasData.value = notas;
   }
 
   // console.log('with value: ',allDataLoaded.value);
