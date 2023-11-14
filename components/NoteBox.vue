@@ -6,16 +6,29 @@
           <h3 class="text-[#404040] text-2xl font-bold font-solano uppercase">
             Notas
           </h3>
-          <router-link v-if="dashboard" class="flex items-center gap-2" to="/notas">
+          <router-link
+            v-if="dashboard"
+            class="flex items-center gap-2"
+            to="/notas"
+          >
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm"
               >Ver más</span
             >
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
-          <router-link to="/simulador" v-else>
-            <Button label="Simulador de promedio" primary />
-          </router-link>
-          
+          <div v-else>
+            <div v-if="promedio">
+              <Button
+              @click="irSimulador"
+              label="Simulador de promedio"
+              primary
+            />
+            </div>
+            <div v-else class="flex gap-4">
+              <Button @click="promedio" label="Cancelar" secundary />
+              <Button label="Reestablecer notas" primary />
+            </div>
+          </div>
         </div>
         <div class="flex items-center justify-start mb-3">
           <div v-if="inasistencia !== null"
@@ -25,7 +38,7 @@
             <p class="text-[#404040] font-sans text-sm">{{ inasistencia }}</p>
           </div>
         </div>
-        <NotesTable :notasData="notasData" />
+        <NotesTable :notasData="notasData" :dashboard="dashboard" />
       </BoxContainer>
     </div>
   </div>
@@ -51,48 +64,5 @@ watchEffect(async () => {
     }
 });
 
-const tablaNotas = [
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "20%",
-    nota: 20,
-  },
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "20%",
-    nota: 13,
-  },
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "10%",
-    nota: 18,
-  },
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "10%",
-    nota: "05",
-  },
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "20%",
-    nota: "-",
-  },
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "10%",
-    nota: "-",
-  },
-  {
-    tipo: "PA1",
-    evaluacion: "Prod. oral - sesión sinc.",
-    peso: "10%",
-    nota: "-",
-  }
-];
+
 </script>
