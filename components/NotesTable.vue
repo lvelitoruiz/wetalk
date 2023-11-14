@@ -70,7 +70,9 @@ const props = defineProps({
   simulator: Boolean,
 });
 
-const newvalue = JSON.parse(JSON.stringify(props.notasData.slice(0, -2)));
+if(props.notasData !== null && props.notasData !== undefined) {
+  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
+}
 
 notas.value = props.notasData.slice(0, -2);
 calculus.value = [...newvalue];

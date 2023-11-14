@@ -8,7 +8,7 @@
         <AcademicItem label="Nivel" :value="level" />
         <AcademicItem label="Modalidad" :value="mod" />
         <AcademicItem label="Carrera" :value="carr" />
-        <AcademicItem label="Correo" :value="mail" />
+        <AcademicItem label="Correo" showIcon :value="mail" />
         <AcademicItem label="DNI" :value="dni" />
     </div>
   </div>
