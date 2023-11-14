@@ -16,6 +16,7 @@ const accesoData = ref(null);
 const menuData = ref(null);
 const ayudaData = ref(null);
 const syllabusData = ref(null);
+const notasData = ref(null);
 const notificationData = ref(null);
 
 const keyMeta = ref(false);
@@ -26,6 +27,7 @@ const keyAyuda = ref(false);
 const keyContenido = ref(false);
 const keyNotification = ref(false);
 const keyProfile = ref(false);
+const keyNotas = ref(false);
 
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
@@ -56,6 +58,9 @@ const fetchMetaInfo = async () => {
   await menuStore
     .fetchProfileData(apiUrlAlter)
     .then((response) => (keyProfile.value = true));
+  await menuStore
+    .fetchNotasData(apiUrlAlter)
+    .then((response) => (keyNotas.value = true));
 };
 
 onBeforeMount(() => {
@@ -70,7 +75,7 @@ onMounted(async () => {
 
 const handleOpen = () => {
   // console.log('managing redirection!!');
-    navigateTo("/dashboard");
+  navigateTo("/dashboard");
 };
 
 const handleOpenLogin = () => {
@@ -105,7 +110,8 @@ const allDataLoaded = computed(() => {
     keyAyuda.value &&
     keyContenido.value &&
     keyProfile.value &&
-    keyNotification.value
+    keyNotification.value &&
+    keyNotas.value
   );
 });
 
@@ -131,11 +137,16 @@ watchEffect(async () => {
   }
   const ayuda = menuStore.getAyudaItems;
   if (ayuda) {
-    ayudaData.value = acceso;
+    ayudaData.value = ayuda;
   }
   const syllabus = menuStore.getContenidoItems;
   if (syllabus) {
-    syllabusData.value = acceso;
+    syllabusData.value = syllabus;
+  }
+
+  const notas = menuStore.getNotasItems;
+  if (notas) {
+    nootasData.value = notas;
   }
 
   // console.log('with value: ',allDataLoaded.value);
@@ -188,6 +199,7 @@ watchEffect(async () => {
               imagesData !== null &&
               menuData !== null &&
               ayudaData !== null &&
+              notasData !== null &&
               accesoData !== null,
             'w-full transition-all duration-500 ease-in-out':
               metaData !== null &&

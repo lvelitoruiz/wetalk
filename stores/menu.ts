@@ -14,6 +14,7 @@ export const useMenuStore = defineStore({
     calendarData: [] as any,
     notificationData: [] as any,
     profileData: [] as any,
+    notasData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -26,6 +27,7 @@ export const useMenuStore = defineStore({
     getCalendarItems: (state) => state.calendarData,
     getNotificationItems: (state) => state.notificationData,
     getProfileItems: (state) => state.profileData,
+    getNotasItems: (state) => state.notasData,
   },
   actions: {
     
@@ -45,9 +47,33 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>("/Home/v1/Menu?institucion=upc");
+          .get<any>("/Home/v1/Menu?institucion=upn");
           console.log('this is the response we get: ',response.data);
         this.menuData = response.data.data;
+      } catch (error) {
+        console.error("Error fetching menu data:", error);
+      }
+
+    },
+
+    async fetchNotasData(apiUrl: string, apiKey: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization:
+              authHeader
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>("/Cursos/v1/Detalle_Curso?CodAlumno=N00307362&institucion=upn&CodCurso=IDIO1401&Seccion=22243412797&CodPeriodo=222434");
+          console.log('this is the response we get: ',response.data);
+        this.notasData = response.data.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }

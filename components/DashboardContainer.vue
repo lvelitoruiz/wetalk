@@ -425,6 +425,12 @@ const haveLink = true;
     </div> -->
     <div class="w-[1023px] mx-auto">
       <div class="flex gap-[28px]">
+        <div class="min-w-[37%]">
+          <NoteBox inasistencia="2" dashboard="true" />
+        </div>
+        <TeacherBox />
+      </div>
+      <div class="flex gap-[28px]">
         <SyllabusBox :open="isOpen" :link="haveLink" />
         <HelpBox />
       </div>

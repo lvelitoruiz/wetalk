@@ -1,0 +1,35 @@
+<template>
+  <div class="flex flex-col gap-[28px] w-full min-w-[30%]">
+    <BoxContainer color="green">
+      <div class="flex items-center justify-center pb-[18px]">
+        <h3 class="text-[#404040] font-solano text-2xl font-normal uppercase">
+          Seguimiento de asistencias
+        </h3>
+      </div>
+      <div class="flex items-end justify-center">
+        <p class="font-solano text-[56px] leading-[74px] font-bold mr-2">
+          {{ inasistencia }}
+        </p>
+        <p class="text-[#404040] text-sm font-sans font-normal pb-[13px]">
+          inasistencias:
+        </p>
+      </div>
+      <div
+        v-for="(date, index) in dates"
+        :key="index"
+        class="flex justify-center"
+      >
+        <p class="text-sm text-[#404040] font-normal font-sans block">
+          {{ date }}
+        </p>
+      </div>
+    </BoxContainer>
+  </div>
+</template>
+
+<script setup lang="ts">
+const props = defineProps({
+  inasistencia: Number,
+  dates: Array,
+});
+</script>
