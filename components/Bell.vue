@@ -17,7 +17,7 @@ watchEffect(async () => {
         console.log('information about notifications: ', notifData);
     }
 
-    notifications.value.map( (item) => {
+    notifications.value.map((item) => {
         totalNotifs += item.count;
     });
 
@@ -33,7 +33,8 @@ function showNotifications() {
 <template>
     <button class="relative" @click="showNotifications">
         <i class="text-3xl text-[#191919] icon-bell"></i>
-        <span
-            class="flex items-center justify-center w-[18px] h-[18px] p-1 rounded-full bg-[#E50A17] font-bold text-[10px] text-white absolute top-0 right-0">{{ total > 9 ? "+9" : total }}</span>
+        <span v-if="total > 0"
+            class="flex items-center justify-center w-[18px] h-[18px] p-1 rounded-full bg-[#E50A17] font-bold text-[10px] text-white absolute top-0 right-0">{{
+                total > 9 ? "+9" : total }}</span>
     </button>
 </template>

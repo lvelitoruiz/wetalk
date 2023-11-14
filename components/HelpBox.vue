@@ -11,25 +11,8 @@ watchEffect(() => {
   if (ayuda) {
     ayudaData.value = ayuda;
   }
-
-  console.log("the ayuda: ", ayuda);
 });
 
-
-const data = [
-  {
-    id: 1,
-    numero: "(01) 604 2400",
-    icono:
-      "https://wetalk-directus-dev-upc.stage01.link/assets/66bead94-8673-4426-97ef-50b78e76ca77",
-  },
-  {
-    id: 2,
-    numero: "962 222 408",
-    icono:
-      "https://wetalk-directus-dev-upc.stage01.link/assets/861a7a84-9b91-4f65-bc80-aad4cafadb67",
-  },
-];
 </script>
 <template>
   <div class="min-w-[calc(35%-28px)]">
