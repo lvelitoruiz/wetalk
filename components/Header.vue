@@ -7,10 +7,7 @@ const pres = ref(false);
 const nots = ref(false);
 
 onMounted(() => {
-    pres.value = true;
-    setTimeout(() => {
-        pres.value = false;
-    }, 5000);
+    openPres();
 });
 
 const openClose = () => {
@@ -18,9 +15,20 @@ const openClose = () => {
     nots.value = !nots.value;
 }
 
-const showOption = ref(false) 
-const openList = ()=> {
+const showOption = ref(false)
+const openList = () => {
     showOption.value = !showOption.value
+}
+
+const openPres = () => {
+    const showIn = localStorage.getItem('presOpened');
+    if (showIn == null) {
+        localStorage.setItem('presOpened', 'true');
+        pres.value = true;
+        setTimeout(() => {
+            pres.value = false;
+        }, 5000);
+    }
 }
 
 </script>
