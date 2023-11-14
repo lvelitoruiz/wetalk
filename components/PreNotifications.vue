@@ -11,7 +11,17 @@ const menuStore = useMenuStore();
 watchEffect(async () => {
     const notifData = menuStore.getNotificationItems;
     if (notifData) {
-        notifications.value = notifData;
+        let notifDataMapping = notifData.flatMap(({data}) => data).map(({tipo}) => ({tipo}));
+
+        //Adding new fields
+        notifDataMapping
+            .map((notificacion, _ , self) => {
+                notificacion.count = self.filter(x => x.tipo == notificacion.tipo).length;
+            })
+        
+        // Distinct for unique values
+        notifDataMapping = [...new Map(notifDataMapping.map(notificacion => [notificacion.tipo, notificacion])).values()];
+        notifications.value = notifDataMapping;
     }
 });
 
@@ -27,9 +37,15 @@ function closeNotifications() {
             <div class="flex items-center gap-2">
                 <div v-for="(notification, index) in notifications"
                     class="p-1 flex items-center gap-1 rounded cursor-pointer"
-                    :class="{ 'bg-[#FFF4AA]': index % 2 === 0, 'bg-[#F0B27C]': index % 2 !== 0 }">
+                    :class="{ 
+                        'bg-[#FFF4AA]': notification.tipo === 'Mis estudios' || notification.tipo === 'NUEVO',
+                        'bg-[#EFB3EF]': notification.tipo === 'Pagos',
+                        'bg-[#F0B27C]': notification.tipo === 'Networking',
+                        'bg-[#7AD6CF]': notification.tipo === 'Beyond Wetalk',
+                        'bg-[#CEBDFF]': notification.tipo === 'General',
+                     }">
                     <i class="text-[#554A00] text-xs icon-book-open"></i>
-                    <span class="text-[#554A00] text-xs leaning-none">{{ notification.category }} ({{ notification.count
+                    <span class="text-[#554A00] text-xs leaning-none">{{ notification.tipo }} ({{ notification.count
                     }})</span>
                 </div>
 

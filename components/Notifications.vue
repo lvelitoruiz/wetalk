@@ -27,7 +27,7 @@ const convert = (element) => {
             } else {
                 elements[1].push(item);
             }
-        } else if (antiguedad.includes('h')) {
+        } else if (antiguedad.includes('h') || antiguedad.includes('m')) {
             elements[1].push(item);
         }
     });
