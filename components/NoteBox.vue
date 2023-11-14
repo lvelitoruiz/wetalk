@@ -18,25 +18,38 @@
           
         </div>
         <div class="flex items-center justify-start mb-3">
-          <div v-if="inasistencia"
+          <div v-if="inasistencia !== null"
             class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full"
           >
             <p class="text-[#404040] font-sans text-sm">Inasistencias:</p>
             <p class="text-[#404040] font-sans text-sm">{{ inasistencia }}</p>
           </div>
         </div>
-        <NotesTable :notasData="tablaNotas" />
+        <NotesTable :notasData="notasData" />
       </BoxContainer>
     </div>
   </div>
 </template>
 
 <script setup >
+import { useMenuStore } from "../stores/menu";
+const notasData = ref(null);
+const inasistencia = ref(null);
+
+const menuStore = useMenuStore();
 
 const props = defineProps ({
-  inasistencia : Number,
   dashboard: Boolean
 })
+
+watchEffect(async () => {
+    const notas = menuStore.getNotasItems;
+    console.log('getting information here: ',notas.notas);
+    if(notas) {
+      notasData.value = notas.notas;
+      inasistencia.value = notas.inasistencias;
+    }
+});
 
 const tablaNotas = [
   {
