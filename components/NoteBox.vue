@@ -6,37 +6,50 @@
           <h3 class="text-[#404040] text-2xl font-bold font-solano uppercase">
             Notas
           </h3>
-          <router-link v-if="dashboard" class="flex items-center gap-2" to="/notas">
+          <router-link
+            v-if="dashboard"
+            class="flex items-center gap-2"
+            to="/notas"
+          >
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm"
               >Ver más</span
             >
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
-          <router-link to="/simulador" v-else>
-            <Button label="Simulador de promedio" primary />
-          </router-link>
-          
+          <div v-else>
+            <div v-if="promedio">
+              <Button
+              @click="irSimulador"
+              label="Simulador de promedio"
+              primary
+            />
+            </div>
+            <div v-else class="flex gap-4">
+              <Button @click="promedio" label="Cancelar" secundary />
+              <Button label="Reestablecer notas" primary />
+            </div>
+          </div>
         </div>
         <div class="flex items-center justify-start mb-3">
-          <div v-if="inasistencia"
+          <div
+            v-if="inasistencia"
             class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full"
           >
             <p class="text-[#404040] font-sans text-sm">Inasistencias:</p>
             <p class="text-[#404040] font-sans text-sm">{{ inasistencia }}</p>
           </div>
         </div>
-        <NotesTable :notasData="tablaNotas" />
+        <NotesTable :notasData="tablaNotas" :dashboard="dashboard" />
       </BoxContainer>
     </div>
   </div>
 </template>
 
 <script setup >
-
-const props = defineProps ({
-  inasistencia : Number,
-  dashboard: Boolean
-})
+const props = defineProps({
+  inasistencia: Number,
+  dashboard: Boolean,
+});
 
 const tablaNotas = [
   {
@@ -80,6 +93,14 @@ const tablaNotas = [
     evaluacion: "Prod. oral - sesión sinc.",
     peso: "10%",
     nota: "-",
-  }
+  },
 ];
+
+let promedio = true;
+
+const irSimulador = () => {
+  irSimulador
+}
+
+
 </script>
