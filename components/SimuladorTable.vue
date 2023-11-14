@@ -37,12 +37,11 @@
             {{ data.peso }}
           </td>
           <td class="text-end flex justify-end items-center h-[52px]">
-            <span
-              class="font-sans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
-              :class="getColorClass(data.nota)"
-            >
-              {{ data.nota }}
-            </span>
+            <input
+              type="text"
+              v-model="data.nota"
+              class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center"
+            />
           </td>
         </tr>
       </tbody>
@@ -61,19 +60,7 @@
 
 <script setup>
 const props = defineProps({
-  notasData: Array
+  notasData: Array,
 });
-
-const getColorClass = (nota) => {
-  if (nota === "-" || nota === null) {
-    return 'bg-[#BFBFBF]';
-  } else if (nota < 13) {
-    return 'bg-[#E50A17]'; 
-  } else {
-    return 'bg-[#039C6D]'; 
-  }
-};
-
-
 
 </script>

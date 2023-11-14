@@ -6,11 +6,14 @@
           <h3 class="text-[#404040] text-2xl font-bold font-solano uppercase">
             Notas
           </h3>
-          <router-link class="flex items-center gap-2" to="/notas">
+          <router-link v-if="dashboard" class="flex items-center gap-2" to="/notas">
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm"
               >Ver más</span
             >
             <i class="icon-arrow-right text-[#E50A17]"></i>
+          </router-link>
+          <router-link to="/simulador" v-else>
+            <Button label="Simulador de promedio" primary />
           </router-link>
           
         </div>
@@ -31,7 +34,8 @@
 <script setup >
 
 const props = defineProps ({
-  inasistencia : Number
+  inasistencia : Number,
+  dashboard: Boolean
 })
 
 const tablaNotas = [

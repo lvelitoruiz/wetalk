@@ -10,7 +10,7 @@
     <div class="w-[1023px] mx-auto">
       <div class="flex gap-[28px]">
         <div class="min-w-[65%]">
-          <NoteBox />
+        <SimuladorBox /> 
         </div>
         <div class="flex-col flex gap-7">
           <InasistenciasInfo inasistencia="2" :dates="datesInasistencia" />
@@ -21,10 +21,10 @@
     </div>
   </div>
 </template>
-
-<script setup>
+  
+  <script setup>
 const datesInasistencia = ["03/10/2023", "05/10/2023"];
 </script>
-
-<style>
+  
+  <style>
 </style>
