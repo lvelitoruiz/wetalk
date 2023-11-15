@@ -17,6 +17,7 @@ const menuData = ref(null);
 const ayudaData = ref(null);
 const syllabusData = ref(null);
 const notasData = ref(null);
+const faltasData = ref(null);
 const notificationData = ref(null);
 
 const keyMeta = ref(false);
@@ -28,6 +29,7 @@ const keyContenido = ref(false);
 const keyNotification = ref(false);
 const keyProfile = ref(false);
 const keyNotas = ref(false);
+const keyFaltas = ref(false);
 
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
@@ -61,6 +63,9 @@ const fetchMetaInfo = async () => {
   await menuStore
     .fetchNotasData(apiUrlAlter)
     .then((response) => (keyNotas.value = true));
+  await menuStore
+    .fetchFaltasData(apiUrlAlter)
+    .then((response) => (keyFaltas.value = true));
 };
 
 onBeforeMount(() => {
@@ -111,6 +116,7 @@ const allDataLoaded = computed(() => {
     keyContenido.value &&
     keyProfile.value &&
     keyNotification.value &&
+    keyFaltas.value &&
     keyNotas.value
   );
 });
@@ -147,6 +153,11 @@ watchEffect(async () => {
   const notas = menuStore.getNotasItems;
   if (notas) {
     notasData.value = notas;
+  }
+
+  const faltas = menuStore.getfaltasItems;
+  if (faltas) {
+    faltasData.value = faltas;
   }
 
   // console.log('with value: ',allDataLoaded.value);
@@ -207,6 +218,7 @@ watchEffect(async () => {
               ayudaData !== null &&
               syllabusData !== null &&
               menuData !== null &&
+              faltasData !== null &&
               accesoData !== null,
           }" @click="handleOpen"></div>
       </div>
