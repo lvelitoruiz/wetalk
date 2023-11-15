@@ -43,9 +43,16 @@ function closeNotifications() {
                         'bg-[#EFB3EF]': notification.tipo === 'Pagos',
                         'bg-[#F0B27C]': notification.tipo === 'Networking',
                         'bg-[#7AD6CF]': notification.tipo === 'Beyond Wetalk',
-                        'bg-[#CEBDFF]': notification.tipo === 'General',
+                        'bg-[#CEBDFF]': notification.tipo === 'GENERAL',
                      }">
-                    <i class="text-[#554A00] text-xs icon-book-open"></i>
+                        <i class="text-[#554A00] text-xs"
+                            :class="[{
+                                'icon-book-open': notification.tipo === 'Mis estudios' || notification.tipo === 'NUEVO',
+                                'icon-creditcard': notification.tipo === 'Pagos',
+                                'icon-user-chat': notification.tipo === 'Networking',
+                                'icon-puzzle': notification.tipo === 'Beyond Wetalk',
+                                'icon-home': notification.tipo === 'GENERAL',
+                        }]"></i>
                     <span class="text-[#554A00] text-xs leaning-none">{{ notification.tipo }} ({{ notification.count
                     }})</span>
                 </div>
