@@ -32,7 +32,7 @@ export const useMetaStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Perfil/v1/meta/obtener?institucion=upc&id=${id}`);
+          .get<any>(`/Perfil/v1/meta/obtener?institucion=upn&id=${id}`);
 
         this.metaData = response.data.data;
       } catch (error) {
@@ -57,7 +57,7 @@ export const useMetaStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .post(`/Perfil/v1/meta/registrar?institucion=upc`, metaInfo);
+          .post(`/Perfil/v1/meta/registrar?institucion=upn`, metaInfo);
 
         // Store the registered meta data in the state
         this.metaData = response.data;
@@ -81,7 +81,7 @@ export const useMetaStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get(`/Perfil/v1/meta/listar/imagenes?institucion=upc`);
+          .get(`/Perfil/v1/meta/listar/imagenes?institucion=upn`);
 
         this.imagesData = response.data.data;
       } catch (error) {
