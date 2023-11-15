@@ -52,7 +52,8 @@
   </div>
   <div class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]">
     <p class="text-[#404040] text-sm font-bold">Promedio final</p>
-    <span v-if="!simulator" class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+    <span v-if="!simulator"
+      class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota }}</span>
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(newVariable)">{{ newVariable }}</span>
@@ -70,14 +71,13 @@ const props = defineProps({
   simulator: Boolean,
 });
 
-if(props.notasData !== null && props.notasData !== undefined) {
+if (props.notasData !== null && props.notasData !== undefined) {
   const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
+  notas.value = props.notasData.slice(0, -2);
+  calculus.value = [...newvalue];
+  promedio.value = props.notasData.slice(-2, -1);
+  console.log(promedio.value);
 }
-
-notas.value = props.notasData.slice(0, -2);
-calculus.value = [...newvalue];
-promedio.value = props.notasData.slice(-2, -1);
-console.log(promedio.value);
 
 const getColorClass = (nota) => {
   if (nota === "00" || nota === null) {
