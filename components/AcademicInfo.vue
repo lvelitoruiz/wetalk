@@ -9,7 +9,7 @@
         <AcademicItem label="Modalidad" :value="mod" />
         <AcademicItem label="Carrera" :value="carr" />
         <AcademicItem label="Correo" showIcon :value="mail" />
-        <AcademicItem label="DNI" :value="dni" />
+        <AcademicItem label="DNI/CE" :value="dni" />
     </div>
   </div>
 </template>
