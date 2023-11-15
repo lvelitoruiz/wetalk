@@ -15,7 +15,7 @@ watchEffect(() => {
 
 </script>
 <template>
-  <div class="min-w-[calc(35%-28px)]">
+  <div class="min-w-[calc(32%-28px)]">
     <BoxContainer color="greenLigth">
       <div class="flex flex-col justify-between pb-[18px]">
         <h3 class="text-[#404040] text-2xl uppercase font-solano">Ayuda</h3>

@@ -3,7 +3,7 @@ import { useMetaStore } from "../stores/meta";
 import { useUserStore } from "~/stores/auth";
 const userStore = useUserStore();
 
-const nameUser = userStore.getUserData?.name
+const nameUser = userStore.getUserData?.name;
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
 );
@@ -21,11 +21,12 @@ watchEffect(() => {
 
 const isOpen = true;
 const haveLink = true;
-
 </script>
 <template>
   <div class="flex items-center w-[1023px] mx-auto pb-[18px] gap-[6px]">
-    <router-link class="text-[#575759] text-[15px] underline" to="/calendar">Inicio</router-link>
+    <router-link class="text-[#575759] text-[15px] underline" to="/calendar"
+      >Inicio</router-link
+    >
     <span class="text-[#575759] text-[15px]">></span>
     <span class="text-[#575759] text-[15px]">Dashboard</span>
   </div>
@@ -59,14 +60,14 @@ const haveLink = true;
             alt=""
           /> -->
           <client-only>
-              <Vue3Lottie
-                v-if="selectedImage !== ''"
-                :animationLink="selectedImage"
-                :height="55"
-                :width="auto"
-                class="min-h-[55px] w-auto"
-              />
-            </client-only>
+            <Vue3Lottie
+              v-if="selectedImage !== ''"
+              :animationLink="selectedImage"
+              :height="55"
+              :width="auto"
+              class="min-h-[55px] w-auto"
+            />
+          </client-only>
         </div>
         <div class="w-[calc(100%-100px)] px-3">
           <p class="text-[#404040] text-sm font-bold">Meta:</p>
@@ -425,10 +426,15 @@ const haveLink = true;
     </div> -->
     <div class="w-[1023px] mx-auto">
       <div class="flex gap-[28px]">
-        <div class="min-w-[37%]">
+        <div class="min-w-[36%]">
           <NoteBox inasistencia="2" dashboard="true" />
         </div>
-        <TeacherBox />
+        <div  class="min-w-[calc(32%-28px)]">
+          <TeacherBox />
+        </div>
+        <div  class="min-w-[calc(32%-28px)]">
+          
+        </div>
       </div>
       <div class="flex gap-[28px]">
         <SyllabusBox :open="isOpen" :link="haveLink" />
