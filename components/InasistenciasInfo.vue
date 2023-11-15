@@ -28,8 +28,23 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  inasistencia: Number,
-  dates: Array,
+import { useMenuStore } from "../stores/menu";
+
+const menuStore = useMenuStore();
+
+const inasistencia = ref(0);
+const dates = ref(null);
+
+watchEffect(async () => {
+  const faltaData = menuStore.getfaltasItems;
+  if (faltaData) {
+    inasistencia.value = faltaData.cantidad;
+    dates.value = faltaData.fechas;
+  }
 });
+
+// const props = defineProps({
+//   inasistencia: Number,
+//   dates: Array,
+// });
 </script>

@@ -15,6 +15,7 @@ export const useMenuStore = defineStore({
     notificationData: [] as any,
     profileData: [] as any,
     notasData: [] as any,
+    faltasData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -28,6 +29,7 @@ export const useMenuStore = defineStore({
     getNotificationItems: (state) => state.notificationData,
     getProfileItems: (state) => state.profileData,
     getNotasItems: (state) => state.notasData,
+    getfaltasItems: (state) => state.faltasData,
   },
   actions: {
     
@@ -79,6 +81,30 @@ export const useMenuStore = defineStore({
       }
 
     },
+
+    async fetchFaltasData(apiUrl: string, apiKey: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization:
+              authHeader
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>("/Cursos/v1/Inasistencias_Alumno?CodAlumno=N00226849&CodCurso=INVE1579&CodPeriodo=222513&institucion=upn&CodSeccion=2225135855");
+        this.faltasData = response.data.data;
+      } catch (error) {
+        console.error("Error fetching menu data:", error);
+      }
+
+    },
+    
 
     async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
       try {
