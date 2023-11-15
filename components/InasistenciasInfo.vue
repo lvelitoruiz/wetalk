@@ -10,7 +10,7 @@
         <p class="font-solano text-[56px] leading-[74px] font-bold mr-2">
           {{ inasistencia }}
         </p>
-        <p class="text-[#404040] text-sm font-sans font-normal pb-[13px]">
+        <p class="text-[#404040] text-sm font-publicSans font-normal pb-[13px]">
           inasistencias:
         </p>
       </div>
@@ -19,7 +19,7 @@
         :key="index"
         class="flex justify-center"
       >
-        <p class="text-sm text-[#404040] font-normal font-sans block">
+        <p class="text-sm text-[#404040] font-normal font-publicSans block">
           {{ date }}
         </p>
       </div>
