@@ -15,6 +15,13 @@ const isDomainAllowed = (
   );
 };
 
+watchEffect(async () => {
+  const userData = userStore.getUserData;
+  if (userData) {
+    localStorage.setItem("institucion", userData.institucion!);
+  }
+});
+
 const accounts = $msal().getAccounts();
 const accessToken = await $msal().acquireTokenSilent();
 const accessDomain = ref(false);
