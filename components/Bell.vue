@@ -1,9 +1,11 @@
 <script setup ts>
 import { useMenuStore } from "../stores/menu";
 import { watchEffect, defineEmits } from "vue";
+import { apiUrlAlter } from "../consts";
 
 const notifications = ref(null);
 const total = ref(0);
+const codUser = localStorage.getItem("codUser")
 
 const emit = defineEmits(['show']);
 
@@ -25,8 +27,25 @@ watchEffect(async () => {
     total.value = totalNotifs;
 });
 
-function showNotifications() {
+async function showNotifications() {
     emit('show');
+
+    if(total.value > 0) {
+        const notificationItems = notifications.value
+            .flatMap(notification => notification.data)
+            .map(notification => ({
+                id: notification.id,
+                tipo: notification.tipo
+            }));
+
+        const notificationData = {
+            codAlumno: codUser,
+            notificaciones: notificationItems
+        };
+        
+        const cantidadNotificaciones = total.value - await menuStore.registerNotificationData(apiUrlAlter, notificationData);
+        total.value = cantidadNotificaciones;
+    }
 }
 
 </script>

@@ -208,6 +208,30 @@ export const useMenuStore = defineStore({
       }
     },
 
+    async registerNotificationData(apiUrl: string, notificationData: RegisterNotificationData) {
+      try {
+        const axiosConfig = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*"
+          },
+          headers: {
+            Authorization:
+            authHeader
+          }
+        };
+
+        const response = await axios
+          .create(axiosConfig)
+          .post("/Home/v1/Notificaciones/Register?institucion=upc", notificationData);
+          
+        return response.data?.registerCount || 0;
+
+      } catch (error) {
+        console.error("Error saving notification data", error);
+      }
+    },
+
     async fetchNotificationData(apiUrl: string, apiKey: string) {
       try {
         const axiosConf = {
@@ -663,4 +687,15 @@ interface ContenidoItem {
 interface Detail {
   id: number;
   texto: string;
+}
+
+interface NotificatioDataItem {
+  id: string;
+  tipo: string
+}
+
+
+interface RegisterNotificationData {
+  codAlumno: string;
+  notificaciones: NotificatioDataItem[]
 }
