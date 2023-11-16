@@ -1,10 +1,10 @@
 <template>
-  <div class="px-[9px] min-h-[100px] overflow-y-scroll">
+  <div class="px-[9px] min-h-[100px] overflow-y-auto">
     <table class="table-auto w-full">
       <thead class="border-b border-[#BFBFBF]">
         <tr>
           <th class="text-start font-sans font-normal text-sm text-[#404040] pb-3">
-            Tipo
+            ID
           </th>
           <th class="text-start font-sans font-normal text-sm text-[#404040] pb-3">
             Evaluación
@@ -43,7 +43,7 @@
                 {{ data.nota }}
               </span>
               <input v-else type="text" v-model="calculus[index].nota"
-                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center" />
+                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center" @input="validateInput(index)" />
             </div>
           </td>
         </tr>
@@ -61,6 +61,7 @@
 </template>
 
 <script setup>
+
 const notas = ref(null);
 const calculus = ref(null);
 const promedio = ref(null);
@@ -76,7 +77,14 @@ if (props.notasData !== null && props.notasData !== undefined) {
   notas.value = props.notasData.slice(0, -2);
   calculus.value = [...newvalue];
   promedio.value = props.notasData.slice(-2, -1);
+  newVariable.value = props.notasData.slice(-2, -1)[0].nota;
   console.log(promedio.value);
+}
+
+const recoverNotes = () => {
+  console.log('this is supposed to work!!');
+  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
+  calculus.value = [...newvalue];
 }
 
 const getColorClass = (nota) => {
@@ -89,18 +97,33 @@ const getColorClass = (nota) => {
   }
 };
 
+const validateInput = (index) => {
+  const regex = /^\d*\.?\d*$/;
+
+  if (!regex.test(calculus.value[index].nota)) {
+    calculus.value[index].nota = '';
+  }
+};
+
 const recalculateNewVariable = () => {
   const inputs = calculus.value.map((data) => data.nota);
 
-  // Assuming inputs are numbers, you might need to parse them if they are strings
-  const weightedSum = 0.15 * inputs[0] + 0.15 * inputs[1] + 0.15 * inputs[2] + 0.15 * inputs[3] + 0.4 * inputs[4];
+  console.log('how this works: ', inputs);
 
-  console.log(weightedSum);
+  if (inputs.some(item => item === "")) {
+    newVariable.value = "-"
+  } else {
+    const weightedSum = 0.15 * inputs[0] + 0.15 * inputs[1] + 0.15 * inputs[2] + 0.15 * inputs[3] + 0.4 * inputs[4];
+    newVariable.value = weightedSum.toFixed();
+  }
 
-  // Update the new variable
-  newVariable.value = weightedSum.toFixed();
+
 };
 
-// Watch for changes in the notas array and recalculate the new variable
 watch(calculus, recalculateNewVariable, { deep: true });
+
+defineExpose({
+  recoverNotes,
+})
+
 </script>
