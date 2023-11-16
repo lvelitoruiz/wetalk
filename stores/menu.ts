@@ -121,7 +121,7 @@ export const useMenuStore = defineStore({
     
         const response = await axios
           .create(axiosConf)
-          .get<any>("/Masservicios/v1/AccesosRapidosPerfil?institucion=upc");
+          .get<any>("/Masservicios/v1/AccesosRapidosPerfil?institucion=upn");
 
         this.accesoDirectoData = response.data.data;
       } catch (error) {
@@ -286,7 +286,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>("/Home/v1/Ciclos?institucion=upc&ciclo_actual="+cycle);
+          .get<any>("/Home/v1/Ciclos?institucion=upn&ciclo_actual="+cycle);
         
         console.log('the response data: ',response.data);
 

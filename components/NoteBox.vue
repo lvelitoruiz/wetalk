@@ -16,7 +16,7 @@
             </div>
             <div v-else class="flex gap-4">
               <Button @click="irSimulador" label="Cancelar" secundary />
-              <Button @click="irSimulador" label="Reestablecer notas" primary />
+              <Button @click="reestablishNotes" label="Reestablecer notas" primary />
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :simulator="showSimulator" />
+        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :simulator="showSimulator" ref="tableNotes" />
       </BoxContainer>
     </div>
   </div>
@@ -37,8 +37,12 @@
 
 <script setup >
 import { useMenuStore } from "../stores/menu";
+
+
 const notasData = ref(null);
 const inasistencia = ref(null);
+
+const tableNotes = ref(null);
 
 const showSimulator = ref(false);
 
@@ -48,15 +52,22 @@ const props = defineProps({
   dashboard: Boolean
 })
 
+
+const reestablishNotes = () => {
+  tableNotes.value.recoverNotes();
+};
+
 watchEffect(async () => {
   const notas = menuStore.getNotasItems;
   console.log('getting information here: ', notas.notas);
   if (notas) {
     notasData.value = notas.notas;
-    inasistencia.value = notas.inasistencias;
   }
 
-  console.log('the notes data: ',notasData.value);
+  const faltaData = menuStore.getfaltasItems;
+  if (faltaData) {
+    inasistencia.value = faltaData.cantidad;
+  }
 });
 
 const irSimulador = () => {

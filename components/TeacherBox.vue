@@ -47,7 +47,7 @@ const copyToClipboard = () => {
         });
         return;
     }
-    navigator.clipboard.writeText(mail)
+    navigator.clipboard.writeText(mail.value)
         .then(() => {
             $toast.open({
                 message: "Texto Copiado!!!",
