@@ -61,6 +61,7 @@
 </template>
 
 <script setup>
+
 const notas = ref(null);
 const calculus = ref(null);
 const promedio = ref(null);
@@ -79,6 +80,12 @@ if (props.notasData !== null && props.notasData !== undefined) {
   console.log(promedio.value);
 }
 
+const recoverNotes = () => {
+  console.log('this is supposed to work!!');
+  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
+  calculus.value = [...newvalue];
+}
+
 const getColorClass = (nota) => {
   if (nota === "00" || nota === null) {
     return 'bg-[#BFBFBF]';
@@ -92,15 +99,22 @@ const getColorClass = (nota) => {
 const recalculateNewVariable = () => {
   const inputs = calculus.value.map((data) => data.nota);
 
-  // Assuming inputs are numbers, you might need to parse them if they are strings
-  const weightedSum = 0.15 * inputs[0] + 0.15 * inputs[1] + 0.15 * inputs[2] + 0.15 * inputs[3] + 0.4 * inputs[4];
+  console.log('how this works: ',inputs);
 
-  console.log(weightedSum);
+  if(inputs.some(item => item === "")) {
+    newVariable.value = "-"
+  } else {
+    const weightedSum = 0.15 * inputs[0] + 0.15 * inputs[1] + 0.15 * inputs[2] + 0.15 * inputs[3] + 0.4 * inputs[4];
+    newVariable.value = weightedSum.toFixed();
+  }
 
-  // Update the new variable
-  newVariable.value = weightedSum.toFixed();
+  
 };
 
-// Watch for changes in the notas array and recalculate the new variable
 watch(calculus, recalculateNewVariable, { deep: true });
+
+defineExpose({
+    recoverNotes,
+  })
+
 </script>
