@@ -6,39 +6,39 @@
           <th class="text-start font-sans font-normal text-sm text-[#404040] pb-3">
             ID
           </th>
-          <th class="text-start font-sans font-normal text-sm text-[#404040] pb-3">
+          <th class="text-start font-publicSans font-normal text-sm text-[#404040] pb-3">
             Evaluación
           </th>
-          <th class="text-start font-normal font-sans text-sm text-[#404040] pb-3">
+          <th class="text-start font-normal font-publicSans text-sm text-[#404040] pb-3">
             Peso
           </th>
-          <th class="text-end font-normal font-sans text-sm text-[#404040] pb-3">
+          <th class="text-end font-normal font-publicSans text-sm text-[#404040] pb-3">
             Nota
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(data, index) in notas" :key="index" class="h-[52px]">
-          <td class="text-start text-sm font-sans text-[#404040]">
+          <td class="text-start text-sm font-publicSans text-[#404040]">
             {{ data.codTipoPrueba }}
           </td>
-          <td class="text-start text-sm font-sans text-[#404040]">
+          <td class="text-start text-sm font-publicSans text-[#404040]">
             {{ data.desTipoPrueba }}
           </td>
-          <td class="text-start font-sans text-sm text-[#404040]">
+          <td class="text-start font-publicSans text-sm text-[#404040]">
             {{ data.pesoPonderado }}
           </td>
           <td class="text-end flex justify-end items-center h-[52px]">
             <div v-if="dashboard">
               <span
-                class="font-sans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                class="font-publicSans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
                 :class="getColorClass(data.nota)">
                 {{ data.nota === "00" ? "-" : data.nota }}
               </span>
             </div>
             <div v-else>
               <span v-if="!simulator"
-                class="font-sans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
+                class="font-publicSans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
                 :class="getColorClass(data.nota)">
                 {{ data.nota }}
               </span>
