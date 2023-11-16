@@ -120,6 +120,7 @@ const changeItems = (value) => {
                     </div>
                 </div>
             </div>
+
             <div class="overflow-y-auto max-h-[590px]">
                 <div v-if="finalItems !== null">
                     <p v-if="finalItems[1].length > 0" class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano">Esta
@@ -133,11 +134,11 @@ const changeItems = (value) => {
                                 <div class="flex items-center gap-1">
                                     <div class="p-1 flex items-center gap-1 rounded cursor-pointer"
                                     :class="[{
-                                        'bg-[#FFF4AA]': item.tipo === 'Mis estudios' || item.tipo === 'NUEVO',
-                                        'bg-[#EFB3EF]': item.tipo === 'Pagos',
-                                        'bg-[#F0B27C]': item.tipo === 'Networking',
-                                        'bg-[#7AD6CF]': item.tipo === 'Beyond Wetalk',
-                                        'bg-[#CEBDFF]': item.tipo === 'General',
+                                        'bg-[#FFF4AA]': item.tipo === 'Mis estudios' || item.tipo === 'NUEVO' || item.tipo === 'Mis trámites',
+                                        'bg-[#EFB3EF]': item.tipo === 'Pagos' || item.tipo === 'Mis finanzas',
+                                        'bg-[#F0B27C]': item.tipo === 'Networking' || item.tipo === 'Reservas',
+                                        'bg-[#7AD6CF]': item.tipo === 'Beyond Wetalk' || item.tipo === 'Eventos',
+                                        'bg-[#CEBDFF]': item.tipo === 'General' || item.tipo === 'Informativos' || item.tipo === 'App',
                                     }]">
                                         <i class="text-[#554A00] text-sm"
                                         :class="[{
