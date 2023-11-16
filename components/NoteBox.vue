@@ -62,10 +62,12 @@ watchEffect(async () => {
   console.log('getting information here: ', notas.notas);
   if (notas) {
     notasData.value = notas.notas;
-    inasistencia.value = notas.inasistencias;
   }
 
-  console.log('the notes data: ',notasData.value);
+  const faltaData = menuStore.getfaltasItems;
+  if (faltaData) {
+    inasistencia.value = faltaData.cantidad;
+  }
 });
 
 const irSimulador = () => {
