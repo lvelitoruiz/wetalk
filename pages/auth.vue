@@ -31,7 +31,6 @@ const listDomain = ["upc.edu.pe", "upn.pe"];
 
 let isAuthenticated = $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
 let stringCodUser = accounts[0]?.username
-const userCode = stringCodUser?.replace(/[^0-9]+/g, "");
 
 const entidadActiva = ref('');
 if(stringCodUser){
@@ -41,6 +40,12 @@ if(stringCodUser){
       entidadActiva.value = element.substring(0, 3)
     }
  }
+}
+
+let userCode = "";
+switch(entidadActiva.value) {
+  case "upc": userCode = stringCodUser?.replace(/[^0-9]+/g, ""); break;
+  case "upn": userCode = stringCodUser?.match(/([^@]+)/)?.at(0) ?? ""; break;
 }
 
 if (isAuthenticated) {
