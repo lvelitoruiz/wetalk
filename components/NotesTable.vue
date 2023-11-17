@@ -51,12 +51,18 @@
     </table>
   </div>
   <div class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]">
-    <p class="text-[#404040] text-sm font-bold">Promedio final</p>
+    <p class="text-[#404040] text-sm font-bold flex">Promedio final <img class="ml-2" v-if="simulator" src="@/assets/images/Ic-md-information.svg" /></p>
     <span v-if="!simulator"
       class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota }}</span>
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(newVariable)">{{ newVariable }}</span>
+  </div>
+  <div v-if="simulator" class="mt-3 px-1.5 py-0.5 bg-[#FFEA55] inline-block rounded-sm">
+    <p class="flex text-sm items-center">
+      <img class="mr-1 h-[18px]" src="@/assets/images/Ic-md-information.svg" />
+      La nota calculada es solo una referencia del promedio final.
+    </p>
   </div>
 </template>
 

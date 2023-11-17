@@ -30,7 +30,7 @@ const keyNotification = ref(false);
 const keyProfile = ref(false);
 
 const selectedImage = ref(
-  "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
+  "https://adminmi-dev-wetalk.stage01.link/assets/539598d5-1540-45ae-8d36-d1d5e7634430"
 );
 
 const fetchMetaInfo = async () => {
@@ -114,9 +114,7 @@ const allDataLoaded = computed(() => {
 
 watchEffect(async () => {
   const data = metaStore.getMetaData;
-  // console.log("metadata: ", data);
   if (data) {
-    // console.log("metadata: ", data[0]);
     metaData.value = data;
     selectedImage.value = data[0].imagen;
   }
@@ -147,6 +145,7 @@ watchEffect(async () => {
     localStorage.setItem('periodo',profile.data[0].periodo);
     localStorage.setItem('curso',profile.data[0].salon);
     localStorage.setItem('seccion',profile.data[0].seccion);
+    localStorage.setItem('foto',profile.data[0].fotoUrl);
   }
 
   // console.log('with value: ',allDataLoaded.value);

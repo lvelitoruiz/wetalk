@@ -3,8 +3,13 @@
     <div class="pb-7">
       <BoxContainer color="green">
         <div class="flex items-center justify-between pb-3 px-[9px]">
-          <h3 class="text-[#404040] text-2xl font-bold font-solano uppercase">
-            Notas
+          <h3 v-if="!showSimulator" class="text-[#404040] text-2xl">
+            <span class="uppercase font-bold font-solano">Notas</span>
+            <p v-if="!dashboard" class="text-[14px] font-publicSans">Nota mínima aprobatoria: 12.5</p>
+          </h3>
+          <h3 v-else class="text-[#404040] text-2xl">
+            <span class="uppercase font-bold font-solano">Simulador de promedio</span>
+            <p v-if="!dashboard" class="text-[14px] font-publicSans">Nota mínima aprobatoria: 12.5</p>
           </h3>
           <router-link v-if="dashboard" class="flex items-center gap-2" to="/notas">
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Ver más</span>
