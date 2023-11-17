@@ -8,10 +8,10 @@
         <i class="icon-user text-[33px] text-[#404040]"></i>
         <div class="w-full">
           <p class="text-[#404040] font-publicSans font-bold">{{ teacher }}</p>
-          <router-link to={mail} class="flex items-center justify-between cursor-pointer">
-            <span class="text-sm font-publicSans text-[#404040]">{{ mail }}</span>
+          <p class="flex items-center justify-between cursor-pointer">
+            <a a :href="`mailTo:${mail}`" class="text-sm font-publicSans text-[#404040]">{{ mail }}</a>
             <i class="icon-file-copy text-xl text-[#699A8F]" @click="copyToClipboard"></i>
-          </router-link>
+          </p>
         </div>
       </div>
     </BoxContainer>

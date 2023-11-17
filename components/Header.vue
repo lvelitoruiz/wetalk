@@ -6,6 +6,8 @@ const nameUser = userStore.getUserData?.name
 const pres = ref(false);
 const nots = ref(false);
 
+const foto = ref(null);
+
 onMounted(() => {
     openPres();
 });
@@ -30,6 +32,10 @@ const openPres = () => {
         }, 5000);
     }
 }
+
+onMounted( () => {
+    foto.value = localStorage.getItem('foto');
+});
 
 </script>
 
@@ -58,7 +64,9 @@ const openPres = () => {
             <div class="pr-[28px]">
                 <div class="flex items-center cursor-pointer gap-2">
                     <p class="text-[#191919] text-sm font-zizou-bold">{{ nameUser }}</p>
-                    <img class="h-10 w-10" src="@/assets/images/user.png" alt="">
+                    <div class="w-10 h-10 overflow-hidden rounded-full border border-gray-300">
+                        <img class="h-auto w-auto object-cover" :src="foto" alt="">
+                    </div>
                     <button @click="openList">
                         <i class="icon-arrow-down text-[#191919]"></i>
                     </button>
