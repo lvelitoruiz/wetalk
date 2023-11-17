@@ -2,6 +2,8 @@ import axios from "axios";
 
 
 const authHeader = localStorage.getItem("tokenH");
+const codUser = localStorage.getItem("codUser");
+const institution = localStorage.getItem("institucion");
 
 export const useMetaStore = defineStore({
   id: "meta",
@@ -32,7 +34,7 @@ export const useMetaStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Perfil/v1/meta/obtener?institucion=upn&id=${id}`);
+          .get<any>(`/Perfil/v1/meta/obtener?institucion=${institution}&id=${id}`);
 
         this.metaData = response.data.data;
       } catch (error) {
@@ -57,9 +59,8 @@ export const useMetaStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .post(`/Perfil/v1/meta/registrar?institucion=upn`, metaInfo);
+          .post(`/Perfil/v1/meta/registrar?institucion=${institution}`, metaInfo);
 
-        // Store the registered meta data in the state
         this.metaData = response.data;
       } catch (error) {
         console.error("Error registering meta data:", error);
@@ -81,7 +82,7 @@ export const useMetaStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get(`/Perfil/v1/meta/listar/imagenes?institucion=upn`);
+          .get(`/Perfil/v1/meta/listar/imagenes?institucion=${institution}`);
 
         this.imagesData = response.data.data;
       } catch (error) {

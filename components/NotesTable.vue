@@ -43,7 +43,8 @@
                 {{ data.nota }}
               </span>
               <input v-else type="text" v-model="calculus[index].nota"
-                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center" @input="validateInput(index)" />
+                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center"
+                @input="validateInput(index)" />
             </div>
           </td>
         </tr>
@@ -51,7 +52,12 @@
     </table>
   </div>
   <div class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]">
-    <p class="text-[#404040] text-sm font-bold flex">Promedio final <img class="ml-2" v-if="simulator" src="@/assets/images/Ic-md-information.svg" /></p>
+    <p class="text-[#404040] text-sm font-bold flex">Promedio final
+      <span class="inline-block w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible" v-if="simulator">
+        <img class="ml-2" src="@/assets/images/Ic-md-information.svg" />
+        <ToolTip title="Fórmula" :text="formula" />
+      </span>
+    </p>
     <span v-if="!simulator"
       class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota }}</span>
@@ -76,6 +82,7 @@ const props = defineProps({
   notasData: Array,
   dashboard: Boolean,
   simulator: Boolean,
+  formula: String,
 });
 
 if (props.notasData !== null && props.notasData !== undefined) {
@@ -110,7 +117,7 @@ const validateInput = (index) => {
     calculus.value[index].nota = '';
   }
 
-  if(calculus.value[index].nota > 20) {
+  if (calculus.value[index].nota > 20) {
     calculus.value[index].nota = 20;
   }
 };
