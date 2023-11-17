@@ -120,7 +120,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Masservicios/v1/AccesosRapidosPerfil?institucion=${institution}`
+            `/Masservicios/v1/AccesosRapidosPerfil?CodAlumno=${codUser}&institucion=${institution}`
           );
 
         this.accesoDirectoData = response.data.data;
