@@ -28,8 +28,6 @@ const keyAyuda = ref(false);
 const keyContenido = ref(false);
 const keyNotification = ref(false);
 const keyProfile = ref(false);
-const keyNotas = ref(false);
-const keyFaltas = ref(false);
 
 const selectedImage = ref(
   "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
@@ -57,15 +55,10 @@ const fetchMetaInfo = async () => {
   await menuStore
     .fetchNotificationData(apiUrlAlter, "0")
     .then((response) => (keyNotification.value = true));
-  await menuStore
+  const profiler = await menuStore
     .fetchProfileData(apiUrlAlter)
     .then((response) => (keyProfile.value = true));
-  await menuStore
-    .fetchNotasData(apiUrlAlter)
-    .then((response) => (keyNotas.value = true));
-  await menuStore
-    .fetchFaltasData(apiUrlAlter)
-    .then((response) => (keyFaltas.value = true));
+  
 };
 
 onBeforeMount(() => {
@@ -115,9 +108,7 @@ const allDataLoaded = computed(() => {
     keyAyuda.value &&
     keyContenido.value &&
     keyProfile.value &&
-    keyNotification.value &&
-    keyFaltas.value &&
-    keyNotas.value
+    keyNotification.value 
   );
 });
 
@@ -150,14 +141,12 @@ watchEffect(async () => {
     syllabusData.value = syllabus;
   }
 
-  const notas = menuStore.getNotasItems;
-  if (notas) {
-    notasData.value = notas;
-  }
-
-  const faltas = menuStore.getfaltasItems;
-  if (faltas) {
-    faltasData.value = faltas;
+  const profile = menuStore.getProfileItems;
+  if (profile) {
+    console.log('the profile data: ',profile.data[0]);
+    localStorage.setItem('periodo',profile.data[0].periodo);
+    localStorage.setItem('curso',profile.data[0].salon);
+    localStorage.setItem('seccion',profile.data[0].seccion);
   }
 
   // console.log('with value: ',allDataLoaded.value);
@@ -210,7 +199,6 @@ watchEffect(async () => {
               imagesData !== null &&
               menuData !== null &&
               ayudaData !== null &&
-              notasData !== null &&
               accesoData !== null,
             'w-full transition-all duration-500 ease-in-out':
               metaData !== null &&
@@ -218,7 +206,6 @@ watchEffect(async () => {
               ayudaData !== null &&
               syllabusData !== null &&
               menuData !== null &&
-              faltasData !== null &&
               accesoData !== null,
           }" @click="handleOpen"></div>
       </div>
