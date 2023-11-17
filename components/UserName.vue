@@ -32,7 +32,7 @@ const copyToClipboard = () => {
         });
         return;
     }
-    navigator.clipboard.writeText(props.name)
+    navigator.clipboard.writeText(props.code)
         .then(() => {
             $toast.open({
                 message: "Código Copiado!!!",
