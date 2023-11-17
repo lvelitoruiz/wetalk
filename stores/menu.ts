@@ -71,9 +71,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Cursos/v1/Detalle_Curso?CodAlumno=${
-              institution === "upn" ? "n" : "u"
-            }${codUser}&institucion=${institution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
+            `/Cursos/v1/Detalle_Curso?CodAlumno=${codUser}&institucion=${institution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
           );
         this.notasData = response.data.data;
       } catch (error) {
@@ -99,9 +97,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${
-              institution === "upn" ? "n" : "u"
-            }${codUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=upn&CodSeccion=${seccion}`
+            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${codUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=upn&CodSeccion=${seccion}`
           );
         this.faltasData = response.data.data;
       } catch (error) {
@@ -220,9 +216,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${
-              institution === "upn" ? "n" : "u"
-            }${codUser}&CodAlumno=${codUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${institution}`
+            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${codUser}&CodAlumno=${codUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${institution}`
           );
         this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
       } catch (error) {
