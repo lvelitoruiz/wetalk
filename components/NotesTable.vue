@@ -103,6 +103,10 @@ const validateInput = (index) => {
   if (!regex.test(calculus.value[index].nota)) {
     calculus.value[index].nota = '';
   }
+
+  if(calculus.value[index].nota > 20) {
+    calculus.value[index].nota = 20;
+  }
 };
 
 const recalculateNewVariable = () => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 const authHeader = localStorage.getItem("tokenH");
-const codUser = localStorage.getItem("codUser")
-const institution = localStorage.getItem("institucion")
+const codUser = localStorage.getItem("codUser");
+const institution = localStorage.getItem("institucion");
 
 export const useMenuStore = defineStore({
   id: "menu",
@@ -31,8 +31,6 @@ export const useMenuStore = defineStore({
     getfaltasItems: (state) => state.faltasData,
   },
   actions: {
-    
-
     async fetchMenuData(apiUrl: string, apiKey: string) {
       try {
         const axiosConf = {
@@ -41,8 +39,7 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
 
@@ -53,10 +50,13 @@ export const useMenuStore = defineStore({
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
-
     },
 
     async fetchNotasData(apiUrl: string, apiKey: string) {
+      const curso = localStorage.getItem("curso");
+      const periodo = localStorage.getItem("periodo");
+      const seccion = localStorage.getItem("seccion");
+
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -64,22 +64,27 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Cursos/v1/Detalle_Curso?CodAlumno=${institution === 'upn' ? 'n' : 'u' }${codUser}&institucion=${institution}&CodCurso=IDIO1401&Seccion=22243412797&CodPeriodo=222434`);
+          .get<any>(
+            `/Cursos/v1/Detalle_Curso?CodAlumno=${
+              institution === "upn" ? "n" : "u"
+            }${codUser}&institucion=${institution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
+          );
         this.notasData = response.data.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
-
     },
 
     async fetchFaltasData(apiUrl: string, apiKey: string) {
+      const curso = localStorage.getItem("curso");
+      const periodo = localStorage.getItem("periodo");
+      const seccion = localStorage.getItem("seccion");
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -87,21 +92,22 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Cursos/v1/Inasistencias_Alumno?CodAlumno=${institution === 'upn' ? 'n' : 'u' }${codUser}&CodCurso=INVE1579&CodPeriodo=222513&institucion=upn&CodSeccion=2225135855`);
+          .get<any>(
+            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${
+              institution === "upn" ? "n" : "u"
+            }${codUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=upn&CodSeccion=${seccion}`
+          );
         this.faltasData = response.data.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
-
     },
-    
 
     async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
       try {
@@ -111,14 +117,15 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
-    
+
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Masservicios/v1/AccesosRapidosPerfil?institucion=${institution}`);
+          .get<any>(
+            `/Masservicios/v1/AccesosRapidosPerfil?institucion=${institution}`
+          );
 
         this.accesoDirectoData = response.data.data;
       } catch (error) {
@@ -134,8 +141,7 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
 
@@ -181,14 +187,15 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-            authHeader
+            Authorization: authHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Home/v1/Notificaciones?codAlumno=${codUser}&poblacion=AC&ciclo=10&institucion=${institution}`);
+          .get<any>(
+            `/Home/v1/Notificaciones?codAlumno=${codUser}&poblacion=AC&ciclo=10&institucion=${institution}`
+          );
 
         console.log(response.data.data);
 
@@ -206,14 +213,17 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-            authHeader
+            Authorization: authHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${institution === 'upn' ? 'n' : 'u' }${codUser}&CodAlumno=${codUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${institution}`);
+          .get<any>(
+            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${
+              institution === "upn" ? "n" : "u"
+            }${codUser}&CodAlumno=${codUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${institution}`
+          );
         this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
       } catch (error) {
         console.error("Error fetching acceso directo data:", error);
@@ -228,8 +238,7 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
 
@@ -237,9 +246,11 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Home/v1/Ciclos?institucion=${institution}&ciclo_actual=`+cycle);
-        
-        console.log('the response data: ',response.data);
+          .get<any>(
+            `/Home/v1/Ciclos?institucion=${institution}&ciclo_actual=` + cycle
+          );
+
+        console.log("the response data: ", response.data);
 
         newData.push(response.data.data.ciclo_actual);
         newData.push(response.data.data.ciclo_siguiente);
@@ -259,14 +270,17 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization:
-              authHeader
+            Authorization: authHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Accesos/v1/data_alumno?CodAlumno=${institution === 'upn' ? 'n' : 'u' }${codUser}&institucion=${institution}`);
+          .get<any>(
+            `/Accesos/v1/data_alumno?CodAlumno=${
+              institution === "upn" ? "n" : "u"
+            }${codUser}&institucion=${institution}`
+          );
         this.profileData = response.data;
       } catch (error) {
         console.error("Error fetching profile data:", error);

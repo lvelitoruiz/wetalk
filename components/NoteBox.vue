@@ -37,6 +37,7 @@
 
 <script setup >
 import { useMenuStore } from "../stores/menu";
+import { apiUrlAlter } from "~/consts";
 
 
 const notasData = ref(null);
@@ -57,6 +58,13 @@ const reestablishNotes = () => {
   tableNotes.value.recoverNotes();
 };
 
+const fetchData = async () => {
+  await menuStore
+    .fetchNotasData(apiUrlAlter)
+  await menuStore
+    .fetchFaltasData(apiUrlAlter)
+}
+
 watchEffect(async () => {
   const notas = menuStore.getNotasItems;
   console.log('getting information here: ', notas.notas);
@@ -73,6 +81,10 @@ watchEffect(async () => {
 const irSimulador = () => {
   showSimulator.value = !showSimulator.value;
 }
+
+onMounted( () => {
+  fetchData();
+});
 
 
 </script>
