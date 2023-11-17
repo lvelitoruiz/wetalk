@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :simulator="showSimulator" ref="tableNotes" />
+        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :formula="formula" :simulator="showSimulator" ref="tableNotes" />
       </BoxContainer>
     </div>
   </div>
@@ -47,6 +47,8 @@ import { apiUrlAlter } from "~/consts";
 
 const notasData = ref(null);
 const inasistencia = ref(null);
+
+const formula = ref(null);
 
 const tableNotes = ref(null);
 
@@ -72,9 +74,10 @@ const fetchData = async () => {
 
 watchEffect(async () => {
   const notas = menuStore.getNotasItems;
-  console.log('getting information here: ', notas.notas);
   if (notas) {
     notasData.value = notas.notas;
+    console.log('passing formula: ',notas.dscFormula);
+    formula.value = notas.dscFormula;
   }
 
   const faltaData = menuStore.getfaltasItems;
