@@ -40,7 +40,7 @@
               <span v-if="!simulator"
                 class="font-publicSans w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
                 :class="getColorClass(data.nota)">
-                {{ data.nota }}
+                {{ data.nota === "00" ? "-" : data.nota }}
               </span>
               <input v-else type="text" v-model="calculus[index].nota"
                 class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center"
@@ -60,9 +60,9 @@
     </p>
     <span v-if="!simulator"
       class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
-      :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota }}</span>
+      :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota === "00" ? "-" : promedio[0].nota }}</span>
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
-      :class="getColorClass(newVariable)">{{ newVariable }}</span>
+      :class="getColorClass(newVariable)">{{ newVariable < 10 ? `0${newVariable}` : newVariable }}</span>
   </div>
   <div v-if="simulator" class="mt-3 px-1.5 py-0.5 bg-[#FFEA55] inline-block rounded-sm">
     <p class="flex text-sm items-center">
@@ -101,7 +101,7 @@ const recoverNotes = () => {
 }
 
 const getColorClass = (nota) => {
-  if (nota === "00" || nota === null) {
+  if (nota === "00" || nota === null || nota === "-" ) {
     return 'bg-[#BFBFBF]';
   } else if (nota < 13) {
     return 'bg-[#E50A17]';
@@ -120,6 +120,8 @@ const validateInput = (index) => {
   if (calculus.value[index].nota > 20) {
     calculus.value[index].nota = 20;
   }
+
+  calculus.value[index].nota = calculus.value[index].nota.slice(0,2); 
 };
 
 const recalculateNewVariable = () => {
