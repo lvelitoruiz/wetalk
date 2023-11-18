@@ -39,7 +39,7 @@ function closeNotifications() {
                 <div v-for="(notification, index) in notifications"
                     class="p-1 flex items-center gap-1 rounded cursor-pointer"
                     :class="{ 
-                        'bg-[#FFF4AA]': notification.tipo === 'Mis estudios' || notification.tipo === 'NUEVO',
+                        'bg-[#FFF4AA]': notification.tipo === 'Mis estudios' || notification.tipo === 'NUEVO' || notification.tipo === 'Mis trámites' || notification.tipo === 'Mi curso',
                         'bg-[#EFB3EF]': notification.tipo === 'Pagos',
                         'bg-[#F0B27C]': notification.tipo === 'Networking',
                         'bg-[#7AD6CF]': notification.tipo === 'Beyond Wetalk',
@@ -47,7 +47,7 @@ function closeNotifications() {
                      }">
                         <i class="text-[#554A00] text-xs"
                             :class="[{
-                                'icon-book-open': notification.tipo === 'Mis estudios' || notification.tipo === 'NUEVO',
+                                'icon-book-open': notification.tipo === 'Mis estudios' || notification.tipo === 'NUEVO' || notification.tipo === 'Mis trámites' || notification.tipo === 'Mi curso',
                                 'icon-creditcard': notification.tipo === 'Pagos',
                                 'icon-user-chat': notification.tipo === 'Networking',
                                 'icon-puzzle': notification.tipo === 'Beyond Wetalk',

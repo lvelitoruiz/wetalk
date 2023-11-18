@@ -134,7 +134,7 @@ const changeItems = (value) => {
                                 <div class="flex items-center gap-1">
                                     <div class="p-1 flex items-center gap-1 rounded cursor-pointer"
                                     :class="[{
-                                        'bg-[#FFF4AA]': item.tipo === 'Mis estudios' || item.tipo === 'NUEVO' || item.tipo === 'Mis trámites',
+                                        'bg-[#FFF4AA]': item.tipo === 'Mis estudios' || item.tipo === 'NUEVO' || item.tipo === 'Mis trámites' || item.tipo === 'Mi curso',
                                         'bg-[#EFB3EF]': item.tipo === 'Pagos' || item.tipo === 'Mis finanzas',
                                         'bg-[#F0B27C]': item.tipo === 'Networking' || item.tipo === 'Reservas',
                                         'bg-[#7AD6CF]': item.tipo === 'Beyond Wetalk' || item.tipo === 'Eventos',
@@ -142,7 +142,7 @@ const changeItems = (value) => {
                                     }]">
                                         <i class="text-[#554A00] text-sm"
                                         :class="[{
-                                            'icon-book-open': item.tipo === 'Mis estudios' || item.tipo === 'NUEVO',
+                                            'icon-book-open': item.tipo === 'Mis estudios' || item.tipo === 'NUEVO' || item.tipo === 'Mis trámites' || item.tipo === 'Mi curso',
                                             'icon-creditcard': item.tipo === 'Pagos',
                                             'icon-user-chat': item.tipo === 'Networking',
                                             'icon-puzzle': item.tipo === 'Beyond Wetalk',
