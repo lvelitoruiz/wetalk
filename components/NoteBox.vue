@@ -27,7 +27,7 @@
         </div>
         <div class="flex items-center justify-start mb-3">
           <div v-if="dashboard">
-            <div v-if="inasistencia !== null"
+            <div v-if="inasistencia !== null && inasistencia > 0"
               class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full">
               <p class="text-[#404040] font-publicSans text-sm">Inasistencias:</p>
               <p class="text-[#404040] font-publicSans text-sm">{{ inasistencia }}</p>
