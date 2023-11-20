@@ -73,8 +73,9 @@ const markImage = () => {
 };
 
 const updateMeta = async () => {
+  const codUser = localStorage.getItem("codUser");
   let metaItem = {
-    id: "U2020201234178",
+    id: codUser,
     imagen: selectedImage.value,
     meta: meta.value,
     color: selectedColor.value,
