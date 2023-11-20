@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watchEffect } from "vue";
-import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
+import { apiKey, apiUrl } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import GraphemeSplitter from "grapheme-splitter";
 
@@ -28,7 +28,7 @@ const handleMeta = (event) => {
 };
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrlAlter, apiKey, "U2020201234178");
+  await metaStore.fetchMetaData(apiUrl, apiKey);
 };
 
 watchEffect(() => {
@@ -80,7 +80,7 @@ const updateMeta = async () => {
     color: selectedColor.value,
   };
 
-  await metaStore.registerMetaData(apiUrlAlter, apiKey, metaItem);
+  await metaStore.registerMetaData(apiUrl, apiKey, metaItem);
   await fetchMetaInfo();
   markImage();
 };
