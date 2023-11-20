@@ -1,6 +1,6 @@
 <script setup>
 import { useMenuStore } from "../stores/menu";
-import { apiUrlAlter } from "~/consts";
+import { apiUrl } from "~/consts";
 
 const menuStore = useMenuStore();
 
@@ -61,7 +61,7 @@ const downloadFile = () => {
 };
 
 const triggerCycle = () => {
-  menuStore.fetchContenidoData(apiUrlAlter, event.target.value.toString())
+  menuStore.fetchContenidoData(apiUrl, event.target.value.toString())
 }
 </script>
 <template>

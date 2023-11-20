@@ -1,7 +1,7 @@
 <script setup ts>
 import { useMenuStore } from "../stores/menu";
 import { watchEffect, defineEmits } from "vue";
-import { apiUrlAlter } from "../consts";
+import { apiUrl } from "../consts";
 
 const notifications = ref(null);
 const total = ref(0);
@@ -43,7 +43,7 @@ async function showNotifications() {
             notificaciones: notificationItems
         };
         
-        const cantidadNotificaciones = total.value - await menuStore.registerNotificationData(apiUrlAlter, notificationData);
+        const cantidadNotificaciones = total.value - await menuStore.registerNotificationData(apiUrl, notificationData);
         total.value = cantidadNotificaciones;
     }
 }

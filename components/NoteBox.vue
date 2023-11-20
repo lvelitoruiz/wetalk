@@ -42,7 +42,7 @@
 
 <script setup >
 import { useMenuStore } from "../stores/menu";
-import { apiUrlAlter } from "~/consts";
+import { apiUrl } from "~/consts";
 
 
 const notasData = ref(null);
@@ -67,9 +67,9 @@ const reestablishNotes = () => {
 
 const fetchData = async () => {
   await menuStore
-    .fetchNotasData(apiUrlAlter)
+    .fetchNotasData(apiUrl)
   await menuStore
-    .fetchFaltasData(apiUrlAlter)
+    .fetchFaltasData(apiUrl)
 }
 
 watchEffect(async () => {

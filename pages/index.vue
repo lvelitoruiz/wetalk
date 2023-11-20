@@ -1,6 +1,6 @@
 <script setup ts>
 import { computed, watchEffect } from "vue";
-import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
+import { apiKey, apiUrl } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from "../stores/menu";
 
@@ -35,28 +35,28 @@ const selectedImage = ref(
 
 const fetchMetaInfo = async () => {
   await metaStore
-    .fetchMetaData(apiUrlAlter, apiKey, "U2020201234178")
+    .fetchMetaData(apiUrl, apiKey)
     .then((response) => (keyMeta.value = true));
   await metaStore
-    .obtainImages(apiUrlAlter)
+    .obtainImages(apiUrl)
     .then((response) => (keyImages.value = true));
   await menuStore
     .fetchMenuData(apiUrl, apiKey)
     .then((response) => (keyMenu.value = true));
   await menuStore
-    .fetchAccesoDirectoData(apiUrlAlter, apiKey)
+    .fetchAccesoDirectoData(apiUrl, apiKey)
     .then((response) => (keyAcceso.value = true));
   await menuStore
-    .fetchAyudaData(apiUrlAlter, apiKey)
+    .fetchAyudaData(apiUrl, apiKey)
     .then((response) => (keyAyuda.value = true));
   await menuStore
-    .fetchContenidoData(apiUrlAlter, "0")
+    .fetchContenidoData(apiUrl, "0")
     .then((response) => (keyContenido.value = true));
   await menuStore
-    .fetchNotificationData(apiUrlAlter, "0")
+    .fetchNotificationData(apiUrl, "0")
     .then((response) => (keyNotification.value = true));
   const profiler = await menuStore
-    .fetchProfileData(apiUrlAlter)
+    .fetchProfileData(apiUrl)
     .then((response) => (keyProfile.value = true));
   
 };

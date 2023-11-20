@@ -2,7 +2,7 @@
 import animation from '@/assets/images/Ilustracion1.json'
 
 import { watchEffect } from "vue";
-import { apiKey, apiUrlAlter } from "~/consts";
+import { apiKey, apiUrl } from "~/consts";
 import { useMenuStore } from "../stores/menu";
 definePageMeta({
     middleware: 'auth'
@@ -11,7 +11,7 @@ definePageMeta({
 const menuStore = useMenuStore();
 
 const fetchMetaInfo = async () => {
-  await menuStore.fetchCalendarData(apiUrlAlter, apiKey);
+  await menuStore.fetchCalendarData(apiUrl, apiKey);
 };
 
 watchEffect(async () => {
