@@ -78,7 +78,7 @@ const updateMeta = async () => {
     id: codUser,
     imagen: selectedImage.value,
     meta: meta.value,
-    color: selectedColor.value,
+    color: "#FFA439",
   };
 
   await metaStore.registerMetaData(apiUrl, apiKey, metaItem);

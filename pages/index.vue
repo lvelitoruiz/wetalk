@@ -16,9 +16,7 @@ const accesoData = ref(null);
 const menuData = ref(null);
 const ayudaData = ref(null);
 const syllabusData = ref(null);
-const notasData = ref(null);
-const faltasData = ref(null);
-const notificationData = ref(null);
+const referenceData = ref(false);
 
 const keyMeta = ref(false);
 const keyImages = ref(false);
@@ -30,7 +28,7 @@ const keyNotification = ref(false);
 const keyProfile = ref(false);
 
 const selectedImage = ref(
-  "https://adminmi-dev-wetalk.stage01.link/assets/539598d5-1540-45ae-8d36-d1d5e7634430"
+  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
 );
 
 const fetchMetaInfo = async () => {
@@ -58,7 +56,7 @@ const fetchMetaInfo = async () => {
   const profiler = await menuStore
     .fetchProfileData(apiUrl)
     .then((response) => (keyProfile.value = true));
-  
+
 };
 
 onBeforeMount(() => {
@@ -82,24 +80,6 @@ const handleOpenLogin = () => {
 };
 
 const allDataLoaded = computed(() => {
-  // return (
-  //   metaData.value !== null &&
-  //   imagesData.value !== null &&
-  //   menuData.value !== null &&
-  //   ayudaData.value !== null &&
-  //   syllabusData.value !== null &&
-  //   accesoData.value !== null
-  // );
-  // console.log(
-  //   "loaded: ",
-  //   keyMeta.value &&
-  //     keyImages.value &&
-  //     keyMenu.value &&
-  //     keyAcceso.value &&
-  //     keyAyuda.value &&
-  //     keyContenido.value
-  // );
-  // console.log(keyMeta.value,keyImages.value,keyMenu.value,keyAcceso.value,keyContenido.value,keyNotification.value);
   return (
     keyMeta.value &&
     keyImages.value &&
@@ -108,15 +88,21 @@ const allDataLoaded = computed(() => {
     keyAyuda.value &&
     keyContenido.value &&
     keyProfile.value &&
-    keyNotification.value 
+    keyNotification.value
   );
 });
 
 watchEffect(async () => {
   const data = metaStore.getMetaData;
-  if (data) {
+  if (data.length > 0) {
+    referenceData.value = true;
+    console.log('metadata values: ', data.length);
     metaData.value = data;
     selectedImage.value = data[0].imagen;
+  } else {
+    console.log('no metadata values: ', data.length);
+    referenceData.value = false;
+    metaData.value = data;
   }
   const images = metaStore.getImages;
   if (images) {
@@ -140,12 +126,12 @@ watchEffect(async () => {
   }
 
   const profile = menuStore.getProfileItems;
-  if (profile) {
-    console.log('the profile data: ',profile.data[0]);
-    localStorage.setItem('periodo',profile.data[0].periodo);
-    localStorage.setItem('curso',profile.data[0].salon);
-    localStorage.setItem('seccion',profile.data[0].seccion);
-    localStorage.setItem('foto',profile.data[0].fotoUrl);
+  if (profile.data !== undefined) {
+    console.log('the profile data: ', profile.data);
+    localStorage.setItem('periodo', profile.data[0].periodo);
+    localStorage.setItem('curso', profile.data[0].salon);
+    localStorage.setItem('seccion', profile.data[0].seccion);
+    localStorage.setItem('foto', profile.data[0].fotoUrl);
   }
 
   // console.log('with value: ',allDataLoaded.value);
@@ -169,13 +155,19 @@ watchEffect(async () => {
       </div>
       <div class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content">
         <Transition>
-          <div v-if="metaData !== null">
+          <div v-if="metaData">
+            {{ console.log('the metadata: ', metaData) }}
             <p class="text-[#344D47] text-[24px]">Tu meta:</p>
             <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
               {{ metaData[0].meta }}
             </p>
           </div>
         </Transition>
+        <div else>
+          <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
+            Iniciando sesión...
+          </p>
+        </div>
       </div>
       <div class="bg-[#F2F2F2] relative rounded-full h-[10px] w-full max-w-[615px]">
         <div
