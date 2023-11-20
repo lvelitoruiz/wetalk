@@ -53,7 +53,7 @@
   </div>
   <div class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]">
     <p class="text-[#404040] text-sm font-bold flex">Promedio final
-      <span class="inline-block w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible" v-if="simulator">
+      <span class="inline-block w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible">
         <img class="ml-2" src="@/assets/images/Ic-md-information.svg" />
         <ToolTip title="Fórmula" :text="formula" />
       </span>
