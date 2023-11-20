@@ -17,8 +17,8 @@ const handleActivation = () => {
 
 const getIconClass = () => {
   return {
-    'icon-home': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/875b2e51-15a2-4f4a-88cc-bf80e727563e",
-    'icon-book-open': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/b02eb4c0-7400-42c6-a71d-7546aa533dde",
+    'icon-home': props.icon === "https://adminmi-dev-wetalk.stage01.link/assets/5668238a-ee03-4168-9d74-2dc5aa0d6df6",
+    'icon-book-open': props.icon === "https://adminmi-dev-wetalk.stage01.link/assets/2cecd651-033f-47b7-9637-01d192ed8024",
     'icon-creditcard': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/a11c6b25-c875-4752-8952-eb2011f00f23",
     'icon-user-chat': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/87a94f5a-1dad-4aeb-a820-a5ee78287690",
     'icon-puzzle': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/75050466-6742-4ddc-97c7-e101040b40f1",
