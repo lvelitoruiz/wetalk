@@ -30,7 +30,7 @@
             <div v-if="inasistencia !== null"
               class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full">
               <p class="text-[#404040] font-publicSans text-sm">Inasistencias:</p>
-              <p class="text-[#404040] font-publicSans text-sm">{{ inasistencia }}</p>
+              <p class="text-[#404040] font-publicSans text-sm">{{ inasistencia || 0 }}</p>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ export const useMetaStore = defineStore({
     getImages: (state) => state.imagesData,
   },
   actions: {
-    async fetchMetaData(apiUrl: string, apiKey: string) {
+    async fetchMetaData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -44,7 +44,7 @@ export const useMetaStore = defineStore({
       return this.metaData;
     },
 
-    async registerMetaData(apiUrl: string, apiKey: string, metaInfo: MetaItem) {
+    async registerMetaData(apiUrl: string, metaInfo: MetaItem) {
       try {
         const axiosConf = {
           baseURL: apiUrl,

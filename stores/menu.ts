@@ -31,7 +31,7 @@ export const useMenuStore = defineStore({
     getfaltasItems: (state) => state.faltasData,
   },
   actions: {
-    async fetchMenuData(apiUrl: string, apiKey: string) {
+    async fetchMenuData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -52,7 +52,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchNotasData(apiUrl: string, apiKey: string) {
+    async fetchNotasData(apiUrl: string) {
       const curso = localStorage.getItem("curso");
       const periodo = localStorage.getItem("periodo");
       const seccion = localStorage.getItem("seccion");
@@ -79,7 +79,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchFaltasData(apiUrl: string, apiKey: string) {
+    async fetchFaltasData(apiUrl: string) {
       const curso = localStorage.getItem("curso");
       const periodo = localStorage.getItem("periodo");
       const seccion = localStorage.getItem("seccion");
@@ -105,7 +105,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchAccesoDirectoData(apiUrl: string, apiKey: string) {
+    async fetchAccesoDirectoData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -129,7 +129,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchAyudaData(apiUrl: string, apiKey: string, accesToken: string) {
+    async fetchAyudaData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -175,7 +175,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchNotificationData(apiUrl: string, apiKey: string) {
+    async fetchNotificationData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -201,7 +201,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchCalendarData(apiUrl: string, apiKey: string) {
+    async fetchCalendarData(apiUrl: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,

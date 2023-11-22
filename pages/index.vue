@@ -1,6 +1,6 @@
 <script setup ts>
 import { computed, watchEffect } from "vue";
-import { apiKey, apiUrl } from "~/consts";
+import { apiUrl } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from "../stores/menu";
 
@@ -33,19 +33,19 @@ const selectedImage = ref(
 
 const fetchMetaInfo = async () => {
   await metaStore
-    .fetchMetaData(apiUrl, apiKey)
+    .fetchMetaData(apiUrl)
     .then((response) => (keyMeta.value = true));
   await metaStore
     .obtainImages(apiUrl)
     .then((response) => (keyImages.value = true));
   await menuStore
-    .fetchMenuData(apiUrl, apiKey)
+    .fetchMenuData(apiUrl)
     .then((response) => (keyMenu.value = true));
   await menuStore
-    .fetchAccesoDirectoData(apiUrl, apiKey)
+    .fetchAccesoDirectoData(apiUrl)
     .then((response) => (keyAcceso.value = true));
   await menuStore
-    .fetchAyudaData(apiUrl, apiKey)
+    .fetchAyudaData(apiUrl)
     .then((response) => (keyAyuda.value = true));
   await menuStore
     .fetchContenidoData(apiUrl, "0")

@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: process.env.NUXT_API_URL,
-      apiKey: process.env.NUXT_API_KEY,
       clientId: process.env.CLIENTID,
       authority: process.env.AUTHORITY,
       redirectUri: process.env.REDIRECT_URI,
