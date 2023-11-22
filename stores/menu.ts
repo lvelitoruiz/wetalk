@@ -120,7 +120,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Masservicios/v1/AccesosRapidosPerfil?institucion=${institution}`
+            `/Masservicios/v1/AccesosRapidosPerfil?CodAlumno=${codUser}&institucion=${institution}`
           );
 
         this.accesoDirectoData = response.data.data;
@@ -271,9 +271,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Accesos/v1/data_alumno?CodAlumno=${
-              institution === "upn" ? "n" : "u"
-            }${codUser}&institucion=${institution}`
+            `/Accesos/v1/data_alumno?CodAlumno=${codUser}&institucion=${institution}`
           );
         this.profileData = response.data;
       } catch (error) {
