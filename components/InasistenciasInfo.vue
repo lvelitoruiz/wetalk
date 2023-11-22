@@ -8,10 +8,10 @@
       </div>
       <div class="flex items-end justify-center">
         <p class="font-solano text-[56px] leading-[74px] font-bold mr-2">
-          {{ inasistencia }}
+          {{ inasistencia || 0 }}
         </p>
         <p class="text-[#404040] text-sm font-publicSans font-normal pb-[13px]">
-          inasistencias:
+          inasistencias
         </p>
       </div>
       <div

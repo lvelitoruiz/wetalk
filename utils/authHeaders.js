@@ -1,8 +1,9 @@
 const getAuthHeaders  = () => {
+    const authHeader = localStorage.getItem("tokenH");
     const config = useRuntimeConfig();
     const token = sessionStorage.getItem('token');
   
-    const headers = {'Authorization': token , 'Api-Lambda-Key': config.public.apiKey}
+    const headers = {'Authorization': token , 'Api-Lambda-Key': authHeader}
     return headers
 }
 
