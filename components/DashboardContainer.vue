@@ -24,67 +24,69 @@ const isOpen = true;
 const haveLink = true;
 </script>
 <template>
-  <div class="flex items-center w-[1023px] mx-auto pb-[18px] gap-[6px]">
+  <div class="lg:flex hidden items-center lg:w-[1023px] mx-auto pb-[18px] gap-[6px]">
     <router-link class="text-[#575759] text-[15px] underline" to="/calendar"
       >Inicio</router-link
     >
     <span class="text-[#575759] text-[15px]">></span>
     <span class="text-[#575759] text-[15px]">Dashboard</span>
   </div>
-  <div class="flex flex-col gap-6">
-    <div class="flex items-center w-[1023px] mx-auto gap-5 pb-[28px]">
+  <div class="lg:flex flex-col gap-6">
+    <div class="lg:flex items-center lg:w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
         <h1
-          class="text-[#191919] text-[32px] font-bold font-solano uppercase whitespace-nowrap"
+          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase whitespace-nowrap w-full"
         >
           Welcome, {{ nameUser }}
         </h1>
-        <p class="text-[#191919] text-[18px] whitespace-nowrap">
-          Inglés 1 | Lun y Mar 19:00h - 22:00h
+        <p class="text-[#191919] text-[18px] leading-6 pb-[18px] whitespace-nowrap">
+         <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> Inglés 1 </span>  Lun y Mar 19:00h - 22:00h
         </p>
       </div>
 
       <div
-        class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[71px] px-5 py-2 w-full flex items-center rounded-lg triangle relative"
+        class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[203px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex items-center rounded-lg lg:triangle relative"
       >
-        <div class="w-[70px]">
+        <div class="lg:w-[70px] w-[123px]">
           <client-only>
             <Vue3Lottie
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
               :height="55"
               :width="auto"
-              class="min-h-[55px] w-auto"
+              class="lg:min-h-[55px] min-h-[87px]  w-auto"
             />
           </client-only>
         </div>
-        <div class="w-[calc(100%-100px)] px-3">
-          <p class="text-[#404040] text-sm font-bold">Meta:</p>
-          <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
-            {{ metaText }}
-          </p>
-          <p v-if="metaText === ''" class="text-sm text-[#A6A6A6] font-light">
-            Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
-          </p>
+        <div class="lg:w-[calc(100%-100px)] w-full flex items-center">
+          <div class=" px-3">
+            <p class="text-[#404040] text-sm font-bold">Meta:</p>
+            <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
+              {{ metaText }}
+            </p>
+            <p v-if="metaText === ''" class="text-sm text-[#A6A6A6] font-light">
+              Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
+            </p>
+          </div>
+          <router-link to="/meta" class="inline-block w-[30px]">
+            <i class="icon-edit text-xl text-[#595959]"></i>
+          </router-link>
         </div>
-        <router-link to="/meta" class="inline-block w-[30px]">
-          <i class="icon-edit text-xl text-[#595959]"></i>
-        </router-link>
       </div>
     </div>
-    <div class="w-[1023px] mx-auto">
-      <div class="flex gap-[28px]">
+    <div class="lg:w-[1023px] mx-auto">
+      <div class="lg:flex gap-[28px]">
         <div class="min-w-[36%]">
           <NoteBox inasistencia="2" dashboard="true" />
         </div>
-        <div  class="min-w-[calc(32%-28px)]">
+        <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
         </div>
         <div  class="min-w-[calc(32%-28px)]">
           
         </div>
       </div>
-      <div class="flex gap-[28px]">
+      <div class="lg:flex gap-[28px]">
         <SyllabusBox :open="isOpen" :link="haveLink" />
         <HelpBox />
       </div>
