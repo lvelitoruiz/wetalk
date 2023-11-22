@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-20 relative min-h-screen">
+    <div class="lg:pt-20 pt-[68px] relative min-h-screen">
         <Header />
         <slot />
     </div>
