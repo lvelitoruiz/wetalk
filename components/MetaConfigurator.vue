@@ -110,11 +110,11 @@ const changeImage = (indexItem, newImage) => {
 </script>
 <template>
   <ContainerBoxSimple>
-    <div class="flex items-center justify-between pb-6">
+    <div class="flex items-center lg:justify-between pb-6">
       <h3 class="text-[#404040] text-[32px] font-bold font-solano uppercase">
         Mi meta
       </h3>
-      <div class="hidden lg:flex lg:flex-row items-center lg:gap-[31px] gap-4">
+      <div class="hidden lg:flex flex-row items-center lg:gap-[31px]">
         <Button
           label="Eliminar meta"
           secundary
@@ -130,7 +130,7 @@ const changeImage = (indexItem, newImage) => {
       </div>
     </div>
     <div class="flex lg:flex-row flex-col gap-5">
-      <div class="lg:min-w-[369px] lg:max-w-[369px] lg:border-r border-b border-[#D9D9D9] pr-7">
+      <div class="lg:min-w-[369px] lg:max-w-[369px] pb-[18px] lg:pb-0 lg:border-r border-b border-[#D9D9D9] pr-0 lg:pr-7">
         <div class="flex items-center justify-center flex-col gap-[14px]">
           <!-- <img
             v-if="selectedImage !== ''"
@@ -213,9 +213,9 @@ const changeImage = (indexItem, newImage) => {
         <div class="relative">
           <div class="flex items-center justify-between pb-2">
             <p class="text-[#404040] font-bold font-solano uppercase">
-              Cuéntanos tu metaff
+              Cuéntanos tu meta
             </p>
-            <p class="text-xs text-[#808080]">
+            <p class="hidden lg:block text-xs text-[#808080]">
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
             </p>
           </div>
@@ -226,6 +226,25 @@ const changeImage = (indexItem, newImage) => {
             type="text"
             @input="handleMeta"
           />
+          <div class="pt-2 flex justify-end mb-4">
+            <p class="text-xs text-[#808080]">
+              {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
+            </p>
+          </div>
+          <div class="lg:hidden">
+            <Button
+              label="Eliminar meta"
+              secundary
+              :disabled="!hasMeta"
+              @click="cleanMeta"
+            />
+            <Button
+              label="Guardar cambios"
+              primary
+              :disabled="!hasMeta"
+              @click="updateMeta"
+            />
+          </div>
         </div>
       </div>
     </div>
