@@ -10,9 +10,10 @@
           <p class="text-[#404040] font-publicSans font-bold">{{ teacher }}</p>
           <p class="flex items-center justify-between cursor-pointer">
             <a a :href="`mailTo:${mail}`" class="text-sm font-publicSans text-[#404040]">{{ mail }}</a>
-            <i class="icon-file-copy text-xl text-[#699A8F]" @click="copyToClipboard"></i>
+            <i class="icon-file-copy text-xl text-[#699A8F] hidden lg:block" @click="copyToClipboard"></i>
           </p>
         </div>
+        <i class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard"></i>
       </div>
     </BoxContainer>
   </div>

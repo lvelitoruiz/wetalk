@@ -65,7 +65,7 @@ const triggerCycle = () => {
 }
 </script>
 <template>
-  <div class="min-w-[65%]">
+  <div class="w-full lg:min-w-[65%]">
     <div class="pb-[28px]">
       <BoxContainer color="pink">
         <div class="flex items-center justify-between pb-[18px]">

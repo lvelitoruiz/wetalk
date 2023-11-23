@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative pb-4 lg:pb-0">
     <div class="w-[114px] h-[114px] rounded-full overflow-hidden border border-gray-200">
       <img class="min-w-[114px] h-[114px] object-cover" :src="photo" alt="" />
     </div>

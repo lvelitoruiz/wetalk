@@ -15,7 +15,7 @@
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Ver más</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
-          <div v-else>
+          <div v-else  class="hidden lg:block">
             <div v-if="!showSimulator">
               <Button @click="irSimulador" label="Simulador de promedio" primary />
             </div>
@@ -35,6 +35,15 @@
           </div>
         </div>
         <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :formula="formula" :simulator="showSimulator" ref="tableNotes" />
+        <div class="lg:hidden mt-6 flex justify-center">
+          <div v-if="!showSimulator">
+            <Button @click="irSimulador" label="Simulador de promedio" primary />
+          </div>
+          <div v-else class="flex gap-4">
+            <Button @click="irSimulador" label="Cancelar" secundary />
+            <Button @click="reestablishNotes" label="Reestablecer notas" primary />
+          </div>
+        </div>
       </BoxContainer>
     </div>
   </div>

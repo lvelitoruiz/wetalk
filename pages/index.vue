@@ -159,7 +159,7 @@ watchEffect(async () => {
             {{ console.log('the metadata: ', metaData) }}
             <p class="text-[#344D47] text-[24px]">Tu meta:</p>
             <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
-              {{ metaData[0].meta }}
+              {{ metaData[0]?.meta }}
             </p>
           </div>
         </Transition>

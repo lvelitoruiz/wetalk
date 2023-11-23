@@ -22,13 +22,14 @@ watchEffect(async () => {
       <h3 class="text-[#404040] text-[32px] font-solano font-bold uppercase">
         Mis Datos
       </h3>
-      <Button label="Cambiar contraseña" primary />
+      <Button class="hidden" label="Cambiar contraseña" primary />
     </div>
-    <div class="flex items-start gap-[38px]">
+    <div class="lg:flex-row flex-col flex items-center justify-center lg:items-start gap-0 lg:gap-[38px]">
       <UserImage :photo="alumnPhoto" />
       <div class="w-full flex flex-col justify-start items-start">
         <UserInfo :user-info="alumnInfo" />
       </div>
+      <Button class="lg:hidden" label="Cambiar contraseña" primary />
     </div>
   </ContainerBoxSimple>
 </template>
