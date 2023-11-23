@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-6 flex flex-col items-start">
+  <div class="lg:pb-6 pb-7 flex flex-col items-center lg:items-start">
     <p class="text-2xl font-bold font-solano text-[#404040] uppercase">{{ name }}</p>
     <div
       class="bg-[#699A8F] px-2 py-[3px] flex items-center gap-1 rounded cursor-pointer"

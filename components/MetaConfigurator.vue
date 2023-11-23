@@ -113,7 +113,7 @@ const changeImage = (indexItem, newImage) => {
       <h3 class="text-[#404040] text-[32px] font-bold font-solano uppercase">
         Mi meta
       </h3>
-      <div class="flex items-center gap-[31px]">
+      <div class="hidden lg:flex lg:flex-row items-center lg:gap-[31px] gap-4">
         <Button
           label="Eliminar meta"
           secundary
@@ -128,8 +128,8 @@ const changeImage = (indexItem, newImage) => {
         />
       </div>
     </div>
-    <div class="flex gap-[20px]">
-      <div class="min-w-[369px] max-w-[369px] border-r border-[#D9D9D9] pr-7">
+    <div class="lg:flex gap-[20px]">
+      <div class="min-w-[369px] max-w-[369px] lg:border-r border-[#D9D9D9] pr-7">
         <div class="flex items-center justify-center flex-col gap-[14px]">
           <!-- <img
             v-if="selectedImage !== ''"
@@ -183,7 +183,8 @@ const changeImage = (indexItem, newImage) => {
           <div class="grid grid-cols-3 gap-4">
             <img
               v-for="(illustration, index) in illustrations"
-              class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
+              :key="index"
+              class="lg:min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
               :class="{
                 'border-2 border-gray-700': illustration.active,
                 'border border-gray-400': !illustration.active,
@@ -211,7 +212,7 @@ const changeImage = (indexItem, newImage) => {
         <div class="relative">
           <div class="flex items-center justify-between pb-2">
             <p class="text-[#404040] font-bold font-solano uppercase">
-              Cuéntanos tu meta
+              Cuéntanos tu metaff
             </p>
             <p class="text-xs text-[#808080]">
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
