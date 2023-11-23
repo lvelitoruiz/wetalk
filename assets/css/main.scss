@@ -221,14 +221,22 @@
   .triangle:before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: -16px;
-    transform: translateY(-50%);
+    top: -13px;
+    left: 14px;
+    transform: rotate(90deg);
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 12px 24px 12px 0;
+    border-width: 8px 12px 8px 0;
     border-color: transparent #ffffff transparent transparent;
+
+    @media (min-width: 768px) { 
+      top: 50%;
+      left: -16px;
+      transform: translateY(-50%);
+      transform: rotate(0);
+      border-width: 12px 24px 12px 0;
+     }
   }
 
   .triangulo-up {

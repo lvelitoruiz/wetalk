@@ -35,19 +35,19 @@ const haveLink = true;
     <div class="lg:flex items-center lg:w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
         <h1
-          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase whitespace-nowrap w-full"
+          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-none lg:whitespace-nowrap mb-1 w-full"
         >
           Welcome, {{ nameUser }}
         </h1>
-        <p class="text-[#191919] text-[18px] leading-6 pb-[18px] whitespace-nowrap">
+        <p class="text-[#191919] text-[18px] leading-6 lg:pb-[18px] pb-9 whitespace-nowrap">
          <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> Inglés 1 </span>  Lun y Mar 19:00h - 22:00h
         </p>
       </div>
 
       <div
-        class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[203px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex items-center rounded-lg lg:triangle relative"
+      class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[203px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex lg:flex-row flex-col justify-center items-center rounded-lg triangle relative"
       >
-        <div class="lg:w-[70px] w-[123px]">
+        <div class="lg:w-[70px] mb-4 lg:mb-0">
           <client-only>
             <Vue3Lottie
               v-if="selectedImage !== ''"
