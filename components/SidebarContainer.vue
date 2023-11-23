@@ -38,7 +38,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="lg:block hidden w-[275px] max-w-[275px] min-w-[275px] bg-[#E6F0FF] px-7 py-9">
+  <div class="w-[275px] max-w-[275px] min-w-[275px] bg-[#E6F0FF] px-7 py-9 h-full">
     <FastLinks :links="linkList" />
     <SidebarMenu :links="sidebarMenuList" />
   </div>

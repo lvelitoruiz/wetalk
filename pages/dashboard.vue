@@ -28,7 +28,9 @@ watchEffect(async () => {
 <template>
   <NuxtLayout>
     <div class="lg:flex lg:min-h-[calc(100vh-80px)] min-h-[calc(100vh-68px)] bg-[#FFF4F6]">
-      <SidebarContainer />
+      <div class="hidden lg:block">
+        <SidebarContainer />
+      </div>
       <MainContainer>
         <DashboardContainer />
       </MainContainer>
