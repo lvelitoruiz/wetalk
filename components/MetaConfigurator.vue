@@ -194,20 +194,6 @@ const changeImage = (indexItem, newImage) => {
               alt=""
               @click="() => changeImage(index, illustration.imagen)"
             />
-            <!-- <client-only>
-              <Vue3Lottie
-                v-for="(illustration, index) in illustrations"
-                :animationLink="illustration.imagen"
-                :height="auto"
-                :width="187"
-                class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
-                :class="{
-                  'border-2 border-gray-700': illustration.active,
-                  'border border-gray-400': !illustration.active,
-                }"
-                @click="() => changeImage(index, illustration.imagen)"
-              />
-            </client-only> -->
           </div>
         </div>
         <div class="relative">

@@ -6,7 +6,9 @@ definePageMeta({
 <template>
   <NuxtLayout>
     <div class="flex min-h-[calc(100vh-80px)] bg-[#FFF4F6]">
-      <SidebarContainer />
+      <div class="hidden lg:block">
+        <SidebarContainer />
+      </div>
       <MainContainer>
         <NotasContainer/>
       </MainContainer>
