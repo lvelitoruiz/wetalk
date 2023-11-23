@@ -12,7 +12,7 @@ const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
-  "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
+  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
 );
 
 const graphemesNow = ref(0);
@@ -34,7 +34,8 @@ const fetchMetaInfo = async () => {
 watchEffect(() => {
   const data = metaStore.getMetaData;
   const images = metaStore.getImages;
-  if (data) {
+  if (data.length > 0) {
+    console.log('fixing the data: ',data);
     metaData.value = data[0];
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
