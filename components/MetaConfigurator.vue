@@ -129,8 +129,8 @@ const changeImage = (indexItem, newImage) => {
         />
       </div>
     </div>
-    <div class="lg:flex gap-[20px]">
-      <div class="min-w-[369px] max-w-[369px] lg:border-r border-[#D9D9D9] pr-7">
+    <div class="flex lg:flex-row flex-col gap-5">
+      <div class="lg:min-w-[369px] lg:max-w-[369px] lg:border-r border-b border-[#D9D9D9] pr-7">
         <div class="flex items-center justify-center flex-col gap-[14px]">
           <!-- <img
             v-if="selectedImage !== ''"
