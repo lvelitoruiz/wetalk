@@ -35,7 +35,7 @@ const haveLink = true;
     <div class="lg:flex items-center lg:w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
         <h1
-          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-none lg:whitespace-nowrap mb-1 w-full"
+          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-8 lg:leading-none lg:whitespace-nowrap mb-1 w-full"
         >
           Welcome, {{ nameUser }}
         </h1>

@@ -65,7 +65,7 @@
       :class="getColorClass(newVariable)">{{ newVariable < 10 ? `0${newVariable}` : newVariable }}</span>
   </div>
   <div v-if="simulator" class="mt-3 px-1.5 py-0.5 bg-[#FFEA55] inline-block rounded-sm">
-    <p class="flex text-sm items-center">
+    <p class="flex text-sm items-start">
       <img class="mr-1 h-[18px]" src="@/assets/images/Ic-md-information.svg" />
       La nota calculada es solo una referencia del promedio final.
     </p>

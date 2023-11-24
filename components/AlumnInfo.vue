@@ -26,7 +26,7 @@ watchEffect(async () => {
     </div>
     <div class="lg:flex-row flex-col flex items-center justify-center lg:items-start gap-0 lg:gap-[38px]">
       <UserImage :photo="alumnPhoto" />
-      <div class="w-full flex flex-col justify-start items-start">
+      <div class="w-full flex flex-col justify-start  lg:items-start">
         <UserInfo :user-info="alumnInfo" />
       </div>
       <Button class="lg:hidden" label="Cambiar contraseña" primary />
