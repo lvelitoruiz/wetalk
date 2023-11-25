@@ -18,16 +18,10 @@ watchEffect(() => {
 const isOpen = false;
 const haveLink = false;
 const haveTabs = false;
-
 </script>
 <template>
-  <div class="flex items-center w-full lg:w-[1023px] mx-auto pb-[18px] gap-[6px]">
-    <a class="text-[#575759] text-[15px] underline" href="">Inicio</a>
-    <span class="text-[#575759] text-[15px]">></span>
-    <span class="text-[#575759] text-[15px]">Contenido</span>
-  </div>
+  <Breadcrumb page="Contenido" />
   <div class="flex flex-col gap-6">
-    
     <div class="w-full lg:w-[1023px] mx-auto">
       <div class="block lg:flex gap-[28px]">
         <SyllabusBox :open="isOpen" :link="haveLink" :tab-show="haveTabs" />

@@ -1,11 +1,6 @@
 <template>
-  <div class="flex items-center w-[1023px] mx-auto pb-[18px] gap-[6px]">
-    <router-link class="text-[#575759] text-[15px] underline" to="/dashboard"
-      >Inicio</router-link
-    >
-    <span class="text-[#575759] text-[15px]">></span>
-    <span class="text-[#575759] text-[15px]">Notas</span>
-  </div>
+  <Breadcrumb page="Notas" />
+  
   <div class="block lg:flex lg:flex-col gap-6">
     <div class="w-full lg:w-[1023px] mx-auto">
       <div class="block lg:flex gap-[28px]">

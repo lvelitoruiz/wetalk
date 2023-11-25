@@ -157,8 +157,8 @@ watchEffect(async () => {
         <Transition>
           <div v-if="metaData">
             {{ console.log('the metadata: ', metaData) }}
-            <p class="text-[#344D47] text-[24px]">Tu meta:</p>
-            <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
+            <p class="text-[#344D47] lg:text-[24px] text-base">Tu meta:</p>
+            <p class="text-[#344D47] lg:text-[28px] text-[18px] uppercase font-bold font-solano">
               {{ metaData[0]?.meta }}
             </p>
           </div>
