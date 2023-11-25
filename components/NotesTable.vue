@@ -53,7 +53,7 @@
   </div>
   <div class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]">
     <p class="text-[#404040] text-sm font-bold flex">Promedio final
-      <span class="inline-block w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible">
+      <span class="hidden lg:inline-block w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible">
         <img class="ml-2" src="@/assets/images/Ic-md-information.svg" />
         <ToolTip title="Fórmula" :text="formula" />
       </span>
@@ -63,6 +63,12 @@
       :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota === "00" ? "-" : promedio[0].nota }}</span>
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(newVariable)">{{ newVariable < 10 ? `0${newVariable}` : newVariable }}</span>
+  </div>
+  <div>
+    <p class="lg:hidden flex flex-col rounded-[5px] mt-3 relative bg-[#D9D9D9] px-2 py-1 text-xs leading-4 font-publicSans " >
+      <span> Fórmula </span>
+      <span>{{ formula }}</span>  
+    </p>
   </div>
   <div v-if="simulator" class="mt-3 px-1.5 py-0.5 bg-[#FFEA55] inline-block rounded-sm">
     <p class="flex text-sm items-start">
