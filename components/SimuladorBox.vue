@@ -6,7 +6,7 @@
           <h3 class="text-[#404040] text-2xl font-bold font-solano uppercase">
             Notas
           </h3>
-          <div class="flex gap-4">
+          <div class="flex flex-col gap-4">
             <Button label="Cancelar" secundary />
             <Button label="Reestablecer notas" primary />
           </div>

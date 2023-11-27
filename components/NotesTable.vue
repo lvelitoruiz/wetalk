@@ -64,13 +64,13 @@
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(newVariable)">{{ newVariable < 10 ? `0${newVariable}` : newVariable }}</span>
   </div>
-  <div>
-    <p class="lg:hidden flex flex-col rounded-[5px] mt-3 relative bg-[#D9D9D9] px-2 py-1 text-xs leading-4 font-publicSans " >
+  <div v-if="simulator">
+    <p class="lg:hidden flex flex-col rounded-[5px] mt-3 mx-[9px] relative bg-[#D9D9D9] px-2 py-1 text-xs leading-4 font-publicSans " >
       <span> Fórmula </span>
       <span>{{ formula }}</span>  
     </p>
   </div>
-  <div v-if="simulator" class="mt-3 px-1.5 py-0.5 bg-[#FFEA55] inline-block rounded-sm">
+  <div v-if="simulator" class="mt-3 px-1.5 py-0.5 mx-[9px] bg-[#FFEA55] inline-block rounded-sm">
     <p class="flex text-sm items-start">
       <img class="mr-1 h-[18px]" src="@/assets/images/Ic-md-information.svg" />
       La nota calculada es solo una referencia del promedio final.
