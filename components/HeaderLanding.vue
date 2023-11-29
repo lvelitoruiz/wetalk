@@ -1,5 +1,5 @@
 <template>
-    <header class="flex justify-between items-center h-[80px] shadow-[0_1px_24px_0_rgba(203,213,220,0.40)]">
+    <header class="flex justify-between items-center h-[80px] shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano">
         <a class="ml-[36px]" href="">
           <img class="h-[36px]" src="@/assets/images/logo.svg" alt="">
         </a>
@@ -7,7 +7,7 @@
           <nav>
             <ul class="flex items-center gap-[49px]">
               <li>
-                <a class="text-xl uppercase font-bold text-[#191919]" href="">Matrícula</a>
+                <a class="text-xl uppercase font-bold text-[#191919]" href=""> MATRICULA </a>
               </li>
               <li>
                 <a class="text-xl uppercase font-bold text-[#191919]" href="">BENEFICIOS</a>
@@ -31,9 +31,7 @@
 </template>
 
 <script>
-export default {
 
-}
 </script>
 
 <style>
