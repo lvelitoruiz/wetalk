@@ -6,18 +6,12 @@
         <div class="lg:flex items-center gap-[28px] hidden">
           <nav>
             <ul class="flex items-center gap-[49px]">
-              <li>
-                <a class="text-xl uppercase font-bold text-[#191919]" href=""> MATRICULA </a>
-              </li>
-              <li>
-                <a class="text-xl uppercase font-bold text-[#191919]" href="">BENEFICIOS</a>
-              </li>
-              <li>
-                <a class="text-xl uppercase font-bold text-[#191919]" href="">Niveles</a>
+              <li v-for="(list, index) in lists" :key="index" >
+                <a class="text-xl uppercase font-bold text-[#191919]" :href="list.id"> {{ list.title }} </a>
               </li>
             </ul>
           </nav>
-          <button class="ml-[21px] text-xl px-[22px] text-white font-bold bg-[#E50A17] h-[40px] flex items-center justify-center"><span>Ingresar a portal wetalk</span></button>
+          <button class="ml-[21px] text-xl px-[22px] text-white font-solano font-bold bg-[#E50A17] h-[40px] flex items-center justify-center"><span>Ingresar a portal wetalk</span></button>
           <div class="flex items-center gap-2 mr-[36px]">
             <button class="text-[#737373] font-bold border-b border-[#E50A17]">ES</button>
             <span class="w-[1px] bg-[#737373] h-[12px]"></span>
@@ -25,12 +19,16 @@
           </div>
         </div>
         <div class="lg:hidden">
-          <button class="mr-[23px] p-2 text-white font-bold bg-[#E50A17] flex items-center justify-center"><span>Ingresar a portal wetalk</span></button>
+          <button class="mr-[23px] p-2 text-white font-solano font-bold bg-[#E50A17] flex items-center justify-center"><span>Ingresar a portal wetalk</span></button>
         </div>
       </header>
 </template>
 
-<script>
+<script setup>
+
+const props = defineProps ({
+  lists : Array
+})
 
 </script>
 
