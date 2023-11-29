@@ -2,7 +2,7 @@
 import animation from '@/assets/images/Ilustracion1.json'
 
 import { watchEffect } from "vue";
-import { apiKey, apiUrlAlter } from "~/consts";
+import { apiUrl } from "~/consts";
 import { useMenuStore } from "../stores/menu";
 definePageMeta({
     middleware: 'auth'
@@ -11,7 +11,7 @@ definePageMeta({
 const menuStore = useMenuStore();
 
 const fetchMetaInfo = async () => {
-  await menuStore.fetchCalendarData(apiUrlAlter, apiKey);
+  await menuStore.fetchCalendarData(apiUrl);
 };
 
 watchEffect(async () => {
@@ -27,8 +27,10 @@ watchEffect(async () => {
 </script>
 <template>
   <NuxtLayout>
-    <div class="flex min-h-[calc(100vh-80px)] bg-[#FFF4F6]">
-      <SidebarContainer />
+    <div class="lg:flex lg:min-h-[calc(100vh-80px)] min-h-[calc(100vh-68px)] bg-[#FFF4F6]">
+      <div class="hidden lg:block">
+        <SidebarContainer />
+      </div>
       <MainContainer>
         <DashboardContainer />
       </MainContainer>

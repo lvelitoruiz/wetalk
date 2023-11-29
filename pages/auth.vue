@@ -15,6 +15,13 @@ const isDomainAllowed = (
   );
 };
 
+watchEffect(async () => {
+  const userData = userStore.getUserData;
+  if (userData) {
+    localStorage.setItem("institucion", userData.institucion!);
+  }
+});
+
 const accounts = $msal().getAccounts();
 const accessToken = await $msal().acquireTokenSilent();
 const accessDomain = ref(false);
@@ -25,7 +32,6 @@ const listDomain = ["upn.pe"];
 
 let isAuthenticated = $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
 let stringCodUser = accounts[0]?.username
-const userCode = stringCodUser?.replace(/[^0-9]+/g, "");
 
 const entidadActiva = ref('');
 if(stringCodUser){
@@ -37,6 +43,12 @@ if(stringCodUser){
  }
 }
 
+let userCode = "";
+switch(entidadActiva.value) {
+  case "upc": userCode = stringCodUser?.replace(/[^0-9]+/g, ""); break;
+  case "upn": userCode = stringCodUser?.match(/([^@]+)/)?.at(0) ?? ""; break;
+}
+
 if (isAuthenticated) {
   const user = {
     ...accounts[0],
@@ -44,7 +56,7 @@ if (isAuthenticated) {
     codUser: userCode,
     institucion : entidadActiva
   };
-  localStorage.setItem("tokenH", JSON.stringify(accessToken));
+  localStorage.setItem("tokenH", accessToken!);
   localStorage.setItem("codUser", userCode);
   accessDomain.value = true;
   userStore.fetchUserData(

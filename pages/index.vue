@@ -1,11 +1,11 @@
 <script setup ts>
 import { computed, watchEffect } from "vue";
-import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
+import { apiUrl } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import { useMenuStore } from "../stores/menu";
 
 definePageMeta({
-    middleware: 'auth'
+  middleware: 'auth'
 });
 
 const metaStore = useMetaStore();
@@ -16,7 +16,7 @@ const accesoData = ref(null);
 const menuData = ref(null);
 const ayudaData = ref(null);
 const syllabusData = ref(null);
-const notificationData = ref(null);
+const referenceData = ref(false);
 
 const keyMeta = ref(false);
 const keyImages = ref(false);
@@ -25,33 +25,38 @@ const keyAcceso = ref(false);
 const keyAyuda = ref(false);
 const keyContenido = ref(false);
 const keyNotification = ref(false);
+const keyProfile = ref(false);
 
 const selectedImage = ref(
-  "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
+  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
 );
 
 const fetchMetaInfo = async () => {
   await metaStore
-    .fetchMetaData(apiUrlAlter, apiKey, "U2020201234178")
+    .fetchMetaData(apiUrl)
     .then((response) => (keyMeta.value = true));
   await metaStore
-    .obtainImages(apiUrlAlter)
+    .obtainImages(apiUrl)
     .then((response) => (keyImages.value = true));
   await menuStore
-    .fetchMenuData(apiUrl, apiKey)
+    .fetchMenuData(apiUrl)
     .then((response) => (keyMenu.value = true));
   await menuStore
-    .fetchAccesoDirectoData(apiUrlAlter, apiKey)
+    .fetchAccesoDirectoData(apiUrl)
     .then((response) => (keyAcceso.value = true));
   await menuStore
-    .fetchAyudaData(apiUrlAlter, apiKey)
+    .fetchAyudaData(apiUrl)
     .then((response) => (keyAyuda.value = true));
   await menuStore
-    .fetchContenidoData(apiUrlAlter, "0")
+    .fetchContenidoData(apiUrl, "0")
     .then((response) => (keyContenido.value = true));
   await menuStore
-    .fetchNotificationData(apiUrlAlter, "0")
+    .fetchNotificationData(apiUrl, "0")
     .then((response) => (keyNotification.value = true));
+  const profiler = await menuStore
+    .fetchProfileData(apiUrl)
+    .then((response) => (keyProfile.value = true));
+
 };
 
 onBeforeMount(() => {
@@ -65,52 +70,39 @@ onMounted(async () => {
 });
 
 const handleOpen = () => {
-  console.log('managing redirection!!');
-    navigateTo("/dashboard");
+  // console.log('managing redirection!!');
+  navigateTo("/dashboard");
 };
 
 const handleOpenLogin = () => {
-  console.log('yeah all is there!');
+  // console.log('yeah all is there!');
   navigateTo("/login");
 };
 
 const allDataLoaded = computed(() => {
-  // return (
-  //   metaData.value !== null &&
-  //   imagesData.value !== null &&
-  //   menuData.value !== null &&
-  //   ayudaData.value !== null &&
-  //   syllabusData.value !== null &&
-  //   accesoData.value !== null
-  // );
-  // console.log(
-  //   "loaded: ",
-  //   keyMeta.value &&
-  //     keyImages.value &&
-  //     keyMenu.value &&
-  //     keyAcceso.value &&
-  //     keyAyuda.value &&
-  //     keyContenido.value
-  // );
-  console.log(keyMeta.value,keyImages.value,keyMenu.value,keyAcceso.value,keyContenido.value,keyNotification.value);
   return (
     keyMeta.value &&
     keyImages.value &&
     keyMenu.value &&
     keyAcceso.value &&
     keyAyuda.value &&
-    keyContenido.value&&
+    keyContenido.value &&
+    keyProfile.value &&
     keyNotification.value
   );
 });
 
 watchEffect(async () => {
   const data = metaStore.getMetaData;
-  console.log("metadata: ", data);
-  if (data) {
-    console.log("metadata: ", data[0]);
+  if (data.length > 0) {
+    referenceData.value = true;
+    console.log('metadata values: ', data.length);
     metaData.value = data;
     selectedImage.value = data[0].imagen;
+  } else {
+    console.log('no metadata values: ', data.length);
+    referenceData.value = false;
+    metaData.value = data;
   }
   const images = metaStore.getImages;
   if (images) {
@@ -126,14 +118,23 @@ watchEffect(async () => {
   }
   const ayuda = menuStore.getAyudaItems;
   if (ayuda) {
-    ayudaData.value = acceso;
+    ayudaData.value = ayuda;
   }
   const syllabus = menuStore.getContenidoItems;
   if (syllabus) {
-    syllabusData.value = acceso;
+    syllabusData.value = syllabus;
   }
 
-  console.log('with value: ',allDataLoaded.value);
+  const profile = menuStore.getProfileItems;
+  if (profile.data !== undefined) {
+    console.log('the profile data: ', profile.data);
+    localStorage.setItem('periodo', profile.data[0].periodo);
+    localStorage.setItem('curso', profile.data[0].salon);
+    localStorage.setItem('seccion', profile.data[0].seccion);
+    localStorage.setItem('foto', profile.data[0].fotoUrl);
+  }
+
+  // console.log('with value: ',allDataLoaded.value);
 
   if (allDataLoaded.value === true) {
     handleOpen();
@@ -149,31 +150,26 @@ watchEffect(async () => {
       <div class="block min-h-[260px]">
         <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
         <client-only>
-          <Vue3Lottie
-            :animationLink="selectedImage"
-            :height="200"
-            :width="255"
-            class="min-w-[255px] h-auto"
-          />
+          <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
         </client-only>
       </div>
-      <div
-        class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content"
-      >
+      <div class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content">
         <Transition>
-          <div v-if="metaData !== null">
-            <p class="text-[#344D47] text-[24px]">Tu meta:</p>
-            <p
-              class="text-[#344D47] text-[28px] uppercase font-bold font-solano"
-            >
-              {{ metaData[0].meta }}
+          <div v-if="metaData">
+            {{ console.log('the metadata: ', metaData) }}
+            <p class="text-[#344D47] lg:text-[24px] text-base">Tu meta:</p>
+            <p class="text-[#344D47] lg:text-[28px] text-[18px] uppercase font-bold font-solano">
+              {{ metaData[0]?.meta }}
             </p>
           </div>
         </Transition>
+        <div else>
+          <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
+            Iniciando sesión...
+          </p>
+        </div>
       </div>
-      <div
-        class="bg-[#F2F2F2] relative rounded-full h-[10px] w-full max-w-[615px]"
-      >
+      <div class="bg-[#F2F2F2] relative rounded-full h-[10px] w-full max-w-[615px]">
         <div
           class="bg-[#E50A17] absolute rounded-full top-0 left-0 h-[10px] bottom-0 transition-all duration-300 ease-in-out"
           :class="{
@@ -202,9 +198,7 @@ watchEffect(async () => {
               syllabusData !== null &&
               menuData !== null &&
               accesoData !== null,
-          }"
-          @click="handleOpen"
-        ></div>
+          }" @click="handleOpen"></div>
       </div>
     </div>
   </section>

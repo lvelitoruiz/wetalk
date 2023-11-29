@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watchEffect } from "vue";
-import { apiKey, apiUrl, apiUrlAlter } from "~/consts";
+import { apiUrl } from "~/consts";
 import { useMetaStore } from "../stores/meta";
 import GraphemeSplitter from "grapheme-splitter";
 
@@ -12,7 +12,7 @@ const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
-  "https://wetalk-directus-dev-upc.stage01.link/assets/ca00ff67-6533-4b6a-a119-de7c12ccb016"
+  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
 );
 
 const graphemesNow = ref(0);
@@ -28,13 +28,14 @@ const handleMeta = (event) => {
 };
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrlAlter, apiKey, "U2020201234178");
+  await metaStore.fetchMetaData(apiUrl);
 };
 
 watchEffect(() => {
   const data = metaStore.getMetaData;
   const images = metaStore.getImages;
-  if (data) {
+  if (data.length > 0) {
+    console.log('fixing the data: ',data);
     metaData.value = data[0];
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
@@ -73,14 +74,15 @@ const markImage = () => {
 };
 
 const updateMeta = async () => {
+  const codUser = localStorage.getItem("codUser");
   let metaItem = {
-    id: "U2020201234178",
+    id: codUser,
     imagen: selectedImage.value,
     meta: meta.value,
-    color: selectedColor.value,
+    color: "#FFA439",
   };
 
-  await metaStore.registerMetaData(apiUrlAlter, apiKey, metaItem);
+  await metaStore.registerMetaData(apiUrl, metaItem);
   await fetchMetaInfo();
   markImage();
 };
@@ -108,11 +110,11 @@ const changeImage = (indexItem, newImage) => {
 </script>
 <template>
   <ContainerBoxSimple>
-    <div class="flex items-center justify-between pb-6">
+    <div class="flex items-center lg:justify-between pb-6">
       <h3 class="text-[#404040] text-[32px] font-bold font-solano uppercase">
         Mi meta
       </h3>
-      <div class="flex items-center gap-[31px]">
+      <div class="hidden lg:flex flex-row items-center lg:gap-[31px]">
         <Button
           label="Eliminar meta"
           secundary
@@ -127,8 +129,8 @@ const changeImage = (indexItem, newImage) => {
         />
       </div>
     </div>
-    <div class="flex gap-[20px]">
-      <div class="min-w-[369px] max-w-[369px] border-r border-[#D9D9D9] pr-7">
+    <div class="flex lg:flex-row flex-col gap-5">
+      <div class="lg:min-w-[369px] lg:max-w-[369px] pb-[18px] lg:pb-0 lg:border-r border-b border-[#D9D9D9] pr-0 lg:pr-7">
         <div class="flex items-center justify-center flex-col gap-[14px]">
           <!-- <img
             v-if="selectedImage !== ''"
@@ -182,7 +184,8 @@ const changeImage = (indexItem, newImage) => {
           <div class="grid grid-cols-3 gap-4">
             <img
               v-for="(illustration, index) in illustrations"
-              class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
+              :key="index"
+              class="lg:min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
               :class="{
                 'border-2 border-gray-700': illustration.active,
                 'border border-gray-400': !illustration.active,
@@ -191,20 +194,6 @@ const changeImage = (indexItem, newImage) => {
               alt=""
               @click="() => changeImage(index, illustration.imagen)"
             />
-            <!-- <client-only>
-              <Vue3Lottie
-                v-for="(illustration, index) in illustrations"
-                :animationLink="illustration.imagen"
-                :height="auto"
-                :width="187"
-                class="min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
-                :class="{
-                  'border-2 border-gray-700': illustration.active,
-                  'border border-gray-400': !illustration.active,
-                }"
-                @click="() => changeImage(index, illustration.imagen)"
-              />
-            </client-only> -->
           </div>
         </div>
         <div class="relative">
@@ -212,7 +201,7 @@ const changeImage = (indexItem, newImage) => {
             <p class="text-[#404040] font-bold font-solano uppercase">
               Cuéntanos tu meta
             </p>
-            <p class="text-xs text-[#808080]">
+            <p class="hidden lg:block text-xs text-[#808080]">
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
             </p>
           </div>
@@ -223,6 +212,25 @@ const changeImage = (indexItem, newImage) => {
             type="text"
             @input="handleMeta"
           />
+          <div class="pt-2 flex justify-end mb-4">
+            <p class="text-xs text-[#808080]">
+              {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
+            </p>
+          </div>
+          <div class="lg:hidden">
+            <Button
+              label="Eliminar meta"
+              secundary
+              :disabled="!hasMeta"
+              @click="cleanMeta"
+            />
+            <Button
+              label="Guardar cambios"
+              primary
+              :disabled="!hasMeta"
+              @click="updateMeta"
+            />
+          </div>
         </div>
       </div>
     </div>

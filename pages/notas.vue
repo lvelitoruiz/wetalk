@@ -10,7 +10,7 @@ definePageMeta({
         <SidebarContainer />
       </div>
       <MainContainer>
-        <ContentContainer/>
+        <NotasContainer/>
       </MainContainer>
     </div>
   </NuxtLayout>
