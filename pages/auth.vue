@@ -20,7 +20,8 @@ const accessToken = await $msal().acquireTokenSilent();
 const accessDomain = ref(false);
 
 const userEmailDomain = accounts?.length > 0 ? accounts[0].username : "";
-const listDomain = ["upc.edu.pe", "upn.pe"];
+// const listDomain = ["upc.edu.pe", "upn.pe"];
+const listDomain = ["upn.pe"];
 
 let isAuthenticated = $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
 let stringCodUser = accounts[0]?.username
