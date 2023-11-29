@@ -25,7 +25,7 @@ stages:
       variablesGroup: 'DEV-UPC-ED.PE-LAU-FE-WETALK'
 
 - stage: BuildDevelop
-  displayName: "Build App"
+  displayName: "Build App for Develop"
   condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/develop')
   jobs:
   - template: azure-pipelines-build.yml
@@ -33,7 +33,7 @@ stages:
       variablesGroup: 'DEV-UPC-ED.PE-LAU-FE-WETALK'
 
 - stage: BuildRelease
-  displayName: "Build App"
+  displayName: "Build App for Release"
   condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/release')
   jobs:
   - template: azure-pipelines-build.yml
@@ -41,7 +41,7 @@ stages:
       variablesGroup: 'CERT-UPC-ED.PE-LAU-FE-WETALK'
 
 - stage: BuildMain
-  displayName: "Build App"
+  displayName: "Build App for Main"
   condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/main')
   jobs:
   - template: azure-pipelines-build.yml
