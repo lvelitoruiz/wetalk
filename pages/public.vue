@@ -78,8 +78,4 @@ const lists = [
   },
 ];
 
-
 </script>
-
-<style>
-</style>
