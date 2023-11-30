@@ -78,28 +78,7 @@ const lists = [
   },
 ];
 
-const beneficios = [
-  {
-    img: "@/assets/images/benef-1.png",
-    title: "Excelencia Cambridge",
-    description:
-      "Somos los primeros en ofrecer en Perú la plataforma Evolve Digital de Cambridge.",
-    description2:
-      "Tenemos 6 cursos de aprendizajes, desde el nivel básico al avanzado con material disponible 24/7.",
-  },
-  {
-    img: "../assets/images/benef-2.png",
-    title: "Aprende desde donde estés",
-    description:
-      "Clases en vivo 100%  online para que evites el tráfico y aproveches tu vida al máximo. ¡Puedes conectarte hasta de tu celular!",
-  },
-  {
-    img: "@/assets/images/benef-3.png",
-    title: "Seguimiento personalizado",
-    description:
-      "Aceptamos máximo 10 alumnos en cada clase para darte la atención que mereces.",
-  },
-];
+
 </script>
 
 <style>

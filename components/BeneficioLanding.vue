@@ -4,12 +4,23 @@
         <h2 class="text-[32px] font-bold font-solano uppercase">Beneficios de estudiar en wetalk</h2>
       </div>
       <div class="flex justify-between flex-col lg:flex-row">
-        <div v-for="(item, index) in items" :key="index" class="w-full mb-[25px] lg:mb-0 lg:w-[347px] p-6 shadow-[0_8px_24px_0_rgba(203,213,220,0.40)] rounded-2xl">
-          <img class="w-[52px] mb-4" :src="item.img" :alt="item.img">
-          <h3 class="uppercase text-2xl font-solano font-bold mb-[11px]"> {{ item.title }} </h3>
-          <p class="pb-4 font-publicSans"> {{ item.description }} </p>
-          <p class="font-publicSans"> {{ item.description2 }} </p>
+        <div class="w-full mb-[25px] lg:mb-0 lg:w-[347px] p-6 shadow-[0_8px_24px_0_rgba(203,213,220,0.40)] rounded-2xl">
+          <img class="w-[52px] mb-4" src="@/assets/images/benef-1.png" alt="">
+          <h3 class="uppercase text-2xl font-solano font-bold mb-[11px]"> Excelencia Cambridge </h3>
+          <p class="pb-4 font-publicSans"> Somos los primeros en ofrecer en Perú la plataforma Evolve Digital de Cambridge. </p>
+          <p class="font-publicSans"> Tenemos 6 cursos de aprendizajes, desde el nivel básico al avanzado con material disponible 24/7. </p>
         </div>
+        <div class="w-full mb-[25px] lg:mb-0 lg:w-[347px] p-6 shadow-[0_8px_24px_0_rgba(203,213,220,0.40)] rounded-2xl">
+          <img class="w-[52px] mb-4" src="@/assets/images/benef-2.png" alt="">
+          <h3 class="uppercase text-2xl font-solano font-bold mb-[11px]"> Aprende desde donde estés </h3>
+          <p class="pb-4 font-publicSans"> Clases en vivo 100%  online para que evites el tráfico y aproveches tu vida al máximo. ¡Puedes conectarte hasta de tu celular! </p>
+        </div>
+        <div class="w-full mb-[25px] lg:mb-0 lg:w-[347px] p-6 shadow-[0_8px_24px_0_rgba(203,213,220,0.40)] rounded-2xl">
+          <img class="w-[52px] mb-4" src="@/assets/images/benef-3.png" alt="">
+          <h3 class="uppercase text-2xl font-solano font-bold mb-[11px]"> Seguimiento personalizado </h3>
+          <p class="pb-4 font-publicSans"> Aceptamos máximo 10 alumnos en cada clase para darte la atención que mereces. </p>
+        </div>
+
       </div>
 </template>
 
