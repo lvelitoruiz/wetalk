@@ -102,7 +102,7 @@ const changeItems = (value) => {
             </div>
             <div class="flex items-center gap-3 px-4 py-2">
 
-                <div v-for="(notification, index) in notifications">
+                <div v-for="(notification, index) in notifications" :key="index">
                     <div v-if="notification.count > 0" class="rounded-full flex items-center gap-1 cursor-pointer" :class="[{
                         'bg-[#E50A17] px-4 py-1 text-white': notification.active,
                         'border border-[#191919] px-4 py-1 text-[#191919]': !notification.active,
@@ -125,7 +125,7 @@ const changeItems = (value) => {
                 <div v-if="finalItems !== null">
                     <p v-if="finalItems[1].length > 0" class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano">Esta
                         semana</p>
-                    <div v-for="item in finalItems[1]">
+                    <div v-for="item in finalItems[1]" :key="item">
                         <div
                             class="h-[106px] flex items-center px-4 cursor-pointer gap-5 border-b border-white" :class="{'bg-[#D7E9FB]': item.status}">
                             <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
@@ -158,7 +158,7 @@ const changeItems = (value) => {
                     </div>
                     <p v-if="finalItems[0].length > 0" class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano">
                         Anteriores</p>
-                    <div v-for="item in finalItems[0]">
+                    <div v-for="item in finalItems[0]" :key="item">
                         <div
                             class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5 border-b border-white">
                             <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
