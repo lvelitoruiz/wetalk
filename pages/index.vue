@@ -98,7 +98,9 @@ watchEffect(async () => {
     referenceData.value = true;
     console.log('metadata values: ', data.length);
     metaData.value = data;
-    selectedImage.value = data[0].imagen;
+    if(data[0].imagen !== '') {
+      selectedImage.value = data[0].imagen;
+    };
   } else {
     console.log('no metadata values: ', data.length);
     referenceData.value = false;
@@ -150,12 +152,14 @@ watchEffect(async () => {
       <div class="block min-h-[260px]">
         <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
         <client-only>
-          <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
+          <div v-if="selectedImage !== null">
+            <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
+          </div>
         </client-only>
       </div>
       <div class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content">
         <Transition>
-          <div v-if="metaData">
+          <div v-if="metaData[0]?.meta !== ''">
             {{ console.log('the metadata: ', metaData) }}
             <p class="text-[#344D47] lg:text-[24px] text-base">Tu meta:</p>
             <p class="text-[#344D47] lg:text-[28px] text-[18px] uppercase font-bold font-solano">
