@@ -35,7 +35,7 @@ watchEffect(() => {
   const data = metaStore.getMetaData;
   const images = metaStore.getImages;
   if (data.length > 0) {
-    console.log('fixing the data: ',data);
+    console.log("fixing the data: ", data);
     metaData.value = data[0];
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
@@ -130,7 +130,9 @@ const changeImage = (indexItem, newImage) => {
       </div>
     </div>
     <div class="flex lg:flex-row flex-col gap-5">
-      <div class="lg:min-w-[369px] lg:max-w-[369px] pb-[18px] lg:pb-0 lg:border-r border-b border-[#D9D9D9] pr-0 lg:pr-7">
+      <div
+        class="lg:min-w-[369px] lg:max-w-[369px] pb-[18px] lg:pb-0 lg:border-r border-b lg:border-b-0 border-[#D9D9D9] pr-0 lg:pr-7"
+      >
         <div class="flex items-center justify-center flex-col gap-[14px]">
           <!-- <img
             v-if="selectedImage !== ''"
@@ -212,7 +214,7 @@ const changeImage = (indexItem, newImage) => {
             type="text"
             @input="handleMeta"
           />
-          <div class="pt-2 flex justify-end mb-4">
+          <div class="pt-2 lg:hidden flex justify-end mb-4">
             <p class="text-xs text-[#808080]">
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
             </p>
