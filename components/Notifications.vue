@@ -32,7 +32,7 @@ const convert = (element) => {
     }
   });
   return elements;
-};  
+};
 
 watchEffect(async () => {
   const notifData = menuStore.getNotificationItems;
@@ -89,58 +89,40 @@ const changeItems = (value) => {
 };
 </script>
 <template>
-  <div
-    class="absolute lg:left-[-40px] lg:top-[70px] z-50 left-[-180px] bg-red-200"
-  >
-    <div class="lg:ml-[40px] ml-[180px] triangulo-up z-10"></div>
+  <div class="fixed top-[68px] lg:absolute lg:left-[-40px] lg:top-[70px] z-50 left-[0]">
+    <div class="hidden lg:block lg:ml-[40px] ml-[180px] triangulo-up z-10"></div>
     <div
-      class="bg-white relative rounded-lg py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] lg:min-w-[390px]"
-    >
+      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] w-screen lg:min-w-[390px]">
       <div class="px-4 py-2 flex items-center justify-between">
         <p class="font-medium text-[#191919] text-sm font-zizou-bold">
           Notificaciones
         </p>
-        <i
-          class="text-[#35158C] text-xs icon-close cursor-pointer leading-none"
-          @click="closeNotifications"
-        ></i>
+        <i class="text-[#35158C] text-xs icon-close cursor-pointer leading-none" @click="closeNotifications"></i>
       </div>
       <div class="flex items-center gap-3 px-4 py-2">
         <div v-for="(notification, index) in notifications" :key="index">
-          <div
-            v-if="notification.count > 0"
-            class="rounded-full flex items-center gap-1 cursor-pointer"
-            :class="[
-              {
-                'bg-[#E50A17] px-4 py-1 text-white': notification.active,
-                'border border-[#191919] px-4 py-1 text-[#191919]':
-                  !notification.active,
-              },
-            ]"
-            @click="changeItems(notification.category)"
-          >
+          <div v-if="notification.count > 0" class="rounded-full flex items-center gap-1 cursor-pointer" :class="[
+            {
+              'bg-[#E50A17] px-4 py-1 text-white': notification.active,
+              'border border-[#191919] px-4 py-1 text-[#191919]':
+                !notification.active,
+            },
+          ]" @click="changeItems(notification.category)">
             <p class="text-xs font-bold uppercase">
               {{ notification.category }}
             </p>
-            <p
-              class="rounded-full w-[18px] h-[18px] flex items-center justify-center"
-              :class="[
+            <p class="rounded-full w-[18px] h-[18px] flex items-center justify-center" :class="[
+              {
+                'bg-[#E50A17]': !notification.active,
+                'bg-[#fff]': notification.active,
+              },
+            ]">
+              <span class="font-medium text-sm" :class="[
                 {
-                  'bg-[#E50A17]': !notification.active,
-                  'bg-[#fff]': notification.active,
+                  'text-[#E50A17]': notification.active,
+                  'text-[#fff]': !notification.active,
                 },
-              ]"
-            >
-              <span
-                class="font-medium text-sm"
-                :class="[
-                  {
-                    'text-[#E50A17]': notification.active,
-                    'text-[#fff]': !notification.active,
-                  },
-                ]"
-                >{{ notification.count }}</span
-              >
+              ]">{{ notification.count }}</span>
             </p>
           </div>
         </div>
@@ -148,63 +130,50 @@ const changeItems = (value) => {
 
       <div class="overflow-y-auto max-h-[590px]">
         <div v-if="finalItems !== null">
-          <p
-            v-if="finalItems[1].length > 0"
-            class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano"
-          >
+          <p v-if="finalItems[1].length > 0" class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano">
             Esta semana
           </p>
           <div v-for="item in finalItems[1]" :key="item">
-            <div
-              class="h-[106px] flex items-center px-4 cursor-pointer gap-5 border-b border-white"
-              :class="{ 'bg-[#D7E9FB]': item.status }"
-            >
-              <span
-                class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"
-              ></span>
+            <div class="h-[106px] flex items-center px-4 cursor-pointer gap-5 border-b border-white"
+              :class="{ 'bg-[#D7E9FB]': item.status }">
+              <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
               <div>
                 <p class="text-sm mb-1">{{ item.mensaje }}</p>
                 <div class="flex items-center gap-1">
-                  <div
-                    class="p-1 flex items-center gap-1 rounded cursor-pointer"
-                    :class="[
+                  <div class="p-1 flex items-center gap-1 rounded cursor-pointer" :class="[
+                    {
+                      'bg-[#FFF4AA]':
+                        item.tipo === 'Mis estudios' ||
+                        item.tipo === 'NUEVO' ||
+                        item.tipo === 'Mis trámites' ||
+                        item.tipo === 'Mi curso',
+                      'bg-[#EFB3EF]':
+                        item.tipo === 'Pagos' || item.tipo === 'Mis finanzas',
+                      'bg-[#F0B27C]':
+                        item.tipo === 'Networking' ||
+                        item.tipo === 'Reservas',
+                      'bg-[#7AD6CF]':
+                        item.tipo === 'Beyond Wetalk' ||
+                        item.tipo === 'Eventos',
+                      'bg-[#CEBDFF]':
+                        item.tipo === 'General' ||
+                        item.tipo === 'Informativos' ||
+                        item.tipo === 'App',
+                    },
+                  ]">
+                    <i class="text-[#554A00] text-sm" :class="[
                       {
-                        'bg-[#FFF4AA]':
+                        'icon-book-open':
                           item.tipo === 'Mis estudios' ||
                           item.tipo === 'NUEVO' ||
                           item.tipo === 'Mis trámites' ||
                           item.tipo === 'Mi curso',
-                        'bg-[#EFB3EF]':
-                          item.tipo === 'Pagos' || item.tipo === 'Mis finanzas',
-                        'bg-[#F0B27C]':
-                          item.tipo === 'Networking' ||
-                          item.tipo === 'Reservas',
-                        'bg-[#7AD6CF]':
-                          item.tipo === 'Beyond Wetalk' ||
-                          item.tipo === 'Eventos',
-                        'bg-[#CEBDFF]':
-                          item.tipo === 'General' ||
-                          item.tipo === 'Informativos' ||
-                          item.tipo === 'App',
+                        'icon-creditcard': item.tipo === 'Pagos',
+                        'icon-user-chat': item.tipo === 'Networking',
+                        'icon-puzzle': item.tipo === 'Beyond Wetalk',
+                        'icon-home': item.tipo === 'General',
                       },
-                    ]"
-                  >
-                    <i
-                      class="text-[#554A00] text-sm"
-                      :class="[
-                        {
-                          'icon-book-open':
-                            item.tipo === 'Mis estudios' ||
-                            item.tipo === 'NUEVO' ||
-                            item.tipo === 'Mis trámites' ||
-                            item.tipo === 'Mi curso',
-                          'icon-creditcard': item.tipo === 'Pagos',
-                          'icon-user-chat': item.tipo === 'Networking',
-                          'icon-puzzle': item.tipo === 'Beyond Wetalk',
-                          'icon-home': item.tipo === 'General',
-                        },
-                      ]"
-                    ></i>
+                    ]"></i>
                     <span class="text-[#554A00] text-sm leaning-none">{{
                       item.tipo
                     }}</span>
@@ -217,25 +186,16 @@ const changeItems = (value) => {
               </div>
             </div>
           </div>
-          <p
-            v-if="finalItems[0].length > 0"
-            class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano"
-          >
+          <p v-if="finalItems[0].length > 0" class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano">
             Anteriores
           </p>
           <div v-for="item in finalItems[0]" :key="item">
-            <div
-              class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5 border-b border-white"
-            >
-              <span
-                class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"
-              ></span>
+            <div class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5 border-b border-white">
+              <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
               <div>
                 <p class="text-sm mb-1">{{ item.mensaje }}</p>
                 <div class="flex items-center gap-1">
-                  <div
-                    class="bg-[#FFF4AA] p-1 flex items-center gap-1 rounded cursor-pointer"
-                  >
+                  <div class="bg-[#FFF4AA] p-1 flex items-center gap-1 rounded cursor-pointer">
                     <i class="text-[#554A00] text-sm icon-book-open"></i>
                     <span class="text-[#554A00] text-sm leaning-none">{{
                       item.tipo

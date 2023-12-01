@@ -1,7 +1,7 @@
 <template>
-    <HeaderLanding :lists="lists" />
+    <HeaderLanding :lists="lists" @modal-open="changeModal" />
 
-    <BannerLanding />
+    <BannerLanding @modal-open="changeModal" />
   
     <section
       class="bg-[#FAFAFA] py-8 md:pt-[50px] md:pb-[70px] px-6 md:px-0"
@@ -58,6 +58,8 @@
         </ul>
       </div>
     </section>
+
+    <ModalLanding v-if="showLanding" @modal-close="changeModal" />
   
     <FooterLanding />
 </template>
@@ -77,5 +79,11 @@ const lists = [
     id: "#nivel",
   },
 ];
+
+const showLanding = ref(false);
+
+const changeModal = () => {
+  showLanding.value = !showLanding.value;
+}
 
 </script>

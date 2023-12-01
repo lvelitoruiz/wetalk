@@ -20,7 +20,7 @@
       </nav>
       <button
         class="ml-[21px] text-xl px-[22px] text-white font-solano font-bold bg-[#E50A17] h-[40px] flex items-center justify-center"
-        @click="openModal = showModal"
+        @click="triggerModal"
       >
         <span>Ingresar a portal wetalk</span>
       </button>
@@ -35,20 +35,27 @@
     <div class="lg:hidden">
       <button
         class="mr-[23px] p-2 text-white font-solano font-bold bg-[#E50A17] flex items-center justify-center"
+        @click="triggerModal"
       >
         <span>Ingresar a portal wetalk</span>
       </button>
     </div>
   </header>
-  <ModalLanding />
 </template>
 
 <script setup>
+
+import { defineProps, defineEmits } from 'vue';
+
+const emit = defineEmits();
 
 const props = defineProps({
   lists: Array,
 });
 
+const triggerModal = () => {
+  emit('modal-open');
+};
 
 </script>
 
