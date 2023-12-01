@@ -108,9 +108,9 @@ const triggerCycle = () => {
               <option value="4">Inglés 4</option>
               <option value="5">Inglés 5</option>
             </select>
-            <button class="bg-[#E50A17] rounded-full ml-6 h-[26px] w-[26px] flex items-center justify-center lg:hidden">
+            <!-- <button class="bg-[#E50A17] rounded-full ml-6 h-[26px] w-[26px] flex items-center justify-center lg:hidden">
              <i class="icon-globe text-white"></i> 
-            </button>
+            </button> -->
           </div>
         </div>
         <div
