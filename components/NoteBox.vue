@@ -35,11 +35,11 @@
           </div>
         </div>
         <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :formula="formula" :simulator="showSimulator" ref="tableNotes" />
-        <div class="lg:hidden mt-6 flex justify-center">
+        <div v-if="!dashboard" class="lg:hidden mt-6 flex justify-center">
           <div v-if="!showSimulator">
             <Button @click="irSimulador" label="Simulador de promedio" primary />
           </div>
-          <div v-else class="flex gap-4">
+          <div v-else class="flex flex-col lg:flex-row gap-4">
             <Button @click="irSimulador" label="Cancelar" secundary />
             <Button @click="reestablishNotes" label="Reestablecer notas" primary />
           </div>
