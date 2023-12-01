@@ -95,9 +95,9 @@ const triggerCycle = () => {
             :tabs="tabs"
             @tabChange="handleTabChange"
           ></TabContent>
-          <div class="flex items-center my-1.5">
+          <div v-if="!props.tabShow" class="flex items-center my-1.5">
             <select
-              v-if="!props.tabShow"
+              
               class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-gray-900 text-sm cursor-pointer outline-none"
               @change="triggerCycle()"
             >

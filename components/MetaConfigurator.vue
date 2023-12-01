@@ -217,7 +217,7 @@ const changeImage = (indexItem, newImage) => {
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65
             </p>
           </div>
-          <div class="lg:hidden">
+          <div class="lg:hidden flex flex-col gap-3">
             <Button
               label="Eliminar meta"
               secundary

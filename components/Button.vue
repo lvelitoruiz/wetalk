@@ -37,7 +37,7 @@ const getBorderClass = () => {
     class="display inline-block w-auto pr-1 pb-1 relative"
   >
     <span
-      class="inline-block p-2.5 leading-6 font-zizou-bold text-normal relative z-10"
+      class="inline-block p-2.5 leading-6 w-full font-zizou-bold text-normal relative z-10"
       :class="getButtonClasses()"
     >
       {{ props.label }}
