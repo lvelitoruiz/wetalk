@@ -102,7 +102,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="hidden lg:flex items-center gap-2">
+      <!-- <div class="hidden lg:flex items-center gap-2">
         <button
           class="text-[#737373] font-semibold font-solano border-b border-[#E50A17]"
         >
@@ -110,7 +110,7 @@ onMounted(() => {
         </button>
         <span class="w-[1px] bg-[#737373] h-[12px]"></span>
         <button class="text-[#737373] font-semibold font-solano">EN</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
