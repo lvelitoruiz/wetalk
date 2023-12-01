@@ -46,16 +46,12 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-[23px] lg:px-7 justify-between"
-  >
+    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-[23px] lg:px-7 justify-between">
     <div class="flex">
       <button class="lg:hidden mr-2" @click="openMenu">
         <i class="text-[28px] text-[#191919] icon-email"></i>
       </button>
-      <div
-        class="absolute w-full h-[100vh] left-0 bg-black bg-opacity-60 z-50"
-        v-show="showSidebar"
-      >
+      <div class="absolute w-full h-[100vh] left-0 bg-black bg-opacity-60 z-50" v-show="showSidebar">
         <div class="bg-[#E6F0FF] w-[83%] pt-10 h-[100vh] flex items-start">
           <SidebarContainer />
           <button @click="openMenu">
@@ -71,7 +67,8 @@ onMounted(() => {
       <div class="lg:pr-[63px] pr-[21px]">
         <div class="flex items-center gap-[28px]">
           <button class="hidden lg:block">
-            <i class="text-3xl text-[#191919] icon-email"></i>
+            <a href="https://outlook.live.com/" target="_blank">
+              <i class="text-3xl text-[#191919] icon-email"></i></a>
           </button>
           <div class="relative">
             <Bell @show="openClose" />
@@ -89,10 +86,10 @@ onMounted(() => {
           <p class="text-[#191919] text-sm font-zizou-bold hidden lg:block">
             {{ nameUser }}
           </p>
-          <div
-            class="w-10 h-10 overflow-hidden rounded-full border border-gray-300"
-          >
-            <img class="h-full w-full object-cover" :src="foto" alt="" />
+          <div class="w-10 h-10 overflow-hidden rounded-full border border-gray-300">
+            <RouterLink to="/meta" class="h-full flex justify-center items-center">
+              <img class="h-full w-full object-cover" :src="foto" alt="" />
+            </RouterLink>
           </div>
           <button class="hidden lg:block" @click="openList">
             <i class="icon-arrow-down text-[#191919]"></i>
