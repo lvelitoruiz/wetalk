@@ -5,6 +5,7 @@ import { useMetaStore } from "../stores/meta";
 import GraphemeSplitter from "grapheme-splitter";
 
 import animation from "@/assets/images/Ilustracion1.json";
+import { Vue3Lottie } from "vue3-lottie";
 
 const metaStore = useMetaStore();
 const metaData = ref(null);
@@ -12,6 +13,10 @@ const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
+  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
+);
+
+const anotherdImage = ref(
   "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
 );
 
@@ -39,7 +44,11 @@ watchEffect(() => {
     metaData.value = data[0];
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
-    selectedImage.value = metaData.value?.imagen;
+    console.log('the meta rocks: ',metaData.value);
+    if(metaData.value?.image !== '') {
+      selectedImage.value = metaData.value?.imagen;
+    }
+    console.log('checking if empty: ',selectedImage.value);
   }
   if (images) {
     const formattedImages = images.map((item) => ({
@@ -150,6 +159,13 @@ const changeImage = (indexItem, newImage) => {
             <Vue3Lottie
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
+              :height="200"
+              :width="255"
+              class="min-w-[255px] h-auto"
+            />
+            <Vue3Lottie
+              v-else
+              :animationLink="anotherdImage"
               :height="200"
               :width="255"
               class="min-w-[255px] h-auto"
