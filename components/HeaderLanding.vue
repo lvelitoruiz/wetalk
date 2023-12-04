@@ -19,18 +19,18 @@
         </ul>
       </nav>
       <button
-        class="ml-[21px] text-xl px-[22px] text-white font-solano font-bold bg-[#E50A17] h-[40px] flex items-center justify-center"
+        class="ml-[21px] text-xl px-[22px] text-white font-solano font-bold bg-[#E50A17] h-[40px] flex items-center justify-center mr-6"
         @click="triggerModal"
       >
         <span>Ingresar a portal wetalk</span>
       </button>
-      <div class="flex items-center gap-2 mr-[36px]">
+      <!-- <div class="flex items-center gap-2 mr-[36px]">
         <button class="text-[#737373] font-bold border-b border-[#E50A17]">
           ES
         </button>
         <span class="w-[1px] bg-[#737373] h-[12px]"></span>
         <button class="text-[#737373] font-bold">EN</button>
-      </div>
+      </div> -->
     </div>
     <div class="lg:hidden">
       <button
