@@ -3,8 +3,8 @@
     class="container mx-auto flex items-center justify-between flex-col lg:flex-row"
   >
     <img
-      class="w-full md:w-fit md:h-[271px]"
-      src="@/assets/images/matricula.png"
+      class="hidden lg:block w-full md:w-fit md:h-[271px]"
+      src="@/assets/images/frames.svg"
       alt=""
     />
     <div
