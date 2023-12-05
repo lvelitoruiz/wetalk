@@ -161,7 +161,7 @@
 
 @layer components {
   .fastLink {
-    @apply bg-[#0065FF] px-4 py-2 rounded flex justify-between items-center font-solano transition-all duration-300 hover:bg-[#0018F8];
+    @apply bg-[#0065FF] px-3 py-2 rounded flex justify-between items-center font-solano transition-all duration-300 hover:bg-[#0018F8];
 
     &-label {
       @apply font-bold text-white uppercase;
@@ -175,7 +175,7 @@
       }
 
       &__activeZone {
-        @apply bg-[#5598FF66] px-1 flex items-center gap-1 rounded cursor-pointer transition-all duration-300 hover:bg-[#0018F8];
+        @apply bg-[#5598FF66] px-1 flex items-center gap-1 rounded cursor-pointer transition-all duration-300 hover:bg-[#5598ffb3];
 
         &--label {
           @apply text-[#404040] text-[10px] leading-none;

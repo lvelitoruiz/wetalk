@@ -85,6 +85,7 @@ const triggerCycle = () => {
               v-if="!props.link"
               label="Descargar Syllabus"
               primary
+              downloadIcon
               @click="downloadFile()"
             />
           </div>
