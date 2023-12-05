@@ -92,9 +92,9 @@ const changeItems = (value) => {
   <div class="fixed top-[68px] lg:absolute lg:left-[-40px] lg:top-[70px] z-50 left-[0]">
     <div class="hidden lg:block lg:ml-[40px] ml-[180px] triangulo-up z-10"></div>
     <div
-      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] w-screen lg:min-w-[390px]">
+      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] w-screen lg:min-w-[390px] lg:max-w-[400px]">
       <div class="px-4 py-2 flex items-center justify-between">
-        <p class="font-medium text-[#191919] text-sm font-zizou-bold">
+        <p class="font-medium text-[#191919] text-base font-zizou-bold">
           Notificaciones
         </p>
         <i class="text-[#35158C] text-xs icon-close cursor-pointer leading-none" @click="closeNotifications"></i>
@@ -108,7 +108,7 @@ const changeItems = (value) => {
                 !notification.active,
             },
           ]" @click="changeItems(notification.category)">
-            <p class="text-xs font-bold uppercase">
+            <p class="text-xs font-bold uppercase font-solano">
               {{ notification.category }}
             </p>
             <p class="rounded-full w-[18px] h-[18px] flex items-center justify-center" :class="[
