@@ -13,6 +13,7 @@ watchEffect(async () => {
   if (notifData) {
     let notifDataMapping = notifData
       .flatMap(({ data }) => data)
+      .filter(({ status }) => status)
       .map(({ tipo }) => ({ tipo }));
 
     //Adding new fields
