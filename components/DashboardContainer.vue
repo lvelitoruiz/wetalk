@@ -7,6 +7,9 @@ const nameUser = userStore.getUserData?.name;
 const selectedImage = ref(
   "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
 );
+const anotherImage = ref(
+  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
+);
 const metaText = ref("Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆");
 
 const metaStore = useMetaStore();
@@ -39,7 +42,7 @@ const haveLink = true;
         >
           Welcome, {{ nameUser }}
         </h1>
-        <p class="text-[#191919] text-[18px] leading-6 lg:pb-[18px] pb-9 whitespace-nowrap">
+        <p class="text-[#191919] text-[18px] leading-6 lg:pb-[18px] pb-9 mt-2 whitespace-nowrap">
          <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> Inglés 1 </span>  Lun y Mar 19:00h - 22:00h
         </p>
       </div>
@@ -52,6 +55,15 @@ const haveLink = true;
             <Vue3Lottie
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
+              :height="55"
+              :width="auto"
+              class="lg:min-h-[55px] min-h-[87px]  w-auto"
+            />
+          </client-only>
+          <client-only>
+            <Vue3Lottie
+              v-if="selectedImage === ''"
+              :animationLink="anotherImage"
               :height="55"
               :width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"

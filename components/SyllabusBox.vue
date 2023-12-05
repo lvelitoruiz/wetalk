@@ -80,7 +80,7 @@ const triggerCycle = () => {
             <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
-          <div class="hidden lg:block">
+          <div class="hidden lg:block" v-if="!props.link">
             <Button
               v-if="!props.link"
               label="Descargar Syllabus"
