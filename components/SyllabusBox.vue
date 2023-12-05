@@ -14,7 +14,7 @@ const syllabusFile = ref(null);
 
 const tabs = [
   { texto: "Ciclo Actual", value: true },
-  { texto: "Proximo Ciclo", value: false },
+  { texto: "Próximo Ciclo", value: false },
 ];
 
 watchEffect(() => {

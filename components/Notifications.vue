@@ -142,20 +142,20 @@ const changeItems = (value) => {
                 <div class="flex items-center gap-1">
                   <div class="p-1 flex items-center gap-1 rounded cursor-pointer" :class="[
                     {
-                      'bg-[#FFF4AA]':
+                      'bg-[#FFF4AA] text-[#554A00]':
                         item.tipo === 'Mis estudios' ||
                         item.tipo === 'NUEVO' ||
                         item.tipo === 'Mis trámites' ||
                         item.tipo === 'Mi curso',
-                      'bg-[#EFB3EF]':
+                      'bg-[#EFB3EF] text-[#8F00A8]':
                         item.tipo === 'Pagos' || item.tipo === 'Mis finanzas',
-                      'bg-[#F0B27C]':
+                      'bg-[#F0B27C] tetx-[#803900]':
                         item.tipo === 'Networking' ||
                         item.tipo === 'Reservas',
-                      'bg-[#7AD6CF]':
+                      'bg-[#7AD6CF] text-[#135D59]':
                         item.tipo === 'Beyond Wetalk' ||
                         item.tipo === 'Eventos',
-                      'bg-[#CEBDFF]':
+                      'bg-[#CEBDFF] text-[#5624E0]':
                         item.tipo === 'General' ||
                         item.tipo === 'Informativos' ||
                         item.tipo === 'App',
