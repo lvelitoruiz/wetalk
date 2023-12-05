@@ -19,7 +19,7 @@ const isOpen = true;
 const haveLink = true;
 </script>
 <template>
-  <Breadcrumb page="Meta" />
+  <Breadcrumb page="Mi perfil" />
   
   <div class="flex flex-col gap-6">
     <div class="w-full lg:w-[1023px] mx-auto">

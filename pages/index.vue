@@ -160,7 +160,7 @@ watchEffect(async () => {
       <div class="relative min-w-[20px] text-center py-10 min-h-[78px] box-content">
         <Transition>
           <div v-if="metaData && metaData[0]?.meta !== ''">
-            {{ console.log('the metadata: ', metaData) }}
+          <!-- <div v-if="metaData !== null && metaData[0]?.meta !== ''"> -->
             <p class="text-[#344D47] lg:text-[24px] text-base">Tu meta:</p>
             <p class="text-[#344D47] lg:text-[28px] text-[18px] uppercase font-bold font-solano">
               {{ metaData[0]?.meta }}

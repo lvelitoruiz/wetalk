@@ -92,9 +92,9 @@ const changeItems = (value) => {
   <div class="fixed top-[68px] lg:absolute lg:left-[-40px] lg:top-[70px] z-50 left-[0]">
     <div class="hidden lg:block lg:ml-[40px] ml-[180px] triangulo-up z-10"></div>
     <div
-      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] w-screen lg:min-w-[390px]">
+      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] w-screen lg:min-w-[390px] lg:max-w-[400px]">
       <div class="px-4 py-2 flex items-center justify-between">
-        <p class="font-medium text-[#191919] text-sm font-zizou-bold">
+        <p class="font-medium text-[#191919] text-base font-zizou-bold">
           Notificaciones
         </p>
         <i class="text-[#35158C] text-xs icon-close cursor-pointer leading-none" @click="closeNotifications"></i>
@@ -108,7 +108,7 @@ const changeItems = (value) => {
                 !notification.active,
             },
           ]" @click="changeItems(notification.category)">
-            <p class="text-xs font-bold uppercase">
+            <p class="text-xs font-bold uppercase font-solano">
               {{ notification.category }}
             </p>
             <p class="rounded-full w-[18px] h-[18px] flex items-center justify-center" :class="[
@@ -142,26 +142,26 @@ const changeItems = (value) => {
                 <div class="flex items-center gap-1">
                   <div class="p-1 flex items-center gap-1 rounded cursor-pointer" :class="[
                     {
-                      'bg-[#FFF4AA]':
+                      'bg-[#FFF4AA] text-[#554A00]':
                         item.tipo === 'Mis estudios' ||
                         item.tipo === 'NUEVO' ||
                         item.tipo === 'Mis trámites' ||
                         item.tipo === 'Mi curso',
-                      'bg-[#EFB3EF]':
+                      'bg-[#EFB3EF] text-[#8F00A8]':
                         item.tipo === 'Pagos' || item.tipo === 'Mis finanzas',
-                      'bg-[#F0B27C]':
+                      'bg-[#F0B27C] tetx-[#803900]':
                         item.tipo === 'Networking' ||
                         item.tipo === 'Reservas',
-                      'bg-[#7AD6CF]':
+                      'bg-[#7AD6CF] text-[#135D59]':
                         item.tipo === 'Beyond Wetalk' ||
                         item.tipo === 'Eventos',
-                      'bg-[#CEBDFF]':
+                      'bg-[#CEBDFF] text-[#5624E0]':
                         item.tipo === 'General' ||
                         item.tipo === 'Informativos' ||
                         item.tipo === 'App',
                     },
                   ]">
-                    <i class="text-[#554A00] text-sm" :class="[
+                    <i class="text-sm" :class="[
                       {
                         'icon-book-open':
                           item.tipo === 'Mis estudios' ||
