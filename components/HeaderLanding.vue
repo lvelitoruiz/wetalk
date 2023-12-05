@@ -18,12 +18,8 @@
           </li>
         </ul>
       </nav>
-      <button
-        class="ml-[21px] text-xl px-[22px] text-white font-solano font-bold bg-[#E50A17] h-[40px] flex items-center justify-center mr-6"
-        @click="triggerModal"
-      >
-        <span>Ingresar a portal wetalk</span>
-      </button>
+      <Button primary label="Ingresar a portal wetalk"  @click="triggerModal"/>
+      
       <!-- <div class="flex items-center gap-2 mr-[36px]">
         <button class="text-[#737373] font-bold border-b border-[#E50A17]">
           ES
@@ -33,12 +29,7 @@
       </div> -->
     </div>
     <div class="lg:hidden">
-      <button
-        class="mr-[23px] p-2 text-white font-solano font-bold bg-[#E50A17] flex items-center justify-center"
-        @click="triggerModal"
-      >
-        <span>Ingresar a portal wetalk</span>
-      </button>
+      <Button primary label="Ingresar a portal wetalk"  @click="triggerModal"/>
     </div>
   </header>
 </template>

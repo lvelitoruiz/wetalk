@@ -2,7 +2,7 @@
   <div>
     <div class="pb-7">
       <BoxContainer color="green">
-        <div class="flex items-center justify-between pb-3 px-[9px]">
+        <div class="flex items-center justify-between pb-3">
           <h3 v-if="!showSimulator" class="text-[#404040] text-2xl">
             <span class="uppercase font-bold font-solano">Notas</span>
             <p v-if="!dashboard" class="text-[14px] font-publicSans">Nota mínima aprobatoria: 12.5</p>
