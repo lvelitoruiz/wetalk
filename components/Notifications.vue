@@ -161,7 +161,7 @@ const changeItems = (value) => {
                         item.tipo === 'App',
                     },
                   ]">
-                    <i class="text-[#554A00] text-sm" :class="[
+                    <i class="text-sm" :class="[
                       {
                         'icon-book-open':
                           item.tipo === 'Mis estudios' ||
