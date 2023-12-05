@@ -24,13 +24,13 @@ const isOpen = true;
 const haveLink = true;
 </script>
 <template>
-  <div class="lg:flex hidden items-center lg:w-[1023px] mx-auto pb-[18px] gap-[6px]">
+  <!-- <div class="lg:flex hidden items-center lg:w-[1023px] mx-auto pb-[18px] gap-[6px]">
     <router-link class="text-[#575759] text-[15px] underline" to="/calendar"
       >Inicio</router-link
     >
     <span class="text-[#575759] text-[15px]">></span>
     <span class="text-[#575759] text-[15px]">Dashboard</span>
-  </div>
+  </div> -->
   <div class="lg:flex flex-col gap-6">
     <div class="lg:flex items-center lg:w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
