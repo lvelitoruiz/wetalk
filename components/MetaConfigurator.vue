@@ -178,7 +178,7 @@ const changeImage = (indexItem, newImage) => {
             >
               <p
                 v-if="meta !== ''"
-                class="text-base text-center text-[#A6A6A6] min-h-[16px] min-w-[40px]"
+                class="text-base text-center text-[#000] min-h-[16px] min-w-[40px]"
               >
                 {{ meta }}
               </p>
