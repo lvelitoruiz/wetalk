@@ -1,10 +1,40 @@
 <script setup>
-const { $msal } = useNuxtApp();
+const { $msal, $config } = useNuxtApp();
+const userStore = useUserStore();
+
+const selectedCodUser = ref(null);
+
 definePageMeta({
     middleware: 'auth'
 });
+
 async function login() {
-    await $msal().signIn();
+    if($config.public.stage != 'prod') {
+
+        const accessToken = "";
+        const userCode = selectedCodUser.value;
+
+        const user = {
+            name: "",
+            bearerToken: accessToken,
+            codUser: userCode,
+            institucion : "upn"
+        };
+
+        localStorage.setItem("tokenH", accessToken);
+        localStorage.setItem("codUser", userCode);
+
+        await userStore.fetchUserData(
+            true,
+            "",
+            user
+        );
+
+        await navigateTo("/auth", { replace: true });
+
+    } else {
+        await $msal().signIn();
+    }
 }
 
 
@@ -17,6 +47,13 @@ async function login() {
                     <img src="@/assets/images/upcicon.svg" alt="UPC">
                     <img src="@/assets/images/upn.svg" alt="UPN">
                     <img src="@/assets/images/cib.svg" alt="CIBERTEC">
+                </div>
+                <div v-if="$config.public.stage != 'prod'">
+                    <select v-model="selectedCodUser">
+                        <option>N00326239</option>
+                        <option>N00023112</option>
+                        <option>N00200910</option>
+                    </select>
                 </div>
                 <div class="content-login min-w-[100%] lg:min-w-[360px] max-w-[360px] bg-[#fff] py-[34px] px-[36px] rounded-[15px]">
                     <img src="@/assets/images/wetalkLogo.svg" class="mx-auto" alt="CIBERTEC">
