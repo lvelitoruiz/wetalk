@@ -6,12 +6,12 @@
           @click="handleActiveTab(`tab-${i}`,tab.value)"
           :class="[
             {
-              'py-2 px-4 bg-[#FFDAE1] text-[#B70812]':
+              'bg-[#FFDAE1] text-[#B70812]':
                 tabActive === `tab-${i}`,
             },
-            { 'py-2 px-4 bg-[#F2F2F2] text-[#595959]': tabActive !== `tab-${i}` },
+            { 'bg-[#F2F2F2] text-[#595959]': tabActive !== `tab-${i}` },
           ]"
-          class="py-2 px-4 rounded font-medium font-zizou-bold text-[16px]"
+          class="py-1 px-3 rounded font-medium font-zizou-bold text-[16px]"
         >
           {{ tab.texto }}
         </button>

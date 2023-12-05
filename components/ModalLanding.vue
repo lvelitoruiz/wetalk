@@ -3,9 +3,9 @@
     class="fixed top-0 left-0 right-0 bottom-0 bg-[#00000069] flex items-center justify-center z-50"
   >
     <div
-      class="bg-white p-10 relative rounded-2xl min-w-[90%] md:min-w-[479px]"
+      class="bg-white p-10 relative rounded-none min-w-[90%] md:min-w-[479px]"
     >
-      <i @click="triggerModal" class="absolute top-4 right-4 text-[#191919] icon-close"></i>
+      <i @click="triggerModal" class="absolute top-4 right-4 text-red-600 text-base icon-close"></i>
       <h3 class="mb-2 font-bold text-lg uppercase font-solano">
         Selecciona una institución
       </h3>
