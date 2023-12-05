@@ -13,8 +13,8 @@ const metaStore = useMetaStore();
 
 watchEffect(() => {
   const data = metaStore.getMetaData;
-  if (data.length > 0) {
-    console.log('this is the data: ',data,data.length);
+  if (data?.length > 0) {
+    // console.log('this is the data: ',data,data.length);
     selectedImage.value = data[0].imagen;
     metaText.value = data[0].meta;
   }

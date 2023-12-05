@@ -3,6 +3,7 @@ import { useUserStore } from "~/stores/auth";
 const userStore = useUserStore();
 
 const nameUser = userStore.getUserData?.name;
+console.log(nameUser, 'name user')
 const pres = ref(false);
 const nots = ref(false);
 

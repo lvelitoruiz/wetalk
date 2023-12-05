@@ -23,11 +23,11 @@ async function login() {
 
         localStorage.setItem("tokenH", accessToken);
         localStorage.setItem("codUser", userCode);
-
+        localStorage.setItem("institucion", 'upn');
         await userStore.fetchUserData(
             true,
             "",
-            user
+          user
         );
 
         await navigateTo("/auth", { replace: true });

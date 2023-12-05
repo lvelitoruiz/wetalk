@@ -102,7 +102,7 @@ watchEffect(async () => {
       selectedImage.value = data[0].imagen;
     };
   } else {
-    console.log('no metadata values: ', data.length);
+    console.log('no metadata values: ', data?.length);
     referenceData.value = false;
     metaData.value = data;
   }

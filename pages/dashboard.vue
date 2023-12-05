@@ -16,7 +16,7 @@ const fetchMetaInfo = async () => {
 
 watchEffect(async () => {
   const data = menuStore.getCalendarItems;
-  if (data && data.length > 0) {
+  if (data && data?.length > 0) {
   } else {
     await fetchMetaInfo();
   }

@@ -23,17 +23,18 @@ const logout = async () => {
   }
 };
 
-watchEffect(async () => {
-  const userData = userStore.getUserData;
-  if (userData) {
-    localStorage.setItem("institucion", userData.institucion!);
-  }
-});
+// watchEffect(async () => {
+//   const userData = userStore.getUserData;
+//   if (userData) {
+//     localStorage.setItem("institucion", userData.institucion!);
+//   }
+// });
 
 
 if($config.public.stage != 'prod') {
   
     accessDomain.value = true;
+    // await userStore.fetchUserData(true,"","");
     navigateTo("/", { replace: true });
 
 } else {

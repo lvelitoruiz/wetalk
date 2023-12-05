@@ -1,7 +1,10 @@
 import axios from "axios";
-const authHeader = localStorage.getItem("tokenH");
-const codUser = localStorage.getItem("codUser");
-const institution = localStorage.getItem("institucion");
+
+import { useUserStore } from "./auth";
+// import { defineStore } from "pinia";
+// let authHeader = localStorage.getItem("tokenH");
+// let codUser = localStorage.getItem("codUser");
+// let institution = localStorage.getItem("institucion");
 
 export const useMenuStore = defineStore({
   id: "menu",
@@ -29,8 +32,20 @@ export const useMenuStore = defineStore({
     getProfileItems: (state) => state.profileData,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
+  
   },
   actions: {
+    fetchData(){
+      const userStore = useUserStore();
+      let dataU = userStore.getUserData; 
+      const dataUser = {
+        localHeader: dataU.bearerToken,
+        localCodUser: dataU.codUser,
+        localIntitution: dataU.institucion
+      }
+
+      return  dataUser;
+    },
     async fetchMenuData(apiUrl: string) {
       try {
         const axiosConf = {
@@ -39,13 +54,13 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
-
+     
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Home/v1/Menu?institucion=${institution}`);
+          .get<any>(`/Home/v1/Menu?institucion=${this.fetchData()?.localIntitution}`);
         this.menuData = response.data.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
@@ -64,14 +79,14 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
-
+        console.log(this.fetchData(), 'intitucion line 95')
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Cursos/v1/Detalle_Curso?CodAlumno=${codUser}&institucion=${institution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
+            `/Cursos/v1/Detalle_Curso?CodAlumno=${this.fetchData()?.localCodUser}&institucion=${this.fetchData()?.localIntitution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
           );
         this.notasData = response.data.data;
       } catch (error) {
@@ -90,14 +105,14 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${codUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=${institution}&CodSeccion=${seccion}`
+            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${this.fetchData().localCodUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=${this.fetchData()?.localIntitution}&CodSeccion=${seccion}`
           );
         this.faltasData = response.data.data;
       } catch (error) {
@@ -113,14 +128,14 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Masservicios/v1/AccesosRapidosPerfil?CodAlumno=${codUser}&institucion=${institution}`
+            `/Masservicios/v1/AccesosRapidosPerfil?CodAlumno=${this.fetchData()?.localCodUser}&institucion=${this.fetchData()?.localIntitution}`
           );
 
         this.accesoDirectoData = response.data.data;
@@ -137,13 +152,13 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Home/v1/Ayuda?institucion=${institution}`);
+          .get<any>(`/Home/v1/Ayuda?institucion=${this.fetchData()?.localIntitution}`);
 
         this.ayudaData = response.data.data;
       } catch (error) {
@@ -159,14 +174,13 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*"
           },
           headers: {
-            Authorization:
-            authHeader
+            Authorization: this.fetchData()?.localHeader
           }
         };
 
         const response = await axios
           .create(axiosConfig)
-          .post(`/Home/v1/Notificaciones/Register?institucion=${institution}`, notificationData);
+          .post(`/Home/v1/Notificaciones/Register?institucion=${this.fetchData()?.localIntitution}`, notificationData);
           
         return response.data?.registerCount || 0;
 
@@ -183,14 +197,14 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Home/v1/Notificaciones?codAlumno=${codUser}&poblacion=AC&ciclo=10&institucion=${institution}`
+            `/Home/v1/Notificaciones?codAlumno=${this.fetchData().localCodUser}&poblacion=AC&ciclo=10&institucion=${this.fetchData()?.localIntitution}`
           );
 
         console.log(response.data.data);
@@ -209,14 +223,14 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${codUser}&CodAlumno=${codUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${institution}`
+            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${this.fetchData()?.localCodUser}&CodAlumno=${this.fetchData()?.localCodUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${this.fetchData()?.localIntitution}`
           );
         this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
       } catch (error) {
@@ -232,7 +246,7 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
@@ -241,7 +255,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Home/v1/Ciclos?institucion=${institution}&ciclo_actual=` + cycle
+            `/Home/v1/Ciclos?institucion=${this.fetchData()?.localIntitution}&ciclo_actual=` + cycle
           );
 
         console.log("the response data: ", response.data);
@@ -264,14 +278,14 @@ export const useMenuStore = defineStore({
             Accept: "application/json, text/plain, */*",
           },
           headers: {
-            Authorization: authHeader,
+            Authorization: this.fetchData()?.localHeader,
           },
         };
 
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Accesos/v1/data_alumno?CodAlumno=${codUser}&institucion=${institution}`
+            `/Accesos/v1/data_alumno?CodAlumno=${this.fetchData()?.localCodUser}&institucion=${this.fetchData()?.localIntitution}`
           );
         this.profileData = response.data;
       } catch (error) {
