@@ -11,7 +11,7 @@
             <span class="uppercase font-bold font-solano">Simulador de promedio</span>
             <p v-if="!dashboard" class="text-[14px] font-publicSans">Nota mínima aprobatoria: 12.5</p>
           </h3>
-          <router-link v-if="dashboard" class="flex items-center gap-2" to="/notas">
+          <router-link @click="eventClickVerMas()" v-if="dashboard" class="flex items-center gap-2" to="/notas">
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Ver más</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
@@ -103,5 +103,11 @@ onMounted( () => {
   fetchData();
 });
 
-
+const eventClickVerMas = () => {
+  if(dataLayer){
+      dataLayer.push({
+          event: 'Click-VerMasNotas',
+      })
+  }
+};
 </script>

@@ -13,6 +13,15 @@ watchEffect(() => {
   }
 });
 
+const eventClickAyuda = (url) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Click-Ayuda',
+            'url': url,
+        })
+    }
+};
+
 </script>
 <template>
   <div class="min-w-[calc(32%-28px)]">
@@ -22,7 +31,7 @@ watchEffect(() => {
         <p class="text-[#404040] text-sm">Consultas generales:</p>
       </div>
       <div class="flex flex-col gap-2">
-        <a v-for="item in ayudaData" :href="item.numero" class="flex items-center gap-[6px] h-10 rounded-[10px] hover:bg-[#E6F5F0] p-2" target="_blank">
+        <a v-for="item in ayudaData" :key="item" :href="item.numero" @click="eventClickAyuda(item.numero)" class="flex items-center gap-[6px] h-10 rounded-[10px] hover:bg-[#E6F5F0] p-2" target="_blank">
           <!-- <i class="icon-phone text-4xl text-[#57BD9E]"></i> -->
           <div class="w-[33px] flex justify-center">
             <img :src="item.icono" />

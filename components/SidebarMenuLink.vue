@@ -11,8 +11,24 @@ const props = defineProps({
 
 let isActive = ref(false);
 
-const handleActivation = () => {
+const handleActivation = (label) => {
   isActive.value = !isActive.value;
+  if(dataLayer){
+    dataLayer.push({
+      event: 'Click-MenuLateral',
+      'content_name': label
+    })
+  }
+};
+
+const eventClickSubMenu = (url, name) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Click-SubMenu',
+            'url': url,
+            'content_name': name
+        })
+    }
 };
 
 const getIconClass = () => {
@@ -27,7 +43,7 @@ const getIconClass = () => {
 </script>
 <template>
   <div class="relative">
-    <div class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation">
+    <div class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation(label)">
       <div class="sidebarMenu-label">
         <i class="sidebarMenu-label__icon" :class="getIconClass()"></i>
         <!-- <img class="mr-3" :src="props.icon" /> -->
@@ -45,9 +61,9 @@ const getIconClass = () => {
       :class="{ active: isActive }"
     >
       <a
-        v-for="link in subMenu"
+        v-for="link in subMenu" :key="link" @click="eventClickSubMenu(link.direction, link.text)"
         class="sidebarMenu-subMenu__link"
-        :href="link.direction"
+        :href="link.direction" target="_blank"
         >{{ link.text }}</a
       >
     </div>

@@ -63,6 +63,14 @@ const downloadFile = () => {
 const triggerCycle = () => {
   menuStore.fetchContenidoData(apiUrl, event.target.value.toString());
 };
+
+const eventClickVerMas = () => {
+  if(dataLayer){
+      dataLayer.push({
+          event: 'Click-VerMasContenido',
+      })
+  }
+};
 </script>
 <template>
   <div class="w-full lg:min-w-[65%]">
@@ -72,7 +80,7 @@ const triggerCycle = () => {
           <h3 class="text-[#404040] text-2xl font-solano uppercase">
             Contenido
           </h3>
-          <router-link
+          <router-link @click="eventClickVerMas()"
             v-if="props.link"
             class="flex items-center gap-2"
             to="/contenido"
