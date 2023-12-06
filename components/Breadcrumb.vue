@@ -9,7 +9,7 @@
     <span class="text-[#575759] text-[15px]"> {{ page }} </span>
   </div>
   <div class="lg:hidden flex items-center w-full mx-auto pb-[18px] gap-[6px]">
-    <span class="text-[#575759] text-[15px]">&lt;</span>
+    <i class="icon-arrow-right rotate-180"></i>
     <router-link class="text-[#575759] text-[15px] underline" to="/dashboard"
       >Atrás</router-link
     >
