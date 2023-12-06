@@ -40,7 +40,7 @@ function closeNotifications() {
 }
 </script>
 <template>
-  <div class="absolute left-[-25px] top-[70px]">
+  <div class="absolute right-[-25px] xl:left-[-25px] top-[70px]">
     <div class="ml-[25px] triangulo-up"></div>
     <div
       class="bg-white relative rounded-lg px-6 py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[312px]"
