@@ -9,7 +9,7 @@ definePageMeta({
 });
 
 async function login() {
-    if($config.public.stage != 'prod') {
+    if($config.public.stage != 'prod' && selectedCodUser.value) {
 
         const accessToken = "";
         const userCode = selectedCodUser.value;
@@ -21,9 +21,9 @@ async function login() {
             institucion : "upn"
         };
 
-        localStorage.setItem("tokenH", accessToken);
-        localStorage.setItem("codUser", userCode);
-        localStorage.setItem("institucion", 'upn');
+       // localStorage.setItem("tokenH", accessToken);
+        //localStorage.setItem("codUser", userCode);
+       // localStorage.setItem("institucion", 'upn');
         await userStore.fetchUserData(
             true,
             "",
