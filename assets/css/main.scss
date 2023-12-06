@@ -157,7 +157,23 @@
   .icon-user:before {
     content: "\e90a";
   }
+  .icon-download:before {
+    content: "\e919";
+  }
+  .icon-logOut:before {
+    content: "\e91a";
+  }
+  .icon-logOut2:before {
+    content: "\e91b";
+  }
+  .icon-nav:before {
+    content: "\e91c";
+  }
+  .icon-trash:before {
+    content: "\e91d";
+  }
 }
+
 
 @layer components {
   .fastLink {
