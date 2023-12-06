@@ -134,7 +134,7 @@ const changeItems = (value) => {
             Esta semana
           </p>
           <div v-for="item in finalItems[1]" :key="item">
-            <div class="h-[106px] flex items-center px-4 cursor-pointer gap-5 border-b border-white"
+            <div class="py-4 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
               :class="{ 'bg-[#D7E9FB]': item.status }">
               <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
               <div>
@@ -171,10 +171,10 @@ const changeItems = (value) => {
                         'icon-creditcard': item.tipo === 'Pagos',
                         'icon-user-chat': item.tipo === 'Networking',
                         'icon-puzzle': item.tipo === 'Beyond Wetalk',
-                        'icon-home': item.tipo === 'General',
+                        'icon-general': item.tipo === 'General',
                       },
                     ]"></i>
-                    <span class="text-[#554A00] text-sm leaning-none">{{
+                    <span class="text-xs font-publicSans font-medium leaning-none">{{
                       item.tipo
                     }}</span>
                   </div>
