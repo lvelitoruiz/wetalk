@@ -60,7 +60,7 @@
     </p>
     <span v-if="!simulator"
       class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
-      :class="getColorClass(promedio[0].nota)">{{ promedio[0].nota === "00" ? "-" : promedio[0].nota }}</span>
+      :class="getColorClass(promedio[0]?.nota)">{{ promedio[0]?.nota === "00" ? "-" : promedio[0]?.nota }}</span>
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(newVariable)">{{ newVariable < 10 ? `0${newVariable}` : newVariable }}</span>
   </div>
@@ -96,7 +96,7 @@ if (props.notasData !== null && props.notasData !== undefined) {
   notas.value = props.notasData.slice(0, -2);
   calculus.value = [...newvalue];
   promedio.value = props.notasData.slice(-2, -1);
-  newVariable.value = props.notasData.slice(-2, -1)[0].nota;
+  newVariable.value = props.notasData.slice(-2, -1)[0]?.nota;
   console.log(promedio.value);
 }
 
