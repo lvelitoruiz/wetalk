@@ -49,7 +49,7 @@ onMounted(() => {
     class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-[23px] lg:px-7 justify-between">
     <div class="flex">
       <button class="lg:hidden mr-2" @click="openMenu">
-        <i class="text-[28px] text-[#191919] icon-email"></i>
+        <i class="text-[28px] text-[#191919] icon-nav"></i>
       </button>
       <div class="absolute w-full h-[100vh] left-0 bg-black bg-opacity-60 z-50" v-show="showSidebar">
         <div class="bg-[#E6F0FF] w-[83%] pt-10 h-[100vh] flex items-start">
@@ -101,7 +101,8 @@ onMounted(() => {
                   Mi perfil
                 </router-link>
               <div class=" py-[15.5px] text-[#E50A17]">
-                <i class="icon-close mr-2 text-xl"></i>
+                <i class="hidden lg:inline icon-logOut mr-2 text-xl"></i>
+                <i class="lg:hidden icon-logOut2 mr-2 text-xl"></i>
                 <Logout></Logout>
               </div>
             </div>
