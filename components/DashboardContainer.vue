@@ -70,7 +70,7 @@ const haveLink = true;
             />
           </client-only>
         </div>
-        <div class="lg:w-[calc(100%-100px)] w-full flex items-center">
+        <div class="lg:w-[calc(100%-100px)] w-full flex items-center justify-between">
           <div class=" px-3">
             <p class="text-[#404040] text-sm font-bold">Meta:</p>
             <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
