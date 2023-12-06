@@ -1,7 +1,7 @@
 <script setup>
 import { useMetaStore } from "../stores/meta";
 const selectedImage = ref(
-  "https://adminmi-dev-wetalk.stage01.link/assets/e0ff1dd0-0ec1-4d66-9c19-a2eb1006d9b0"
+  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
 );
 const metaText = ref("");
 
