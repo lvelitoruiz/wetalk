@@ -8,12 +8,12 @@
         <i class="icon-user text-[33px] text-[#404040]"></i>
         <div class="w-full">
           <p class="text-[#404040] font-publicSans capitalize font-bold">{{ teacher }}</p>
-          <p class="flex items-center justify-between cursor-pointer">
+          <p @click="copyToClipboard(mail)" class="flex items-center justify-between cursor-pointer">
             <a a :href="`mailTo:${mail}`" class="text-sm font-publicSans text-[#404040]">{{ mail }}</a>
-            <i class="icon-file-copy text-xl text-[#699A8F] hidden lg:block" @click="copyToClipboard"></i>
+            <i class="icon-file-copy text-xl text-[#699A8F] hidden lg:block"></i>
           </p>
         </div>
-        <i class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard"></i>
+        <i class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard(mail)"></i>
       </div>
     </BoxContainer>
   </div>
@@ -40,7 +40,7 @@ watchEffect(async () => {
   }
 });
 
-const copyToClipboard = () => {
+const copyToClipboard = (email) => {
     if (!navigator.clipboard) {
         $toast.open({
             message: "No se puede copiar en tu navegador.",
@@ -61,6 +61,13 @@ const copyToClipboard = () => {
                 typeof: "error",
             });
         });
+
+    if(dataLayer){
+      dataLayer.push({
+        event: 'Click-EmailProffesor',
+        'email': email
+      })
+    }
 };
 
 </script>
