@@ -50,9 +50,13 @@ async function login() {
                 </div>
                 <div v-if="$config.public.stage != 'prod'">
                     <select v-model="selectedCodUser">
-                        <option>N00326239</option>
-                        <option>N00023112</option>
                         <option>N00200910</option>
+                        <option>N00230206</option>
+                        <option>N00049275</option>
+                        <option>N00282479</option>
+                        <option>N00200854</option>
+                        <option>N00281622</option>
+                        <option>N00268730</option>
                     </select>
                 </div>
                 <div class="content-login min-w-[100%] lg:min-w-[360px] max-w-[360px] bg-[#fff] py-[34px] px-[36px] rounded-[15px]">
