@@ -97,7 +97,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${codUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=upn&CodSeccion=${seccion}`
+            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${codUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=${institution}&CodSeccion=${seccion}`
           );
         this.faltasData = response.data.data;
       } catch (error) {
@@ -166,7 +166,7 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConfig)
-          .post("/Home/v1/Notificaciones/Register?institucion=upc", notificationData);
+          .post(`/Home/v1/Notificaciones/Register?institucion=${institution}`, notificationData);
           
         return response.data?.registerCount || 0;
 
