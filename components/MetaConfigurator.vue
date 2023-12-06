@@ -83,7 +83,9 @@ const markImage = () => {
 };
 
 const updateMeta = async () => {
-  const codUser = localStorage.getItem("codUser");
+  // const codUser = localStorage.getItem("codUser");
+  const codUser = metaStore.fetchData()?.localCodUser;
+  
   let metaItem = {
     id: codUser,
     imagen: selectedImage.value,
