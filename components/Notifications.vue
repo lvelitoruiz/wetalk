@@ -92,7 +92,7 @@ const changeItems = (value) => {
   <div class="fixed top-[68px] lg:absolute lg:left-[-40px] lg:top-[70px] z-50 left-[0]">
     <div class="hidden lg:block lg:ml-[40px] ml-[180px] triangulo-up z-10"></div>
     <div
-      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[249px] w-screen lg:min-w-[390px] lg:max-w-[400px]">
+      class="bg-white relative rounded-none lg:rounded-lg py-4 lg:shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-h-screen min-w-[249px] w-screen lg:min-w-[390px] lg:max-w-[400px]">
       <div class="px-4 py-2 flex items-center justify-between">
         <p class="font-medium text-[#191919] text-base font-zizou-bold">
           Notificaciones
@@ -101,7 +101,7 @@ const changeItems = (value) => {
       </div>
       <div class="flex items-center gap-3 px-4 py-2">
         <div v-for="(notification, index) in notifications" :key="index">
-          <div v-if="notification.count > 0" class="rounded-full flex items-center gap-1 cursor-pointer" :class="[
+          <div class="rounded-full flex items-center gap-1 cursor-pointer" :class="[
             {
               'bg-[#E50A17] px-4 py-1 text-white': notification.active,
               'border border-[#191919] px-4 py-1 text-[#191919]':
