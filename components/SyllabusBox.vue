@@ -98,12 +98,11 @@ const eventClickVerMas = () => {
             <select
               class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-gray-900 text-sm cursor-pointer outline-none"
               @change="triggerCycle()">
-              <option value="0">Inglés 0</option>
-              <option value="1">Inglés 1</option>
-              <option value="2">Inglés 2</option>
-              <option value="3">Inglés 3</option>
-              <option value="4">Inglés 4</option>
-              <option value="5">Inglés 5</option>
+              <option value="0">Beginner</option>
+              <option value="1">High Beginner</option>
+              <option value="2">Basic</option>
+              <option value="3">Low Intermediate</option>
+              <option value="4">Intermediate</option>
             </select>
             <button class="bg-[#E50A17] rounded-full ml-6 h-[31px] w-[31px] flex items-center justify-center lg:hidden" @click="downloadFile()">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none" class="mr">
