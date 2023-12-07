@@ -28,7 +28,7 @@ const keyNotification = ref(false);
 const keyProfile = ref(false);
 
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
 );
 
 const fetchMetaInfo = async () => {
@@ -153,7 +153,8 @@ watchEffect(async () => {
         <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
         <client-only>
           <div v-if="selectedImage !== null">
-            <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
+            <!-- <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" /> -->
+            <img :src="selectedImage" class="min-w-[255px] h-auto" />
           </div>
         </client-only>
       </div>
