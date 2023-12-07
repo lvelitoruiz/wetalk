@@ -5,6 +5,7 @@ const props = defineProps({
   label: String,
   icon: String,
   link: String,
+  etiqueta: String,
   hasSubMenu: Boolean,
   subMenu: Array,
 });
@@ -33,11 +34,11 @@ const eventClickSubMenu = (url, name) => {
 
 const getIconClass = () => {
   return {
-    'icon-home': props.icon === "https://adminmi-cert-wetalk.stage01.link//assets/3fddb87a-23f9-46ae-ba49-f1744345cad3",
-    'icon-book-open': props.icon === "https://adminmi-cert-wetalk.stage01.link//assets/bcf58841-dbb8-45ac-8fce-fc972de69358",
-    'icon-creditcard': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/a11c6b25-c875-4752-8952-eb2011f00f23",
-    'icon-user-chat': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/87a94f5a-1dad-4aeb-a820-a5ee78287690",
-    'icon-puzzle': props.icon === "https://wetalk-directus-dev-upc.stage01.link/assets/75050466-6742-4ddc-97c7-e101040b40f1",
+    'icon-home': props.etiqueta === "inicio",
+    'icon-book-open': props.etiqueta === "curso",
+    'icon-creditcard': props.etiqueta === "pagos",
+    'icon-user-chat': props.etiqueta === "networking",
+    'icon-puzzle': props.etiqueta === "beyond_wetalk",
   };
 };
 </script>
