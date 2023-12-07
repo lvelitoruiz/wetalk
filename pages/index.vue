@@ -67,6 +67,7 @@ onBeforeMount(() => {
 
 onMounted(async () => {
   await fetchMetaInfo();
+  console.log('checking if I am on certification!');
 });
 
 const handleOpen = () => {
