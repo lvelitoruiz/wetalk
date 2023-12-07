@@ -1,9 +1,9 @@
 import axios from "axios";
+import { useUserStore } from "./auth";
 
-
-const authHeader = localStorage.getItem("tokenH");
-const codUser = localStorage.getItem("codUser");
-const institution = localStorage.getItem("institucion");
+// const authHeader = localStorage.getItem("tokenH");
+// const codUser = localStorage.getItem("codUser");
+// const institution = localStorage.getItem("institucion");
 
 export const useMetaStore = defineStore({
   id: "meta",
@@ -19,6 +19,17 @@ export const useMetaStore = defineStore({
     getImages: (state) => state.imagesData,
   },
   actions: {
+    fetchData(){
+      const userStore = useUserStore();
+      let dataU = userStore.getUserData; 
+      const dataUser = {
+        localHeader: dataU.bearerToken,
+        localCodUser: dataU.codUser,
+        localIntitution: dataU.institucion
+      }
+
+      return  dataUser;
+    },
     async fetchMetaData(apiUrl: string) {
       try {
         const axiosConf = {
@@ -28,13 +39,13 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-            authHeader
+            this.fetchData()?.localHeader
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Perfil/v1/meta/obtener?institucion=${institution}&id=${codUser}`);
+          .get<any>(`/Perfil/v1/meta/obtener?institucion=${this.fetchData()?.localIntitution}&id=${this.fetchData()?.localCodUser}`);
 
         this.metaData = response.data.data;
       } catch (error) {
@@ -53,13 +64,13 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-              authHeader
+            this.fetchData()?.localHeader
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .post(`/Perfil/v1/meta/registrar?institucion=${institution}`, metaInfo);
+          .post(`/Perfil/v1/meta/registrar?institucion=${this.fetchData()?.localIntitution}`, metaInfo);
 
         this.metaData = response.data;
       } catch (error) {
@@ -76,13 +87,13 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-              authHeader
+            this.fetchData()?.localHeader
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get(`/Perfil/v1/meta/listar/imagenes?institucion=${institution}`);
+          .get(`/Perfil/v1/meta/listar/imagenes?institucion=${this.fetchData()?.localIntitution}`);
 
         this.imagesData = response.data.data;
       } catch (error) {

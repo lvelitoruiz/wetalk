@@ -5,7 +5,6 @@ import { apiUrl } from "../consts";
 
 const notifications = ref(null);
 const total = ref(0);
-const codUser = localStorage.getItem("codUser")
 
 const emit = defineEmits(['show']);
 
@@ -37,6 +36,8 @@ async function showNotifications() {
                 id: notification.id,
                 tipo: notification.tipo
             }));
+
+        const codUser = menuStore.fetchData().localCodUser;
 
         const notificationData = {
             codAlumno: codUser,
