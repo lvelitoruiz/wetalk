@@ -138,7 +138,7 @@ const recalculateNewVariable = () => {
   if (inputs.some(item => item === "")) {
     newVariable.value = "-"
   } else {
-    const weightedSum = 0.15 * inputs[0] + 0.15 * inputs[1] + 0.15 * inputs[2] + 0.15 * inputs[3] + 0.4 * inputs[4];
+    const weightedSum = 0.3 * inputs[0] + 0.3 * inputs[1] + 0.2 * inputs[2] + 0.1 * inputs[3] + 0.1 * inputs[4];
     newVariable.value = weightedSum.toFixed();
   }
 
