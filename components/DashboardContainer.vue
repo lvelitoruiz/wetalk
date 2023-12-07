@@ -51,7 +51,7 @@ const haveLink = true;
       </div>
 
       <div
-      class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[203px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex lg:flex-row flex-col justify-center items-center rounded-lg triangle relative"
+      class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[220px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex lg:flex-row flex-col justify-center items-center rounded-lg triangle relative"
       >
         <div class="lg:w-[70px] mb-4 lg:mb-0">
           <client-only>
@@ -62,7 +62,7 @@ const haveLink = true;
               :width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"
             /> -->
-            <img v-if="selectedImage !== ''" :src="selectedImage" class="lg:min-h-[55px] min-h-[87px]  w-auto" />
+            <img v-if="selectedImage !== ''" :src="selectedImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" />
           </client-only>
           <client-only>
             <!-- <Vue3Lottie
@@ -72,7 +72,7 @@ const haveLink = true;
               :width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"
             /> -->
-            <img v-if="selectedImage === ''" :src="anotherImage" class="lg:min-h-[55px] min-h-[87px]  w-auto" />
+            <img v-if="selectedImage === ''" :src="anotherImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" />
           </client-only>
         </div>
         <div class="lg:w-[calc(100%-100px)] w-full flex items-center justify-between">
