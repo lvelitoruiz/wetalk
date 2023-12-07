@@ -1,13 +1,13 @@
 <template>
-    <HeaderLanding :lists="lists" @modal-open="changeModal" />
+    <HeaderLanding :lists="lists" />
 
-    <BannerLanding @modal-open="changeModal" />
+    <BannerLanding />
   
     <section
       class="bg-[#FAFAFA] py-8 md:pt-[50px] md:pb-[70px] px-6 md:px-0"
       id="matricula"
     >
-      <MatriculaLanding />
+      <MatriculaLanding @modal-open="changeModal" />
     </section>
   
     <section
