@@ -14,7 +14,7 @@
           </p>
         </div>
         <i class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard(mail)"></i>
-        
+
       </div>
     </BoxContainer>
   </div>
@@ -38,7 +38,8 @@ const menuStore = useMenuStore();
 watchEffect(async () => {
   const alumnData = menuStore.getProfileItems;
   if (alumnData) {
-    teacher.value = alumnData.data[0].profesorNombre.toLowerCase();
+    const profesorNombre = alumnData.data[0].profesorNombre;
+    teacher.value = profesorNombre.toLowerCase();
     mail.value = alumnData.data[0].profesorEmail;
   }
 });
