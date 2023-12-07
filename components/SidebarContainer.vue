@@ -25,6 +25,7 @@ onMounted(async () => {
     if (menuValues) {
       sidebarMenuList.value = menuValues.map((item) => ({
         label: item.nombre,
+        etiqueta: item.etiqueta,
         icon: item.icono, 
         hasSubMenu: !!item.submenu.length,
         subMenu: item.submenu.map((subItem) => ({
