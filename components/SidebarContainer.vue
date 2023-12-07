@@ -38,7 +38,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-[275px] max-w-[275px] min-w-[275px] bg-[#E6F0FF] px-7 py-9 h-full">
+  <div class="w-[275px] max-w-[275px] min-w-[275px] bg-[#E6F0FF] pr-7 py-9 h-full">
     <FastLinks :links="linkList" />
     <SidebarMenu :links="sidebarMenuList" />
   </div>
