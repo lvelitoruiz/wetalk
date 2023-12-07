@@ -14,6 +14,7 @@
           </p>
         </div>
         <i class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard(mail)"></i>
+        
       </div>
     </BoxContainer>
   </div>
