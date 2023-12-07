@@ -14,12 +14,15 @@ const metaText = ref("Cuéntanos tu meta al estudiar inglés, y alcancémosla ju
 
 const metaStore = useMetaStore();
 
+const dataMeta = ref(null);
+
 watchEffect(() => {
   const data = metaStore.getMetaData;
   if (data?.length > 0) {
     // console.log('this is the data: ',data,data.length);
     selectedImage.value = data[0].imagen;
     metaText.value = data[0].meta;
+    dataMeta.value = data[0];
   }
 });
 
@@ -78,7 +81,7 @@ const haveLink = true;
             <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
               {{ metaText }}
             </p>
-            <p v-if="metaText === ''" class="text-sm text-[#A6A6A6] font-light">
+            <p v-if="dataMeta !== null && metaText === ''" class="text-sm text-[#A6A6A6] font-light">
               Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
             </p>
           </div>
