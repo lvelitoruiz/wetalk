@@ -97,7 +97,7 @@ onMounted(() => {
           </button>
           <div class="absolute bg-white bottom-[-109px] lg:right-10 right-[23px] shadow-[0_0_20px_0_rgba(77,39,37,0.20)] min-w-[180px] " v-show="showOption">
             <div class="mx-6 divide-[#D9D9D9] divide-y">
-                <router-link class="flex items-center pb-[15.5px] pt-1 leading-5 text-[#666666]" to="/meta.vue">
+                <router-link class="flex items-center pb-[15.5px] pt-1 leading-5 text-[#666666]" to="/meta">
                   <i class="icon-user mr-2 text-[#026849] text-xl"></i>
                   Mi perfil
                 </router-link>
