@@ -84,7 +84,7 @@ onMounted(() => {
       </div>
       <div class="lg:pr-[28px]">
         <div class="flex items-center cursor-pointer gap-2">
-          <p class="text-[#191919] text-sm font-zizou-bold hidden lg:block">
+          <p class="text-[#191919] text-sm font-zizou-bold hidden lg:block lg:min-w-[150px]">
             {{ nameUser }}
           </p>
           <div class="w-10 h-10 overflow-hidden rounded-full border border-gray-300">
