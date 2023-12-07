@@ -63,7 +63,7 @@ const getIconClass = () => {
       <a
         v-for="link in subMenu" :key="link" @click="eventClickSubMenu(link.direction, link.text)"
         class="sidebarMenu-subMenu__link"
-        :href="link.direction" target="_blank"
+        :href="link.direction"
         >{{ link.text }}</a
       >
     </div>
