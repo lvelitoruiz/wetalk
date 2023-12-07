@@ -13,11 +13,11 @@ const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
 );
 
 const anotherdImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
 );
 
 const graphemesNow = ref(0);
@@ -45,7 +45,7 @@ watchEffect(() => {
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
     console.log('the meta rocks: ',metaData.value);
-    if(metaData.value?.image !== '') {
+    if(metaData.value?.imagen_estatica !== '' && metaData.value?.imagen_estatica !== null) {
       selectedImage.value = metaData.value?.imagen;
     }
     console.log('checking if empty: ',selectedImage.value);
@@ -109,6 +109,8 @@ const cleanMeta = async () => {
 };
 
 const changeImage = (indexItem, newImage) => {
+  console.log(illustrations.value);
+  console.log(illustrations.value[indexItem]);
   illustrations.value.map((item, index) => {
     if (index === indexItem) {
       item.active = true;
@@ -116,7 +118,9 @@ const changeImage = (indexItem, newImage) => {
       item.active = false;
     }
   });
+  console.log(newImage);
   selectedImage.value = newImage;
+  console.log(selectedImage.value);
 };
 </script>
 <template>
@@ -158,7 +162,7 @@ const changeImage = (indexItem, newImage) => {
             alt=""
           /> -->
           <client-only>
-            <Vue3Lottie
+            <!-- <Vue3Lottie
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
               :height="200"
@@ -171,6 +175,17 @@ const changeImage = (indexItem, newImage) => {
               :height="200"
               :width="255"
               class="min-w-[255px] h-auto"
+            /> -->
+            <img
+              v-if="selectedImage !== ''"
+              :src="selectedImage"
+              class="min-w-[255px] h-auto"
+            />
+            <img
+              v-else
+              :src="anotherdImage"
+              class="min-w-[255px] h-auto"
+              title="another"
             />
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
@@ -212,7 +227,7 @@ const changeImage = (indexItem, newImage) => {
               }"
               :src="illustration.imagen_estatica"
               alt=""
-              @click="() => changeImage(index, illustration.imagen)"
+              @click="() => changeImage(index, illustration.imagen_estatica)"
             />
           </div>
         </div>
