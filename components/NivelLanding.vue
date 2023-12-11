@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <div class="flex items-start lg:items-center gap-4 mb-10">
           <img src="@/assets/images/pin.svg" alt="">
-          <h2 class="text-[32px] font-bold uppercase font-solano">en wetalk aprenderás en cada nivel a:</h2>
+          <h2 class="text-[32px] font-bold uppercase font-solano">en WeTALK aprenderás en cada nivel a:</h2>
         </div>
         <div class="flex justify-between items-center">
           <img class="w-[422px] hidden lg:block" src="@/assets/images/person.svg" alt="">

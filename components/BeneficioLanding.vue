@@ -2,7 +2,7 @@
   <div class="flex items-start lg:items-center gap-4 mb-10">
     <img src="@/assets/images/pin.svg" alt="" />
     <h2 class="text-[32px] font-bold font-solano uppercase">
-      Beneficios de estudiar en wetalk
+      Beneficios de estudiar en WeTALK
     </h2>
   </div>
   <div class="flex justify-between flex-col lg:flex-row">
@@ -48,8 +48,7 @@
         </h3>
       </div>
       <p class="pb-4 font-publicSans font-normal">
-        Aceptamos máximo 10 alumnos en cada clase para darte la atención que
-        mereces.
+        Contamos con un grupo reducido de alumnos para garantizar un aprendizaje individualizado, y darte la atención que mereces.
       </p>
     </div>
   </div>

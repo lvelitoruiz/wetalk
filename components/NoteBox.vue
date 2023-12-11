@@ -26,13 +26,13 @@
           </div>
         </div>
         <div class="flex items-center justify-start mb-3">
-          <div v-if="dashboard">
+          <!-- <div v-if="dashboard">
             <div v-if="inasistencia !== null"
               class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full">
               <p class="text-[#404040] font-publicSans text-sm">Inasistencias:</p>
               <p class="text-[#404040] font-publicSans text-sm">{{ inasistencia || 0 }}</p>
             </div>
-          </div>
+          </div> -->
         </div>
         <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :formula="formula" :simulator="showSimulator" ref="tableNotes" />
         <div v-if="!dashboard" class="lg:hidden mt-6 flex justify-center">
