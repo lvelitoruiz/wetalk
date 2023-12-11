@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 <template>
     <div class="sidebarMenu-wrapper">
-        <SidebarMenuLink v-for="link in links" :label="link.label" :icon="link.icon" :has-sub-menu="link.hasSubMenu" :etiqueta="link.etiqueta"
+        <SidebarMenuLink v-for="link in links" :label="link.label" :icon="link.icon" :has-sub-menu="link.hasSubMenu" :etiqueta="link.etiqueta" :url="link.url"
             :sub-menu="link.subMenu" />
     </div>
 </template>
