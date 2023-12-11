@@ -8,7 +8,7 @@
           <NoteBox />
         </div>
         <div class="flex-col flex gap-7">
-          <InasistenciasInfo inasistencia="2" :dates="datesInasistencia" />
+          <!-- <InasistenciasInfo inasistencia="2" :dates="datesInasistencia" /> -->
           <TeacherBox />
           <HelpBox />
         </div>
