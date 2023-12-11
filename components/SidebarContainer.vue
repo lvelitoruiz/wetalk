@@ -27,6 +27,7 @@ onMounted(async () => {
         label: item.nombre,
         etiqueta: item.etiqueta,
         icon: item.icono, 
+        url: item.url || "#",
         hasSubMenu: !!item.submenu.length,
         subMenu: item.submenu.map((subItem) => ({
           text: subItem.nombre,
