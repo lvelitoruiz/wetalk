@@ -5,6 +5,7 @@ const props = defineProps({
   label: String,
   icon: String,
   link: String,
+  url: String,
   etiqueta: String,
   hasSubMenu: Boolean,
   subMenu: Array,
@@ -44,7 +45,7 @@ const getIconClass = () => {
 </script>
 <template>
   <div class="relative">
-    <div class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation(label)">
+    <a class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation(label)" :href="url">
       <div class="sidebarMenu-label">
         <i class="sidebarMenu-label__icon" :class="getIconClass()"></i>
         <!-- <img class="mr-3" :src="props.icon" /> -->
@@ -55,7 +56,7 @@ const getIconClass = () => {
         class="icon-arrow-down transition-all duration-300"
         :class="{ 'transition-all duration-300 rotate-180': isActive }"
       ></i>
-    </div>
+    </a>
     <div
       v-if="hasSubMenu"
       class="sidebarMenu-subMenu"
