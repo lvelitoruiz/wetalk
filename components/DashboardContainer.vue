@@ -5,10 +5,10 @@ const userStore = useUserStore();
 
 const nameUser = userStore.getUserData?.name;
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
+  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
 );
 const anotherImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
+  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
 );
 const metaText = ref("Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆");
 
@@ -55,24 +55,24 @@ const haveLink = true;
       >
         <div class="lg:w-[70px] mb-4 lg:mb-0">
           <client-only>
-            <!-- <Vue3Lottie
+            <Vue3Lottie
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
               :height="55"
               :width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"
-            /> -->
-            <img v-if="selectedImage !== ''" :src="selectedImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" />
+            />
+            <!-- <img v-if="selectedImage !== ''" :src="selectedImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" /> -->
           </client-only>
           <client-only>
-            <!-- <Vue3Lottie
+            <Vue3Lottie
               v-if="selectedImage === ''"
               :animationLink="anotherImage"
               :height="55"
               :width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"
-            /> -->
-            <img v-if="selectedImage === ''" :src="anotherImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" />
+            />
+            <!-- <img v-if="selectedImage === ''" :src="anotherImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" /> -->
           </client-only>
         </div>
         <div class="lg:w-[calc(100%-100px)] w-full flex items-center justify-between">
@@ -96,9 +96,9 @@ const haveLink = true;
         <div class="min-w-[36%]">
           <NoteBox inasistencia="2" dashboard="true" />
         </div>
-        <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
+        <!-- <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
-        </div>
+        </div> -->
         <div  class="min-w-[calc(32%-28px)]">
           
         </div>
