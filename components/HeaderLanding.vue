@@ -5,9 +5,9 @@
     
     <div class="lg:flex items-center gap-[28px] hidden">
       <div class="lg:hidden">
-        <Button primary label="Ingresar a portal wetalk" @click="triggerModal" />
+        <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
       </div>
-      <Button primary label="Ingresar a portal wetalk" @click="triggerModal" />
+      <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
       <nav>
         <ul class="flex items-center gap-[49px]">
           <li v-for="(list, index) in lists" :key="index">
