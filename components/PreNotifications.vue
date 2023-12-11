@@ -85,8 +85,11 @@ function closeNotifications() {
               },
             ]"
           ></i>
-          <span class="text-[#554A00] text-xs leaning-none"
+          <span class="text-[#554A00] hidden lg:block  text-xs leaning-none"
             >{{ notification.tipo }} ({{ notification.count }})</span
+          >
+          <span class="text-[#554A00] lg:hidden  text-xs leaning-none"
+            > {{ notification.count }}</span
           >
         </div>
 
