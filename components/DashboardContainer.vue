@@ -38,7 +38,7 @@ const haveLink = true;
     <span class="text-[#575759] text-[15px]">Dashboard</span>
   </div> -->
   <div class="lg:flex flex-col gap-6">
-    <div class="lg:flex items-center lg:w-[1023px] mx-auto gap-5 pb-[28px]">
+    <div class="lg:flex items-center lg:max-w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
         <h1
           class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-8 lg:leading-none lg:whitespace-nowrap mb-1 w-full"
@@ -93,19 +93,18 @@ const haveLink = true;
     </div>
     <div class="lg:w-[1023px] mx-auto">
       <div class="lg:flex gap-[28px]">
-        <div class="min-w-[36%]">
+        <div class="min-w-[calc(32%-28px)]">
           <NoteBox inasistencia="2" dashboard="true" />
+        </div>
+        <div class="min-w-[34%]">
+          <SyllabusBox :open="isOpen" :link="haveLink" />
+        </div>
+        <div  class="min-w-[calc(28%-24px)]">
+          <HelpBox />
         </div>
         <!-- <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
         </div> -->
-        <div  class="min-w-[calc(32%-28px)]">
-          
-        </div>
-      </div>
-      <div class="lg:flex gap-[28px]">
-        <SyllabusBox :open="isOpen" :link="haveLink" />
-        <HelpBox />
       </div>
     </div>
   </div>
