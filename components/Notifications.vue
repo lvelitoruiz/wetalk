@@ -128,7 +128,7 @@ const changeItems = (value) => {
         </div>
       </div>
 
-      <div class="overflow-y-auto max-h-[590px]">
+      <div class="overflow-y-auto max-h-[350px]">
         <div v-if="finalItems !== null">
           <p v-if="finalItems[1].length > 0" class="uppercase text-[#191919] text-sm font-bold px-4 py-2 font-solano">
             Esta semana
