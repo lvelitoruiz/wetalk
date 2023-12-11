@@ -15,11 +15,11 @@
           Excelencia Cambridge
         </h3>
       </div>
-      <p class="pb-4 font-publicSans">
+      <p class="pb-4 font-publicSans font-normal">
         Somos los primeros en ofrecer en Perú la plataforma Evolve Digital de
         Cambridge.
       </p>
-      <p class="font-publicSans">
+      <p class="font-publicSans font-normal">
         Tenemos 6 cursos de aprendizajes, desde el nivel básico al avanzado con
         material disponible 24/7.
       </p>
@@ -33,7 +33,7 @@
           Aprende desde donde estés
         </h3>
       </div>
-      <p class="pb-4 font-publicSans">
+      <p class="pb-4 font-publicSans font-normal">
         Clases en vivo 100% online para que evites el tráfico y aproveches tu
         vida al máximo. ¡Puedes conectarte hasta de tu celular!
       </p>
@@ -47,7 +47,7 @@
           Seguimiento personalizado
         </h3>
       </div>
-      <p class="pb-4 font-publicSans">
+      <p class="pb-4 font-publicSans font-normal">
         Aceptamos máximo 10 alumnos en cada clase para darte la atención que
         mereces.
       </p>

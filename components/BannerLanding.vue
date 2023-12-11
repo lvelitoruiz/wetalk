@@ -4,7 +4,7 @@
     <div
       class="container mx-auto flex absolute top-0 left-0 right-0 bottom-0 items-center justify-center lg:justify-between">
       <img class="h-[500px] hidden lg:block" src="@/assets/images/illustration.svg" alt="">
-      <div
+      <!-- <div
         class="bg-[#000] px-[24px] py-[38px] flex flex-col gap-[27px] mx-6 md:mx-0 w-full md:w-[438px] items-center lg:mt-12">
         <div class="flex flex-col gap-[7px]">
           <p class="text-[#FFF] text-xl font-bold font-solano leading-none">Exclusivo para alumnos matriculados</p>
@@ -13,7 +13,18 @@
             aprendizaje de inglés.</p>
         </div>
         <Button @click="triggerModal" label="Ingresar a portal Wetalk" primary />
-      </div>
+      </div> -->
+        <div class="bg-white px-[46px] py-[33px] flex flex-col">
+          <p class="font-zizou-bold font-bold px-2 text-xl mb-6">Ingresa a tu portal Wetalk</p>
+          <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano mb-[17px] w-full">
+            Alumno UPC
+            <i class="icon-arrow-right"></i>
+          </button>
+          <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano w-full">
+            Alumno UPN
+            <i class="icon-arrow-right"></i>
+          </button>
+        </div>
     </div>
   </section>
 </template>
