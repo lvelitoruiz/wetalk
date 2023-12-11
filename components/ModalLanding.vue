@@ -23,7 +23,7 @@
       </select>
       <div>
         <p class="mb-4 font-bold text-lg uppercase font-solano">
-          ¿Eres nuevo en Wetalk?
+          ¿Eres nuevo en WeTALK?
         </p>
         <div
           class="flex md:items-center gap-[17px] md:gap-16 flex-col md:flex-row"
