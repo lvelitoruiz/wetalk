@@ -13,11 +13,11 @@ const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
+  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
 );
 
 const anotherdImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link//assets/cdb93687-9c6c-429c-86f3-554526556ae2"
+  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
 );
 
 const graphemesNow = ref(0);
@@ -162,7 +162,7 @@ const changeImage = (indexItem, newImage) => {
             alt=""
           /> -->
           <client-only>
-            <!-- <Vue3Lottie
+            <Vue3Lottie
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
               :height="200"
@@ -175,8 +175,8 @@ const changeImage = (indexItem, newImage) => {
               :height="200"
               :width="255"
               class="min-w-[255px] h-auto"
-            /> -->
-            <img
+            />
+            <!-- <img
               v-if="selectedImage !== ''"
               :src="selectedImage"
               class="min-w-[255px] h-auto"
@@ -186,7 +186,7 @@ const changeImage = (indexItem, newImage) => {
               :src="anotherdImage"
               class="min-w-[255px] h-auto"
               title="another"
-            />
+            /> -->
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
             <div class="triangulo-up"></div>
@@ -227,7 +227,7 @@ const changeImage = (indexItem, newImage) => {
               }"
               :src="illustration.imagen_estatica"
               alt=""
-              @click="() => changeImage(index, illustration.imagen_estatica)"
+              @click="() => changeImage(index, illustration.imagen)"
             />
           </div>
         </div>
