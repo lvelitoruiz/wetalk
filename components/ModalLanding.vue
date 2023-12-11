@@ -15,6 +15,11 @@
         id=""
       >
         <option value="">Selecciona</option>
+        <option value="">Alumno UPC</option>
+        <option value="">Alumno UPN</option>
+        <option value="">Alumno Cibertec</option>
+        <option value="">Alumnos externo</option>
+
       </select>
       <div>
         <p class="mb-4 font-bold text-lg uppercase font-solano">
@@ -31,7 +36,7 @@
               name="default-radio"
               class="outline-none w-5 h-5 border-[#404040] focus:ring-transparent"
             />
-            <label for="default-radio-1" class="ms-2 text-[#404040]"
+            <label for="default-radio-1" class="ms-[11px] text-[#404040]"
               >Sí, soy nuevo</label
             >
           </div>
@@ -43,8 +48,8 @@
               name="default-radio"
               class="outline-none w-5 h-5 border-[#404040] focus:ring-transparent"
             />
-            <label for="default-radio-2" class="ms-2 text-[#404040]"
-              >No, soy reingresante</label
+            <label for="default-radio-2" class="ms-[11px] text-[#404040]"
+              >No, ya estudié antes</label
             >
           </div>
         </div>
