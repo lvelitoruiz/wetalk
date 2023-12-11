@@ -48,8 +48,7 @@
         </h3>
       </div>
       <p class="pb-4 font-publicSans font-normal">
-        Aceptamos máximo 10 alumnos en cada clase para darte la atención que
-        mereces.
+        Contamos con un grupo reducido de alumnos para garantizar un aprendizaje individualizado, y darte la atención que mereces.
       </p>
     </div>
   </div>
