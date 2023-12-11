@@ -1,11 +1,13 @@
 <template>
   <header
-    class="flex justify-between items-center h-[80px] shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
+    class="flex justify-between items-center h-[80px] px-20 shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
   >
-    <a class="ml-[36px]" href="">
-      <img class="h-[36px]" src="@/assets/images/logo.svg" alt="" />
-    </a>
+    
     <div class="lg:flex items-center gap-[28px] hidden">
+      <div class="lg:hidden">
+        <Button primary label="Ingresar a portal wetalk" @click="triggerModal" />
+      </div>
+      <Button primary label="Ingresar a portal wetalk" @click="triggerModal" />
       <nav>
         <ul class="flex items-center gap-[49px]">
           <li v-for="(list, index) in lists" :key="index">
@@ -18,8 +20,8 @@
           </li>
         </ul>
       </nav>
-      <Button primary label="Ingresar a portal wetalk"  @click="triggerModal"/>
       
+
       <!-- <div class="flex items-center gap-2 mr-[36px]">
         <button class="text-[#737373] font-bold border-b border-[#E50A17]">
           ES
@@ -28,15 +30,14 @@
         <button class="text-[#737373] font-bold">EN</button>
       </div> -->
     </div>
-    <div class="lg:hidden">
-      <Button primary label="Ingresar a portal wetalk"  @click="triggerModal"/>
-    </div>
+    <a class="ml-[36px]" href="">
+      <img class="h-[36px]" src="@/assets/images/logo.svg" alt="" />
+    </a>
   </header>
 </template>
 
 <script setup>
-
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits } from "vue";
 
 const emit = defineEmits();
 
@@ -45,9 +46,8 @@ const props = defineProps({
 });
 
 const triggerModal = () => {
-  emit('modal-open');
+  emit("modal-open");
 };
-
 </script>
 
 <style>
