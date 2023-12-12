@@ -1,8 +1,11 @@
 <script setup>
 import { useMetaStore } from "../stores/meta";
+import { useMenuStore } from "../stores/menu";
 import { useUserStore } from "~/stores/auth";
+// import ListCompanions from "./ListCompanions.vue";
+import { apiUrl } from "~/consts";
 const userStore = useUserStore();
-
+const menuStore = useMenuStore();
 const nameUser = userStore.getUserData?.name;
 const selectedImage = ref(
   ""
@@ -29,6 +32,20 @@ watchEffect(() => {
     selectedImage.value = images[0].imagen;
   }
 });
+const dataCompanios = ref([]);
+
+const dataListStudents = menuStore.fetchListCompanions(apiUrl);
+
+ watchEffect(async ()=>{
+  // await menuStore.fetchListCompanions(apiUrl);
+  const data = menuStore.getListStudents;
+  if (data?.length > 0) {
+    dataCompanios.value = menuStore.getListStudents;
+  }
+ })
+
+
+
 
 const isOpen = true;
 const haveLink = true;
@@ -102,12 +119,20 @@ const haveLink = true;
         <div class="min-w-[34%]">
           <SyllabusBox :open="isOpen" :link="haveLink" />
         </div>
-        <div  class="min-w-[calc(28%-24px)]">
+        <!-- <div  class="min-w-[calc(28%-24px)]">
           <HelpBox />
-        </div>
+        </div> -->
         <!-- <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
         </div> -->
+        <div  class="min-w-[calc(32%-28px)]">
+           <ListCompanions :dataCompanions="dataCompanios" />
+           <HelpBox />
+        </div>
+      </div>
+      <div class="lg:flex gap-[28px]">
+        <SyllabusBox :open="isOpen" :link="haveLink" />
+        <HelpBox />
       </div>
     </div>
   </div>
