@@ -16,12 +16,7 @@
         </h3>
       </div>
       <p class="pb-4 font-publicSans font-normal">
-        Somos los primeros en ofrecer en Perú la plataforma Evolve Digital de
-        Cambridge.
-      </p>
-      <p class="font-publicSans font-normal">
-        Tenemos 6 cursos de aprendizajes, desde el nivel básico al avanzado con
-        material disponible 24/7.
+       Somos el centro de idiomas de Perú con más estudiantes aprendiendo con Evolve Digital en Cambridge One.
       </p>
     </div>
     <div
@@ -34,8 +29,7 @@
         </h3>
       </div>
       <p class="pb-4 font-publicSans font-normal">
-        Clases en vivo 100% online para que evites el tráfico y aproveches tu
-        vida al máximo. ¡Puedes conectarte hasta de tu celular!
+        Clases en vivo 100% online para que evites el tráfico y aproveches tu vida al máximo. ¡Puedes conectarte hasta de tu celular!
       </p>
     </div>
     <div
@@ -48,7 +42,7 @@
         </h3>
       </div>
       <p class="pb-4 font-publicSans font-normal">
-        Contamos con un grupo reducido de alumnos para garantizar un aprendizaje individualizado, y darte la atención que mereces.
+        Contamos con un grupo reducido de alumnos por clase, para darte la atención que mereces.
       </p>
     </div>
   </div>

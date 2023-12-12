@@ -1,6 +1,6 @@
 <template>
   <section class="h-[388px] lg:h-[533px] relative">
-    <img class="h-[388px] lg:h-[533px] w-full object-cover" src="@/assets/images/banner.svg" alt="">
+    <img class="h-[388px] lg:h-[533px] w-full object-cover" src="@/assets/images/banner-home.svg" alt="">
     <div
       class="container mx-auto flex absolute top-0 left-0 right-0 bottom-0 items-center justify-center lg:justify-between">
       <img class="h-[500px] hidden lg:block" src="@/assets/images/illustration.svg" alt="">
@@ -16,11 +16,11 @@
       </div> -->
         <div class="bg-white px-[46px] py-[33px] flex flex-col">
           <p class="font-zizou-bold font-bold px-2 text-xl mb-6">Ingresa a tu portal WeTALK</p>
-          <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano mb-[17px] w-full">
+          <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano mb-[17px] w-full rounded-[4px] lg:text-[20px]">
             Alumno UPC
             <i class="icon-arrow-right"></i>
           </button>
-          <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano w-full">
+          <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano w-full rounded-[4px] lg:text-[20px]">
             Alumno UPN
             <i class="icon-arrow-right"></i>
           </button>

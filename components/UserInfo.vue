@@ -36,7 +36,7 @@ watchEffect(async () => {
     pmail.value = alumnData.usuarioEmailPersonal;
     number.value = alumnData.telefono;
   }
-  console.log('the user information: ',userInfo);
+  console.log('the user information: ',props.userInfo);
 });
 
 </script>
