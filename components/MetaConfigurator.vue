@@ -40,15 +40,12 @@ watchEffect(() => {
   const data = metaStore.getMetaData;
   const images = metaStore.getImages;
   if (data.length > 0) {
-    console.log("fixing the data: ", data);
     metaData.value = data[0];
     meta.value = metaData.value?.meta;
     selectedColor.value = metaData.value?.color;
-    console.log('the meta rocks: ',metaData.value);
-    if(metaData.value?.imagen_estatica !== '' && metaData.value?.imagen_estatica !== null) {
+    if(metaData.value?.imagen !== '' && metaData.value?.imagen !== null) {
       selectedImage.value = metaData.value?.imagen;
     }
-    console.log('checking if empty: ',selectedImage.value);
   }
   if (images) {
     const formattedImages = images.map((item) => ({
@@ -109,8 +106,6 @@ const cleanMeta = async () => {
 };
 
 const changeImage = (indexItem, newImage) => {
-  console.log(illustrations.value);
-  console.log(illustrations.value[indexItem]);
   illustrations.value.map((item, index) => {
     if (index === indexItem) {
       item.active = true;
@@ -118,9 +113,7 @@ const changeImage = (indexItem, newImage) => {
       item.active = false;
     }
   });
-  console.log(newImage);
   selectedImage.value = newImage;
-  console.log(selectedImage.value);
 };
 </script>
 <template>
@@ -149,18 +142,6 @@ const changeImage = (indexItem, newImage) => {
         class="lg:min-w-[369px] lg:max-w-[369px] pb-[18px] lg:pb-0 lg:border-r border-b lg:border-b-0 border-[#D9D9D9] pr-0 lg:pr-7"
       >
         <div class="flex items-center justify-center flex-col gap-[14px]">
-          <!-- <img
-            v-if="selectedImage !== ''"
-            class="min-w-[255px] h-auto"
-            :src="selectedImage"
-            alt=""
-          />
-          <img
-            v-if="selectedImage === ''"
-            class="min-w-[255px] h-auto"
-            src="https://wetalk-directus-dev-upc.stage01.link/assets/b2155346-5f91-4749-91cb-77c50355c1e0"
-            alt=""
-          /> -->
           <client-only>
             <Vue3Lottie
               v-if="selectedImage !== ''"
@@ -176,17 +157,6 @@ const changeImage = (indexItem, newImage) => {
               :width="255"
               class="min-w-[255px] h-auto"
             />
-            <!-- <img
-              v-if="selectedImage !== ''"
-              :src="selectedImage"
-              class="min-w-[255px] h-auto"
-            />
-            <img
-              v-else
-              :src="anotherdImage"
-              class="min-w-[255px] h-auto"
-              title="another"
-            /> -->
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
             <div class="triangulo-up"></div>
