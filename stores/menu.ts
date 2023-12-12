@@ -5,7 +5,7 @@ import { useUserStore } from "./auth";
 // let authHeader = localStorage.getItem("tokenH");
 // let codUser = localStorage.getItem("codUser");
 // let institution = localStorage.getItem("institucion");
-
+// const config = useRuntimeConfig();
 export const useMenuStore = defineStore({
   id: "menu",
   state: () => ({
@@ -18,6 +18,7 @@ export const useMenuStore = defineStore({
     profileData: [] as any,
     notasData: [] as any,
     faltasData: [] as any,
+    companionsData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -32,7 +33,7 @@ export const useMenuStore = defineStore({
     getProfileItems: (state) => state.profileData,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
-  
+    getListStudents: (state) => state.companionsData,
   },
   actions: {
     fetchData(){
@@ -82,13 +83,41 @@ export const useMenuStore = defineStore({
             Authorization: this.fetchData()?.localHeader,
           },
         };
-        console.log(this.fetchData(), 'intitucion line 95')
+  
         const response = await axios
           .create(axiosConf)
           .get<any>(
             `/Cursos/v1/Detalle_Curso?CodAlumno=${this.fetchData()?.localCodUser}&institucion=${this.fetchData()?.localIntitution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
           );
         this.notasData = response.data.data;
+      } catch (error) {
+        console.error("Error fetching menu data:", error);
+      }
+    },
+
+    async fetchListCompanions(apiUrl: string) {
+      const curso = localStorage.getItem("curso");
+      const periodo = localStorage.getItem("periodo");
+      const seccion = localStorage.getItem("seccion");
+
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization: this.fetchData()?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Cursos/v1/ListaDeAlumnosPorCurso?institucion=${this.fetchData()?.localIntitution}&CodPeriodo=${periodo}&CodCurso=${curso}&Seccion=${seccion}`
+          );
+          console.log(this.companionsData)
+        this.companionsData = response.data.data;
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
