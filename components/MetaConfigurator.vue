@@ -13,11 +13,11 @@ const illustrations = ref(null);
 const meta = ref("");
 const selectedColor = ref("#FE91A4");
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  ""
 );
 
 const anotherdImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  ""
 );
 
 const graphemesNow = ref(0);
@@ -55,6 +55,7 @@ watchEffect(() => {
       active: false,
     }));
 
+    selectedImage.value = images[0].imagen;
     illustrations.value = formattedImages;
   }
 });
