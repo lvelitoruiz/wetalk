@@ -113,7 +113,7 @@ const eventClickVerMas = () => {
             </button>
           </div>
         </div>
-        <div class="min-h-[222px]" :class="{ 'overflow-y-auto max-h-[222px]': props.open }">
+        <div class="min-h-[260px] lg:min-h-[422px]" :class="{ 'overflow-y-auto max-h-[422px]': props.open }">
           <div v-if="actual">
             <div v-for="item in cicloNow" :key="item">
               <div class="flex items-center gap-2">
