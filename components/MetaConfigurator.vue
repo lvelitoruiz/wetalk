@@ -160,7 +160,7 @@ const changeImage = (indexItem, newImage) => {
             />
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
-            <div class="triangulo-up"></div>
+            <div class="triangulo-up" style="position: relative;"></div>
             <div
               class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] px-5 py-2 w-full flex justify-between items-center rounded-lg"
             >
