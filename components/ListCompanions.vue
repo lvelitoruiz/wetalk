@@ -50,7 +50,7 @@ const capitalizeString = (str) => {
             <div class="conatiner_students">
                 <ul class="scroll-h">
                     <li v-for="(student) in dataCompanions" :key="student" class="flex justify-between mb-[2.5px]">
-                       <div class="pr-[5px]"> <span class="font-bold text-[16px]">{{ capitalizeString(student.nombreCompleto) }}</span> <br>
+                       <div class="pr-[5px]"> <span class="font-bold text-[16px] text-[#404040]">{{ capitalizeString(student.nombreCompleto) }}</span> <br>
                         <span class="text-[#808080] text-[14px]">{{ student.email }}</span> 
                         </div>
                         <i class="icon-file-copy text-xl text-[#699A8F cursor-pointer text-[#699A8F]" v-if="student.email"  @click="copyToClipboard(student.email)"></i>
