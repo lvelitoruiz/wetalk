@@ -96,7 +96,7 @@ if (props.notasData !== null && props.notasData !== undefined) {
   notas.value = props.notasData.slice(0, -2);
   calculus.value = [...newvalue];
   promedio.value = props.notasData.slice(-2, -1);
-  newVariable.value = props.notasData.slice(-2, -1)[0]?.nota;
+  newVariable.value = parseInt(props.notasData.slice(-2, -1)[0]?.nota)?.toFixed();
   console.log(promedio.value);
 }
 
