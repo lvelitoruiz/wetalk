@@ -45,7 +45,7 @@ const getIconClass = () => {
 </script>
 <template>
   <div class="relative">
-    <a class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation(label)" :href="url">
+    <a class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation(label)" :href="url" style="padding-left: 1.75em;">
       <div class="sidebarMenu-label">
         <i class="sidebarMenu-label__icon" :class="getIconClass()"></i>
         <!-- <img class="mr-3" :src="props.icon" /> -->
