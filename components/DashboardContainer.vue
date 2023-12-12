@@ -6,7 +6,10 @@ import { useUserStore } from "~/stores/auth";
 import { apiUrl } from "~/consts";
 const userStore = useUserStore();
 const menuStore = useMenuStore();
+
 const nameUser = userStore.getUserData?.name;
+const courseName = menuStore.getProfileItems?.data?.at(0)?.descCurso ?? '';
+
 const selectedImage = ref(
   ""
 );
@@ -67,7 +70,8 @@ const haveLink = true;
           Welcome, {{ nameUser }}
         </h1>
         <p class="text-[#191919] text-[18px] leading-6 lg:pb-[18px] pb-9 mt-2 whitespace-nowrap">
-         <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> Inglés 1 </span>  Lun y Mar 19:00h - 22:00h
+         <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> {{ courseName }} </span>
+         <!-- <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> Inglés 1 </span>  Lun y Mar 19:00h - 22:00h -->
         </p>
       </div>
       <div
