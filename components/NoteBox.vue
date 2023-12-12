@@ -34,7 +34,7 @@
             </div>
           </div> -->
         </div>
-        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :formula="formula" :simulator="showSimulator" ref="tableNotes" />
+        <NotesTable v-if="notasData !== undefined" :notasData="notasData" :dashboard="dashboard" :formula="formula" :simulator="showSimulator" :showPromedio="showPromedio" ref="tableNotes" />
         <div v-if="!dashboard" class="lg:hidden mt-6 flex justify-center">
           <div v-if="!showSimulator">
             <Button @click="irSimulador" label="Simulador de promedio" primary />
@@ -66,9 +66,9 @@ const showSimulator = ref(false);
 const menuStore = useMenuStore();
 
 const props = defineProps({
-  dashboard: Boolean
+  dashboard: Boolean,
+  showPromedio: Boolean
 })
-
 
 const reestablishNotes = () => {
   tableNotes.value.recoverNotes();
