@@ -136,7 +136,7 @@ const changeItems = (value) => {
           <div v-for="item in finalItems[1]" :key="item">
             <div class="py-4 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
               :class="{ 'bg-[#D7E9FB]': item.status }">
-              <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
+              <span class="min-w-[12px] min-h-[12px] bg-[#E50A17] rounded-full"></span>
               <div>
                 <p class="text-sm mb-1">{{ item.mensaje }}</p>
                 <div class="flex items-center gap-1">
@@ -191,7 +191,7 @@ const changeItems = (value) => {
           </p>
           <div v-for="item in finalItems[0]" :key="item">
             <div class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5 border-b border-white">
-              <span class="min-w-[16px] min-h-[16px] bg-[#E50A17] rounded-full"></span>
+              <span class="min-w-[12px] min-h-[12px] bg-[#E50A17] rounded-full"></span>
               <div>
                 <p class="text-sm mb-1">{{ item.mensaje }}</p>
                 <div class="flex items-center gap-1">
