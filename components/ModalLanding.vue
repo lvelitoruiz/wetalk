@@ -5,12 +5,12 @@
     <div
       class="bg-white p-10 relative rounded-none min-w-[90%] md:min-w-[479px]"
     >
-      <i @click="triggerModal" class="absolute top-4 right-4 text-red-600 text-base icon-close"></i>
+      <i @click="triggerModal" class="absolute top-4 right-4 text-red-600 text-base icon-close cursor-pointer"></i>
       <h3 class="mb-2 font-bold text-lg uppercase font-solano">
         Selecciona una institución
       </h3>
       <select
-        class="mb-6 rounded px-3 py-[10px] w-full border border-[#BFBFBF] outline-none text-sm"
+        class="mb-6 rounded px-3 py-[10px] w-full border border-[#BFBFBF] outline-none text-sm cursor-pointer"
         name=""
         id=""
       >
@@ -34,7 +34,7 @@
               type="radio"
               value=""
               name="default-radio"
-              class="outline-none w-5 h-5 border-[#404040] focus:ring-transparent"
+              class="outline-none w-5 h-5 border-[#404040] focus:ring-transparent cursor-pointer"
             />
             <label for="default-radio-1" class="ms-[11px] text-[#404040]"
               >Sí, soy nuevo</label
@@ -46,7 +46,7 @@
               type="radio"
               value=""
               name="default-radio"
-              class="outline-none w-5 h-5 border-[#404040] focus:ring-transparent"
+              class="outline-none w-5 h-5 border-[#404040] focus:ring-transparent cursor-pointer"
             />
             <label for="default-radio-2" class="ms-[11px] text-[#404040]"
               >No, ya estudié antes</label

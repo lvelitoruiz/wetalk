@@ -5,9 +5,13 @@
     
     <div class="lg:flex items-center gap-[28px] hidden">
       <div class="lg:hidden">
-        <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
+        <a href="https://idiomas.upc.edu.pe/" target="_blank" rel="noopener noreferrer">
+          <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
+        </a>
       </div>
-      <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
+      <a href="https://idiomas.upc.edu.pe/" target="_blank" rel="noopener noreferrer">
+        <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
+      </a>
       <nav>
         <ul class="flex items-center gap-[49px]">
           <li v-for="(list, index) in lists" :key="index">
