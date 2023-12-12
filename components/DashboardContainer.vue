@@ -1,8 +1,11 @@
 <script setup>
 import { useMetaStore } from "../stores/meta";
+import { useMenuStore } from "../stores/menu";
 import { useUserStore } from "~/stores/auth";
+// import ListCompanions from "./ListCompanions.vue";
+import { apiUrl } from "~/consts";
 const userStore = useUserStore();
-
+const menuStore = useMenuStore();
 const nameUser = userStore.getUserData?.name;
 const selectedImage = ref(
   "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
@@ -25,6 +28,20 @@ watchEffect(() => {
     dataMeta.value = data[0];
   }
 });
+const dataCompanios = ref([]);
+
+const dataListStudents = menuStore.fetchListCompanions(apiUrl);
+
+ watchEffect(async ()=>{
+  // await menuStore.fetchListCompanions(apiUrl);
+  const data = menuStore.getListStudents;
+  if (data?.length > 0) {
+    dataCompanios.value = menuStore.getListStudents;
+  }
+ })
+
+
+
 
 const isOpen = true;
 const haveLink = true;
@@ -100,7 +117,9 @@ const haveLink = true;
           <TeacherBox />
         </div> -->
         <div  class="min-w-[calc(32%-28px)]">
-          
+        </div>
+        <div  class="min-w-[calc(32%-28px)]">
+           <ListCompanions :dataCompanions="dataCompanios" />
         </div>
       </div>
       <div class="lg:flex gap-[28px]">
