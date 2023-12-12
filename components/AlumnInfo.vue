@@ -29,7 +29,7 @@ watchEffect(async () => {
       <div class="w-full flex flex-col justify-start  lg:items-start">
         <UserInfo :user-info="alumnInfo" />
       </div>
-      <Button class="lg:hidden" label="Cambiar contraseña" primary />
+      <!-- <Button class="lg:hidden" label="Cambiar contraseña" primary /> -->
     </div>
   </ContainerBoxSimple>
 </template>

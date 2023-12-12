@@ -134,10 +134,10 @@ const haveLink = true;
            <HelpBox />
         </div>
       </div>
-      <div class="lg:flex gap-[28px]">
+      <!-- <div class="lg:flex gap-[28px]">
         <SyllabusBox :open="isOpen" :link="haveLink" />
         <HelpBox />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
