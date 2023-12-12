@@ -32,27 +32,27 @@
         <ul class="flex items-end gap-[32px]">
           <li>
             <a href="">
-              <i class="icon-home text-[30px] text-white"></i>
+              <NuxtIcon name="instagram" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
           <li>
             <a href="">
-              <i class="icon-home text-[30px] text-white"></i>
+              <NuxtIcon name="youtube" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
           <li>
             <a href="">
-              <i class="icon-home text-[30px] text-white"></i>
+              <NuxtIcon name="linkedin" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
           <li>
             <a href="">
-              <i class="icon-home text-[30px] text-white"></i>
+              <NuxtIcon name="twitter" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
           <li>
             <a href="">
-              <i class="icon-home text-[30px] text-white"></i>
+              <NuxtIcon name="facebook" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
         </ul>
