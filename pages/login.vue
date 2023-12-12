@@ -15,7 +15,7 @@ async function login() {
         const userCode = selectedCodUser.value;
 
         const user = {
-            name: "",
+            name: "Lesdy Huamán Cartagena",
             bearerToken: accessToken,
             codUser: userCode,
             institucion : "upn"
