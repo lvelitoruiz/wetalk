@@ -33,7 +33,7 @@ const eventClickAyuda = (url) => {
       <div class="flex flex-col gap-2 ml-[-10px]">
         <a v-for="item in ayudaData" :key="item" @click="eventClickAyuda(item.numero)" :href="item.numero" class="flex items-center gap-[6px] h-10 rounded-[10px] hover:bg-[#E6F5F0] p-2" target="_blank">
           <!-- <i class="icon-phone text-4xl text-[#57BD9E]"></i> -->
-          <div class="w-[33px] flex justify-center">
+          <div class="min-w-[33px] flex justify-center">
             <img :src="item.icono" />
           </div>
           <span class="text-[#404040] font-medium text-sm">{{ item.id === 5 ? "Chatea con nosotros" : item.numero }}</span>

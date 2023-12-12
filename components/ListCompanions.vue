@@ -43,7 +43,7 @@ const capitalizeString = (str) => {
 
 </script>
 <template>
-    <div>
+    <div class="mb-[20px]">
         <BoxContainer color="cyan">
             <h3 class="text-[#404040] text-2xl mb-[12px]"><span class="uppercase font-bold font-solano">Compañeros</span></h3>
 
@@ -64,7 +64,7 @@ const capitalizeString = (str) => {
 <style scoped>
    /* @media screen and (min-width:968px){ */
     .scroll-h {
-        height: 355px;
+        height: 280px;
         overflow: hidden;
         overflow-y: scroll;
         scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);

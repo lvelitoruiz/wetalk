@@ -28,7 +28,7 @@ const keyNotification = ref(false);
 const keyProfile = ref(false);
 
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  ""
 );
 
 const fetchMetaInfo = async () => {
@@ -109,6 +109,7 @@ watchEffect(async () => {
   }
   const images = metaStore.getImages;
   if (images) {
+    selectedImage.value = images[0].imagen;
     imagesData.value = images;
   }
   const menu = menuStore.getMenuItems;

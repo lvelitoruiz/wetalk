@@ -47,7 +47,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-[23px] lg:px-7 justify-between">
+    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-6 lg:px-9 justify-between">
     <div class="flex">
       <button class="lg:hidden mr-2" @click="openMenu">
         <i class="text-[28px] text-[#191919] icon-nav"></i>
@@ -60,12 +60,10 @@ onMounted(() => {
           </button>
         </div>
       </div>
-      <RouterLink to="/" class="h-full flex justify-center items-center">
-        <img class="lg:h-[39px] h-7" src="@/assets/images/logo.svg" alt="" />
-      </RouterLink>
+      
     </div>
     <div class="flex items-center">
-      <div class="lg:pr-[63px] pr-[21px]">
+      <div class="lg:pr-[63px] pr-4">
         <div class="flex items-center gap-[28px]">
           <button class="hidden lg:block">
             <a href="https://outlook.live.com/" target="_blank">
@@ -82,8 +80,8 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="lg:pr-[28px]">
-        <div class="flex items-center cursor-pointer gap-2">
+      <div class="">
+        <div class="flex items-center cursor-pointer lg:gap-8 gap-4">
           <p class="text-[#191919] text-sm font-zizou-bold hidden lg:block lg:min-w-[150px]">
             {{ nameUser }}
           </p>
@@ -95,6 +93,7 @@ onMounted(() => {
           <button class="hidden lg:block" @click="openList">
             <i class="icon-arrow-down text-[#191919]"></i>
           </button>
+          
           <div class="absolute bg-white bottom-[-109px] lg:right-10 right-[23px] shadow-[0_0_20px_0_rgba(77,39,37,0.20)] min-w-[180px] " v-show="showOption">
             <div class="mx-6 divide-[#D9D9D9] divide-y">
                 <router-link class="flex items-center pb-[15.5px] pt-1 leading-5 text-[#666666]" to="/meta">
@@ -108,6 +107,10 @@ onMounted(() => {
               </div>
             </div>
           </div>
+          <RouterLink to="/" class="h-full flex justify-center items-center">
+            <img class="lg:h-[39px] h-7" src="@/assets/images/logo.svg" alt="" />
+          </RouterLink>
+          
         </div>
       </div>
       <!-- <div class="hidden lg:flex items-center gap-2">

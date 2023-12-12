@@ -8,12 +8,12 @@
         <i class="icon-user text-[33px] text-[#404040]"></i>
         <div class="w-full">
           <p class="text-[#404040] font-publicSans capitalize font-bold" >{{ teacher }}</p>
-          <p class="flex items-center justify-between cursor-pointer">
+          <p v-if="mail" class="flex items-center justify-between cursor-pointer">
             <a a :href="`mailTo:${mail}`" class="text-sm font-publicSans text-[#404040]">{{ mail }}</a>
             <i @click="copyToClipboard(mail)" class="icon-file-copy text-xl text-[#699A8F] hidden lg:block"></i>
           </p>
         </div>
-        <i class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard(mail)"></i>
+        <i v-if="mail" class="icon-file-copy text-xl text-[#699A8F] lg:hidden" @click="copyToClipboard(mail)"></i>
 
       </div>
     </BoxContainer>
