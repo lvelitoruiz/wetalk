@@ -5,10 +5,10 @@ const userStore = useUserStore();
 
 const nameUser = userStore.getUserData?.name;
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  ""
 );
 const anotherImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  ""
 );
 const metaText = ref("Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆");
 
@@ -23,6 +23,10 @@ watchEffect(() => {
     selectedImage.value = data[0].imagen;
     metaText.value = data[0].meta;
     dataMeta.value = data[0];
+  }
+  const images = metaStore.getImages;
+  if (images) {
+    selectedImage.value = images[0].imagen;
   }
 });
 

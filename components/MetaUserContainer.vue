@@ -1,7 +1,7 @@
 <script setup>
 import { useMetaStore } from "../stores/meta";
 const selectedImage = ref(
-  "https://adminmi-cert-wetalk.stage01.link/assets/7b4478d8-fbed-4f6f-a000-6868f7b3f400"
+  ""
 );
 const metaText = ref("");
 
@@ -12,6 +12,10 @@ watchEffect(() => {
   if (data.length > 0) {
     selectedImage.value = data[0].imagen;
     metaText.value = data[0].meta;
+  }
+  const images = metaStore.getImages;
+  if (images) {
+    selectedImage.value = images[0].imagen;
   }
 });
 

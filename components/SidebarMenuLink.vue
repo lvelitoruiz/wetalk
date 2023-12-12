@@ -47,9 +47,9 @@ const getIconClass = () => {
   <div class="relative">
     <a class="sidebarMenu-link" :class="{ 'text-[#0043AA]' : isActive }" @click="handleActivation(label)" :href="url">
       <div class="sidebarMenu-label">
-        <i class="sidebarMenu-label__icon" :class="getIconClass()"></i>
+        <i class="sidebarMenu-label__icon ml-7" :class="getIconClass()"></i>
         <!-- <img class="mr-3" :src="props.icon" /> -->
-        <span class="sidebarMenu-label__text ml-7">{{ label }}</span>
+        <span class="sidebarMenu-label__text">{{ label }}</span>
       </div>
       <i
         v-if="hasSubMenu"
