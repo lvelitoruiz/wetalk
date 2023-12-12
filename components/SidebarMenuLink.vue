@@ -49,7 +49,7 @@ const getIconClass = () => {
       <div class="sidebarMenu-label">
         <i class="sidebarMenu-label__icon" :class="getIconClass()"></i>
         <!-- <img class="mr-3" :src="props.icon" /> -->
-        <span class="sidebarMenu-label__text ml-7">{{ label }}</span>
+        <span style="margin-left: 0em;" class="sidebarMenu-label__text ml-7">{{ label }}</span>
       </div>
       <i
         v-if="hasSubMenu"
