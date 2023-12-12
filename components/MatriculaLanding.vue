@@ -6,8 +6,7 @@
         ¿Aún no estás matriculado?
       </h3>
       <p class="max-w-[492px] font-publicSans">
-        Únete a más de 0000 egresados que abrieron las puertas a su próxima
-        beca, maestría o trabajo en el extranjero.
+        Únete a más de 0000 egresados que abrieron las puertas a su próxima beca, maestría o trabajo en el extranjero.
       </p>
       <Button label="Más información" secundary @click="triggerModal" />
     </div>
