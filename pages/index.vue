@@ -31,6 +31,10 @@ const selectedImage = ref(
   ""
 );
 
+const anotherImage = ref(
+  ""
+);
+
 const fetchMetaInfo = async () => {
   await metaStore
     .fetchMetaData(apiUrl)
@@ -109,7 +113,7 @@ watchEffect(async () => {
   }
   const images = metaStore.getImages;
   if (images) {
-    selectedImage.value = images[0].imagen;
+    anotherImage.value = images[0].imagen;
     imagesData.value = images;
   }
   const menu = menuStore.getMenuItems;
@@ -154,9 +158,12 @@ watchEffect(async () => {
       <div class="block min-h-[260px]">
         <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
         <client-only>
-          <div v-if="selectedImage !== null">
+          <div v-if="selectedImage !== null && selectedImage !== ''">
             <Vue3Lottie :animationLink="selectedImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
             <!-- <img :src="selectedImage" class="min-w-[255px] h-auto" /> -->
+          </div>
+          <div v-else>
+            <Vue3Lottie :animationLink="anotherImage" :height="200" :width="255" class="min-w-[255px] h-auto" />
           </div>
         </client-only>
       </div>
@@ -172,7 +179,7 @@ watchEffect(async () => {
             </div>
           </div>
         </Transition>
-        <div else>
+        <div v-if="metaData === null || metaData.length <= 0 || metaData[0]?.meta === ''">
           <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">
             Iniciando sesión...
           </p>

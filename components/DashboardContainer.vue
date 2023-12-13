@@ -32,7 +32,7 @@ watchEffect(() => {
   }
   const images = metaStore.getImages;
   if (images) {
-    selectedImage.value = images[0].imagen;
+    anotherImage.value = images[0].imagen;
   }
 });
 const dataCompanios = ref([]);

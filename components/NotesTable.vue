@@ -43,7 +43,7 @@
                 {{ data.nota === "00" ? "-" : data.nota }}
               </span>
               <input v-else type="text" v-model="calculus[index].nota"
-                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center"
+                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none  justify-center text-center"
                 @input="validateInput(index)" />
             </div>
           </td>
