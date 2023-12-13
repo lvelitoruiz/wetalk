@@ -36,25 +36,25 @@ const anotherImage = ref(
 );
 
 const fetchMetaInfo = async () => {
-  await metaStore
+  metaStore
     .fetchMetaData(apiUrl)
     .then((response) => (keyMeta.value = true));
-  await metaStore
+  metaStore
     .obtainImages(apiUrl)
     .then((response) => (keyImages.value = true));
-  await menuStore
+  menuStore
     .fetchMenuData(apiUrl)
     .then((response) => (keyMenu.value = true));
-  await menuStore
+  menuStore
     .fetchAccesoDirectoData(apiUrl)
     .then((response) => (keyAcceso.value = true));
-  await menuStore
+  menuStore
     .fetchAyudaData(apiUrl)
     .then((response) => (keyAyuda.value = true));
-  await menuStore
+  menuStore
     .fetchContenidoData(apiUrl, "0")
     .then((response) => (keyContenido.value = true));
-  await menuStore
+  menuStore
     .fetchNotificationData(apiUrl, "0")
     .then((response) => (keyNotification.value = true));
   const profiler = await menuStore
