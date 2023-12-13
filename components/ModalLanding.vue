@@ -38,7 +38,7 @@ const enlaces = [
         <option value="1">Alumno UPC</option>
         <option value="2">Alumno UPN</option>
         <option value="3">Alumno Cibertec</option>
-        <option value="4">Alumnos externo</option>
+        <option value="4">Alumno externo</option>
 
       </select>
       <div>
