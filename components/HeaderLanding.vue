@@ -1,16 +1,8 @@
 <template>
   <header
-    class="bg-white fixed z-50 top-0 w-full flex justify-between items-center h-[80px] px-20 shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
+    class="bg-white fixed z-50 top-0 w-full flex justify-between items-center h-[80px] px-10 md:px-10 xl:px-20 shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
   >
     <div class="lg:flex items-center gap-[28px] hidden">
-      <div class="lg:hidden">
-        <a href="https://idiomas.upc.edu.pe/" target="_blank" rel="noopener noreferrer">
-          <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
-        </a>
-      </div>
-      <a href="https://idiomas.upc.edu.pe/" target="_blank" rel="noopener noreferrer">
-        <Button primary label="Ingresar a portal WeTALK" @click="triggerModal" />
-      </a>
       <nav>
         <ul class="flex items-center gap-[49px]">
           <li v-for="(list, index) in lists" :key="index">
