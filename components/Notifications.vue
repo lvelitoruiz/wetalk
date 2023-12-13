@@ -100,7 +100,7 @@ const changeItems = (value) => {
         <i class="text-[#35158C] text-xs icon-close cursor-pointer leading-none" @click="closeNotifications"></i>
       </div>
       <div class="flex items-center gap-3 px-4 py-2">
-        <div v-for="(notification, index) in notifications" :key="index">
+        <div v-for="(notification, index) in notifications.slice().reverse()" :key="index">
           <div class="rounded-full flex items-center gap-1 cursor-pointer" :class="[
             {
               'bg-[#E50A17] px-4 py-1 text-white': notification.active,
