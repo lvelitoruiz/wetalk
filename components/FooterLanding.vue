@@ -1,11 +1,11 @@
 <template>
     <section>
-        <div class="container mx-auto items-center justify-between py-8 hidden lg:flex">
+        <div class="container mx-auto md:px-10 items-center justify-between py-8 hidden lg:flex">
           <div class="flex items-center gap-10">
             <img src="@/assets/images/wasc.svg" alt="">
             <div class="flex items-center justify-center flex-col">
               <img src="@/assets/images/book.svg" alt="">
-              <a class="underline text-sm text-[#3817FF] font-bold" href="">Libro de reclamaciones</a>
+              <a class="underline text-sm text-[#3817FF] font-bold" href="https://librodereclamaciones.upc.edu.pe/" target="_blank" rel="noopener noreferrer">Libro de reclamaciones</a>
             </div>
             <div class="flex flex-col gap-2">
               <div class="flex items-center gap-1">
