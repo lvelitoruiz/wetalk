@@ -67,7 +67,9 @@ const triggerCycle = () => {
 const eventClickVerMas = () => {
   if(dataLayer){
       dataLayer.push({
-          event: 'Click-VerMasContenido',
+          event: 'Click_Click_Ver_Mas',
+          'name': 'Evento_Click_Ver_Mas',
+          'titulo_caja': 'Contenido'
       })
   }
 };
@@ -85,7 +87,7 @@ const eventClickVerMas = () => {
             class="flex items-center gap-2"
             to="/contenido"
           >
-            <span class="text-[#E50A17] font-bold text-sm">Ver más</span>
+          <span class="text-[#E50A17] font-zizou-bold text-sm">Ver más</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
           <div class="hidden lg:block" v-if="!props.link">
