@@ -40,7 +40,7 @@
             <input
               type="text"
               v-model="data.nota"
-              class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center"
+              class="w-[32px] border rounded h-[26px] text-sm outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none  font-normal font-sans flex items-center text-[404040] justify-center text-center"
             />
           </td>
         </tr>

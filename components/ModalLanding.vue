@@ -10,7 +10,7 @@
         Selecciona una institución
       </h3>
       <select
-        class="mb-6 rounded px-3 py-[10px] w-full border border-[#BFBFBF] outline-none text-sm cursor-pointer"
+        class="mb-6 rounded px-3 py-[10px] w-full border border-[#BFBFBF] outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none  text-sm cursor-pointer"
         name=""
         id=""
       >

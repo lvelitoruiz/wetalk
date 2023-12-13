@@ -96,7 +96,7 @@ const eventClickVerMas = () => {
           <TabContent v-if="props.tabShow" :tabs="tabs" @tabChange="handleTabChange"></TabContent>
           <div v-if="!props.tabShow" class="flex items-center my-1.5">
             <select
-              class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-gray-900 text-sm cursor-pointer outline-none"
+              class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-[#BFBFBF] text-sm cursor-pointer outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none "
               @change="triggerCycle()">
               <option value="0">Beginner</option>
               <option value="1">High Beginner</option>
