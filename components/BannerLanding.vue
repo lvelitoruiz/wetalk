@@ -35,6 +35,6 @@ const triggerModal = () => {
 
 <style lang="postcss" scoped>
 .bg-image {
- @apply bg-[url('@/assets/images/banner-home.svg')] h-[388px] lg:h-[400px] xl:h-[533px] relative mt-[80px];
+ @apply bg-[url('@/assets/images/banner-home.svg')] bg-no-repeat bg-cover h-[388px] lg:h-[400px] xl:h-[533px] relative mt-[80px];
 }
 </style>
