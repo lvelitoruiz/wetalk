@@ -1,8 +1,7 @@
 <template>
   <header
-    class="flex justify-between items-center h-[80px] px-20 shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
+    class="bg-white fixed z-50 top-0 w-full flex justify-between items-center h-[80px] px-20 shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
   >
-    
     <div class="lg:flex items-center gap-[28px] hidden">
       <div class="lg:hidden">
         <a href="https://idiomas.upc.edu.pe/" target="_blank" rel="noopener noreferrer">
