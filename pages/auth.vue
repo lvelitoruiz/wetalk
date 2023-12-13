@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/auth";
+import { logout } from "../utils/authHeaders";
 const { $msal, $config } = useNuxtApp();
 const userStore = useUserStore();
 
@@ -17,11 +18,11 @@ const isDomainAllowed = (
   );
 };
 
-const logout = async () => {
-  if ($msal().isAuthenticated()) {
-    await $msal().signOut($msal().getAccounts()[0]?.homeAccountId);
-  }
-};
+// const logout = async () => {
+//   if ($msal().isAuthenticated()) {
+//     await $msal().signOut($msal().getAccounts()[0]?.homeAccountId);
+//   }
+// };
 
 // watchEffect(async () => {
 //   const userData = userStore.getUserData;
