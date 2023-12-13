@@ -1,29 +1,21 @@
 <template>
-  <section class="h-[388px] lg:h-[533px] relative mt-[80px]">
-    <img class="h-[388px] lg:h-[533px] w-full object-cover" src="@/assets/images/banner-home.svg" alt="">
-    <div
-      class="container mx-auto flex absolute top-0 left-0 right-0 bottom-0 items-center justify-center lg:justify-between">
-      <img class="h-[500px] hidden lg:block" src="@/assets/images/illustration.svg" alt="">
-      <!-- <div
-        class="bg-[#000] px-[24px] py-[38px] flex flex-col gap-[27px] mx-6 md:mx-0 w-full md:w-[438px] items-center lg:mt-12">
-        <div class="flex flex-col gap-[7px]">
-          <p class="text-[#FFF] text-xl font-bold font-solano leading-none">Exclusivo para alumnos matriculados</p>
-          <h3 class="text-[#FFF] text-[41px] font-bold uppercase font-solano leading-none">Portal WeTALK</h3>
-          <p class="font-publicSans text-[#FFF]">Encuentra toda la información necesaria para tu experiencia de
-            aprendizaje de inglés.</p>
-        </div>
-        <Button @click="triggerModal" label="Ingresar a portal WeTALK" primary />
-      </div> -->
+  <section class="bg-image flex items-center ">
+    <div class="container m-auto md:px-10 xl:px-10 flex items-center justify-center lg:justify-between">
+      <img class="lg:h-[300px] xl:h-[450px] hidden lg:block" src="@/assets/images/illustration.svg" alt="">
         <div class="bg-white px-[46px] py-[33px] flex flex-col">
           <p class="font-zizou-bold font-bold px-2 text-xl mb-6">Ingresa a tu portal WeTALK</p>
+          <a href="https://idiomas.upc.edu.pe/" target="_blank" rel="noopener noreferrer">
           <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano mb-[17px] w-full rounded-[4px] lg:text-[20px]">
             Alumno UPC
             <i class="icon-arrow-right"></i>
           </button>
+          </a>
+          <a href="https://portal.wetalk.pe/login" target="_blank" rel="noopener noreferrer">
           <button @click="triggerModal" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano w-full rounded-[4px] lg:text-[20px]">
             Alumno UPN
             <i class="icon-arrow-right"></i>
           </button>
+          </a>
         </div>
     </div>
   </section>
@@ -41,4 +33,8 @@ const triggerModal = () => {
 
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.bg-image {
+ @apply bg-[url('@/assets/images/banner-home.svg')] bg-no-repeat bg-cover h-[388px] lg:h-[400px] xl:h-[533px] relative mt-[80px];
+}
+</style>

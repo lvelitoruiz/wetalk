@@ -5,7 +5,7 @@
     <div class="w-full lg:w-[1023px] mx-auto">
       <div class="block lg:flex gap-[28px]">
         <div class="min-w-[100%] lg:min-w-[65%]">
-          <NoteBox />
+          <NoteBox :showPromedio=true />
         </div>
         <div class="flex-col flex gap-7">
           <!-- <InasistenciasInfo inasistencia="2" :dates="datesInasistencia" /> -->
