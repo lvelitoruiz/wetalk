@@ -8,7 +8,8 @@ export default defineNuxtConfig({
       authority: process.env.AUTHORITY,
       redirectUri: process.env.REDIRECT_URI,
       postLogoutRedirectUri: process.env.POSTLOGOUT_REDIRECT_URI,
-      stage: process.env.STAGE
+      stage: process.env.STAGE,
+      varUTM: process.env.NUXT_URL_TM,
     }
   },
   devtools: { enabled: true },

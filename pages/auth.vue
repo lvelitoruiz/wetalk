@@ -81,6 +81,7 @@ if($config.public.stage != 'prod') {
       JSON.stringify(accessToken),
       user
     );
+    
   }
 
   if (accounts?.length === 0) {

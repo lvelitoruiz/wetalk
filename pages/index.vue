@@ -59,7 +59,20 @@ const fetchMetaInfo = async () => {
     .then((response) => (keyNotification.value = true));
   const profiler = await menuStore
     .fetchProfileData(apiUrl)
-    .then((response) => (keyProfile.value = true));
+    .then((response) => {
+      keyProfile.value = true;
+      const profileData = menuStore.getProfileItems?.data[0];
+      if(dataLayer){
+        dataLayer.push({
+            event: 'login',
+            'name': 'Login_Wetalk',
+            'modalidad': profileData?.codModalidadEstActual,
+            'carrera': profileData?.desProducto,
+            'ciclo': profileData?.descCurso,
+
+        })
+      }
+    });
 
 };
 

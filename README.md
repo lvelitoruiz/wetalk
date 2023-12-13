@@ -37,6 +37,7 @@ REDIRECT_URI=https://portal-dev.wetalk.pe/callback/auth
 POSTLOGOUT_REDIRECT_URI=https://portal-dev.wetalk.pe/callback/auth
 NUXT_API_BASE=https://wetalkbe-dev-lau.stage01.link
 NUXT_API_KEY=f5f7f62a-6e41-463e-8ce1-463cccd07848
+NUXT_URL_TM=GTM-PF3RQPRR
 ```
 
 ### Stage
@@ -48,6 +49,7 @@ REDIRECT_URI=
 POSTLOGOUT_REDIRECT_URI=
 NUXT_API_BASE=
 NUXT_API_KEY=
+NUXT_URL_TM=GTM-PF3RQPRR
 ```
 
 ### Production
@@ -59,6 +61,7 @@ REDIRECT_URI=
 POSTLOGOUT_REDIRECT_URI=
 NUXT_API_BASE=
 NUXT_API_KEY=
+NUXT_URL_TM=GTM-PF3RQPRR
 ```
 
  
