@@ -1,5 +1,6 @@
 <template>
-  <div class="flex items-start lg:items-center gap-4 mb-10">
+  <div class="container mx-auto">
+    <div class="flex items-start lg:items-center gap-4 mb-10">
     <img src="@/assets/images/pin.svg" alt="" />
     <h2 class="text-[32px] font-bold font-solano uppercase">
       Beneficios de estudiar en WeTALK
@@ -45,6 +46,7 @@
         Contamos con un grupo reducido de alumnos por clase, para darte la atención que mereces.
       </p>
     </div>
+  </div>
   </div>
 </template>
 
