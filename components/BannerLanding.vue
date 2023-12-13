@@ -1,5 +1,5 @@
 <template>
-  <section class="h-[388px] lg:h-[533px] relative">
+  <section class="h-[388px] lg:h-[533px] relative mt-[80px]">
     <img class="h-[388px] lg:h-[533px] w-full object-cover" src="@/assets/images/banner-home.svg" alt="">
     <div
       class="container mx-auto flex absolute top-0 left-0 right-0 bottom-0 items-center justify-center lg:justify-between">
