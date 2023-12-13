@@ -134,7 +134,7 @@ const changeItems = (value) => {
             Esta semana
           </p>
           <div v-for="item in finalItems[1]" :key="item">
-            <div class="py-4 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
+            <div class="py-2 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
               :class="{ 'bg-[#D7E9FB]': item.status }">
               <span class="min-w-[12px] min-h-[12px] bg-[#E50A17] rounded-full"></span>
               <div>

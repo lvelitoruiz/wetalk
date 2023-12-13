@@ -62,6 +62,7 @@ function closeNotifications() {
               notification.tipo === 'Mis estudios' ||
               notification.tipo === 'NUEVO' ||
               notification.tipo === 'Mis trámites' ||
+              notification.tipo === '' ||
               notification.tipo === 'Mi curso',
             'bg-[#EFB3EF]': notification.tipo === 'Pagos',
             'bg-[#F0B27C]': notification.tipo === 'Networking',
@@ -77,6 +78,7 @@ function closeNotifications() {
                   notification.tipo === 'Mis estudios' ||
                   notification.tipo === 'NUEVO' ||
                   notification.tipo === 'Mis trámites' ||
+                  notification.tipo === '' ||
                   notification.tipo === 'Mi curso',
                 'icon-creditcard': notification.tipo === 'Pagos',
                 'icon-user-chat': notification.tipo === 'Networking',
@@ -86,7 +88,7 @@ function closeNotifications() {
             ]"
           ></i>
           <span class="text-[#554A00] hidden lg:block  text-xs leaning-none"
-            >{{ notification.tipo }} ({{ notification.count }})</span
+            >{{ notification.tipo || 'General' }} ({{ notification.count }})</span
           >
           <span class="text-[#554A00] lg:hidden  text-xs leaning-none"
             > {{ notification.count }}</span
