@@ -6,7 +6,7 @@ const { $msal } = useNuxtApp();
 export default defineNuxtRouteMiddleware(async (to, form) => {
     const userStore = useUserStore();
     const token = await $msal()?.acquireTokenSilent();
-    const expToken = $msal()?.getAccounts()[0]?.idTokenClaims?.exp
+    const expToken = $msal()?.getAccounts()[0]?.idTokenClaims?.exp;
 
     if(token && expToken) {
         const jwtExpired = expToken ? Date.now() >= ((expToken ?? 0) * 1000) : false;
