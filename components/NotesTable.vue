@@ -1,5 +1,5 @@
 <template>
-  <div class="px-[9px] min-h-[100px] overflow-y-auto">
+  <div class="green-scroll px-[9px] min-h-[100px] overflow-y-auto">
     <table class="table-auto w-full">
       <thead class="border-b border-[#BFBFBF]">
         <tr>
