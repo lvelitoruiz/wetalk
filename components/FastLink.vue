@@ -42,11 +42,12 @@ const copyToClipboard = (code) => {
     }
 };
 
-const eventClickFastLinks = (name, url) => {
+const eventClickFastLinks = (text, url) => {
     if(dataLayer){
         dataLayer.push({
             event: 'Click-LinksRapidos',
-            'content_name': name,
+            'name': 'Click-LinksRapidos',
+            'Click_Text': text,
             'url': url
         })
     }
