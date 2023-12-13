@@ -43,7 +43,7 @@ async function login() {
     <div class="min-h-[calc(100vh)] bg-[#FE91A4] relative">
         <div class="logos flex justify-center pt-[39px] lg:justify-end gap-[26px] lg:gap-[26px] items-center  lg:max-w-screen-xl mx-[auto]">
             <img src="@/assets/images/upn-logo.svg" class="h-[45px] lg:h-[86px]" alt="UPN">
-            <div class="line-y h-[68px] lg:h-[103px] w-[2px] bg-[#FFF]"></div>
+            <div class="h-[68px] lg:h-[103px] w-[2px] bg-[#FFF]"></div>
             <img src="@/assets/images/wetalkLogo.svg" class="h-[45px] lg:h-[55px]" alt="WETALK">
         </div>
         <div class="flex lg:max-w-screen-xl mx-[auto]">
@@ -100,8 +100,4 @@ async function login() {
     .w-full-btn > span {
         width: 100%;
     }
-    /* .line-y {
-        width: 2px;
-        height: 103px;
-    }  */
 </style>
