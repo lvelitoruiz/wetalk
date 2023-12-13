@@ -1,8 +1,9 @@
 <template>
   <header
-    class="bg-white fixed z-50 top-0 w-full flex justify-between items-center h-[80px] px-10 md:px-10 xl:px-20 shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
+    class="bg-white fixed z-50 top-0 w-full h-[80px] flex items-center shadow-[0_1px_24px_0_rgba(203,213,220,0.40)] font-solano"
   >
-    <div class="lg:flex items-center gap-[28px] hidden">
+    <div class="container mx-auto flex justify-between items-center px-10 md:px-10">
+      <div class="lg:flex items-center gap-[28px] hidden">
       <nav>
         <ul class="flex items-center gap-[49px]">
           <li v-for="(list, index) in lists" :key="index">
@@ -15,19 +16,11 @@
           </li>
         </ul>
       </nav>
-      
-
-      <!-- <div class="flex items-center gap-2 mr-[36px]">
-        <button class="text-[#737373] font-bold border-b border-[#E50A17]">
-          ES
-        </button>
-        <span class="w-[1px] bg-[#737373] h-[12px]"></span>
-        <button class="text-[#737373] font-bold">EN</button>
-      </div> -->
     </div>
     <a class="ml-[36px]" href="">
       <img class="h-[36px]" src="@/assets/images/logo.svg" alt="" />
     </a>
+    </div>
   </header>
 </template>
 
