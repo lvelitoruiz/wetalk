@@ -118,7 +118,7 @@ const haveLink = true;
     <div class="lg:w-[1023px] mx-auto">
       <div class="lg:flex gap-[28px]">
         <div class="min-w-[calc(32%-28px)]">
-          <NoteBox inasistencia="2" dashboard="true" />
+          <NoteBox inasistencia="2" dashboard="true" :showPromedio=true />
         </div>
         <div class="min-w-[34%]">
           <SyllabusBox :open="isOpen" :link="haveLink" />
