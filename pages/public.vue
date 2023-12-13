@@ -11,7 +11,7 @@
     </section>
   
     <section
-      class="container mx-auto py-8 md:pt-[50px] md:pb-[70px] px-6 md:px-10"
+      class="py-8 md:pt-[50px] md:pb-[70px] px-6 md:px-10"
       id="beneficio"
     >
       <BeneficioLanding :items="beneficios" />
