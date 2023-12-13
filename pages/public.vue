@@ -31,27 +31,12 @@
         </p>
         <ul class="flex items-end gap-[32px]">
           <li>
-            <a href="">
+            <a href="https://instagram.com/wetalk_upc?igshid=YTQwZjQ0NmI0OA==" target="_blank" rel="noopener noreferrer">
               <NuxtIcon name="instagram" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
           <li>
-            <a href="">
-              <NuxtIcon name="youtube" class="text-[30px] text-white"></NuxtIcon>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <NuxtIcon name="linkedin" class="text-[30px] text-white"></NuxtIcon>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <NuxtIcon name="twitter" class="text-[30px] text-white"></NuxtIcon>
-            </a>
-          </li>
-          <li>
-            <a href="">
+            <a href="https://www.facebook.com/WeTALKUPC?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
               <NuxtIcon name="facebook" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
