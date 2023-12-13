@@ -29,7 +29,7 @@
         </h3>
       </div>
       <p class="pb-4 font-publicSans font-normal">
-        Clases en vivo 100% online para que evites el tráfico y aproveches tu vida al máximo. ¡Puedes conectarte hasta de tu celular!
+       Clases en vivo 100% online para que evites el tráfico y aproveches tu vida al máximo.
       </p>
     </div>
     <div
