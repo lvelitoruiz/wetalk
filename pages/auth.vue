@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/auth";
+import { useMenuStore } from "~/stores/menu";
 import { logout } from "../utils/authHeaders";
 const { $msal, $config } = useNuxtApp();
 const userStore = useUserStore();
+const userMenu =useMenuStore();
 
 const accessDomain = ref(false);
 
@@ -18,6 +20,8 @@ const isDomainAllowed = (
   );
 };
 
+// userMenu.getProfileItems()
+    console.log(userMenu.getProfileItems, 'test');
 // const logout = async () => {
 //   if ($msal().isAuthenticated()) {
 //     await $msal().signOut($msal().getAccounts()[0]?.homeAccountId);
@@ -81,6 +85,7 @@ if($config.public.stage != 'prod') {
       JSON.stringify(accessToken),
       user
     );
+    
   }
 
   if (accounts?.length === 0) {
