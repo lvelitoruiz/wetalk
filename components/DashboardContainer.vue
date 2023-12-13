@@ -83,7 +83,7 @@ const haveLink = true;
               v-if="selectedImage !== ''"
               :animationLink="selectedImage"
               :height="55"
-              :width="auto"
+              width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"
             />
             <!-- <img v-if="selectedImage !== ''" :src="selectedImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" /> -->
@@ -93,7 +93,7 @@ const haveLink = true;
               v-if="selectedImage === ''"
               :animationLink="anotherImage"
               :height="55"
-              :width="auto"
+              width="auto"
               class="lg:min-h-[55px] min-h-[87px]  w-auto"
             />
             <!-- <img v-if="selectedImage === ''" :src="anotherImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" /> -->
@@ -118,7 +118,7 @@ const haveLink = true;
     <div class="lg:w-[1023px] mx-auto">
       <div class="lg:flex gap-[28px]">
         <div class="min-w-[calc(32%-28px)]">
-          <NoteBox inasistencia="2" dashboard="true" :showPromedio=true />
+          <NoteBox inasistencia="2" :dashboard=true />
         </div>
         <div class="min-w-[34%]">
           <SyllabusBox :open="isOpen" :link="haveLink" />
