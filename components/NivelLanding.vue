@@ -8,47 +8,40 @@
           <img class="w-[422px] hidden lg:block" src="@/assets/images/person.svg" alt="">
           <div class="flex flex-col gap-1 lg:gap-[4px]">
             <div class="rounded-md flex lg:items-center">
-              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[90px] text-[#191919] rounded-l-md">
-                <p class="text-xl uppercase font-solano font-bold">English</p>
-                <p class="text-[40px] font-solano lg:text-5xl uppercase font-bold leading-none">5</p>
+              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[100px] text-[#191919] rounded-l-md">
+                <p class="text-xl uppercase font-solano font-bold">intermediate</p>
               </div>
-              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[90px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
-                <p class="font-publicSans">Comunicarte con hablantes nativos con fluidez, y defender puntos de vista, analizando pros y contras en temas generales.</p>
+              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[100px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
+                <p class="font-publicSans leading-[1.3]">Comunicarte con hablantes nativos con fluidez, y defender puntos de vista, analizando pros y contras en temas generales.</p>
               </div>
             </div>
             <div class="rounded-md flex lg:items-center lg:ml-[20px]">
-              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[90px] text-[#191919] rounded-l-md">
-                <p class="text-xl font-solano uppercase font-bold">English</p>
-                <p class="text-[40px] font-solano lg:text-5xl uppercase font-bold leading-none">4</p>
+              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[100px] text-[#191919] rounded-l-md">
+                <p class="text-xl font-solano uppercase font-bold">Low intermediate</p>
               </div>
-              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[90px] text-white rounded-r-md px-4 py-4 lg:py-0 w-[98%]">
-                <p class="font-publicSans">Comprender ideas principales en textos complejos dentro de su especialización. Puede comunicarse con hablantes nativos con fluidez, producir textos detallados sobre diversos temas y defender puntos de vista, analizando pros y contras en temas generales.</p>
+              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[100px] text-white rounded-r-md px-4 py-4 lg:py-0 w-[98%]">
+                <p class="font-publicSans leading-[1.3]">Desenvolverte en situaciones comunes durante viajes, describir experiencias, eventos, deseos y justificar tus opiniones brevemente.</p>
               </div>
             </div>
             <div class="rounded-md flex lg:items-center lg:ml-[40px]">
-              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[90px] text-[#191919] rounded-l-md">
-                <p class="text-xl uppercase font-solano font-bold">English</p>
-                <p class="text-[40px] lg:text-5xl font-solano uppercase font-bold leading-none">3</p>
+              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[100px] text-[#191919] rounded-l-md">
+                <p class="text-xl uppercase font-solano font-bold">Basic</p>
               </div>
-              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[90px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
-                <p class="font-publicSans">Desenvolverte en situaciones comunes durante viajes, describir experiencias, eventos, deseos y justificar tus opiniones brevemente.</p>
+              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[100px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
+                <p class="font-publicSans leading-[1.3]">Comunicarte en tareas simples y cotidianas, describir aspectos básicos de tu pasado y entorno, y expresar necesidades inmediatas con intercambios directos.</p>
               </div>
             </div>
             <div class="rounded-md flex lg:items-center lg:ml-[60px]">
-              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[90px] text-[#191919] rounded-l-md">
+              <div>
+                <div class="flex items-center justify-center flex-col bg-[#FDBA30] h-[50%] lg:h-[50px] min-w-[147px] text-[#191919] rounded-l-md">
                 <p class="text-xl uppercase font-solano font-bold">High - Beginnner</p>
               </div>
-              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[90px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
-                <p class="font-publicSans">Comunicarte en tareas simples y cotidianas, describir aspectos básicos de tu pasado y entorno, y expresar necesidades inmediatas con intercambios directos.</p>
+              <div class="flex items-center justify-center flex-col bg-[#FDBA30] h-[50%] lg:h-[50px] min-w-[147px] text-[#191919] rounded-l-md mt-[1px]">
+                <p class="text-xl uppercase font-solano font-bold">Beginnner</p>
               </div>
-            </div>
-            <div class="rounded-md flex lg:items-center lg:ml-[80px]">
-              <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[147px] min-h-[112px] lg:min-h-[90px] text-[#191919] rounded-l-md">
-                <p class="text-xl uppercase font-solano font-bold text-center">Beginnner <br> High - Beginnner
-                </p>
               </div>
-              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[90px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
-                <p class="font-publicSans">Presentarte, proporcionar información personal básica y relacionarte de manera elemental en situaciones donde la comunicación sea clara y lenta.</p>
+              <div class="flex justify-center flex-col bg-[#0043AA] lg:h-[100px] text-white rounded-r-md px-4 py-4 lg:py-0 w-full">
+                <p class="font-publicSans leading-[1.3]">Presentarte, proporcionar información personal básica y relacionarte de manera elemental en situaciones donde la comunicación sea clara y lenta.</p>
               </div>
             </div>
           </div>
