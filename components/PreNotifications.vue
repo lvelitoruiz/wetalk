@@ -41,10 +41,10 @@ function closeNotifications() {
 }
 </script>
 <template>
-  <div class="absolute right-[-25px] xl:left-[-25px] top-[70px]">
-    <div class="ml-[25px] triangulo-up"></div>
+  <div class="absolute left-[-20px] right-[-25px] xl:left-[-25px] top-[70px]">
+    <div class="ml-[20px] triangulo-up"></div>
     <div
-      class="bg-white relative rounded-lg px-6 py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[312px]"
+      class="bg-white relative rounded-lg pl-6 pr-4 py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[209px] lg:min-w-[312px]"
     >
       <p v-if="notifications.length > 0" class="text-sm text-[#191919] mb-2">
         Tienes nuevas notificaciones
@@ -87,11 +87,13 @@ function closeNotifications() {
               },
             ]"
           ></i>
-          <span class="text-[#554A00] hidden lg:block  text-xs leaning-none"
-            >{{ notification.tipo || 'General' }} ({{ notification.count }})</span
+          <span class="text-[#554A00] hidden lg:block text-xs leaning-none"
+            >{{ notification.tipo || "General" }} ({{
+              notification.count
+            }})</span
           >
-          <span class="text-[#554A00] lg:hidden  text-xs leaning-none"
-            > {{ notification.count }}</span
+          <span class="text-[#554A00] lg:hidden text-xs leaning-none">
+            {{ notification.count }}</span
           >
         </div>
 
