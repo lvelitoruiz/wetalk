@@ -43,7 +43,7 @@
                 {{ data.nota === "00" ? "-" : data.nota }}
               </span>
               <input v-else type="text" v-model="calculus[index].nota"
-                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] justify-center text-center"
+                class="w-[32px] border rounded h-[26px] text-sm font-normal font-sans flex items-center text-[404040] outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none  justify-center text-center"
                 @input="validateInput(index)" />
             </div>
           </td>
@@ -53,7 +53,7 @@
   </div>
   <div class="flex items-center justify-between bg-[#DEF7F1] px-[9px] py-[10px] rounded-[10px]">
     <p class="text-[#404040] text-sm font-bold flex">Promedio final
-      <span class="hidden lg:inline-block w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible">
+      <span :class="{'lg:inline-block': showPromedio}" class="hidden w-[32px] h-[24px] relative overflow-hidden rounded-full hover:w-auto hover:overflow-visible">
         <img class="ml-2" src="@/assets/images/Ic-md-information.svg" />
         <ToolTip title="Fórmula" :text="formula" />
       </span>
@@ -89,6 +89,7 @@ const props = defineProps({
   dashboard: Boolean,
   simulator: Boolean,
   formula: String,
+  showPromedio: Boolean
 });
 
 if (props.notasData !== null && props.notasData !== undefined) {

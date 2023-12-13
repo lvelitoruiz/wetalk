@@ -55,7 +55,7 @@ watchEffect(() => {
       active: false,
     }));
 
-    selectedImage.value = images[0].imagen;
+    anotherdImage.value = images[0].imagen;
     illustrations.value = formattedImages;
   }
 });
@@ -107,6 +107,7 @@ const cleanMeta = async () => {
 };
 
 const changeImage = (indexItem, newImage) => {
+  console.log('illustrations: ',illustrations.value,indexItem,newImage);
   illustrations.value.map((item, index) => {
     if (index === indexItem) {
       item.active = true;
@@ -160,7 +161,7 @@ const changeImage = (indexItem, newImage) => {
             />
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
-            <div class="triangulo-up"></div>
+            <div class="triangulo-up" style="position: relative;"></div>
             <div
               class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] px-5 py-2 w-full flex justify-between items-center rounded-lg"
             >
@@ -213,7 +214,7 @@ const changeImage = (indexItem, newImage) => {
           </div>
           <input
             v-model="meta"
-            class="border border-[#BFBFBF] placeholder:text-[#A6A6A6] h-[38px] px-[12px] w-full rounded placeholder:text-sm text-base"
+            class="border border-[#BFBFBF] placeholder:text-[#A6A6A6] h-[38px] outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none px-[12px] w-full rounded placeholder:text-sm text-base"
             placeholder="Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆"
             type="text"
             @input="handleMeta"
