@@ -69,3 +69,56 @@ export default defineComponent({
     <slot></slot>
   </div>
 </template>
+<style>
+  ::-webkit-scrollbar {
+  width: 6px; 
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; 
+}
+
+.green-scroll::-webkit-scrollbar-thumb {
+  background-color: #039C6D; 
+  border-radius: 6px; 
+}
+
+.greenLigth-scroll::-webkit-scrollbar-thumb {
+  background-color: #9DE7D6; 
+  border-radius: 6px; 
+}
+
+.yellow-scroll::-webkit-scrollbar-thumb {
+  background-color: #FFDF00; 
+  border-radius: 6px; 
+}
+
+.cyan-scroll::-webkit-scrollbar-thumb {
+  background-color: #699A8F; 
+  border-radius: 6px; 
+}
+
+.blueLigth-scroll::-webkit-scrollbar-thumb {
+  background-color: #5598FF; 
+  border-radius: 6px; 
+}
+
+.red-scroll::-webkit-scrollbar-thumb {
+  background-color: #E50A17; 
+  border-radius: 6px; 
+}
+
+.pink-scroll::-webkit-scrollbar-thumb {
+  background-color: #FEB6C2; 
+  border-radius: 6px; 
+}
+
+.black-scroll::-webkit-scrollbar-thumb {
+  background-color: #191919; 
+  border-radius: 6px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Set the color of the thumb on hover */
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
     <div class="container mx-auto">
-        <div class="flex items-start lg:items-center gap-4 mb-10">
+        <div class="flex items-start lg:items-center gap-[4px] mb-10">
           <img src="@/assets/images/pin.svg" alt="">
           <h2 class="text-[32px] font-bold uppercase font-solano">en WeTALK aprenderás en cada nivel a:</h2>
         </div>
         <div class="flex justify-between items-center">
           <img class="w-[422px] hidden lg:block" src="@/assets/images/person.svg" alt="">
-          <div class="flex flex-col gap-1 lg:gap-4">
+          <div class="flex flex-col gap-1 lg:gap-[4px]">
             <div class="rounded-md flex lg:items-center">
               <div class="flex items-center justify-center flex-col bg-[#FDBA30] min-w-[90px] min-h-[112px] lg:min-h-[90px] text-[#191919] rounded-l-md">
                 <p class="text-xl uppercase font-solano font-bold">English</p>
