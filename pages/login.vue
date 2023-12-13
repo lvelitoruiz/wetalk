@@ -40,58 +40,54 @@ async function login() {
 
 </script>
 <template>
-    <div class="flex min-h-[calc(100vh)] bg-[#ACF] relative">
-        <div class="flex justify-center lg:justify-end w-full  ">
-            <div class="content lg:mx-[100px] pt-[82px] z-10">
-                <div class="logos flex justify-between py-[33px]">
-                    <img src="@/assets/images/upcicon.svg" alt="UPC">
-                    <img src="@/assets/images/upn.svg" alt="UPN">
-                    <img src="@/assets/images/cib.svg" alt="CIBERTEC">
-                </div>
-                <div v-if="$config.public.stage != 'prod'">
-                    <select v-model="selectedCodUser">
-                        <option>N00200910</option>
-                        <option>N00230206</option>
-                        <option>N00049275</option>
-                        <option>N00282479</option>
-                        <option>N00200854</option>
-                        <option>N00281622</option>
-                        <option>N00268730</option>
-                    </select>
-                </div>
-                <div class="content-login min-w-[100%] lg:min-w-[360px] max-w-[360px] bg-[#fff] py-[34px] px-[36px] rounded-[15px]">
-                    <img src="@/assets/images/wetalkLogo.svg" class="mx-auto" alt="CIBERTEC">
-                    
-                    <!-- <button type="submit"
-                        class="bg-[#E50A17] mx-auto text-white py-2 px-4  font-medium flex items-center gap-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition duration-300 ease-in-out"
-                        @click="login">
-                        <span>Iniciar sesión</span>
-                    </button>  -->
-                    <Button
-                        class="w-full w-full-btn mt-[40px]"
-                        label="Iniciar sesión"
-                        primary
-                        @click="login"
-                    />
+    <div class="min-h-[calc(100vh)] bg-[#FE91A4] relative">
+        <div class="logos flex justify-center pt-[39px] lg:justify-end gap-[26px] lg:gap-[26px] items-center  lg:max-w-screen-xl mx-[auto]">
+            <img src="@/assets/images/upn-logo.svg" class="h-[45px] lg:h-[86px]" alt="UPN">
+            <div class="line-y h-[68px] lg:h-[103px] w-[2px] bg-[#FFF]"></div>
+            <img src="@/assets/images/wetalkLogo.svg" class="h-[45px] lg:h-[55px]" alt="WETALK">
+        </div>
+        <div class="flex lg:max-w-screen-xl mx-[auto]">
+            <div class="flex justify-center lg:justify-end w-full  ">
+                <div class="content lg:mx-[77px] pt-[35px] lg:pt-[62px] z-10">
+                    <div v-if="$config.public.stage != 'prod'">
+                        <select v-model="selectedCodUser">
+                            <option>N00200910</option>
+                            <option>N00230206</option>
+                            <option>N00049275</option>
+                            <option>N00282479</option>
+                            <option>N00200854</option>
+                            <option>N00281622</option>
+                            <option>N00268730</option>
+                        </select>
+                    </div>
+                    <div class="content-login min-w-[100%] lg:min-w-[314px] max-w-[360px] bg-[#fff] py-[40px] px-[36px] rounded-[15px]">
+                        
+                        <!-- <div class="logos flex justify-center gap-[20px] pb-[33px]">
+                            <img src="@/assets/images/upcicon.svg" alt="UPC">
+                            <img src="@/assets/images/upn.svg" alt="UPN">
+                            <img src="@/assets/images/cib.svg" alt="CIBERTEC">
+                        </div> -->
+                        <div class="text-center mb-[70px] mt-[42px]">
+                            <h3 class="text-[24px] font-solano">¡Bienvenido a TU portal WeTALK!</h3>
+                            <p class="text-[14px]">Accede con tu cuenta para continuar</p>
+                        </div>
+                        <Button
+                            class="w-full w-full-btn"
+                            label="Iniciar sesión"
+                            primary
+                            @click="login"
+                        />
+                        <div class="text-center mt-[12px]">
+                            <span class="text-[14px]">¿Aún no estás matriculado? <a href="/public" class="text-primary font-zizou-bold">Haz click</a></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="marca-logo left-[84px] min-w-xs max-w-[700px] hidden md:block">
-            <img src="@/assets/images/english.png" alt="English ">
-        </div>
-        
-        <!-- <div class="relative w-full ">
-
-           
-
-            <div class="flex justify-center mx-auto w-[400px] my-10">
-                <button type="submit"
-                    class="bg-red-500 text-white py-2 px-4 rounded font-medium flex items-center gap-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition duration-300 ease-in-out"
-                    @click="login">
-                    <span>Login con Microsoft 365</span>
-                </button>    
+            <div class="marca-logo left-[84px] min-w-xs max-w-[700px] hidden md:block">
+                <img src="@/assets/images/english.png" alt="English ">
             </div>
-        </div> -->
+            
+        </div>
     </div>
    
     
@@ -103,5 +99,9 @@ async function login() {
     }
     .w-full-btn > span {
         width: 100%;
-    } 
+    }
+    /* .line-y {
+        width: 2px;
+        height: 103px;
+    }  */
 </style>
