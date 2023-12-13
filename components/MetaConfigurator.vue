@@ -55,7 +55,7 @@ watchEffect(() => {
       active: false,
     }));
 
-    selectedImage.value = images[0].imagen;
+    anotherdImage.value = images[0].imagen;
     illustrations.value = formattedImages;
   }
 });
@@ -107,6 +107,7 @@ const cleanMeta = async () => {
 };
 
 const changeImage = (indexItem, newImage) => {
+  console.log('illustrations: ',illustrations.value,indexItem,newImage);
   illustrations.value.map((item, index) => {
     if (index === indexItem) {
       item.active = true;
