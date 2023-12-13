@@ -78,7 +78,7 @@ async function login() {
                             @click="login"
                         />
                         <div class="text-center mt-[12px]">
-                            <span class="text-[14px]">¿Aún no estás matriculado? <a href="/public" class="text-primary font-zizou-bold">Haz click</a></span>
+                            <span class="text-[14px]">¿Aún no estás matriculado? <a href="/public" class="text-primary font-zizou-bold">Haz clic aquí</a></span>
                         </div>
                     </div>
                 </div>
