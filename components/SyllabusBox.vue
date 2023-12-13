@@ -67,7 +67,9 @@ const triggerCycle = () => {
 const eventClickVerMas = () => {
   if(dataLayer){
       dataLayer.push({
-          event: 'Click-VerMasContenido',
+          event: 'Click_Click_Ver_Mas',
+          'name': 'Evento_Click_Ver_Mas',
+          'titulo_caja': 'Contenido'
       })
   }
 };

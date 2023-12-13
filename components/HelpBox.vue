@@ -16,8 +16,9 @@ watchEffect(() => {
 const eventClickAyuda = (url) => {
     if(dataLayer){
         dataLayer.push({
-            event: 'Click-Ayuda',
-            'url': url,
+            event: 'Ayuda',
+            'name': 'Evento_Ayuda',
+            'Click_text': url
         })
     }
 };
