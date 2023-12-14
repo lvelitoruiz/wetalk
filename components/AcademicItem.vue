@@ -3,7 +3,7 @@
     <p class="text-sm font-sans font-bold text-[#404040]">{{ label }}</p>
     <div class="flex items-center gap-2">
       <p class="text-sm text-[#404040]">{{ value }}</p>
-      <span class="cursor-pointer" v-if="showIcon" @click="copyToClipboard"><i class="icon-file-copy text-[#699A8F]"></i></span>
+      <span class="cursor-pointer" v-if="showIcon" @click="copyToClipboard(label, value)"><i class="icon-file-copy text-[#699A8F]"></i></span>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ const props = defineProps({
   }
 });
 
-const copyToClipboard = () => {
+const copyToClipboard = (label, value) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: "No se puede copiar en tu navegador.",
@@ -45,6 +45,14 @@ const copyToClipboard = () => {
         typeof: "error",
       });
     });
+     if(dataLayer){
+        dataLayer.push({
+            event: 'Mis_Datos',
+            'name': 'Evento_Mis_Datos',
+            'text': label,
+            'Click_Text': value
+        })
+  }
 };
 
 </script>
