@@ -7,7 +7,7 @@
       <span class="text-white font-zizou-bold font-bold text-sm leaning-none"
         >Cód: {{ code }}</span
       >
-      <i class="text-white text-xs icon-file-copy" @click="copyToClipboard"></i>
+      <i class="text-white text-xs icon-file-copy" @click="copyToClipboard(name, code)"></i>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ const props = defineProps({
   code: String
 })
 
-const copyToClipboard = () => {
+const copyToClipboard = (name, code) => {
     if (!navigator.clipboard) {
         $toast.open({
             message: "No se puede copiar en tu navegador.",
@@ -45,6 +45,14 @@ const copyToClipboard = () => {
                 typeof: "error",
             });
         });
+         if(dataLayer){
+        dataLayer.push({
+            event: 'Mis_Datos',
+            'name': 'Evento_Mis_Datos',
+            'text': name,
+            'Click_Text': code,
+        })
+  }
 };
 
 </script>

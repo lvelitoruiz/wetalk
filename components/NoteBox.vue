@@ -72,6 +72,13 @@ const props = defineProps({
 
 const reestablishNotes = () => {
   tableNotes.value.recoverNotes();
+  if(dataLayer){
+        dataLayer.push({
+            event: 'Simular_Promedio',
+            'name': 'Evento_Simular_Promedio',
+            'Click_Text': 'Reestablecer notas',
+        })
+  }
 };
 
 const fetchData = async () => {
@@ -97,6 +104,19 @@ watchEffect(async () => {
 
 const irSimulador = () => {
   showSimulator.value = !showSimulator.value;
+  if(dataLayer, !showSimulator.value){
+        dataLayer.push({
+            event: 'Simular_Promedio',
+            'name': 'Evento_Simular_Promedio',
+            'Click_Text': 'Cancelar',
+        })
+  }if(dataLayer, showSimulator.value){
+        dataLayer.push({
+            event: 'Simular_Promedio',
+            'name': 'Evento_Simular_Promedio',
+            'Click_Text': 'Simulador de promedio',
+        })
+  }
 }
 
 onMounted( () => {

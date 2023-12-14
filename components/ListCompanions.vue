@@ -10,7 +10,7 @@ const props = defineProps({
 
 
 const $toast = useToast();
-const copyToClipboard = (email) => {
+const copyToClipboard = (email, student) => {
     if (!navigator.clipboard) {
         $toast.open({
             message: "No se puede copiar en tu navegador.",
@@ -31,6 +31,15 @@ const copyToClipboard = (email) => {
                 typeof: "error",
             });
         });
+        if(dataLayer){
+            dataLayer.push({
+                event: 'Click_Copiar',
+                'name': 'Evento_Click_Copiar',
+                'titulo_caja': 'Compañeros',
+                'Click_Text': email,
+                'titulo': student
+            })
+        }
 };
 
 const capitalizeString = (str) => {
@@ -53,7 +62,7 @@ const capitalizeString = (str) => {
                        <div class="pr-[5px]"> <span class="font-bold text-[16px] text-[#404040]">{{ capitalizeString(student.nombreCompleto) }}</span> <br>
                         <span class="text-[#808080] text-[14px]">{{ student.email }}</span> 
                         </div>
-                        <i class="icon-file-copy text-xl text-[#699A8F cursor-pointer text-[#699A8F]" v-if="student.email"  @click="copyToClipboard(student.email)"></i>
+                        <i class="icon-file-copy text-xl text-[#699A8F cursor-pointer text-[#699A8F]" v-if="student.email"  @click="copyToClipboard(student.email, student.nombreCompleto)"></i>
                     </li>
                 </ul>
             </div>

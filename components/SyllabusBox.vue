@@ -58,6 +58,13 @@ const downloadFile = () => {
   } else {
     alert("Popup blocked. Please allow popups for this website.");
   }
+  if(dataLayer){
+        dataLayer.push({
+            event: 'Descargar_Sylabus',
+            'name': 'Evento_Descargar_Sylabus',
+            'contenido': fileUrl,
+        })
+    }
 };
 
 const triggerCycle = () => {
@@ -91,7 +98,7 @@ const eventClickVerMas = () => {
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link>
           <div class="hidden lg:block" v-if="!props.link">
-            <Button v-if="!props.link" label="Descargar Syllabus" primary downloadIcon @click="downloadFile()" />
+            <Button v-if="!props.link" label="Descargar Syllabus" primary downloadIcon @click="downloadFile(props.link)" />
           </div>
         </div>
         <div class="flex items-center gap-4 mb-[22px]">
