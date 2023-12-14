@@ -62,7 +62,7 @@ const fetchMetaInfo = async () => {
     .then((response) => {
       keyProfile.value = true;
       const profileData = menuStore.getProfileItems?.data[0];
-      if(dataLayer){
+      if(menuStore.getProfileItems?.data?.length > 0 && dataLayer){
         dataLayer.push({
             event: 'login',
             'name': 'Login_Wetalk',
@@ -72,7 +72,7 @@ const fetchMetaInfo = async () => {
             'codigoAlumno': profileData?.codAlumno,
 
         })
-      }
+      };
     });
 
 };

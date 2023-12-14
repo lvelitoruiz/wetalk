@@ -77,7 +77,7 @@ const enlaces = [
         </div>
         <div class="flex justify-center items-center mt-8">
           <!-- <a class="display inline-block w-auto pr-1 pb-1 relative">Mas informacion aqui</a> -->
-          <a class="display inline-block w-auto pr-1 pb-1 relative" :href="enlaces[institucionSeleccionada][esAlumnoNuevo]">
+          <a class="display inline-block w-auto pr-1 pb-1 relative" :href="enlaces[institucionSeleccionada][esAlumnoNuevo]" target="_blank">
             <span class="inline-block p-2.5 leading-6 w-full font-zizou-bold text-normal relative z-10 bg-[#E50A17] text-white transition-all duration-300 ease-in-out hover:bg-[#B70812]">
               <div class="flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none" class="mr-2" v-if="downloadIcon">
