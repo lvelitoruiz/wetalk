@@ -18,8 +18,8 @@ const openClose = () => {
   nots.value = !nots.value;
   if(dataLayer){
     dataLayer.push({
-        event: 'Evento_Load-Notifications',
-        'name': 'Load-Notifications',
+        event: 'Load-Notifications',
+        'name': 'Evento_Load-Notifications',
     })
   }
 };
@@ -35,8 +35,8 @@ const openList = () => {
   showOption.value = !showOption.value;
   if(dataLayer){
     dataLayer.push({
-        event: 'Evento_Menu_Perfil',
-        'name': 'Menu_Perfil',
+        event: 'Menu_Perfil',
+        'name': 'Evento_Menu_Perfil',
     })
   }
 };
@@ -59,8 +59,8 @@ onMounted(() => {
 const eventClickCorreo = (text) => {
     if(dataLayer){
         dataLayer.push({
-            event: 'Evento_Header_Correo',
-            'name': 'Header_Correo',
+            event: 'Header_Correo',
+            'name': 'Evento_Header_Correo',
             'url': text,
         })
     }
@@ -69,8 +69,8 @@ const eventClickCorreo = (text) => {
 const eventClickPerfil = (text, url) => {
     if(dataLayer){
         dataLayer.push({
-            event: 'Evento_Click_Perfil',
-            'name': 'Click_Perfil',
+            event: 'Click_Perfil',
+            'name': 'Evento_Click_Perfil',
             'text': text,
             'url': url,
         })
@@ -80,8 +80,8 @@ const eventClickPerfil = (text, url) => {
 const eventClickLogout = (text) => {
     if(dataLayer){
         dataLayer.push({
-            event: 'Evento_Cerrar_Sesion',
-            'name': 'Cerrar_Sesion',
+            event: 'Cerrar_Sesion',
+            'name': 'Evento_Cerrar_Sesion',
             'text': text,
         })
     }

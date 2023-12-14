@@ -8,7 +8,7 @@
       <p class="max-w-[492px] font-publicSans">
         Únete a más de miles de egresados de WeTALK que abrieron las puertas a su próxima beca, maestría o trabajo en el extranjero.
       </p>
-      <Button label="Más información" secundary @click="triggerModal" />
+      <Button label="Más información" secundary @click="triggerModal('Más información')" />
     </div>
   </div>
 </template>
@@ -19,8 +19,15 @@ import { defineProps, defineEmits } from 'vue';
 
 const emit = defineEmits();
 
-const triggerModal = () => {
+const triggerModal = (text) => {
   emit('modal-open');
+  if(dataLayer){
+        dataLayer.push({
+            event: 'Mas_Informacion',
+            'name': 'Evento_Mas_Informacion',
+            'Click_text': text,
+        })
+  }
 };
 </script>
 
