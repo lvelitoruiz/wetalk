@@ -94,6 +94,13 @@ const updateMeta = async () => {
   await metaStore.registerMetaData(apiUrl, metaItem);
   await fetchMetaInfo();
   markImage();
+  if(dataLayer){
+        dataLayer.push({
+            event: 'Mi_Meta',
+            'name': 'Evento_Mi_Meta',
+            'Click_Text': 'Guardar cambios',
+        })
+  }
 };
 
 const cleanMeta = async () => {
@@ -104,6 +111,13 @@ const cleanMeta = async () => {
   await fetchMetaInfo();
   graphemesNow.value = "";
   markImage();
+  if(dataLayer){
+        dataLayer.push({
+            event: 'Mi_Meta',
+            'name': 'Evento_Mi_Meta',
+            'Click_Text': 'Eliminar meta',
+        })
+  }
 };
 
 const changeImage = (indexItem, newImage) => {
