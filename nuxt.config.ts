@@ -41,4 +41,9 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['stores'],
   },
+  app: {
+    head: {
+        link: [{ rel: 'icon', type: 'image/png', href: '/logo-upc.png' }]
+    }
+},
 });

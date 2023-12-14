@@ -7,6 +7,9 @@ const selectedCodUser = ref(null);
 definePageMeta({
     middleware: 'auth'
 });
+useHead({
+  title: 'Portal WeTALK',
+})
 
 async function login() {
     if($config.public.stage != 'prod' && selectedCodUser.value) {
