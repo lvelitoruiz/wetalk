@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/auth";
-import { logout } from "../utils/authHeaders";
+// import { logout } from "../utils/authHeaders";
 const { $msal, $config } = useNuxtApp();
 const userStore = useUserStore();
 
@@ -105,8 +105,8 @@ if($config.public.stage != 'prod') {
       <div v-if="!accessDomain">
         <p class="my-5">No tienes permisos para acceder</p>
         <!-- <p>Inicie sesión con otra cuenta</p> -->
-        <!-- <Logout></Logout> -->
-        <button @click="logout">Cerrar sesión</button>
+        <Logout></Logout>
+        <!-- <button @click="logout">Cerrar sesión</button> -->
       </div>
       <div v-if="accessDomain">Iniciando Sesión</div>
     </div>
