@@ -19,15 +19,17 @@ export const useMetaStore = defineStore({
     getImages: (state) => state.imagesData,
   },
   actions: {
-    fetchData(){
+    async fetchData(){
       const userStore = useUserStore();
       let dataU = userStore.getUserData; 
+      const { $msal } = useNuxtApp();
+
+      const token = $msal ? await $msal()?.acquireTokenSilent() : '';
       const dataUser = {
-        localHeader: dataU.bearerToken,
+        localHeader: token,
         localCodUser: dataU.codUser,
         localIntitution: dataU.institucion
       }
-
       return  dataUser;
     },
     async fetchMetaData(apiUrl: string) {
@@ -39,13 +41,13 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-            this.fetchData()?.localHeader
+            (await this.fetchData())?.localHeader
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get<any>(`/Perfil/v1/meta/obtener?institucion=${this.fetchData()?.localIntitution}&id=${this.fetchData()?.localCodUser}`);
+          .get<any>(`/Perfil/v1/meta/obtener?institucion=${(await this.fetchData())?.localIntitution}&id=${(await this.fetchData())?.localCodUser}`);
 
         this.metaData = response.data.data;
       } catch (error) {
@@ -64,13 +66,13 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-            this.fetchData()?.localHeader
+            (await this.fetchData())?.localHeader
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .post(`/Perfil/v1/meta/registrar?institucion=${this.fetchData()?.localIntitution}`, metaInfo);
+          .post(`/Perfil/v1/meta/registrar?institucion=${(await this.fetchData())?.localIntitution}`, metaInfo);
 
         this.metaData = response.data;
       } catch (error) {
@@ -87,13 +89,13 @@ export const useMetaStore = defineStore({
           },
           headers: {
             Authorization:
-            this.fetchData()?.localHeader
+            (await this.fetchData())?.localHeader
           },
         };
 
         const response = await axios
           .create(axiosConf)
-          .get(`/Perfil/v1/meta/listar/imagenes?institucion=${this.fetchData()?.localIntitution}`);
+          .get(`/Perfil/v1/meta/listar/imagenes?institucion=${(await this.fetchData())?.localIntitution}`);
 
         this.imagesData = response.data.data;
       } catch (error) {
