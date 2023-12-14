@@ -17,8 +17,9 @@ const handleActivation = (label) => {
   isActive.value = !isActive.value;
   if(dataLayer){
     dataLayer.push({
-      event: 'Click-MenuLateral',
-      'content_name': label
+      event: 'Click-LinksRapidos',
+      'name': 'Click-LinksRapidos',
+      'Click_Text': label
     })
   }
 };
@@ -26,9 +27,10 @@ const handleActivation = (label) => {
 const eventClickSubMenu = (url, name) => {
     if(dataLayer){
         dataLayer.push({
-            event: 'Click-SubMenu',
-            'url': url,
-            'content_name': name
+           event: 'Click-LinksRapidos',
+           'name': 'Click-LinksRapidos',
+           'url': url,
+           'Click_Text': name
         })
     }
 };

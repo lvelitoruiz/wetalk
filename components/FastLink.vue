@@ -36,8 +36,9 @@ const copyToClipboard = (code) => {
         });
     if(dataLayer){
         dataLayer.push({
-            event: 'Click-CodActivacion',
-            'codigo': code
+            event: 'Click-LinksRapidos',
+            'name': 'Click-LinksRapidos',
+            'Click_Text': code
         })
     }
 };
