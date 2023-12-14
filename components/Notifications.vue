@@ -98,8 +98,8 @@ const changeItems = (value) => {
 const eventClickCardNotification = (text, type, titulo, url, id, campania, registros, poblacion) => {
     if(dataLayer){
         dataLayer.push({
-            event: 'Evento_Click_Card_Notification',
-            'name': 'Click_Card_Notification',
+            event: 'Click_Card_Notification',
+            'name': 'Evento_Click_Card_Notification',
             'text': text,
             'type': type,
             'titulo': titulo,
