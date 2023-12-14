@@ -69,6 +69,7 @@ const fetchMetaInfo = async () => {
             'modalidad': profileData?.codModalidadEstActual,
             'carrera': profileData?.desProducto,
             'ciclo': profileData?.descCurso,
+            'codigoAlumno': profileData?.codAlumno,
 
         })
       }
