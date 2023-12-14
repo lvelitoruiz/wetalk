@@ -11,7 +11,7 @@
           </button>
           </a>
           <a href="https://portal.wetalk.pe/login" target="_blank" rel="noopener noreferrer">
-          <button @click="triggerModal('Alumno UPN', 'https://portal.wetalk.pe/login')" value="1" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano w-full rounded-[4px] lg:text-[20px]">
+          <button @click="triggerModal('Alumno UPN', 'https://portal.wetalk.pe/login')" class="bg-[#0065FF] flex justify-between px-3 py-2 items-center text-white font-solano w-full rounded-[4px] lg:text-[20px]">
             Alumno UPN
             <i class="icon-arrow-right"></i>
           </button>
