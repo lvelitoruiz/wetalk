@@ -13,7 +13,7 @@ const enlaces = [
   {true: "https://idiomas.upc.edu.pe/", false: "https://idiomas.upc.edu.pe/"},
   {true: "https://wa.link/yd1ig9", false: "https://bit.ly/3h2sVlt"},
   {true: "https://wa.link/5ouyu7", false: "https://wa.link/m236ca"},
-  {true: "https://idiomas.upc.edu.pe/", false: "https://idiomas.upc.edu.pe/"},
+  {true: "http://bit.ly/3rAA7h6", false: "https://idiomas.upc.edu.pe/"},
 ]
 
 </script>
