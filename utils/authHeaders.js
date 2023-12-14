@@ -1,5 +1,5 @@
 const { $msal, $config } = useNuxtApp();
-
+console.log($msal, 'msal')
 const getAuthHeaders  = () => {
     const authHeader = localStorage.getItem("tokenH");
     const config = useRuntimeConfig();

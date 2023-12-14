@@ -158,7 +158,7 @@ const eventClickCardNotification = (text, type, titulo, url, id, campania, regis
             Esta semana
           </p>
           <div v-for="item in finalItems[1]" :key="item">
-            <div @click="eventClickCardNotification(item.mensaje, item.tipo, item.titulo, item.url)" class="py-2 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
+            <div @click="eventClickCardNotification(item.mensaje, item.tipo, item.titulo, item.url, item.id, item.codigo_campania, item.registros_totales, item.poblacion_fija)" class="py-2 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
               :class="{ 'bg-[#D7E9FB]': item.status }">
               <span class="min-w-[12px] min-h-[12px] bg-[#E50A17] rounded-full"></span>
               <div>
