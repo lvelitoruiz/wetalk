@@ -86,6 +86,26 @@ const changeItems = (value) => {
       finalItems.value = generalItems.value;
     }
   });
+  if(dataLayer){
+        dataLayer.push({
+            event: 'Evento_Click_Category_Notification',
+            'name': 'Click_Category_Notification',
+            'categoria': value,
+        })
+    }
+};
+
+const eventClickCardNotification = (text, type, titulo, url) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Evento_Click_Card_Notification',
+            'name': 'Click_Card_Notification',
+            'text': text,
+            'type': type,
+            'titulo': titulo,
+            'url': url
+        })
+    }
 };
 </script>
 <template>
@@ -134,7 +154,7 @@ const changeItems = (value) => {
             Esta semana
           </p>
           <div v-for="item in finalItems[1]" :key="item">
-            <div class="py-2 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
+            <div @click="eventClickCardNotification(item.mensaje, item.tipo, item.titulo, item.url)" class="py-2 flex items-center px-4 cursor-pointer gap-5 border-b border-white"
               :class="{ 'bg-[#D7E9FB]': item.status }">
               <span class="min-w-[12px] min-h-[12px] bg-[#E50A17] rounded-full"></span>
               <div>
@@ -190,7 +210,7 @@ const changeItems = (value) => {
             Anteriores
           </p>
           <div v-for="item in finalItems[0]" :key="item">
-            <div class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5 border-b border-white">
+            <div @click="eventClickCardNotification(item.mensaje, item.tipo, item.titulo, item.url)" class="h-[106px] flex items-center px-4 bg-[#D7E9FB] cursor-pointer gap-5 border-b border-white">
               <span class="min-w-[12px] min-h-[12px] bg-[#E50A17] rounded-full"></span>
               <div>
                 <p class="text-sm mb-1">{{ item.mensaje }}</p>
