@@ -166,9 +166,6 @@ watchEffect(async () => {
 <template>
   <section class="container mx-auto relative px-4">
     <div class="w-full h-screen flex items-center justify-center flex-col">
-      <a class="absolute top-[40px] left-4" @click="handleOpenLogin">
-        <img class="h-[39px]" src="@/assets/images/logo.svg" alt="" />
-      </a>
       <div class="block min-h-[260px]">
         <!-- <img class="h-auto w-80" :src="selectedImage" alt="" /> -->
         <client-only>
@@ -230,6 +227,9 @@ watchEffect(async () => {
               accesoData !== null,
           }" @click="handleOpen"></div>
       </div>
+      <a class="absolute top-[40px] right-4" @click="handleOpenLogin">
+        <img class="h-[39px]" src="@/assets/images/wetalk_logo_upn.svg" alt="" />
+      </a>
     </div>
   </section>
 </template>
