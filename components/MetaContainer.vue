@@ -1,6 +1,5 @@
-<script setup></script>
 <template>
-  <div class="flex items-center pb-[18px] gap-[6px]">
+  <div class="flex items-center w-[1023px] mx-auto pb-[18px] gap-[6px]">
     <a class="text-[#575759] text-[15px] underline" href="">Inicio</a>
     <span class="text-[#575759] text-[15px]">></span>
     <span class="text-[#575759] text-[15px]">Mi perfil</span>

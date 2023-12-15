@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.2" height="29.8" viewBox="0 0 24.2 29.8">
+  <g id="Icon_feather-book" data-name="Icon feather-book" transform="translate(0.9 0.9)">
+    <path id="Path_102306" data-name="Path 102306" d="M6,28.887a.9.9,0,0,1-.9-.9,3.1,3.1,0,0,1,1.4-2.492,5.2,5.2,0,0,1,3-.895H28.4a.9.9,0,1,1,0,1.8H9.5c-1.385,0-2.6.741-2.6,1.587A.9.9,0,0,1,6,28.887Z" transform="translate(-6 -2.473)" fill="#595959"/>
+    <path id="Path_102307" data-name="Path 102307" d="M9.5,2.1H28.4a.9.9,0,0,1,.9.9V31a.9.9,0,0,1-.9.9H9.5a4.4,4.4,0,0,1-4.4-4.4V6.5A4.4,4.4,0,0,1,9.5,2.1Zm18,1.8H9.5A2.6,2.6,0,0,0,6.9,6.5v21a2.6,2.6,0,0,0,2.6,2.6h18Z" transform="translate(-6 -3)" fill="#595959"/>
+  </g>
+</svg>

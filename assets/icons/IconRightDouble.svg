@@ -1,0 +1,16 @@
+<svg id="IconChevronRightDouble" xmlns="http://www.w3.org/2000/svg" width="13.5" height="13.5" viewBox="0 0 13.5 13.5">
+    <path
+      id="Path_106309"
+      data-name="Path 106309"
+      d="M.75,13.5a.75.75,0,0,1-.53-1.28L5.689,6.75.22,1.28A.75.75,0,0,1,1.28.22l6,6a.749.749,0,0,1,0,1.06l-6,6a.744.744,0,0,1-.53.22"
+      transform="translate(6 0)"
+      fill="currentColor"
+    />
+    <path
+      id="Path_106310"
+      data-name="Path 106310"
+      d="M.75,13.5a.75.75,0,0,1-.53-1.28L5.689,6.75.22,1.28A.75.75,0,0,1,1.28.22l6,6a.749.749,0,0,1,0,1.06l-6,6a.744.744,0,0,1-.53.22"
+      transform="translate(0 0)"
+      fill="currentColor"
+    />
+</svg>

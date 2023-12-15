@@ -13,7 +13,7 @@ const props = defineProps({
     hasCode: Boolean,
 })
 
-const copyToClipboard = () => {
+const copyToClipboard = (code) => {
     if (!navigator.clipboard) {
         $toast.open({
             message: "No se puede copiar en tu navegador.",
@@ -34,18 +34,36 @@ const copyToClipboard = () => {
                 typeof: "error",
             });
         });
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Click-LinksRapidos',
+            'name': 'Click-LinksRapidos',
+            'Click_Text': code
+        })
+    }
+};
+
+const eventClickFastLinks = (text, url) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Click-LinksRapidos',
+            'name': 'Click-LinksRapidos',
+            'Click_Text': text,
+            'url': url
+        })
+    }
 };
 
 </script>
 <template>
     <div class="relative w-full h-auto">
-        <NuxtLink class="fastLink" :class="{ 'rounded-bl-none': hasCode }" to="#">
+        <NuxtLink @click="eventClickFastLinks(label, link)" class="fastLink" :class="{ 'rounded-bl-none': hasCode }" :to="link" target="_blank">
             <span class="fastLink-label">{{ label }}</span>
             <i class="icon-arrow-right text-white"></i>
         </NuxtLink>
-        <div v-if="hasCode" class="fastLink-code">
-            <span class="fastLink-code__label">{{ labelCode }}</span>
-            <div class="fastLink-code__activeZone" @click="copyToClipboard">
+        <div v-if="code !== ''" class="fastLink-code">
+            <span class="block fastLink-code__label">Cód. de activación:</span>
+            <div @click="copyToClipboard(code)" class="fastLink-code__activeZone">
                 <span class="fastLink-code__activeZone--label">{{ code }}</span>
                 <i class="text-[#404040] text-xs icon-file-copy"></i>
             </div>

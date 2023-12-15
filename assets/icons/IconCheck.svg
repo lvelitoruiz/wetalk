@@ -1,0 +1,8 @@
+<svg id="IconCheckCircle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="Group_77391" data-name="Group 77391">
+    <path id="Path_74391" data-name="Path 74391" d="M8.75,16.75a8,8,0,1,1,8-8A8.009,8.009,0,0,1,8.75,16.75Zm0-15.059A7.059,7.059,0,1,0,15.809,8.75,7.069,7.069,0,0,0,8.75,1.691Z" transform="translate(-0.75 -0.75)" fill="#359e29"/>
+  </g>
+  <g id="Group_77392" data-name="Group 77392" transform="translate(4.214 5.345)">
+    <path id="Path_74392" data-name="Path 74392" d="M9.451,14.892a.478.478,0,0,1-.358-.163L7.581,12.991a.474.474,0,0,1,.044-.665.469.469,0,0,1,.665.05L9.5,13.769l5.3-4.392a.472.472,0,0,1,.6.728l-5.66,4.687A.522.522,0,0,1,9.451,14.892Z" transform="translate(-7.466 -9.269)" fill="#359e29"/>
+  </g>
+</svg>
