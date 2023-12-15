@@ -37,7 +37,7 @@ async function showNotifications() {
                 tipo: notification.tipo
             }));
 
-        const codUser = menuStore.fetchData().localCodUser;
+        const codUser = (await menuStore.fetchData()).localCodUser;
 
         const notificationData = {
             codAlumno: codUser,
