@@ -151,7 +151,7 @@ const eventClickLogout = (text) => {
             </div>
           </div>
           <RouterLink to="/" class="h-full flex justify-center items-center">
-            <img class="lg:h-[39px] h-7" src="@/assets/images/logo.svg" alt="" />
+            <img class="lg:h-[39px] h-7" src="@/assets/images/wetalk_logo_upn.svg" alt="" />
           </RouterLink>
           
         </div>
