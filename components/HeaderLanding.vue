@@ -25,7 +25,7 @@ const eventClickBarraSuperior = (text) => {
       <nav>
         <ul class="flex items-center gap-[49px]">
           <li v-for="(list, index) in lists" :key="index">
-            <a @click="eventClickBarraSuperior(list.title)" class="text-xl uppercase font-bold text-[#191919]"
+            <a @click="eventClickBarraSuperior(list.title)" class="text-xl uppercase font-bold text-[#191919] text-hover-red"
               :href="list.id"
             >
               {{ list.title }}
