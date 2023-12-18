@@ -60,7 +60,7 @@
     </p>
     <span v-if="!simulator"
       class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
-      :class="getColorClass(promedio[0]?.nota)">{{ promedio[0]?.nota === "00" ? "-" : promedio[0]?.nota }}</span>
+      :class="colorForProm(promedio[0]?.nota)">{{ promedio[0]?.nota === "00" || notesNull ? "-" : promedio[0]?.nota }}</span>
     <span v-else class="w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
       :class="getColorClass(newVariable)">{{ newVariable < 10 ? `0${newVariable}` : newVariable }}</span>
   </div>
@@ -84,6 +84,7 @@ const notas = ref(null);
 const calculus = ref(null);
 const promedio = ref(null);
 const newVariable = ref(null);
+const notesNull = ref(false);
 const props = defineProps({
   notasData: Array,
   dashboard: Boolean,
@@ -107,8 +108,21 @@ const recoverNotes = () => {
   calculus.value = [...newvalue];
 }
 
+const colorForProm = (nota) => {
+  console.log(nota,notesNull.value);
+
+  if (nota === "00" || nota === null || nota === "-" || notesNull.value === true ) {
+    return 'bg-[#BFBFBF]';
+  } else if (nota < 13) {
+    return 'bg-[#E50A17]';
+  } else {
+    return 'bg-[#039C6D]';
+  }
+}
+
 const getColorClass = (nota) => {
   if (nota === "00" || nota === null || nota === "-" ) {
+    notesNull.value = true;
     return 'bg-[#BFBFBF]';
   } else if (nota < 13) {
     return 'bg-[#E50A17]';
