@@ -18,6 +18,9 @@ watchEffect(async () => {
 
     //Adding new fields
     notifDataMapping.map((notificacion, _, self) => {
+      if(notificacion.tipo == "GENERAL") {
+        notificacion.tipo = notificacion.tipo.charAt(0) + notificacion.tipo.slice(1).toLowerCase();
+      }
       notificacion.count = self.filter(
         (x) => x.tipo == notificacion.tipo
       ).length;
@@ -67,7 +70,7 @@ function closeNotifications() {
             'bg-[#EFB3EF]': notification.tipo === 'Pagos',
             'bg-[#F0B27C]': notification.tipo === 'Networking',
             'bg-[#7AD6CF]': notification.tipo === 'Beyond Wetalk',
-            'bg-[#CEBDFF]': notification.tipo === 'GENERAL',
+            'bg-[#CEBDFF]': notification.tipo === 'General',
           }"
         >
           <i
@@ -83,7 +86,7 @@ function closeNotifications() {
                 'icon-creditcard': notification.tipo === 'Pagos',
                 'icon-user-chat': notification.tipo === 'Networking',
                 'icon-puzzle': notification.tipo === 'Beyond Wetalk',
-                'icon-home': notification.tipo === 'GENERAL',
+                'icon-general': notification.tipo === 'General',
               },
             ]"
           ></i>
