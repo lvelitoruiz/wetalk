@@ -132,7 +132,7 @@ const eventClickCardNotification = (text, type, titulo, url, id, campania, regis
                 !notification.active,
             },
           ]" @click="changeItems(notification.category)">
-            <p class="text-xs font-bold uppercase font-solano">
+            <p class="text-[14px] font-bold uppercase font-solano">
               {{ notification.category }}
             </p>
             <p class="rounded-full w-[18px] h-[18px] flex items-center justify-center" :class="[
@@ -141,7 +141,7 @@ const eventClickCardNotification = (text, type, titulo, url, id, campania, regis
                 'bg-[#fff]': notification.active,
               },
             ]">
-              <span class="font-medium text-sm" :class="[
+              <span class="font-medium text-sm font-zizou-regular" :class="[
                 {
                   'text-[#E50A17]': notification.active,
                   'text-[#fff]': !notification.active,

@@ -47,12 +47,12 @@ function closeNotifications() {
   <div class="absolute left-[-20px] right-[-25px] xl:left-[-25px] top-[70px]">
     <div class="ml-[20px] triangulo-up"></div>
     <div
-      class="bg-white relative rounded-lg pl-6 pr-4 py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[209px] lg:min-w-[312px]"
+      class="bg-white relative rounded-lg pl-6 pr-4 py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[300px] lg:min-w-[312px]"
     >
       <p v-if="notifications.length > 0" class="text-sm text-[#191919] mb-2">
         Tienes nuevas notificaciones
       </p>
-      <p v-else class="text-sm text-[#191919] mb-0 font-zizou-bold">
+      <p v-else class="text-sm text-[#191919] mb-0">
         No tienes nuevas notificaciones
       </p>
       <div class="flex items-center gap-2">
