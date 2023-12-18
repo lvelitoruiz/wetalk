@@ -80,7 +80,7 @@ const markImage = () => {
   });
 };
 
-const updateMeta = async () => {
+const updateMeta = async (ignoreDataLayer) => {
   // const codUser = localStorage.getItem("codUser");
   const codUser = (await metaStore.fetchData())?.localCodUser;
   
@@ -94,20 +94,23 @@ const updateMeta = async () => {
   await metaStore.registerMetaData(apiUrl, metaItem);
   await fetchMetaInfo();
   markImage();
-  if(dataLayer){
-        dataLayer.push({
-            event: 'Mi_Meta',
-            'name': 'Evento_Mi_Meta',
-            'Click_Text': 'Guardar cambios',
-        })
+  if(!ignoreDataLayer) {
+      if(dataLayer){
+          dataLayer.push({
+              event: 'Mi_Meta',
+              'name': 'Evento_Mi_Meta',
+              'Click_Text': 'Guardar cambios',
+          })
+      }
   }
+
 };
 
 const cleanMeta = async () => {
   meta.value = "";
   selectedColor.value = "";
   selectedImage.value = "";
-  await updateMeta();
+  await updateMeta(true);
   await fetchMetaInfo();
   graphemesNow.value = "";
   markImage();
@@ -149,7 +152,7 @@ const changeImage = (indexItem, newImage) => {
           label="Guardar cambios"
           primary
           :disabled="!hasMeta"
-          @click="updateMeta"
+          @click="updateMeta(false)"
         />
       </div>
     </div>
@@ -249,7 +252,7 @@ const changeImage = (indexItem, newImage) => {
               label="Guardar cambios"
               primary
               :disabled="!hasMeta"
-              @click="updateMeta"
+              @click="updateMeta(false)"
             />
           </div>
         </div>
