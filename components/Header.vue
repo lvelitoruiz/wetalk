@@ -77,6 +77,17 @@ const eventClickPerfil = (text, url) => {
     }
 };
 
+const eventClickPerfilFoto = (text, url) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Click_PerfilFoto',
+            'name': 'Evento_Click_PerfilFoto',
+            'text': text,
+            'url': url,
+        })
+    }
+};
+
 const eventClickLogout = (text) => {
     if(dataLayer){
         dataLayer.push({
@@ -129,7 +140,7 @@ const eventClickLogout = (text) => {
             {{ nameUser }}
           </p>
           <div class="w-10 h-10 overflow-hidden rounded-full border border-gray-300">
-            <RouterLink @click="eventClickPerfil('Mi Perfil', '/meta')" to="/meta" class="h-full flex justify-center items-center">
+            <RouterLink @click="eventClickPerfilFoto('Mi Perfil', '/meta')" to="/meta" class="h-full flex justify-center items-center">
               <img class="h-full w-full object-cover" :src="foto" alt="" />
             </RouterLink>
           </div>
