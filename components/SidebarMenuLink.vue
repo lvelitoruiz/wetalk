@@ -17,8 +17,8 @@ const handleActivation = (label) => {
   isActive.value = !isActive.value;
   if(dataLayer){
     dataLayer.push({
-      event: 'Click-LinksRapidos',
-      'name': 'Click-LinksRapidos',
+      event: 'Click-BarraLateral',
+      'name': 'Click-BarraLateral',
       'Click_Text': label
     })
   }
@@ -27,8 +27,8 @@ const handleActivation = (label) => {
 const eventClickSubMenu = (url, name) => {
     if(dataLayer){
         dataLayer.push({
-           event: 'Click-LinksRapidos',
-           'name': 'Click-LinksRapidos',
+           event: 'Click-SubBarraLateral',
+           'name': 'Click-SubBarraLateral',
            'url': url,
            'Click_Text': name
         })
