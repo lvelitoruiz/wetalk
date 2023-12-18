@@ -6,7 +6,7 @@ const triggerModal = () => {
 };
 
 const institucionSeleccionada = ref(0);
-const esAlumnoNuevo = ref(false);
+const esAlumnoNuevo = ref(null);
 
 const enlaces = [
   {true: "", false: ""},
@@ -88,7 +88,7 @@ const eventClickMasInformacion = (text) => {
         </div>
         <div class="flex justify-center items-center mt-8">
           <a class="display inline-block w-auto pr-1 pb-1 relative" :href="enlaces[institucionSeleccionada][esAlumnoNuevo]" @click="eventClickMasInformacion(enlaces[institucionSeleccionada][esAlumnoNuevo])" target="_blank">
-            <span class="inline-block p-2.5 leading-6 w-full font-zizou-bold text-normal relative z-10 bg-[#E50A17] text-white transition-all duration-300 ease-in-out hover:bg-[#B70812]">
+            <span class="inline-block p-2.5 leading-6 w-full font-zizou-bold text-normal relative z-10" :class="{'bg-[#E50A17] text-white transition-all duration-300 ease-in-out hover:bg-[#B70812]': esAlumnoNuevo === true || esAlumnoNuevo === false, 'bg-[#808080] text-white transition-all duration-300 ease-in-out': esAlumnoNuevo == null || esAlumnoNuevo == undefined}">
               <div class="flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none" class="mr-2" v-if="downloadIcon">
                   <path fill-rule="evenodd" clip-rule="evenodd"
