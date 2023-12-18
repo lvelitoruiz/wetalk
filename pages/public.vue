@@ -40,6 +40,11 @@
               <NuxtIcon name="facebook" class="text-[30px] text-white"></NuxtIcon>
             </a>
           </li>
+          <li>
+            <a href="https://www.tiktok.com/@wetalk_upc?_t=8iA1Y8SQYdR&_r=1" target="_blank" rel="noopener noreferrer">
+              <NuxtIcon name="tiktok" class="text-[30px] text-white"></NuxtIcon>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
