@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto">
-        <div class="flex items-start lg:items-center gap-[4px] mb-10">
+        <div class="flex items-start lg:items-center gap-4 mb-10">
           <img src="@/assets/images/pin.svg" alt="">
           <h2 class="text-[32px] font-bold uppercase font-solano">en WeTALK UPN aprenderás en cada nivel a:</h2>
         </div>
