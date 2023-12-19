@@ -12,6 +12,8 @@ const cicloNext = ref(null);
 
 const syllabusFile = ref(null);
 
+const courses = ref([]);
+
 const tabs = [
   { texto: "Ciclo Actual", value: true },
   { texto: "Próximo Ciclo", value: false },
@@ -23,10 +25,17 @@ watchEffect(() => {
     dataSyllabus.value = contenido;
   }
 
+  courses.value = menuStore.getCourses;
   cicloNow.value = dataSyllabus.value[0];
   cicloNext.value = dataSyllabus.value[1];
   syllabusFile.value = dataSyllabus.value[2];
 });
+
+onMounted(() => {
+  if(props && props.fetchCoursesData) {
+    menuStore.fetchCoursesData();
+  }
+})
 
 const props = defineProps({
   open: {
@@ -38,6 +47,10 @@ const props = defineProps({
     default: false,
   },
   tabShow: {
+    type: Boolean,
+    default: true,
+  },
+  fetchCoursesData: {
     type: Boolean,
     default: true,
   },
@@ -107,11 +120,7 @@ const eventClickVerMas = () => {
             <select
               class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-[#BFBFBF] text-sm cursor-pointer outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none "
               @change="triggerCycle()">
-              <option value="0">Beginner</option>
-              <option value="1">High Beginner</option>
-              <option value="2">Basic</option>
-              <option value="3">Low Intermediate</option>
-              <option value="4">Intermediate</option>
+              <option v-for="course in courses" :value="course.ciclo">{{ course.descCurso }}</option>
             </select>
             <button class="bg-[#E50A17] rounded-full ml-6 h-[31px] w-[31px] flex items-center justify-center lg:hidden" @click="downloadFile()">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none" class="mr">
