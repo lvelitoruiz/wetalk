@@ -324,6 +324,30 @@ export const useMenuStore = defineStore({
         console.error("Error fetching profile data:", error);
       }
     },
+    async fetchProfesorData(apiUrl: string) {
+      const periodo = localStorage.getItem("periodo");
+      const seccion = localStorage.getItem("seccion");
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Cursos/v1/ProfesorCursoSeccion?institucion=${(await this.fetchData())?.localIntitution}&Seccion=${seccion}&CodPeriodo=${periodo}`
+          );
+        this.coursesData = response.data?.data ?? [];
+      } catch (error) {
+        console.error("Error fetching profesor data:", error);
+      }
+    },
   },
 });
 
