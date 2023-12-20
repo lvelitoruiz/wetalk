@@ -329,7 +329,7 @@ export const useMenuStore = defineStore({
     async fetchCoursesData(apiUrl: string) {
       try {
         const axiosConf = {
-          baseURL: "https://6o7m2qdyll.execute-api.us-east-1.amazonaws.com/dev",
+          baseURL: apiUrl,
           common: {
             Accept: "application/json, text/plain, */*",
           },
