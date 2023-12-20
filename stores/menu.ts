@@ -16,6 +16,7 @@ export const useMenuStore = defineStore({
     calendarData: [] as any,
     notificationData: [] as any,
     profileData: [] as any,
+    profesorData: [] as any,
     notasData: [] as any,
     faltasData: [] as any,
     companionsData: [] as any,
@@ -34,6 +35,7 @@ export const useMenuStore = defineStore({
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
     getListStudents: (state) => state.companionsData,
+    getProfesorItems: (state) => state.profesorData,
   },
   actions: {
     async fetchData(){
@@ -343,7 +345,7 @@ export const useMenuStore = defineStore({
           .get<any>(
             `/Cursos/v1/ProfesorCursoSeccion?institucion=${(await this.fetchData())?.localIntitution}&Seccion=${seccion}&CodPeriodo=${periodo}`
           );
-        this.coursesData = response.data?.data ?? [];
+        this.profesorData = response.data?.data ?? [];
       } catch (error) {
         console.error("Error fetching profesor data:", error);
       }
