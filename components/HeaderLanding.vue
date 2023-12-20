@@ -58,7 +58,7 @@ const eventClickBarraSuperior = (text) => {
                 <img class="h-[36px]" src="@/assets/images/logo.svg" alt="" />
               </a>
               <ul class="grid grid-cols-1 gap-10">
-                <li v-for="(list, index) in lists" :key="index">
+                <li v-for="(list, index) in lists" :key="index"  @click="openMenu">
                   <a
                     @click="eventClickBarraSuperior(list.title)"
                     class="text-xl uppercase font-bold text-[#191919] text-hover-red"
@@ -69,9 +69,6 @@ const eventClickBarraSuperior = (text) => {
                 </li>
               </ul>
             </nav>
-            <button @click="openMenu">
-              <i class="icon-close"> </i>
-            </button>
           </div>
         </div>
       </div>
