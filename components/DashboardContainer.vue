@@ -121,7 +121,7 @@ const haveLink = true;
           <NoteBox inasistencia="2" :dashboard=true />
         </div>
         <div class="min-w-[34%]">
-          <SyllabusBox :open="isOpen" :link="haveLink" :fetchCoursesData=false />
+          <SyllabusBox :open="isOpen" :link="haveLink" />
         </div>
         <!-- <div  class="min-w-[calc(28%-24px)]">
           <HelpBox />
