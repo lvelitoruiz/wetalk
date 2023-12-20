@@ -24,12 +24,12 @@
       <NivelLanding />
     </section>
   
-    <section class="bg-[#191919] hidden lg:block">
-      <div class="container mx-auto md:px-10 flex items-center justify-between h-[72px]">
-        <p class="text-white font-solano font-bold text-2xl">
+    <section class="bg-[#191919]">
+      <div class="container mx-auto md:px-10 px-6 py-8 lg:flex items-center lg:justify-between">
+        <p class="text-white font-solano font-bold text-center text-2xl lg:mb-0 mb-6">
           Síguenos en nuestras redes sociales
         </p>
-        <ul class="flex items-end gap-[32px]">
+        <ul class="flex lg:items-end justify-center gap-[32px]">
           <li>
             <a href="https://instagram.com/wetalk_upc?igshid=YTQwZjQ0NmI0OA==" target="_blank" rel="noopener noreferrer">
               <NuxtIcon name="instagram" class="text-[30px] text-white"></NuxtIcon>
