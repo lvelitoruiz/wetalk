@@ -33,7 +33,7 @@ watchEffect(() => {
 
 onMounted(() => {
   if(props && props.fetchCoursesData) {
-    menuStore.fetchCoursesData();
+    menuStore.fetchCoursesData(apiUrl);
   }
 })
 
