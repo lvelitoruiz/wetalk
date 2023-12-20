@@ -4,21 +4,21 @@
     <BannerLanding />
   
     <section
-      class="bg-[#FAFAFA] py-8 md:pt-[112px] md:pb-[70px] px-6 md:px-10"
+      class="bg-[#FAFAFA] pt-[112px] pb-8 md:pt-[112px] md:pb-[70px] px-6 md:px-10"
       id="matricula"
     >
       <MatriculaLanding @modal-open="changeModal" />
     </section>
   
     <section
-      class="py-8 md:pt-[122px] md:pb-[70px] px-6 md:px-10"
+      class="pt-[112px] pb-8 md:pt-[122px] md:pb-[70px] px-6 md:px-10"
       id="beneficio"
     >
       <BeneficioLanding :items="beneficios" />
     </section>
   
     <section
-      class="bg-[#E6F0FF] py-8 md:pt-[112px] md:pb-[70px] px-6 md:px-10"
+      class="bg-[#E6F0FF] pt-[112px] pb-8 md:pt-[112px] md:pb-[70px] px-6 md:px-10"
       id="nivel"
     >
       <NivelLanding />

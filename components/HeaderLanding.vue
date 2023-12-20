@@ -49,10 +49,10 @@ const eventClickBarraSuperior = (text) => {
           <i class="text-[28px] text-[#191919] icon-nav"></i>
         </button>
         <div
-          class="absolute w-full h-[100vh] left-0 bg-black bg-opacity-60 z-50"
+          class="fixed w-full h-screen left-0 top-0 bg-black bg-opacity-60 z-50"
           v-show="showSidebar"
         >
-          <div class="bg-white pt-16 h-full flex items-center justify-between px-10">
+          <div class="bg-white pt-16 h-full flex items-start justify-between px-10">
             <nav class="grid-cols-1 grid gap-16">
               <a class="" href="">
                 <img class="h-[36px]" src="@/assets/images/logo.svg" alt="" />
