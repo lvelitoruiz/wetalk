@@ -69,6 +69,9 @@ const eventClickBarraSuperior = (text) => {
                 </li>
               </ul>
             </nav>
+            <button @click="openMenu">
+              <i class="icon-close"> </i>
+            </button>
           </div>
         </div>
       </div>
