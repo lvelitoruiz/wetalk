@@ -125,14 +125,14 @@ const eventClickCardNotification = (text, type, titulo, url, id, campania, regis
       </div>
       <div class="flex items-center gap-3 px-4 py-2">
         <div v-for="(notification, index) in notifications.slice().reverse()" :key="index">
-          <div class="rounded-full flex items-center gap-1 cursor-pointer" :class="[
+          <div class="rounded-full box-border h-7 flex items-center gap-1 cursor-pointer" :class="[
             {
-              'bg-[#E50A17] px-4 py-1 text-white': notification.active,
+              'border border-[#E50A17] bg-[#E50A17] px-4 py-1 text-white': notification.active,
               'border border-[#191919] px-4 py-1 text-[#191919]':
                 !notification.active,
             },
           ]" @click="changeItems(notification.category)">
-            <p class="text-xs font-bold uppercase font-solano">
+            <p class="text-[14px] font-bold uppercase font-solano">
               {{ notification.category }}
             </p>
             <p class="rounded-full w-[18px] h-[18px] flex items-center justify-center" :class="[
@@ -141,7 +141,7 @@ const eventClickCardNotification = (text, type, titulo, url, id, campania, regis
                 'bg-[#fff]': notification.active,
               },
             ]">
-              <span class="font-medium text-sm" :class="[
+              <span class="font-medium text-[12px] font-zizou-regular" :class="[
                 {
                   'text-[#E50A17]': notification.active,
                   'text-[#fff]': !notification.active,
