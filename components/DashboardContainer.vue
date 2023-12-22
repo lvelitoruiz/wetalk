@@ -126,9 +126,9 @@ const haveLink = true;
         <!-- <div  class="min-w-[calc(28%-24px)]">
           <HelpBox />
         </div> -->
-        <!-- <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
+        <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
-        </div> -->
+        </div>
         <div  class="min-w-[calc(32%-28px)]">
            <ListCompanions :dataCompanions="dataCompanios" />
            <HelpBox />
