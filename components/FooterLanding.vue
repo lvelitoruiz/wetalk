@@ -1,15 +1,15 @@
 <template>
   <section>
-    <div class="container mx-auto md:px-10 items-center justify-between py-8 hidden lg:flex">
-      <div class="flex items-center gap-10">
+    <div class="container mx-auto md:px-10 px-6 items-center justify-between py-8 lg:flex">
+      <div class="lg:flex grid grid-cols-1 justify-items-center lg:items-center lg:gap-10 gap-6">
         <img src="@/assets/images/wasc.svg" alt="">
         <div class="flex items-center justify-center flex-col">
           <img src="@/assets/images/book.svg" alt="">
           <a class="underline text-sm text-[#3817FF] font-bold" href="https://librodereclamaciones.upc.edu.pe/"
             target="_blank" rel="noopener noreferrer">Libro de reclamaciones</a>
         </div>
-        <div class="flex flex-col gap-2">
-          <div class="flex items-center gap-1">
+        <div class="flex flex-col gap-2 border-t pt-6 border-[#BFBFBF] lg:pt-0 lg:border-none">
+          <div class="flex items-start lg:items-center lg:gap-1 gap-1.5">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -19,7 +19,7 @@
             </div>
             <p class="text-sm">Prolongación Primavera 2390, Monterrico, Santiago de Surco, Lima.</p>
           </div>
-          <div class="flex items-center gap-1">
+          <div class="flex items-center lg:gap-1 gap-1.5">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path
@@ -29,7 +29,7 @@
             </div>
             <p class="text-sm">Informes: <span class="font-bold">(01)313-3333 - (01)610-5030</span></p>
           </div>
-          <div class="flex items-center gap-1">
+          <div class="flex items-center lg:gap-1 gap-1.5">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -41,7 +41,10 @@
           </div>
         </div>
       </div>
-      <img src="@/assets/images/logo-upc.svg" alt="">
+      <img src="@/assets/images/logo-upc.svg" alt="" class="hidden lg:block">
+      <div class="flex justify-end mt-6 lg:hidden">
+        <img src="@/assets/images/logo-upc.svg" alt="">
+      </div>
     </div>
   </section>
 </template>
