@@ -1,6 +1,7 @@
 <script setup>
 
 import { useMenuStore } from "../stores/menu";
+import { apiUrl } from "~/consts";
 
 const menuStore = useMenuStore();
 
@@ -22,6 +23,12 @@ const eventClickAyuda = (url) => {
         })
     }
 };
+
+onMounted( () => {
+  menuStore
+    .fetchAyudaData(apiUrl)
+    .then((response) => console.log(response.data));
+})
 
 </script>
 <template>

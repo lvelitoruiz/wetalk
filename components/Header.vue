@@ -1,6 +1,9 @@
 <script setup>
 import { useUserStore } from "~/stores/auth";
+import { apiUrl } from "~/consts";
 const userStore = useUserStore();
+
+const menuStore = useMenuStore();
 
 const nameUser = userStore.getUserData?.name;
 console.log(nameUser, "name user");
@@ -54,6 +57,9 @@ const openPres = () => {
 
 onMounted(() => {
   foto.value = localStorage.getItem("foto");
+  menuStore
+    .fetchNotificationData(apiUrl, "0")
+    .then((response) => console.log('obtaining the response here: ',response));
 });
 
 const eventClickCorreo = (text) => {
