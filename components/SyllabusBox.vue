@@ -35,6 +35,10 @@ onMounted(() => {
   if(props && props.fetchCoursesData) {
     menuStore.fetchCoursesData(apiUrl);
   }
+
+  menuStore
+    .fetchContenidoData(apiUrl, "0")
+    .then((response) => console.log(response.data));
 })
 
 const props = defineProps({

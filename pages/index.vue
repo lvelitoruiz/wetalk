@@ -14,17 +14,13 @@ const metaData = ref(null);
 const imagesData = ref(null);
 const accesoData = ref(null);
 const menuData = ref(null);
-const ayudaData = ref(null);
-const syllabusData = ref(null);
 const referenceData = ref(false);
 
 const keyMeta = ref(false);
 const keyImages = ref(false);
 const keyMenu = ref(false);
 const keyAcceso = ref(false);
-const keyAyuda = ref(false);
 const keyContenido = ref(false);
-const keyNotification = ref(false);
 const keyProfile = ref(false);
 
 const selectedImage = ref(
@@ -48,15 +44,6 @@ const fetchMetaInfo = async () => {
   menuStore
     .fetchAccesoDirectoData(apiUrl)
     .then((response) => (keyAcceso.value = true));
-  menuStore
-    .fetchAyudaData(apiUrl)
-    .then((response) => (keyAyuda.value = true));
-  menuStore
-    .fetchContenidoData(apiUrl, "0")
-    .then((response) => (keyContenido.value = true));
-  menuStore
-    .fetchNotificationData(apiUrl, "0")
-    .then((response) => (keyNotification.value = true));
   const profiler = await menuStore
     .fetchProfileData(apiUrl)
     .then((response) => {
@@ -104,10 +91,7 @@ const allDataLoaded = computed(() => {
     keyImages.value &&
     keyMenu.value &&
     keyAcceso.value &&
-    keyAyuda.value &&
-    keyContenido.value &&
-    keyProfile.value &&
-    keyNotification.value
+    keyProfile.value 
   );
 });
 
@@ -137,14 +121,6 @@ watchEffect(async () => {
   const acceso = menuStore.getAccesoItems;
   if (acceso) {
     accesoData.value = acceso;
-  }
-  const ayuda = menuStore.getAyudaItems;
-  if (ayuda) {
-    ayudaData.value = ayuda;
-  }
-  const syllabus = menuStore.getContenidoItems;
-  if (syllabus) {
-    syllabusData.value = syllabus;
   }
 
   const profile = menuStore.getProfileItems;
@@ -216,13 +192,10 @@ watchEffect(async () => {
               metaData !== null &&
               imagesData !== null &&
               menuData !== null &&
-              ayudaData !== null &&
               accesoData !== null,
             'w-full transition-all duration-500 ease-in-out':
               metaData !== null &&
               imagesData !== null &&
-              ayudaData !== null &&
-              syllabusData !== null &&
               menuData !== null &&
               accesoData !== null,
           }" @click="handleOpen"></div>
