@@ -124,7 +124,7 @@ const eventClickVerMas = () => {
             <select
               class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-[#BFBFBF] text-sm cursor-pointer outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none "
               @change="triggerCycle()">
-              <option v-for="course in courses" :value="course.ciclo">{{ course.descCurso }}</option>
+              <option v-for="course in courses" :key="course" :value="course.ciclo">{{ course.descCurso }}</option>
             </select>
             <button class="bg-[#E50A17] rounded-full ml-6 h-[31px] w-[31px] flex items-center justify-center lg:hidden" @click="downloadFile()">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none" class="mr">

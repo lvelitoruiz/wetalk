@@ -62,7 +62,9 @@ const haveLink = true;
     <span class="text-[#575759] text-[15px]">Dashboard</span>
   </div> -->
   <div class="lg:flex flex-col gap-6">
+    <BannerJournal />
     <div class="lg:flex items-center justify-between lg:w-[1023px] mx-auto gap-5 pb-[28px]">
+      
       <div>
         <h1
           class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-8 lg:leading-none lg:whitespace-nowrap mb-1 w-full"
