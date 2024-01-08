@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-[28px]">
+  <div class="flex flex-col gap-[28px] mb-[20px]">
     <BoxContainer color="yellow">
       <div class="flex items-center justify-between pb-[18px]">
         <h3 class="text-[#404040] font-solano text-2xl font-bold uppercase">Profesor</h3>

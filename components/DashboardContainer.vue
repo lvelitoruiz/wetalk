@@ -128,10 +128,8 @@ const haveLink = true;
         </div> -->
         <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
-        </div>
-        <div  class="min-w-[calc(32%-28px)]">
-           <ListCompanions :dataCompanions="dataCompanios" />
-           <HelpBox />
+          <ListCompanions :dataCompanions="dataCompanios" />
+          <HelpBox />
         </div>
       </div>
       <!-- <div class="lg:flex gap-[28px]">
