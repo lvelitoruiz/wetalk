@@ -12,6 +12,3 @@
 
 <script>
 </script>
-
-<style>
-</style>

@@ -20,7 +20,7 @@
                 Reflexionar sobre tu aprendizaje de inglés te permitirá lograr
                 un mejor avance.
               </p>
-              <Button class="w-[200px]" primary label="Comenzar" />
+              <Button class="min-w-[200px]" primary label="Comenzar" />
             </div>
           </div>
           <div class="flex justify-center items-center w-full">
@@ -85,37 +85,37 @@
               <div class="w-full">
                 <p class="text-sm font-normal font-publicSans">Listening</p>
                 <div class="flex justify-between mt-1 mb-4">
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
                 </div>
               </div>
               <div class="w-full">
                 <p class="text-sm font-normal font-publicSans">Speaking</p>
                 <div class="flex justify-between mt-1 mb-4">
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
                 </div>
               </div>
               <div class="w-full">
                 <p class="text-sm font-normal font-publicSans">Reading</p>
                 <div class="flex justify-between mt-1 mb-4">
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
-                  <i class="icon-graduate text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
+                  <i class="icon-vector text-3xl"></i>
                 </div>
               </div>
 
               <div class="flex gap-4 mt-8">
-                <Button class="w-[117px]" secundary label="Siguiente" />
-                <Button class="w-[117px]" primary disabled label="Siguiente" />
+                <Button class="min-w-[117px]" secundary label="Atrás" />
+                <Button class="min-w-[117px]" primary disabled label="Siguiente" />
               </div>
             </div>
           </div>
@@ -144,9 +144,24 @@
               
 
               <div class="flex gap-4 mt-8">
-                <Button class="w-[117px]" secundary label="Siguiente" />
-                <Button class="w-[117px]" primary disabled label="Guardar" />
+                <Button class="min-w-[117px]" secundary label="Atrás" />
+                <Button class="min-w-[117px]" primary disabled label="Guardar" />
               </div>
+            </div>
+          </div>
+          <div class="flex justify-center w-full">
+            <div
+              class="grid grid-cols-1 justify-items-center mt-9 max-w-[454px]"
+            >
+              <img
+                src="/assets/images/group-1595596.png"
+                alt=""
+                class="w-[199px] mb-[22px]"
+              />
+              <p class="font-publicSans text-center text-sm mb-[32px]">
+                Revisa las recomendaciones personalizadas para mejorar en el curso. ¡Tu journal te espera de nuevo la próxima semana!
+              </p>
+              <RouterLink class="flex items-center justify-center" to="#"><span class="text-primary font-bold text-sm">Ver recomendaciones</span><i class="icon-arrow-right ml-2 text-sm text-primary font-bold"></i></RouterLink>
             </div>
           </div>
         </div>
