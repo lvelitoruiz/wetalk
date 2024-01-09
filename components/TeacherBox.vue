@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-[28px]">
+  <div class="flex flex-col gap-[28px] mb-[20px]">
     <BoxContainer color="yellow">
       <div class="flex items-center justify-between pb-[18px]">
         <h3 class="text-[#404040] font-solano text-2xl font-bold uppercase">Profesor</h3>
@@ -25,6 +25,7 @@
 import { useMenuStore } from "../stores/menu";
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import { apiUrl } from "~/consts";
 
 const $toast = useToast();
 
@@ -36,14 +37,17 @@ const menuStore = useMenuStore();
 
 
 watchEffect(async () => {
-  const alumnData = menuStore.getProfileItems;
-  if (alumnData) {
-    const profesorNombre = alumnData.data[0].profesorNombre;
-    teacher.value = profesorNombre.toLowerCase();
-    mail.value = alumnData.data[0].profesorEmail;
+  const profesorData = menuStore.getProfesorItems;
+  if (profesorData) {
+    const profesorNombre = profesorData[0]?.nombreCompleto;
+    teacher.value = profesorNombre?.toLowerCase();
+    mail.value = profesorData[0]?.correo;
   }
 });
 
+onMounted(() => {
+  menuStore.fetchProfesorData(apiUrl)
+});
 
 const copyToClipboard = (email) => {
     if (!navigator.clipboard) {

@@ -16,6 +16,8 @@ export const useMenuStore = defineStore({
     calendarData: [] as any,
     notificationData: [] as any,
     profileData: [] as any,
+    profesorData: [] as any,
+    coursesData: [] as any,
     notasData: [] as any,
     faltasData: [] as any,
     companionsData: [] as any,
@@ -31,9 +33,11 @@ export const useMenuStore = defineStore({
     getCalendarItems: (state) => state.calendarData,
     getNotificationItems: (state) => state.notificationData,
     getProfileItems: (state) => state.profileData,
+    getCourses: (state) => state.coursesData,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
     getListStudents: (state) => state.companionsData,
+    getProfesorItems: (state) => state.profesorData,
   },
   actions: {
     async fetchData(){
@@ -322,6 +326,52 @@ export const useMenuStore = defineStore({
         this.profileData = response.data;
       } catch (error) {
         console.error("Error fetching profile data:", error);
+      }
+    },
+    async fetchProfesorData(apiUrl: string) {
+      const periodo = localStorage.getItem("periodo");
+      const seccion = localStorage.getItem("seccion");
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Cursos/v1/ProfesorCursoSeccion?institucion=${(await this.fetchData())?.localIntitution}&Seccion=${seccion}&CodPeriodo=${periodo}`
+          );
+        this.profesorData = response.data?.data ?? [];
+      } catch (error) {
+        console.error("Error fetching profesor data:", error);
+      }
+    },
+    async fetchCoursesData(apiUrl: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: "application/json, text/plain, */*",
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Cursos/v1/Todos?institucion=${(await this.fetchData())?.localIntitution}`
+          );
+        this.coursesData = response.data?.data ?? [];
+      } catch (error) {
+        console.error("Error fetching courses data:", error);
       }
     },
   },

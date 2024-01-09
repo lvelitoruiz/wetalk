@@ -97,8 +97,8 @@ const updateMeta = async (ignoreDataLayer) => {
   if(!ignoreDataLayer) {
       if(dataLayer){
           dataLayer.push({
-              event: 'Mi_Meta',
-              'name': 'Evento_Mi_Meta',
+              event: 'Mi_Meta_Guardar',
+              'name': 'Evento_Mi_Meta_Guardar',
               'Click_Text': 'Guardar cambios',
           })
       }
@@ -116,8 +116,8 @@ const cleanMeta = async () => {
   markImage();
   if(dataLayer){
         dataLayer.push({
-            event: 'Mi_Meta',
-            'name': 'Evento_Mi_Meta',
+            event: 'Mi_Meta_Eliminar',
+            'name': 'Evento_Mi_Meta_Eliminar',
             'Click_Text': 'Eliminar meta',
         })
   }
