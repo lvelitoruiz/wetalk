@@ -5,7 +5,15 @@ export default defineComponent({
   props: {
     width: String,
     size: String,
+    navigation: {
+      type: Boolean,
+      default: false,
+    },
     color: {
+      type: String,
+      default: "",
+    },
+    wide: {
       type: String,
       default: "",
     },
@@ -18,36 +26,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- <div
-    :style="`height: ${size + 'px'}; width: ${width + '%'}`"
-    :class="[{
-       'border-[#039C6D]' : color === 'green',
-       'border-[#9DE7D6]' : color === 'greenLigth',
-       'border-[#FFDF00]' : color === 'yellow',
-       'border-[#699A8F]' : color === 'cyan',
-       'border-[#5598FF]' : color === 'blueLigth',
-       'border-[#E50A17]' : color === 'red',
-       'border-[#FEB6C2]' : color === 'pink',
-       'border-[#191919]' : color === 'black'
-    }] "
-    class="bg-white shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] rounded-[14px] border-t-[8px] pt-[14px] pb-[22px] px-7"
-  >
-    <slot></slot>
-  </div> -->
-  <!-- <div
-    :class="[{
-       'border-[#039C6D]' : color === 'green',
-       'border-[#9DE7D6]' : color === 'greenLigth',
-       'border-[#FFDF00]' : color === 'yellow',
-       'border-[#699A8F]' : color === 'cyan',
-       'border-[#5598FF]' : color === 'blueLigth',
-       'border-[#E50A17]' : color === 'red',
-       'border-[#FEB6C2]' : color === 'pink',
-       'border-[#191919]' : color === 'black',
-       'pt-[14px] pb-[22px] px-7': padding
-    }] "
-    class="bg-white shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] rounded-[14px] border-t-[8px] w-full min-h-[40px]"
-  > -->
 
   <div
     :class="[{
@@ -66,7 +44,17 @@ export default defineComponent({
        'bg-[#191919]' : color === 'black',
        'bg-[#AACCFF]' : color === 'blueVariant'
     }] "
-    class="h-2 w-full absolute left-0 top-0 rounded-t-[14px]"></div>
+    class="h-2 w-full absolute left-0 top-0 rounded-t-[14px] overflow-hidden">
+    <div v-if="navigation" class="h-full bg-blue-700 rounded-r-full"
+      :class="[{
+        'w-[0%]': wide === 'initial',
+        'w-[20%]': wide === 'first',
+        'w-[50%]': wide === 'second',
+        'w-[75%]': wide === 'third',
+        'w-[100%]': wide === 'fourth',
+      }]"
+    ></div>
+  </div>
     <slot></slot>
   </div>
 </template>

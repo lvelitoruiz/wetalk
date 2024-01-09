@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:min-w-[65%]">
     <div class="pb-[28px]">
-      <BoxContainer color="blueVariant">
+      <BoxContainer color="blueVariant" navigation :wide="navWidth">
         <div class="">
           <p class="uppercase font-solano font-bold text-2xl leading-7 mb-3">
             registro de desempeño en clases
@@ -13,7 +13,7 @@
                 class="grid grid-cols-1 justify-items-center mt-9 max-w-[287px]"
               >
                 <img
-                  src="/assets/images/group-1595596.png"
+                  src="@/assets/images/group-1595596.png"
                   alt=""
                   class="w-[199px] mb-[22px]"
                 />
@@ -36,7 +36,7 @@
                     class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/muy-mal.svg"
+                      src="@/assets/images/muy-mal.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -46,7 +46,7 @@
                     class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/mal.svg"
+                      src="@/assets/images/mal.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -56,7 +56,7 @@
                     class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/regular.svg"
+                      src="@/assets/images/regular.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -66,7 +66,7 @@
                     class="hidden lg:block lg:max-h-[117px] max-h-[88px] min-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/bien.svg"
+                      src="@/assets/images/bien.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -76,7 +76,7 @@
                     class="hidden lg:block lg:max-h-[117px] max-h-[88px] min-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/excelente.svg"
+                      src="@/assets/images/excelente.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -90,7 +90,7 @@
                     class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/bien.svg"
+                      src="@/assets/images/bien.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -100,7 +100,7 @@
                     class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
                   >
                     <img
-                      src="/assets/images/excelente.svg"
+                      src="@/assets/images/excelente.svg"
                       alt=""
                       class="p-1 lg:p-[6.5px] hover:opacity-70"
                     />
@@ -246,7 +246,7 @@
                 class="grid grid-cols-1 justify-items-center mt-9 max-w-[454px]"
               >
                 <img
-                  src="/assets/images/group-1595596.png"
+                  src="@/assets/images/group-1595596.png"
                   alt=""
                   class="w-[199px] mb-[22px]"
                 />
@@ -289,6 +289,8 @@ const tabs = [
 
 const currentTabs = ref(true);
 
+const navWidth = ref('initial');
+
 const handleChangeTab = (value) => {
   currentTabs.value = value;
 };
@@ -297,13 +299,29 @@ const currentIndex = ref(0);
 
 const continuar = () => {
   currentIndex.value++;
-  // Puedes agregar lógica adicional aquí según tus necesidades
+  if(currentIndex.value === 1) {
+    navWidth.value = "first";
+  } else if(currentIndex.value === 2) {
+    navWidth.value = "second"
+  } else if(currentIndex.value === 3) {
+    navWidth.value = 'third'
+  } else if(currentIndex.value === 4) {
+    navWidth.value = 'fourth'
+  }
 };
 
 const retroceder = () => {
   if (currentIndex.value > 0) {
     currentIndex.value--;
   }
-  // Puedes agregar lógica adicional aquí según tus necesidades
+  if(currentIndex.value === 1) {
+    navWidth.value = "first";
+  } else if(currentIndex.value === 2) {
+    navWidth.value = "second"
+  } else if(currentIndex.value === 3) {
+    navWidth.value = 'third'
+  } else if(currentIndex.value === 4) {
+    navWidth.value = 'fourth'
+  }
 };
 </script>
