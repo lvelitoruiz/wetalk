@@ -47,7 +47,16 @@ const dataListStudents = menuStore.fetchListCompanions(apiUrl);
   }
  })
 
-
+const eventClickMeta = (text, url) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Ver_Mi_Meta',
+            'name': 'Evento_Ver_Mi_Meta',
+            'Click_Text': text,
+            'url': url
+        })
+    }
+};
 
 
 const isOpen = true;
@@ -109,7 +118,7 @@ const haveLink = true;
               Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
             </p>
           </div>
-          <router-link to="/meta" class="inline-block w-[30px]">
+          <router-link @click="eventClickMeta('Ver meta', '/meta')" to="/meta" class="inline-block w-[30px]">
             <i class="icon-edit text-xl text-[#595959]"></i>
           </router-link>
         </div>
@@ -128,10 +137,8 @@ const haveLink = true;
         </div> -->
         <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
-        </div>
-        <div  class="min-w-[calc(32%-28px)]">
-           <ListCompanions :dataCompanions="dataCompanios" />
-           <HelpBox />
+          <ListCompanions :dataCompanions="dataCompanios" />
+          <HelpBox />
         </div>
       </div>
       <!-- <div class="lg:flex gap-[28px]">
