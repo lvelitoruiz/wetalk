@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:min-w-[65%]">
+  <div class="w-full lg:min-w-[75%]">
     <div class="pb-[28px]">
       <BoxContainer color="blueVariant" navigation :wide="navWidth">
         <div class="">
@@ -263,18 +263,176 @@
                 ></RouterLink>
               </div>
             </div>
+            <div class="bg-[#FFEA55] flex gap-1 p-1 items-start mt-6">
+              <i class="icon-flag text-sm"></i>
+              <p class="font-publicSans text-xs lg:text-sm text-[#404040]">
+                El registro de esta semana tendrá la edición habilitada del
+                <span class="font-bold">12/01</span> al
+                <span class="font-bold">14/01</span>. Luego de esa fecha, no se
+                podrán modificar las respuestas.
+              </p>
+            </div>
           </div>
-          <div v-else>bye</div>
+          <div v-else>
+            <div class="grid grid-cols-1 justify-items-center w-full">
+              <div
+                class="grid grid-cols-1 justify-items-center mt-9 lg:max-w-[523px] max-w-[266px]"
+              >
+                <p class="font-bold font-publicSans mb-5">
+                  ¿Cómo te fue con el inglés esta semana?
+                </p>
+                <div class="flex justify-between items-center gap-3 mb-8">
+                  <figure
+                    class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/muy-mal.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">Muy mal</figcaption>
+                  </figure>
+                  <figure
+                    class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/mal.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">Mal</figcaption>
+                  </figure>
+                  <figure
+                    class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/regular.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">Regular</figcaption>
+                  </figure>
+                  <figure
+                    class="hidden lg:block lg:max-h-[117px] max-h-[88px] min-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/bien.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">Bien</figcaption>
+                  </figure>
+                  <figure
+                    class="hidden lg:block lg:max-h-[117px] max-h-[88px] min-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/excelente.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">
+                      Excelente
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="flex justify-between items-center mb-8 gap-3">
+                  <figure
+                    class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/bien.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">Bien</figcaption>
+                  </figure>
+                  <figure
+                    class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
+                  >
+                    <img
+                      src="@/assets/images/excelente.svg"
+                      alt=""
+                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                    />
+                    <figcaption class="text-sm text-center">
+                      Excelente
+                    </figcaption>
+                  </figure>
+                </div>
+            
+              </div>
+              <div
+                class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
+              >
+                <p class="font-bold font-publicSans mb-5">
+                  Califica tu experiencia según cada skill
+                </p>
+                <div class="w-full">
+                  <p class="text-sm font-normal font-publicSans">Listening</p>
+                  <div class="flex justify-between mt-1 mb-4">
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                  </div>
+                </div>
+                <div class="w-full">
+                  <p class="text-sm font-normal font-publicSans">Speaking</p>
+                  <div class="flex justify-between mt-1 mb-4">
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                  </div>
+                </div>
+                <div class="w-full">
+                  <p class="text-sm font-normal font-publicSans">Reading</p>
+                  <div class="flex justify-between mt-1 mb-4">
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                    <i class="icon-vector text-3xl"></i>
+                  </div>
+                </div>
+
+              </div>
+              <div
+                class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
+              >
+                <p class="font-bold font-publicSans mb-5">
+                  Reflexiona sobre las siguientes preguntas
+                </p>
+                <div>
+                  <div class="mb-7">
+                    <p class="text-sm"
+                      >¿Qué sientes que podrías mejorar en tu
+                      aprendizaje?</p
+                    >
+                    <p class="text-sm font-bold font-publicSans">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+                  </div>
+                  <div class="mb-7">
+                    <p class="text-sm"
+                      >¿Cómo crees poder mejorarlo?</p
+                    >
+                    <p class="text-sm font-bold font-publicSans">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+
+                  </div>
+                  <div class="">
+                    <p class="text-sm"
+                      >¿Cuál es tu objetivo para la siguiente semana?</p
+                    >
+                    <p class="text-sm font-bold font-publicSans">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="bg-[#FFEA55] flex gap-1 p-1 items-start mt-6">
-          <i class="icon-flag text-sm"></i>
-          <p class="font-publicSans text-xs lg:text-sm text-[#404040]">
-            El registro de esta semana tendrá la edición habilitada del
-            <span class="font-bold">12/01</span> al
-            <span class="font-bold">14/01</span>. Luego de esa fecha, no se
-            podrán modificar las respuestas.
-          </p>
-        </div>
+       
       </BoxContainer>
     </div>
   </div>
@@ -282,7 +440,6 @@
 
 <script setup>
 const tabs = [
-  { texto: "Semana 16/10 - 21/10", value: false },
   { texto: "Semana 16/10 - 21/10", value: false },
   { texto: "Semana actual", value: true },
 ];
