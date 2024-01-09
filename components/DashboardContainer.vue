@@ -47,7 +47,16 @@ const dataListStudents = menuStore.fetchListCompanions(apiUrl);
   }
  })
 
-
+const eventClickMeta = (text, url) => {
+    if(dataLayer){
+        dataLayer.push({
+            event: 'Ver_Mi_Meta',
+            'name': 'Evento_Ver_Mi_Meta',
+            'Click_Text': text,
+            'url': url
+        })
+    }
+};
 
 
 const isOpen = true;
@@ -109,7 +118,7 @@ const haveLink = true;
               Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆
             </p>
           </div>
-          <router-link to="/meta" class="inline-block w-[30px]">
+          <router-link @click="eventClickMeta('Ver meta', '/meta')" to="/meta" class="inline-block w-[30px]">
             <i class="icon-edit text-xl text-[#595959]"></i>
           </router-link>
         </div>
