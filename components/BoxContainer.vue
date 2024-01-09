@@ -64,6 +64,7 @@ export default defineComponent({
        'bg-[#E50A17]' : color === 'red',
        'bg-[#FEB6C2]' : color === 'pink',
        'bg-[#191919]' : color === 'black',
+       'bg-[#AACCFF]' : color === 'blueVariant'
     }] "
     class="h-2 w-full absolute left-0 top-0 rounded-t-[14px]"></div>
     <slot></slot>
