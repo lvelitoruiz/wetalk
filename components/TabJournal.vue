@@ -11,7 +11,7 @@
               },
               { 'bg-white text-[#404040]': tabActive !== `tab-${i}` },
             ]"
-            class="border border-[#A6A6A6] py-1 px-3 rounded font-bold font-solano text-base uppercase leading-6"
+            class="border border-[#A6A6A6] py-1 px-3 rounded font-bold font-zizou-bold text-base capitalize leading-6"
           >
             {{ tab.texto }}
           </button>

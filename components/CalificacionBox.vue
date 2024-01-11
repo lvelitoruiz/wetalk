@@ -263,7 +263,7 @@
                 ></RouterLink>
               </div>
             </div>
-            <div class="bg-[#FFEA55] flex gap-1 p-1 items-start mt-6">
+            <!-- <div class="bg-[#FFEA55] flex gap-1 p-1 items-start mt-6">
               <i class="icon-flag text-sm"></i>
               <p class="font-publicSans text-xs lg:text-sm text-[#404040]">
                 El registro de esta semana tendrá la edición habilitada del
@@ -271,7 +271,7 @@
                 <span class="font-bold">14/01</span>. Luego de esa fecha, no se
                 podrán modificar las respuestas.
               </p>
-            </div>
+            </div> -->
           </div>
           <div v-else>
             <div class="grid grid-cols-1 justify-items-center w-full">
@@ -288,7 +288,7 @@
                     <img
                       src="@/assets/images/muy-mal.svg"
                       alt=""
-                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                      class="p-1 lg:p-[6.5px]"
                     />
                     <figcaption class="text-sm text-center">Muy mal</figcaption>
                   </figure>
@@ -298,7 +298,7 @@
                     <img
                       src="@/assets/images/mal.svg"
                       alt=""
-                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                      class="p-1 lg:p-[6.5px]"
                     />
                     <figcaption class="text-sm text-center">Mal</figcaption>
                   </figure>
@@ -308,7 +308,7 @@
                     <img
                       src="@/assets/images/regular.svg"
                       alt=""
-                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                      class="p-1 lg:p-[6.5px]"
                     />
                     <figcaption class="text-sm text-center">Regular</figcaption>
                   </figure>
@@ -318,7 +318,7 @@
                     <img
                       src="@/assets/images/bien.svg"
                       alt=""
-                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                      class="p-1 lg:p-[6.5px]"
                     />
                     <figcaption class="text-sm text-center">Bien</figcaption>
                   </figure>
@@ -328,7 +328,7 @@
                     <img
                       src="@/assets/images/excelente.svg"
                       alt=""
-                      class="p-1 lg:p-[6.5px] hover:opacity-70"
+                      class="p-1 lg:p-[6.5px]"
                     />
                     <figcaption class="text-sm text-center">
                       Excelente

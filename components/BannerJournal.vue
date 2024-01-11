@@ -2,7 +2,7 @@
   <div class="bg-[#025] flex px-[34px] py-2 justify-between items-center">
     <div class="flex items-center">
       <div class="flex justify-center items-center h-[56px] w-[56px] mr-2">
-        <img src="/assets/images/vector.svg" alt="" />
+        <img src="@/assets/images/vector.svg" alt="" />
       </div>
       <span class="text-lg font-solano font-bold text-white mr-2">
         My Journal:
