@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="overflow-x-auto">
       <ul v-bind="$attrs" class="flex items-center gap-4">
         <li v-for="(tab, i) in tabs" :key="i" class="flex-shrink-0">
           <button

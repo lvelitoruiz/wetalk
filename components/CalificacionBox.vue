@@ -21,10 +21,18 @@
                   Reflexionar sobre tu aprendizaje de inglés te permitirá lograr
                   un mejor avance.
                 </p>
-                <Button @click="continuar" class="min-w-[200px]" primary label="Comenzar" />
+                <Button
+                  @click="continuar"
+                  class="min-w-[200px]"
+                  primary
+                  label="Comenzar"
+                />
               </div>
             </div>
-            <div class="flex justify-center items-center w-full" v-show="currentIndex === 1">
+            <div
+              class="flex justify-center items-center w-full"
+              v-show="currentIndex === 1"
+            >
               <div
                 class="grid grid-cols-1 justify-items-center mt-9 lg:max-w-[523px] max-w-[266px]"
               >
@@ -110,15 +118,17 @@
                   </figure>
                 </div>
                 <Button
-                @click="continuar"
+                  @click="continuar"
                   class="min-w-[117px]"
                   primary
-                  
                   label="Siguiente"
                 />
               </div>
             </div>
-            <div class="flex justify-center items-center w-full" v-show="currentIndex === 2">
+            <div
+              class="flex justify-center items-center w-full"
+              v-show="currentIndex === 2"
+            >
               <div
                 class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
               >
@@ -169,13 +179,15 @@
                     class="min-w-[129px] lg:min-w-[117px]"
                     @click="continuar"
                     primary
-                    
                     label="Siguiente"
                   />
                 </div>
               </div>
             </div>
-            <div class="flex justify-center items-center w-full" v-show="currentIndex === 3">
+            <div
+              class="flex justify-center items-center w-full"
+              v-show="currentIndex === 3"
+            >
               <div
                 class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
               >
@@ -235,7 +247,6 @@
                     class="min-w-[129px] lg:min-w-[117px]"
                     @click="continuar"
                     primary
-                    
                     label="Guardar"
                   />
                 </div>
@@ -273,8 +284,10 @@
               </p>
             </div> -->
           </div>
-          <div v-else>
-            <div class="grid grid-cols-1 justify-items-center w-full">
+          <div v-else class="h-screen">
+            <div
+              class="grid grid-cols-1 h-full justify-items-center w-full overflow-y-auto"
+            >
               <div
                 class="grid grid-cols-1 justify-items-center mt-9 lg:max-w-[523px] max-w-[266px]"
               >
@@ -359,7 +372,6 @@
                     </figcaption>
                   </figure>
                 </div>
-            
               </div>
               <div
                 class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
@@ -397,7 +409,6 @@
                     <i class="icon-vector text-3xl"></i>
                   </div>
                 </div>
-
               </div>
               <div
                 class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
@@ -407,32 +418,59 @@
                 </p>
                 <div>
                   <div class="mb-7">
-                    <p class="text-sm"
-                      >¿Qué sientes que podrías mejorar en tu
-                      aprendizaje?</p
-                    >
-                    <p class="text-sm font-bold font-publicSans">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
+                    <p class="text-sm">
+                      ¿Qué sientes que podrías mejorar en tu aprendizaje?
+                    </p>
+                    <p class="text-sm font-bold font-publicSans">
+                      Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum.
+                    </p>
                   </div>
                   <div class="mb-7">
-                    <p class="text-sm"
-                      >¿Cómo crees poder mejorarlo?</p
-                    >
-                    <p class="text-sm font-bold font-publicSans">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
-
+                    <p class="text-sm">¿Cómo crees poder mejorarlo?</p>
+                    <p class="text-sm font-bold font-publicSans">
+                      Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum.
+                    </p>
                   </div>
                   <div class="">
-                    <p class="text-sm"
-                      >¿Cuál es tu objetivo para la siguiente semana?</p
-                    >
-                    <p class="text-sm font-bold font-publicSans">Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum.</p>
-
+                    <p class="text-sm">
+                      ¿Cuál es tu objetivo para la siguiente semana?
+                    </p>
+                    <p class="text-sm font-bold font-publicSans">
+                      Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum.
+                    </p>
+                    <p class="text-sm font-bold font-publicSans">
+                      Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum.
+                    </p>
+                    <p class="text-sm font-bold font-publicSans">
+                      Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum.
+                    </p>
+                    <p class="text-sm font-bold font-publicSans">
+                      Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                      lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+                      ipsum lorem ipsum lorem ipsum lorem ipsum.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-       
       </BoxContainer>
     </div>
   </div>
@@ -446,7 +484,7 @@ const tabs = [
 
 const currentTabs = ref(true);
 
-const navWidth = ref('initial');
+const navWidth = ref("initial");
 
 const handleChangeTab = (value) => {
   currentTabs.value = value;
@@ -456,14 +494,14 @@ const currentIndex = ref(0);
 
 const continuar = () => {
   currentIndex.value++;
-  if(currentIndex.value === 1) {
+  if (currentIndex.value === 1) {
     navWidth.value = "first";
-  } else if(currentIndex.value === 2) {
-    navWidth.value = "second"
-  } else if(currentIndex.value === 3) {
-    navWidth.value = 'third'
-  } else if(currentIndex.value === 4) {
-    navWidth.value = 'fourth'
+  } else if (currentIndex.value === 2) {
+    navWidth.value = "second";
+  } else if (currentIndex.value === 3) {
+    navWidth.value = "third";
+  } else if (currentIndex.value === 4) {
+    navWidth.value = "fourth";
   }
 };
 
@@ -471,14 +509,14 @@ const retroceder = () => {
   if (currentIndex.value > 0) {
     currentIndex.value--;
   }
-  if(currentIndex.value === 1) {
+  if (currentIndex.value === 1) {
     navWidth.value = "first";
-  } else if(currentIndex.value === 2) {
-    navWidth.value = "second"
-  } else if(currentIndex.value === 3) {
-    navWidth.value = 'third'
-  } else if(currentIndex.value === 4) {
-    navWidth.value = 'fourth'
+  } else if (currentIndex.value === 2) {
+    navWidth.value = "second";
+  } else if (currentIndex.value === 3) {
+    navWidth.value = "third";
+  } else if (currentIndex.value === 4) {
+    navWidth.value = "fourth";
   }
 };
 </script>
