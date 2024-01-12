@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="flex items-center justify-start mb-3">
+        <div class="flex items-center justify-start mb-3">ASDASD
           <!-- <div v-if="dashboard">
             <div v-if="inasistencia !== null"
               class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full">
@@ -90,6 +90,7 @@ const fetchData = async () => {
 
 watchEffect(async () => {
   const notas = menuStore.getNotasItems;
+  console.log(notas);
   if (notas) {
     notasData.value = notas.notas;
     console.log('passing formula: ',notas.dscFormula);
