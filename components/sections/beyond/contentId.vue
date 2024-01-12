@@ -3,18 +3,23 @@
     <div class="pb-7">
       <BoxContainer color="black">
         <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
-        <div class="flex items-baseline justify-between pb-2">
-          <router-link @click="eventClickVerMas()" class="flex items-center gap-2" to="/notas">
+        <div class="flex items-baseline justify-between pb-[15px]">
+          <div @click="goBack()" class="md:flex hidden items-center gap-2 cursor-pointer">
             <i class="icon-arrow-right text-[#404040] rotate-180"></i>
             <span class="text-[#404040] font-bold font-zizou-bold text-sm">Atrás</span>
-          </router-link>
+          </div>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[500px]">
-          <h3 class="text-[#404040] text-2xl">
-            <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
-            <p class="text-[14px] font-publicSans">Recomendaciones para ti</p>
-          </h3>
-          asdasdx
+          <div v-for="(data, index) in dataContent" :key="index">
+            <h3 class="text-[#0043AA] text-2xl mb-[10px]">
+              <span class="uppercase font-bold font-solano">{{ data.titulo }}</span>
+            </h3>
+            <div class="text-[#404040] text-[14px] font-publicSans">{{ data.descripcion_corta }}</div>
+            <div class="relative my-[22px]">
+              <img :src="data.imagen_principal" alt="Imagen Beyond" class=" max-w-auto md:max-w-[470px] w-full">
+            </div>
+            <div class="text-[#404040] text-[14px] font-publicSans" v-html="data.body"></div>
+          </div>
         </div>
       </BoxContainer>
     </div>
@@ -23,17 +28,22 @@
 
 <script setup >
   import { bg_triangles_gray } from '@/assets/index.ts';
+  import { useRouter } from 'vue-router';
 
+  const router = useRouter();
   const dataContent = ref([]);
 
   const props = defineProps({
     data: Array
   })
 
-  if(props.data) {
+  watchEffect(() => {
     dataContent.value = props.data;
-  }
+  });
 
-  console.log(dataContent)
+
+  const goBack = () => {
+    router.go(-1);
+  };
 
 </script>

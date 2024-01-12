@@ -90,7 +90,6 @@ const fetchData = async () => {
 
 watchEffect(async () => {
   const notas = menuStore.getNotasItems;
-  console.log(notas);
   if (notas) {
     notasData.value = notas.notas;
     console.log('passing formula: ',notas.dscFormula);

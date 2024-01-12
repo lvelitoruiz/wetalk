@@ -8,10 +8,10 @@
             <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
             <p class="text-[14px] font-publicSans">Recomendaciones para ti</p>
           </h3>
-          <router-link @click="eventClickVerMas()" class="flex items-center gap-2" to="/notas">
+          <!-- <router-link @click="event()" class="flex items-center gap-2" to="/notas">
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
-          </router-link>
+          </router-link> -->
         </div>
         <div class="relative flex mb-[20px] justify-center">
           <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :colorActive="'black'"></TabContent>

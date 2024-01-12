@@ -17,13 +17,18 @@
 </template>
 
 <script setup>
+  import { useMenuStore } from '../../../stores/menu';
   import { apiUrl } from "~/consts";
+  import { useRouter } from 'vue-router';
 
   const menuStore = useMenuStore();
   const newsIdData = ref(null);
+  const router = useRouter();
+  const id = router.currentRoute.value.params.id;
 
   const props = defineProps({
-    id: Number
+    id: Number,
+    default: () => this.$route.params.id
   })
 
   const fetchData = async (id) => {
@@ -31,15 +36,14 @@
       .fetchNewsDataId(apiUrl, id)
   }
 
-  watchEffect(async () => {
-    const news = menuStore.getNewsId
+  onMounted(() => {
+    fetchData(id);
+  });
+
+  watchEffect(() => {
+    const news = menuStore.getNewsId;
     if (news) {    
       newsIdData.value = news;
     }
   });
-
-  onMounted( () => {
-    fetchData(props.id);
-  });
-
 </script>
