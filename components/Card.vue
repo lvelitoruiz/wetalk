@@ -45,7 +45,6 @@
   if(props.data) {
     dataCard.value = props.data;
   }
-  console.log(dataCard.value)
 
   watch(() => props.data, (newData) => {
     dataCard.value = newData;
