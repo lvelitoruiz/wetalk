@@ -41,7 +41,6 @@
     dataContent.value = props.data;
   });
 
-
   const goBack = () => {
     router.go(-1);
   };

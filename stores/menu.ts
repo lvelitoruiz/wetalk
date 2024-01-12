@@ -411,7 +411,7 @@ export const useMenuStore = defineStore({
             Authorization: (await this.fetchData())?.localHeader,
           },
         };
-        console.log(id)
+
         const response = await axios
           .create(axiosConf)
           .get<any>(

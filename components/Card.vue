@@ -4,9 +4,9 @@
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
           <picture>
-            <source class="w-full" srcSet="https://i.ibb.co/SBvhPmK/Frame-1000006166-1.png" media="(min-width: 768px)"/>
-            <source class="w-full" srcSet="https://i.ibb.co/SBvhPmK/Frame-1000006166-1.png" media="(max-width: 768px)"/>
-            <img class="max-w-[480px] w-full rounded-br-[7px] md:mb-0 mb-[15px]" src="https://i.ibb.co/SBvhPmK/Frame-1000006166-1.png" alt="" loading="lazy" width={482} height={269} />
+            <source class="w-full" :srcSet="data.imagen_principal" media="(min-width: 768px)"/>
+            <source class="w-full" :srcSet="data.imagen_principal" media="(max-width: 768px)"/>
+            <img class="max-w-[480px] w-full rounded-br-[7px] md:mb-0 mb-[15px]" :src="data.imagen_principal" alt="" loading="lazy" width={482} height={269} />
           </picture>
         </div>
         <div class="flex flex-wrap w-full md:w-3/5 px-0 md:px-[15px]">
@@ -20,9 +20,9 @@
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
           <picture>
-            <source class="w-full" srcSet="https://i.ibb.co/SBvhPmK/Frame-1000006166-1.png" media="(min-width: 768px)"/>
-            <source class="w-full" srcSet="https://i.ibb.co/SBvhPmK/Frame-1000006166-1.png" media="(max-width: 768px)"/>
-            <img class="max-w-[480px] w-full rounded-br-[7px] md:mb-0 mb-[15px]" src="https://i.ibb.co/SBvhPmK/Frame-1000006166-1.png" alt="" loading="lazy" width={482} height={269} />
+            <source class="w-full" :srcSet="data.imagen_principal" media="(min-width: 768px)"/>
+            <source class="w-full" :srcSet="data.imagen_principal" media="(max-width: 768px)"/>
+            <img class="max-w-[480px] w-full rounded-br-[7px] md:mb-0 mb-[15px]" :src="data.imagen_principal" alt="" loading="lazy" width={482} height={269} />
           </picture>
         </div>
         <div class="flex flex-wrap w-full md:w-3/5 px-0 md:px-[15px]">
