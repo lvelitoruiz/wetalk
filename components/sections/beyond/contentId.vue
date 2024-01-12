@@ -9,7 +9,7 @@
             <span class="text-[#404040] font-bold font-zizou-bold text-sm">Atrás</span>
           </div>
         </div>
-        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[500px]">
+        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
           <div v-for="(data, index) in dataContent" :key="index">
             <h3 class="text-[#0043AA] text-2xl mb-[10px]">
               <span class="uppercase font-bold font-solano">{{ data.titulo }}</span>
