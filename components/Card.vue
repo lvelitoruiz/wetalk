@@ -1,6 +1,6 @@
 <template>
   <div v-for="(data, index) in dataCard" :key="index">
-    <router-link v-if="!data.url_externa" :to="'/beyond/' + data.id">
+    <router-link v-if="!data.url_externa" :to="'/' + section +'/' + data.id">
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
           <picture>
@@ -40,6 +40,7 @@
 
   const props = defineProps({
     data: Array,
+    section: String,
   })
 
   if(props.data) {

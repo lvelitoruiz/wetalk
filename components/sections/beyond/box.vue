@@ -17,7 +17,7 @@
           <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :colorActive="'black'"></TabContent>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
-          <Card :data="filteredNewsData" />
+          <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
     </div>
