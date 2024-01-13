@@ -1,6 +1,6 @@
 <template>
-  <div v-for="(data, index) in dataCard" :key="index">
-    <router-link v-if="!data.url_externa" :to="'/' + section +'/' + data.id">
+  <div v-for="(data, index) in props.data" :key="index">
+    <router-link v-if="!data.url_externa" :to="'/' + props.section +'/' + data.id">
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
           <picture>
@@ -36,18 +36,8 @@
 </template>
 
 <script setup>
-  const dataCard = ref([]);
-
   const props = defineProps({
     data: Array,
     section: String,
   })
-
-  if(props.data) {
-    dataCard.value = props.data;
-  }
-
-  watch(() => props.data, (newData) => {
-    dataCard.value = newData;
-  });
 </script>

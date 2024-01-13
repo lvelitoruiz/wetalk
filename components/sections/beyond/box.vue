@@ -53,6 +53,7 @@ const fetchData = async () => {
 }
 
 watchEffect(async () => {
+  filteredNewsData.value = newsData.value;
   const news = menuStore.getNews
   if (news) {
     const modifiedNews = news.map((item) => {
@@ -75,10 +76,6 @@ watchEffect(async () => {
     newsData.value = modifiedNews;
     tabsNewsData.value = uniqueNews;
   }
-});
-
-watchEffect(() => {
-  filteredNewsData.value = newsData.value;
 });
 
 onMounted( () => {
