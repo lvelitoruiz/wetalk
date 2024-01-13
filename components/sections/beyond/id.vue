@@ -6,12 +6,14 @@
   const menuStore = useMenuStore();
   const newsIdData = ref(null);
   const router = useRouter();
-  const id = router.currentRoute.value.params.id || props.id;
+  const id = router.currentRoute.value.params.id;
   const titleBreadCrumb = ref("");
 
   const props = defineProps({
-    id: Number,
-    default: () => router.currentRoute.value.params.id
+    id: {
+      type: Number,
+      default: () => this.$route.params.id
+    }
   })
   
   const fetchData = async (id) => {
