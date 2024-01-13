@@ -6,7 +6,6 @@
   const menuStore = useMenuStore();
   const newsIdData = ref(null);
   const router = useRouter();
-  const id = router.currentRoute.value.params.id;
   const titleBreadCrumb = ref("");
 
   const fetchData = async (id) => {
@@ -15,7 +14,7 @@
   }
 
   onMounted(() => {
-    fetchData(id);
+    fetchData(router.currentRoute.value.params.id);
   });
 
   watchEffect(() => {
