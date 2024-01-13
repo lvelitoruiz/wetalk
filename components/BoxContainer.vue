@@ -51,7 +51,7 @@ export default defineComponent({
 
   <div
     :class="[{
-       'pt-[22px] pb-[22px] z-[1] px-7': padding
+       'pt-[22px] pb-[22px] px-7': padding
     }] "
     class="bg-white shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] rounded-[14px] w-full min-h-[40px] relative"
   >
