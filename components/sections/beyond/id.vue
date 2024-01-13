@@ -9,11 +9,6 @@
   const id = router.currentRoute.value.params.id;
   const titleBreadCrumb = ref("");
 
-  const props = defineProps({
-    id: Number,
-    default: () => this.$route.params.id
-  })
-  
   const fetchData = async (id) => {
     await menuStore
       .fetchNewsDataId(apiUrl, id)
