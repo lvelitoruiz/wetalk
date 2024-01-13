@@ -99,14 +99,17 @@ if (props.notasData !== null && props.notasData !== undefined) {
   calculus.value = [...newvalue];
   promedio.value = props.notasData.slice(-2, -1);
   newVariable.value = parseInt(props.notasData.slice(-2, -1)[0]?.nota)?.toFixed();
+  console.log(promedio.value);
 }
 
 const recoverNotes = () => {
+  console.log('this is supposed to work!!');
   const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
   calculus.value = [...newvalue];
 }
 
 const colorForProm = (nota) => {
+  console.log(nota,notesNull.value);
 
   if (nota === "00" || nota === null || nota === "-" || notesNull.value === true ) {
     return 'bg-[#BFBFBF]';
@@ -144,6 +147,8 @@ const validateInput = (index) => {
 
 const recalculateNewVariable = () => {
   const inputs = calculus.value.map((data) => data.nota);
+
+  console.log('how this works: ', inputs);
 
   if (inputs.some(item => item === "")) {
     newVariable.value = "-"

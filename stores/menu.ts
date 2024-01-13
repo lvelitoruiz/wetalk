@@ -21,8 +21,6 @@ export const useMenuStore = defineStore({
     notasData: [] as any,
     faltasData: [] as any,
     companionsData: [] as any,
-    newsData: [] as any,
-    newsDataId: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -36,8 +34,6 @@ export const useMenuStore = defineStore({
     getNotificationItems: (state) => state.notificationData,
     getProfileItems: (state) => state.profileData,
     getCourses: (state) => state.coursesData,
-    getNews: (state) => state.newsData,
-    getNewsId: (state) => state.newsDataId,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
     getListStudents: (state) => state.companionsData,
@@ -376,50 +372,6 @@ export const useMenuStore = defineStore({
         this.coursesData = response.data?.data ?? [];
       } catch (error) {
         console.error("Error fetching courses data:", error);
-      }
-    },
-    async fetchNewsData(apiUrl: string) {
-      try {
-        const axiosConf = {
-          baseURL: apiUrl,
-          common: {
-            Accept: "application/json, text/plain, */*",
-          },
-          headers: {
-            Authorization: (await this.fetchData())?.localHeader,
-          },
-        };
-
-        const response = await axios
-          .create(axiosConf)
-          .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn`
-          );
-        this.newsData = response.data?.data ?? [];
-      } catch (error) {
-        console.error("Error fetching News data:", error);
-      }
-    },
-    async fetchNewsDataId(apiUrl: string, id: Number) {
-      try {
-        const axiosConf = {
-          baseURL: apiUrl,
-          common: {
-            Accept: "application/json, text/plain, */*",
-          },
-          headers: {
-            Authorization: (await this.fetchData())?.localHeader,
-          },
-        };
-
-        const response = await axios
-          .create(axiosConf)
-          .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&id=${id}`
-          );
-        this.newsDataId = response.data?.data ?? [];
-      } catch (error) {
-        console.error("Error fetching News data:", error);
       }
     },
   },
