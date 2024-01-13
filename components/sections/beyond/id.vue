@@ -20,10 +20,14 @@
 
   watchEffect(() => {
     const news = menuStore.getNewsId;
-    if (news && news.length > 0 && newsIdData ) {
+    
+    if (news) {
       newsIdData.value = news;
-      titleBreadCrumb.value = newsIdData.value[0].titulo || '';
     }
+
+    if (newsIdData.value !== null ) { 
+      titleBreadCrumb.value = newsIdData.value[0].titulo || '';
+    }    
   });
 
 </script>
