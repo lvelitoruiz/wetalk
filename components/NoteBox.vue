@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="flex items-center justify-start mb-3">
+        <div class="flex items-center justify-start mb-3">ASDASD
           <!-- <div v-if="dashboard">
             <div v-if="inasistencia !== null"
               class="border border-[#404040] px-4 gap-1 flex items-center justify-start h-[28px] rounded-full">
