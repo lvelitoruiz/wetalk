@@ -25,9 +25,9 @@
       newsIdData.value = news;
     }
 
-    if (newsIdData.value !== null ) { 
-      titleBreadCrumb.value = newsIdData.value[0].titulo || '';
-    }    
+    if (newsIdData.value !== null && newsIdData.value !== undefined) { 
+      titleBreadCrumb.value = newsIdData.value[0]?.titulo || '';
+    }
   });
 
 </script>
