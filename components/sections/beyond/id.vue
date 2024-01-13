@@ -10,10 +10,8 @@
   const titleBreadCrumb = ref("");
 
   const props = defineProps({
-    id: {
-      type: Number,
-      default: () => this.$route.params.id
-    }
+    id: Number,
+    default: () => this.$route.params.id
   })
   
   const fetchData = async (id) => {
