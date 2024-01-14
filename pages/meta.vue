@@ -4,14 +4,16 @@ definePageMeta({
 });
 </script>
 <template>
-  <NuxtLayout>
-    <div class="flex min-h-[calc(100vh-80px)] bg-[#FFF4F6]">
-      <div class="hidden lg:block">
-        <SidebarContainer />
+  <div>
+    <NuxtLayout>
+      <div class="flex min-h-[calc(100vh-80px)] bg-[#FFF4F6]">
+        <div class="hidden lg:block">
+          <SidebarContainer />
+        </div>
+        <MainContainer>
+          <MetaUserContainer/>
+        </MainContainer>
       </div>
-      <MainContainer>
-        <MetaUserContainer/>
-      </MainContainer>
-    </div>
-  </NuxtLayout>
+    </NuxtLayout>
+  </div>
 </template>
