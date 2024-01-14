@@ -17,7 +17,7 @@
           <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :colorActive="'black'"></TabContent>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
-          <Card :data="filteredNewsData" />
+          <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
     </div>
@@ -53,6 +53,7 @@ const fetchData = async () => {
 }
 
 watchEffect(async () => {
+  filteredNewsData.value = newsData.value;
   const news = menuStore.getNews
   if (news) {
     const modifiedNews = news.map((item) => {
@@ -75,10 +76,6 @@ watchEffect(async () => {
     newsData.value = modifiedNews;
     tabsNewsData.value = uniqueNews;
   }
-});
-
-watchEffect(() => {
-  filteredNewsData.value = newsData.value;
 });
 
 onMounted( () => {

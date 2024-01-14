@@ -6,28 +6,26 @@
   const menuStore = useMenuStore();
   const newsIdData = ref(null);
   const router = useRouter();
-  const id = router.currentRoute.value.params.id;
   const titleBreadCrumb = ref("");
 
-  const props = defineProps({
-    id: Number,
-    default: () => this.$route.params.id
-  })
-  
   const fetchData = async (id) => {
     await menuStore
       .fetchNewsDataId(apiUrl, id)
   }
 
   onMounted(() => {
-    fetchData(id);
+    fetchData(router.currentRoute.value.params.id);
   });
 
   watchEffect(() => {
     const news = menuStore.getNewsId;
-    if (news && news.length > 0) {
+    
+    if (news) {
       newsIdData.value = news;
-      titleBreadCrumb.value = newsIdData.value[0].titulo;
+    }
+
+    if (newsIdData.value !== null && newsIdData.value !== undefined) { 
+      titleBreadCrumb.value = newsIdData.value[0]?.titulo || '';
     }
   });
 

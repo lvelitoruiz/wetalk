@@ -26,21 +26,23 @@ watchEffect(async () => {
 
 </script>
 <template>
-  <NuxtLayout>
-    <div class="lg:flex lg:min-h-[calc(100vh-80px)] min-h-[calc(100vh-68px)]">
-      <div class="hidden lg:block">
-        <SidebarContainer />
+  <div>
+    <NuxtLayout>
+      <div class="lg:flex lg:min-h-[calc(100vh-80px)] min-h-[calc(100vh-68px)]">
+        <div class="hidden lg:block">
+          <SidebarContainer />
+        </div>
+        <MainContainer>
+          <DashboardContainer />
+        </MainContainer>
+        <!-- <client-only>
+          <Vue3Lottie
+            :animationData="animation"
+            :height="800"
+            :width="800"
+          />
+        </client-only> -->
       </div>
-      <MainContainer>
-        <DashboardContainer />
-      </MainContainer>
-      <!-- <client-only>
-        <Vue3Lottie
-          :animationData="animation"
-          :height="800"
-          :width="800"
-        />
-      </client-only> -->
-    </div>
-  </NuxtLayout>
+    </NuxtLayout>
+  </div>
 </template>
