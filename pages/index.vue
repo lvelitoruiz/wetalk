@@ -57,7 +57,7 @@ const fetchMetaInfo = async () => {
             'carrera': profileData?.desProducto,
             'ciclo': profileData?.descCurso,
             'codigoAlumno': profileData?.codAlumno,
-
+            'institucion': profileData?.institucion
         })
       };
     });
