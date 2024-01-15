@@ -3,8 +3,7 @@ const props = defineProps({
   dataPost: Object,
 });
 
-const dataList = props.dataPost.sort((a, b) => a.destacado - b.destacado).slice(0, 6);
-
+const dataList = props.dataPost.sort((a, b) => a.destacado - b.destacado).slice(0, 5);
 
 </script>
 <template>
