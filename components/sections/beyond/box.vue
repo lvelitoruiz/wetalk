@@ -14,7 +14,7 @@
           </router-link> -->
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :colorActive="'black'"></TabContent>
+          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'"></TabContent>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
           <Card :data="filteredNewsData" :section="'beyond'" />

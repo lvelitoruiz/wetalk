@@ -1,6 +1,6 @@
 <template>
   <div v-for="(data, index) in props.data" :key="index">
-    <nuxt-link v-if="!data.url_externa" :to="'/' + props.section +'/' + data.id">
+    <router-link v-if="!data.url_externa" :to="'/' + props.section +'/' + data.id">
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
           <picture>
@@ -15,7 +15,7 @@
           <div class="w-full font-publicSans text-[#191919] text-[12px]">{{ data.descripcion_corta }}</div>
         </div>
       </div>
-    </nuxt-link>
+    </router-link>
     <a v-else :href="data.url_externa" target="_blank" rel="noopener noreferrer">
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
