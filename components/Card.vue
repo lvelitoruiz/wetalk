@@ -1,6 +1,6 @@
 <template>
   <div v-for="(data, index) in props.data" :key="index">
-    <nuxt-link v-if="!data.url_externa" :to="'/' + props.section +'/' + data.id">Inicio
+    <nuxt-link v-if="!data.url_externa" :to="'/' + props.section +'/' + data.id">
       <div class="block md:flex items-center justify-start mb-[20px]">
         <div class="relative w-full md:w-2/5">
           <picture>
