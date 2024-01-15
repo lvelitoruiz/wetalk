@@ -6,7 +6,6 @@ import { apiUrl } from "~/consts";
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
-console.log(newsData, "CAMPOS");
 
 const menuStore = useMenuStore();
 const tabMapping = {};
