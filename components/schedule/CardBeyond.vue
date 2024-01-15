@@ -14,7 +14,7 @@ defineProps({
         </div>
         <div>
             <span class="bg-etiqueta">
-                {{item.tipo}}
+                {{item.categoria}}
             </span>
             <h2 class="title-beyond">
                 {{item.titulo}}
