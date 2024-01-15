@@ -63,7 +63,8 @@ export class CdkInfraStack extends cdk.Stack {
       defaultBehavior: {
         origin: new origins.S3Origin(websiteBucket),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.HTTPS_ONLY,
-        cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        //cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
         functionAssociations: functionAssociations,
       },
       
@@ -98,7 +99,7 @@ export class CdkInfraStack extends cdk.Stack {
  });
 */
 
-  this.invalidateDistribution(distribution);
+  //this.invalidateDistribution(distribution);
 
   }
 
