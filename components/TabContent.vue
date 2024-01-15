@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul v-bind="$attrs" class="flex items-center gap-4 mb-[22px]">
-      <li>
+      <li v-if="optionAll">
         <button @click="handleActiveTab('tab-all', null)" 
           :class="[
             {'black' : props.colorActive === 'black' && tabActive === `tab-all`},
@@ -54,6 +54,11 @@ const props = defineProps({
     type: Array as PropType<any[]>,
     required: true,
   },
+  optionAll: {
+  type: Boolean,
+  default: false,
+  required: false
+},
   colorActive: {
       type: String,
       default: "",

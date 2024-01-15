@@ -126,16 +126,23 @@ const haveLink = true;
     </div>
     <div class="lg:w-[1023px] mx-auto">
       <div class="lg:flex gap-[28px]">
-        <div class="min-w-[calc(32%-28px)]">
-          <NoteBox inasistencia="2" :dashboard=true />
-        </div>
-        <div class="min-w-[34%]">
-          <SyllabusBox :open="isOpen" :link="haveLink" :fetchCoursesData=false />
+        <div class="min-w-[calc(60%-28px)] mb-6 lg:mb-0">
+          <div class="lg:flex gap-[28px]">
+            <div class="lg:w-[50%] mb-5">
+              <Beyond />
+            </div>
+            <div class="lg:w-[50%]">
+              <NoteBox inasistencia="2" :dashboard=true />
+            </div>
+          </div>
+          <div>
+            <SyllabusBox :open="isOpen" :link="haveLink" :fetchCoursesData=false />
+          </div>
         </div>
         <!-- <div  class="min-w-[calc(28%-24px)]">
           <HelpBox />
         </div> -->
-        <div  class="min-w-[calc(32%-28px)] mb-6 lg:mb-0">
+        <div class="min-w-[calc(40%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
           <ListCompanions :dataCompanions="dataCompanios" />
           <HelpBox />
