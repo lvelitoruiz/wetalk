@@ -10,16 +10,16 @@ defineProps({
 <template>
    <nuxt-link :to="`/beyond/${item.id}`">
         <div class="">
-            <img :src="item.imagen_principal" :alt="item.titulo" class="object-cover w-full p-[10px] rounded-[16px]" v-if="item.imagen_principal" > 
+            <img v-if="item.imagen_principal" :src="item.imagen_principal" :alt="item.titulo" class="object-cover w-full p-[10px] rounded-[16px]"> 
         </div>
         <div>
-            <span class="bg-etiqueta">
-                {{item.tipo}}
+            <span v-if="item.categoria" class="bg-etiqueta">
+                {{item.categoria}}
             </span>
-            <h2 class="title-beyond">
+            <h2 v-if="item.titulo" class="title-beyond">
                 {{item.titulo}}
             </h2>
-            <p class="descript-beyond">
+            <p v-if="item.descripcion_corta" class="descript-beyond">
                 {{item.descripcion_corta}}
             </p>
         </div>
@@ -33,10 +33,10 @@ defineProps({
 }
 
 .title-beyond {
-    @apply font-solano text-[#0043AA] text-[16px] leading-[24px] pt-[4px]
+    @apply font-solano text-[#0043AA] text-[16px] leading-[24px] pt-[4px];
 }
 
 .descript-beyond {
-    @apply text-[12px] pt-[4px]
+    @apply text-[12px] pt-[4px];
 }
 </style>
