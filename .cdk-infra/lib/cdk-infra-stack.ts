@@ -86,47 +86,8 @@ export class CdkInfraStack extends cdk.Stack {
     });
     
      
-  new cdk.CfnOutput(this, 'distributionId', {value: distribution.distributionId});
-  new cdk.CfnOutput(this, 'distributionDomainName', {value: distribution.distributionDomainName});
-/*
-  new s3deploy.BucketDeployment(this,
-    `${props.appName}-DeployWebsite` , {
-   sources: [s3deploy.Source.asset('../app')], 
-   destinationBucket: websiteBucket,
-   distribution: distribution,
-   distributionPaths: ['/*'],
- });
-*/
-
-  this.invalidateDistribution(distribution);
-
+    new cdk.CfnOutput(this, 'distributionId', {value: distribution.distributionId});
+    new cdk.CfnOutput(this, 'distributionDomainName', {value: distribution.distributionDomainName});
   }
 
-  private invalidateDistribution(distribution: cloudfront.Distribution) {
-    const cloudFrontAwsResource = new cdk.custom_resources.AwsCustomResource(
-      this,
-      `CloudFrontInvalidation-${Date.now()}`,
-      {
-        onCreate: {
-          physicalResourceId: cdk.custom_resources.PhysicalResourceId.of(`${distribution.distributionId}-${Date.now()}`),
-          service: "CloudFront",
-          action: "createInvalidation",
-          parameters: {
-            DistributionId: distribution.distributionId,
-            InvalidationBatch: {
-              CallerReference: Date.now().toString(),
-              Paths: {
-                Quantity: 1,
-                Items: ['/*']
-              }
-            }
-          },
-        },
-        policy: cdk.custom_resources.AwsCustomResourcePolicy.fromSdkCalls({
-          resources: cdk.custom_resources.AwsCustomResourcePolicy.ANY_RESOURCE
-        }),
-      }
-    );
-    cloudFrontAwsResource.node.addDependency(distribution);
-  }
 }
