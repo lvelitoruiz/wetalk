@@ -8,7 +8,7 @@
           <SectionsBeyondBox />
         </div>
         <div class="flex-col flex gap-7">
-          <TeacherBox />
+          <BeyondAside />
           <HelpBox />
         </div>
       </div>
