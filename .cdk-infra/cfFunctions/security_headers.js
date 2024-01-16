@@ -10,6 +10,7 @@ function handler(event) {
     var styleSrc = "style-src 'self' 'unsafe-inline'  *.upc.edu.pe *.upn.edu.pe  cdn.jsdelivr.net www.googletagmanager.com fonts.googleapis.com ";
     var scriptSrc = "script-src 'self' 'unsafe-eval' cdnjs.cloudflare.com script.hotjar.com connect.facebook.net in.getclicky.com *.googletagmanager.com 'unsafe-inline' *.upc.edu.pe *.upn.edu.pe www.youtube.com viveupc.pe  static.getclicky.com www.googleoptimize.com www.google-analytics.com www.googleadservices.com tpc.googlesyndication.com ssl.google-analytics.com js.hs-analytics.net static.ads-twitter.com static.hotjar.com cdn.mouseflow.com pe-upc.netmng.com pixel.mathtag.com ajax.cloudflare.com *.teads.tv analytics.tiktok.com *.clarity.ms";
     var frameSrc = "frame-src 'self' tpc.googlesyndication.com www.youtube.com pixel.mathtag.com *.doubleclick.net www.facebook.com *.teads.tv *.microsoftonline.com";
+	var frameAncestors = "frame-ancestors 'self' *.wetalk.pe";
 
 	var contentSecurityPolicy = [
 		defaultSrc,
@@ -18,14 +19,14 @@ function handler(event) {
 		connectSrc,
 		styleSrc,
 		scriptSrc,
-		frameSrc
+		frameSrc,
+		frameAncestors
 	].join('; ');
 
 	headers['content-security-policy'] = {  value: contentSecurityPolicy };
 
 	headers['strict-transport-security'] =  { value: 'max-age=31536000; includeSubdomains; preload' };
 	headers['x-content-type-options'] = {  value: 'nosniff' };
-	headers['x-frame-options'] = {  value: 'SAMEORIGIN' };
 	headers['x-xss-protection'] = {  value: '1; mode=block' };
 
 	headers['referrer-policy'] = {  value: 'strict-origin-when-cross-origin' };
