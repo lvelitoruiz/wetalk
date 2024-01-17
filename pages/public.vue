@@ -83,7 +83,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const lists = [
   {
@@ -98,11 +98,11 @@ const lists = [
     title: 'Niveles',
     id: '#nivel',
   },
-]
+];
 
-const showLanding = ref(false)
+const showLanding = ref(false);
 
 const changeModal = () => {
-  showLanding.value = !showLanding.value
-}
+  showLanding.value = !showLanding.value;
+};
 </script>

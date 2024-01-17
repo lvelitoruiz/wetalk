@@ -1,72 +1,72 @@
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <script setup>
-import { useMenuStore } from '../stores/menu'
-import { apiUrl } from '~/consts'
-import { defineProps, ref, watchEffect, onMounted } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
+import { defineProps, ref, watchEffect, onMounted } from 'vue';
 
-const newsData = ref(null)
-const tabsNewsData = ref(null)
-const filteredNewsData = ref(null)
+const newsData = ref(null);
+const tabsNewsData = ref(null);
+const filteredNewsData = ref(null);
 
-const menuStore = useMenuStore()
-const tabMapping = {}
-let nextTabIndex = 0
+const menuStore = useMenuStore();
+const tabMapping = {};
+let nextTabIndex = 0;
 
-const props = defineProps({})
+const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
   if (selectedTab === 'tab-all') {
-    filteredNewsData.value = newsData.value
+    filteredNewsData.value = newsData.value;
   } else {
     filteredNewsData.value = newsData.value.filter(
       (item) => item.tab === selectedTab,
-    )
+    );
   }
-}
+};
 
 const fetchData = async () => {
-  await menuStore.fetchNewsData(apiUrl)
-}
+  await menuStore.fetchNewsData(apiUrl);
+};
 
 watchEffect(async () => {
-  filteredNewsData.value = newsData.value
-  const news = menuStore.getNews
+  filteredNewsData.value = newsData.value;
+  const news = menuStore.getNews;
   if (news) {
     const modifiedNews = news.map((item) => {
       const tab =
         tabMapping[item.categoria] !== undefined
           ? tabMapping[item.categoria]
-          : `tab-${nextTabIndex++}`
-      tabMapping[item.categoria] = tab
+          : `tab-${nextTabIndex++}`;
+      tabMapping[item.categoria] = tab;
       return {
         ...item,
         texto: item.categoria,
         tab,
-      }
-    })
+      };
+    });
 
     const uniqueCategoriesSet = new Set(
       modifiedNews.map((item) => item.categoria),
-    )
+    );
     const uniqueNews = Array.from(uniqueCategoriesSet)
       .map((category) => {
-        const tab = tabMapping[category]
+        const tab = tabMapping[category];
         const correspondingItem = modifiedNews.find(
           (item) => item.categoria === category && item.tab === tab,
-        )
-        return correspondingItem
+        );
+        return correspondingItem;
       })
-      .filter(Boolean)
+      .filter(Boolean);
 
-    newsData.value = modifiedNews
-    tabsNewsData.value = uniqueNews
+    newsData.value = modifiedNews;
+    tabsNewsData.value = uniqueNews;
   }
-})
+});
 
 onMounted(() => {
-  fetchData()
-})
+  fetchData();
+});
 </script>
 <template>
   <BoxContainer color="black">

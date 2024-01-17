@@ -1,20 +1,20 @@
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable no-undef -->
 <script setup>
-import { useMenuStore } from '../stores/menu'
-import { apiUrl } from '~/consts'
-import { ref, watchEffect, onMounted } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
+import { ref, watchEffect, onMounted } from 'vue';
 
-const menuStore = useMenuStore()
+const menuStore = useMenuStore();
 
-const ayudaData = ref(null)
+const ayudaData = ref(null);
 
 watchEffect(() => {
-  const ayuda = menuStore.getAyudaItems
+  const ayuda = menuStore.getAyudaItems;
   if (ayuda) {
-    ayudaData.value = ayuda
+    ayudaData.value = ayuda;
   }
-})
+});
 
 const eventClickAyuda = (url) => {
   if (dataLayer) {
@@ -22,15 +22,15 @@ const eventClickAyuda = (url) => {
       event: 'Ayuda',
       name: 'Evento_Ayuda',
       Click_text: url,
-    })
+    });
   }
-}
+};
 
 onMounted(() => {
   menuStore.fetchAyudaData(apiUrl).then((response) => {
-    console.log(response.data)
-  })
-})
+    console.log(response.data);
+  });
+});
 </script>
 <template>
   <div class="min-w-[calc(32%-28px)]">

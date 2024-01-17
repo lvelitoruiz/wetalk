@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios'
+import { AxiosInstance } from 'axios';
 
 export default function ({ $config }: { $config: { apiUrl: string } }) {
   return {
@@ -7,5 +7,5 @@ export default function ({ $config }: { $config: { apiUrl: string } }) {
     common: {
       Accept: 'application/json, text/plain, */*', // Default headers for all requests
     },
-  }
+  };
 }

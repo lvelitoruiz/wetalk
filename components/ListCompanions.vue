@@ -2,24 +2,24 @@
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { useToast } from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
-import { defineProps } from 'vue'
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+import { defineProps } from 'vue';
 
 const props = defineProps({
   dataCompanions: {
     type: Array,
   },
-})
+});
 
-const $toast = useToast()
+const $toast = useToast();
 const copyToClipboard = (email, student) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
       typeof: 'error',
-    })
-    return
+    });
+    return;
   }
   navigator.clipboard
     .writeText(email)
@@ -27,14 +27,14 @@ const copyToClipboard = (email, student) => {
       $toast.open({
         message: 'Texto Copiado!!!',
         typeof: 'success',
-      })
+      });
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar texto',
         typeof: 'error',
-      })
-    })
+      });
+    });
   if (dataLayer) {
     dataLayer.push({
       event: 'Click_Copiar',
@@ -42,17 +42,17 @@ const copyToClipboard = (email, student) => {
       titulo_caja: 'Compañeros',
       Click_Text: email,
       titulo: student,
-    })
+    });
   }
-}
+};
 
 const capitalizeString = (str) => {
   return str
     .toLowerCase()
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
-}
+    .join(' ');
+};
 </script>
 <template>
   <div class="mb-[20px]">

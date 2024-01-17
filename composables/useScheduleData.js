@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable no-undef */
-import getAuthHeaders from '~~/utils/authHeaders'
+import getAuthHeaders from '~~/utils/authHeaders';
 const useScheduleData = () => {
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig();
 
   const getScheduleInit = async () => {
     const { data } = await useFetch(
@@ -17,10 +17,10 @@ const useScheduleData = () => {
           CodPeriodo: '201502',
         },
       },
-    )
+    );
 
-    return data.value
-  }
+    return data.value;
+  };
 
   const getScheduleCourse = async (course) => {
     const { data: matricula1, error } = await useFetch(
@@ -41,10 +41,10 @@ const useScheduleData = () => {
           Seccion: course.seccion,
         },
       },
-    )
+    );
 
-    return { matricula1, error }
-  }
+    return { matricula1, error };
+  };
 
   const getSchedule = async (day1, day2) => {
     const response = await useLazyFetch(
@@ -65,10 +65,10 @@ const useScheduleData = () => {
           FechaSesion1: `${day1}T00:00:00Z`,
         },
       },
-    )
+    );
 
-    return response
-  }
+    return response;
+  };
 
   const getListCalendarPeriods = async () => {
     const responses = await useLazyFetch(
@@ -80,10 +80,10 @@ const useScheduleData = () => {
             .codModalidadEstActual,
         },
       },
-    )
+    );
 
-    return responses
-  }
+    return responses;
+  };
 
   const getDataCalendar = async (actualCode, activo) => {
     const responses = await useLazyFetch(
@@ -97,10 +97,10 @@ const useScheduleData = () => {
             .codModalidadEstActual,
         },
       },
-    )
+    );
 
-    return responses
-  }
+    return responses;
+  };
 
   const getDataCalendarPdf = async (actualCode) => {
     const responses = await useLazyFetch(
@@ -113,10 +113,10 @@ const useScheduleData = () => {
             .codModalidadEstActual,
         },
       },
-    )
+    );
 
-    return responses
-  }
+    return responses;
+  };
 
   const getDataHome = async (params) => {
     const response = useLazyFetch(
@@ -137,10 +137,10 @@ const useScheduleData = () => {
           FechaSesion1: `${params}T00:00:00Z`,
         },
       },
-    )
+    );
 
-    return await response
-  }
+    return await response;
+  };
 
   return {
     getScheduleInit,
@@ -150,7 +150,7 @@ const useScheduleData = () => {
     getDataCalendar,
     getDataCalendarPdf,
     getDataHome,
-  }
-}
+  };
+};
 
-export default useScheduleData
+export default useScheduleData;

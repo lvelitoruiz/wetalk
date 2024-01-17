@@ -1,16 +1,16 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/valid-define-emits -->
 <script setup>
-import { defineEmits, ref } from 'vue'
+import { defineEmits, ref } from 'vue';
 
-const emit = defineEmits()
+const emit = defineEmits();
 
 const triggerModal = () => {
-  emit('modal-close')
-}
+  emit('modal-close');
+};
 
-const institucionSeleccionada = ref(0)
-const esAlumnoNuevo = ref(null)
+const institucionSeleccionada = ref(0);
+const esAlumnoNuevo = ref(null);
 
 const enlaces = [
   { true: '', false: '' },
@@ -18,18 +18,18 @@ const enlaces = [
   { true: 'https://wa.link/yd1ig9', false: 'https://bit.ly/3h2sVlt' },
   { true: 'https://wa.link/5ouyu7', false: 'https://wa.link/m236ca' },
   { true: 'http://bit.ly/3rAA7h6', false: 'https://idiomas.upc.edu.pe/' },
-]
+];
 
 const eventClickMasInformacion = (text) => {
-  emit('modal-open')
+  emit('modal-open');
   if (dataLayer) {
     dataLayer.push({
       event: 'Mas_Informacion_Modal',
       name: 'Evento_Mas_Informacion_Modal',
       Click_text: text,
-    })
+    });
   }
-}
+};
 </script>
 <template>
   <section

@@ -1,16 +1,16 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import sedes from '~/utils/locales.json'
-import { defineProps } from 'vue'
+import sedes from '~/utils/locales.json';
+import { defineProps } from 'vue';
 
 defineProps({
   course: Object,
   popupIsVisible: Boolean,
-})
+});
 
-const store = scheduleState()
-const listP = store.sessions
+const store = scheduleState();
+const listP = store.sessions;
 </script>
 
 <template>

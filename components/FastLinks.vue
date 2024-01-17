@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, onMounted } from 'vue'
+import { defineProps, onMounted } from 'vue';
 
 const props = defineProps({
   links: Array,
-})
+});
 
 onMounted(async () => {
   // console.log(props.links);
-})
+});
 </script>
 
 <template>

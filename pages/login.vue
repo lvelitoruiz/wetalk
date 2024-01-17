@@ -1,41 +1,41 @@
 <!-- eslint-disable no-undef -->
 <script setup>
-import { ref } from 'vue'
-import { useNuxtApp } from '#app'
-import { useUserStore } from '~/stores/auth'
+import { ref } from 'vue';
+import { useNuxtApp } from '#app';
+import { useUserStore } from '~/stores/auth';
 
-const { $msal, $config } = useNuxtApp()
-const userStore = useUserStore()
+const { $msal, $config } = useNuxtApp();
+const userStore = useUserStore();
 
-const selectedCodUser = ref(null)
+const selectedCodUser = ref(null);
 
 definePageMeta({
   middleware: 'auth',
-})
+});
 useHead({
   title: 'Portal WeTALK',
-})
+});
 
 async function login () {
   if ($config.public.stage !== 'prod' && selectedCodUser.value) {
-    const accessToken = ''
-    const userCode = selectedCodUser.value
+    const accessToken = '';
+    const userCode = selectedCodUser.value;
 
     const user = {
       name: 'Lesdy Huamán Cartagena',
       bearerToken: accessToken,
       codUser: userCode,
       institucion: 'upn',
-    }
+    };
 
     // localStorage.setItem("tokenH", accessToken);
     // localStorage.setItem("codUser", userCode);
     // localStorage.setItem("institucion", 'upn');
-    await userStore.fetchUserData(true, '', user)
+    await userStore.fetchUserData(true, '', user);
 
-    await navigateTo('/auth', { replace: true })
+    await navigateTo('/auth', { replace: true });
   } else {
-    await $msal().signIn()
+    await $msal().signIn();
   }
 }
 </script>

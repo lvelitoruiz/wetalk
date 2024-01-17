@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { defineStore } from 'pinia'
-import { getFullname } from '~/utils/setFormatName'
+import { defineStore } from 'pinia';
+import { getFullname } from '~/utils/setFormatName';
 export const scheduleState = defineStore('scheduleState', {
   state: () => ({
     coursesListDay: null,
@@ -17,71 +17,71 @@ export const scheduleState = defineStore('scheduleState', {
   getters: {
     coursesSelectedDay (state) {
       return (filter = 'Todos') => {
-        if (filter === 'Todos') { return state.coursesListDay?.ListaDTOHorarioAlumnoDet }
+        if (filter === 'Todos') { return state.coursesListDay?.ListaDTOHorarioAlumnoDet; }
         return state.coursesListDay?.ListaDTOHorarioAlumnoDet.filter(
           (item) => item.CodCurso === filter,
-        )
-      }
+        );
+      };
     },
   },
   actions: {
     changeDay (val) {
-      this.day = this.day + val
+      this.day = this.day + val;
     },
     setcoursesListDay (payload) {
-      this.coursesListDay = payload
+      this.coursesListDay = payload;
       if (payload?.ListaDTOHorarioAlumnoDet) {
-        let earlierCourse = Infinity
-        const dayFilter = {}
+        let earlierCourse = Infinity;
+        const dayFilter = {};
         payload.ListaDTOHorarioAlumnoDet.forEach((course) => {
-          const hourInit = getHour(course.HoraInicioSesion)
-          earlierCourse = Math.min(earlierCourse, hourInit)
+          const hourInit = getHour(course.HoraInicioSesion);
+          earlierCourse = Math.min(earlierCourse, hourInit);
 
           dayFilter[course.CodCurso] = {
             state: true,
             DescEspecialCurso: course.DescEspecialCurso,
             CodCurso: course.CodCurso,
-          }
-        })
-        this.dayFilter = dayFilter
-        this.earlierCourseDay = earlierCourse
+          };
+        });
+        this.dayFilter = dayFilter;
+        this.earlierCourseDay = earlierCourse;
       }
     },
     setDay (payload) {
-      this.day = payload === 0 ? 6 : payload - 1
+      this.day = payload === 0 ? 6 : payload - 1;
     },
     setSessions (payload) {
-      const hashCourses = {}
+      const hashCourses = {};
       payload.forEach((day) => {
         day.ListaDTOHorarioAlumnoDet.forEach((course) => {
-          const fullname = getFullname(course.NombresImag, course.ApePatImag)
+          const fullname = getFullname(course.NombresImag, course.ApePatImag);
           if (!hashCourses[course.IdSesion]) {
             hashCourses[course.IdSesion] = {
               docentes: fullname ? [fullname] : [],
-            }
+            };
           } else {
             hashCourses[course.IdSesion].docentes =
-              hashCourses[course.IdSesion].docentes.concat(fullname)
+              hashCourses[course.IdSesion].docentes.concat(fullname);
           }
-        })
-      })
-      this.sessions = hashCourses
+        });
+      });
+      this.sessions = hashCourses;
     },
     setSessionDaily (payload) {
-      const hashCourses = {}
+      const hashCourses = {};
       payload.ListaDTOHorarioAlumnoDet.forEach((course, i) => {
         if (!hashCourses[course.IdSesion]?.exists) {
-          hashCourses[course.IdSesion] = { exists: true, id: i }
+          hashCourses[course.IdSesion] = { exists: true, id: i };
         }
-      })
-      this.sessionDaily = hashCourses
+      });
+      this.sessionDaily = hashCourses;
     },
     setWeekCourses (payload) {
       payload.forEach((course) => {
-        const index = getDay(course.DTOHorarioAlumnoCab.FechaSesion)
-        if (index === 0) this.fullWeek[6] = course
-        else this.fullWeek[index - 1] = course
-      })
+        const index = getDay(course.DTOHorarioAlumnoCab.FechaSesion);
+        if (index === 0) this.fullWeek[6] = course;
+        else this.fullWeek[index - 1] = course;
+      });
     },
   },
-})
+});

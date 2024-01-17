@@ -1,48 +1,48 @@
 <!-- eslint-disable no-undef -->
 <script setup>
-import { useMetaStore } from '../stores/meta'
-import { useMenuStore } from '../stores/menu'
-import { useUserStore } from '~/stores/auth'
-import { ref, watchEffect } from 'vue'
-import { apiUrl } from '~/consts'
-const userStore = useUserStore()
-const menuStore = useMenuStore()
+import { useMetaStore } from '../stores/meta';
+import { useMenuStore } from '../stores/menu';
+import { useUserStore } from '~/stores/auth';
+import { ref, watchEffect } from 'vue';
+import { apiUrl } from '~/consts';
+const userStore = useUserStore();
+const menuStore = useMenuStore();
 
-const nameUser = userStore.getUserData?.name
-const courseName = menuStore.getProfileItems?.data?.at(0)?.descCurso ?? ''
+const nameUser = userStore.getUserData?.name;
+const courseName = menuStore.getProfileItems?.data?.at(0)?.descCurso ?? '';
 
-const selectedImage = ref('')
-const anotherImage = ref('')
+const selectedImage = ref('');
+const anotherImage = ref('');
 const metaText = ref(
   'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆',
-)
-const metaStore = useMetaStore()
-const dataMeta = ref(null)
+);
+const metaStore = useMetaStore();
+const dataMeta = ref(null);
 
 watchEffect(() => {
-  const data = metaStore.getMetaData
+  const data = metaStore.getMetaData;
   if (data?.length > 0) {
     // console.log('this is the data: ',data,data.length);
-    selectedImage.value = data[0].imagen
-    metaText.value = data[0].meta
-    dataMeta.value = data[0]
+    selectedImage.value = data[0].imagen;
+    metaText.value = data[0].meta;
+    dataMeta.value = data[0];
   }
-  const images = metaStore.getImages
+  const images = metaStore.getImages;
   if (images) {
-    anotherImage.value = images[0].imagen
+    anotherImage.value = images[0].imagen;
   }
-})
-const dataCompanios = ref([])
+});
+const dataCompanios = ref([]);
 
-const dataListStudents = menuStore.fetchListCompanions(apiUrl)
+const dataListStudents = menuStore.fetchListCompanions(apiUrl);
 
 watchEffect(async () => {
   // await menuStore.fetchListCompanions(apiUrl);
-  const data = menuStore.getListStudents
+  const data = menuStore.getListStudents;
   if (data?.length > 0) {
-    dataCompanios.value = menuStore.getListStudents
+    dataCompanios.value = menuStore.getListStudents;
   }
-})
+});
 
 const eventClickMeta = (text, url) => {
   if (dataLayer) {
@@ -51,12 +51,12 @@ const eventClickMeta = (text, url) => {
       name: 'Evento_Ver_Mi_Meta',
       Click_Text: text,
       url,
-    })
+    });
   }
-}
+};
 
-const isOpen = true
-const haveLink = true
+const isOpen = true;
+const haveLink = true;
 </script>
 <template>
   <!-- <div class="lg:flex hidden items-center lg:w-[1023px] mx-auto pb-[18px] gap-[6px]">

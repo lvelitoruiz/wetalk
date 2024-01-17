@@ -1,11 +1,11 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { useToast } from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
-import { defineProps } from 'vue'
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+import { defineProps } from 'vue';
 
-const $toast = useToast()
+const $toast = useToast();
 
 const props = defineProps({
   label: String,
@@ -13,15 +13,15 @@ const props = defineProps({
   code: String,
   link: String,
   hasCode: Boolean,
-})
+});
 
 const copyToClipboard = (code) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
       typeof: 'error',
-    })
-    return
+    });
+    return;
   }
   navigator.clipboard
     .writeText(props.code)
@@ -29,22 +29,22 @@ const copyToClipboard = (code) => {
       $toast.open({
         message: 'Código Copiado!!!',
         typeof: 'success',
-      })
+      });
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar código',
         typeof: 'error',
-      })
-    })
+      });
+    });
   if (dataLayer) {
     dataLayer.push({
       event: 'Click-CodActivacion',
       name: 'Click-CodActivacion',
       Click_Text: code,
-    })
+    });
   }
-}
+};
 
 const eventClickFastLinks = (text, url) => {
   if (dataLayer) {
@@ -53,9 +53,9 @@ const eventClickFastLinks = (text, url) => {
       name: 'Click-LinksRapidos',
       Click_Text: text,
       url,
-    })
+    });
   }
-}
+};
 </script>
 <template>
   <div class="relative w-full h-auto">

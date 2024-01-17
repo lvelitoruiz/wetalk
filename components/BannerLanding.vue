@@ -1,21 +1,21 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/valid-define-emits -->
 <script setup>
-import { defineEmits } from 'vue'
+import { defineEmits } from 'vue';
 
-const emit = defineEmits()
+const emit = defineEmits();
 
 const triggerModal = (text, url) => {
-  emit('modal-open')
+  emit('modal-open');
   if (dataLayer) {
     dataLayer.push({
       event: 'Clics_ir_wetalk',
       name: 'Evento_ir_wetalk',
       Click_text: text,
       url,
-    })
+    });
   }
-}
+};
 </script>
 <template>
   <section class="bg-image flex items-center">

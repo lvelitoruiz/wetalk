@@ -2,43 +2,43 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <script setup>
-import { useMenuStore } from '../stores/menu'
-import { apiUrl } from '~/consts'
-import { ref, watchEffect, onMounted, defineProps } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
+import { ref, watchEffect, onMounted, defineProps } from 'vue';
 
-const menuStore = useMenuStore()
-const dataSyllabus = ref(null)
-const cicloNow = ref(null)
-const cicloNext = ref(null)
-const syllabusFile = ref(null)
-const courses = ref([])
+const menuStore = useMenuStore();
+const dataSyllabus = ref(null);
+const cicloNow = ref(null);
+const cicloNext = ref(null);
+const syllabusFile = ref(null);
+const courses = ref([]);
 
 const tabs = [
   { texto: 'Ciclo Actual', value: true },
   { texto: 'Próximo Ciclo', value: false },
-]
+];
 
 watchEffect(() => {
-  const contenido = menuStore.getContenidoItems
+  const contenido = menuStore.getContenidoItems;
   if (contenido) {
-    dataSyllabus.value = contenido
+    dataSyllabus.value = contenido;
   }
 
-  courses.value = menuStore.getCourses
-  cicloNow.value = dataSyllabus.value[0]
-  cicloNext.value = dataSyllabus.value[1]
-  syllabusFile.value = dataSyllabus.value[2]
-})
+  courses.value = menuStore.getCourses;
+  cicloNow.value = dataSyllabus.value[0];
+  cicloNext.value = dataSyllabus.value[1];
+  syllabusFile.value = dataSyllabus.value[2];
+});
 
 onMounted(() => {
   if (props && props.fetchCoursesData) {
-    menuStore.fetchCoursesData(apiUrl)
+    menuStore.fetchCoursesData(apiUrl);
   }
 
   menuStore.fetchContenidoData(apiUrl, '0').then((response) => {
-    console.log(response.data)
-  })
-})
+    console.log(response.data);
+  });
+});
 
 const props = defineProps({
   open: {
@@ -57,35 +57,35 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-})
+});
 
-const actual = ref(true)
+const actual = ref(true);
 
 const handleTabChange = (value) => {
-  actual.value = value
-}
+  actual.value = value;
+};
 
 const downloadFile = () => {
-  const fileUrl = syllabusFile.value
+  const fileUrl = syllabusFile.value;
 
-  const newWindow = window.open(fileUrl, '_blank')
+  const newWindow = window.open(fileUrl, '_blank');
   if (newWindow) {
-    newWindow.focus()
+    newWindow.focus();
   } else {
-    alert('Popup blocked. Please allow popups for this website.')
+    alert('Popup blocked. Please allow popups for this website.');
   }
   if (dataLayer) {
     dataLayer.push({
       event: 'Descargar_Sylabus',
       name: 'Evento_Descargar_Sylabus',
       contenido: fileUrl,
-    })
+    });
   }
-}
+};
 
 const triggerCycle = () => {
-  menuStore.fetchContenidoData(apiUrl, event.target.value.toString())
-}
+  menuStore.fetchContenidoData(apiUrl, event.target.value.toString());
+};
 
 const eventClickVerMas = () => {
   if (dataLayer) {
@@ -93,9 +93,9 @@ const eventClickVerMas = () => {
       event: 'Click_Click_Ver_Mas',
       name: 'Evento_Click_Ver_Mas',
       titulo_caja: 'Contenido',
-    })
+    });
   }
-}
+};
 </script>
 <template>
   <div class="w-full lg:min-w-[65%]">

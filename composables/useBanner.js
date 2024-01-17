@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable no-undef */
-import getAuthHeaders from '~~/utils/authHeaders'
+import getAuthHeaders from '~~/utils/authHeaders';
 const useScheduleData = () => {
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig();
 
   const getBanner = async () => {
     const response = useLazyFetch(
@@ -10,13 +10,13 @@ const useScheduleData = () => {
       {
         headers: getAuthHeaders(),
       },
-    )
-    return await response
-  }
+    );
+    return await response;
+  };
 
   return {
     getBanner,
-  }
-}
+  };
+};
 
-export default useScheduleData
+export default useScheduleData;

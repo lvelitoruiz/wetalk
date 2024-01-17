@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 const props = defineProps({
   notasData: Array,
-})
+});
 </script>
 
 <template>

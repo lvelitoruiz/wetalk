@@ -3,45 +3,45 @@
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <script setup ts>
-import { computed, ref, watchEffect, onBeforeMount, onMounted } from 'vue'
-import { apiUrl } from '~/consts'
-import { useMetaStore } from '../stores/meta'
-import { useMenuStore } from '../stores/menu'
+import { computed, ref, watchEffect, onBeforeMount, onMounted } from 'vue';
+import { apiUrl } from '~/consts';
+import { useMetaStore } from '../stores/meta';
+import { useMenuStore } from '../stores/menu';
 
 definePageMeta({
   middleware: 'auth',
-})
+});
 
-const metaStore = useMetaStore()
-const menuStore = useMenuStore()
-const metaData = ref(null)
-const imagesData = ref(null)
-const accesoData = ref(null)
-const menuData = ref(null)
-const referenceData = ref(false)
+const metaStore = useMetaStore();
+const menuStore = useMenuStore();
+const metaData = ref(null);
+const imagesData = ref(null);
+const accesoData = ref(null);
+const menuData = ref(null);
+const referenceData = ref(false);
 
-const keyMeta = ref(false)
-const keyImages = ref(false)
-const keyMenu = ref(false)
-const keyAcceso = ref(false)
-const keyContenido = ref(false)
-const keyProfile = ref(false)
+const keyMeta = ref(false);
+const keyImages = ref(false);
+const keyMenu = ref(false);
+const keyAcceso = ref(false);
+const keyContenido = ref(false);
+const keyProfile = ref(false);
 
-const selectedImage = ref('')
+const selectedImage = ref('');
 
-const anotherImage = ref('')
+const anotherImage = ref('');
 
 const fetchMetaInfo = async () => {
-  metaStore.fetchMetaData(apiUrl).then((response) => (keyMeta.value = true))
-  metaStore.obtainImages(apiUrl).then((response) => (keyImages.value = true))
-  menuStore.fetchMenuData(apiUrl).then((response) => (keyMenu.value = true))
+  metaStore.fetchMetaData(apiUrl).then((response) => (keyMeta.value = true));
+  metaStore.obtainImages(apiUrl).then((response) => (keyImages.value = true));
+  menuStore.fetchMenuData(apiUrl).then((response) => (keyMenu.value = true));
   menuStore
     .fetchAccesoDirectoData(apiUrl)
-    .then((response) => (keyAcceso.value = true))
+    .then((response) => (keyAcceso.value = true));
 
   const profiler = await menuStore.fetchProfileData(apiUrl).then((response) => {
-    keyProfile.value = true
-    const profileData = menuStore.getProfileItems?.data[0]
+    keyProfile.value = true;
+    const profileData = menuStore.getProfileItems?.data[0];
     if (menuStore.getProfileItems?.data?.length > 0 && dataLayer) {
       dataLayer.push({
         event: 'login',
@@ -50,31 +50,31 @@ const fetchMetaInfo = async () => {
         carrera: profileData?.desProducto,
         ciclo: profileData?.descCurso,
         codigoAlumno: profileData?.codAlumno,
-      })
+      });
     }
-  })
-}
+  });
+};
 
 onBeforeMount(() => {
-  localStorage.removeItem('menu')
-  localStorage.removeItem('meta')
-  localStorage.removeItem('scheduleState')
-})
+  localStorage.removeItem('menu');
+  localStorage.removeItem('meta');
+  localStorage.removeItem('scheduleState');
+});
 
 onMounted(async () => {
-  await fetchMetaInfo()
-  console.log('checking if I am on certification!')
-})
+  await fetchMetaInfo();
+  console.log('checking if I am on certification!');
+});
 
 const handleOpen = () => {
   // console.log('managing redirection!!');
-  navigateTo('/dashboard')
-}
+  navigateTo('/dashboard');
+};
 
 const handleOpenLogin = () => {
   // console.log('yeah all is there!');
-  navigateTo('/login')
-}
+  navigateTo('/login');
+};
 
 const allDataLoaded = computed(() => {
   return (
@@ -83,52 +83,52 @@ const allDataLoaded = computed(() => {
     keyMenu.value &&
     keyAcceso.value &&
     keyProfile.value
-  )
-})
+  );
+});
 
 watchEffect(async () => {
-  const data = metaStore.getMetaData
+  const data = metaStore.getMetaData;
   if (data && data.length > 0) {
-    referenceData.value = true
-    console.log('metadata values: ', data.length)
-    metaData.value = data
+    referenceData.value = true;
+    console.log('metadata values: ', data.length);
+    metaData.value = data;
     if (data[0].imagen !== '') {
-      selectedImage.value = data[0].imagen
+      selectedImage.value = data[0].imagen;
     }
   } else {
-    console.log('no metadata values: ', data?.length)
-    referenceData.value = false
-    metaData.value = data
+    console.log('no metadata values: ', data?.length);
+    referenceData.value = false;
+    metaData.value = data;
   }
-  const images = metaStore.getImages
+  const images = metaStore.getImages;
   if (images) {
-    anotherImage.value = images[0].imagen
-    imagesData.value = images
+    anotherImage.value = images[0].imagen;
+    imagesData.value = images;
   }
-  const menu = menuStore.getMenuItems
+  const menu = menuStore.getMenuItems;
   if (menu) {
-    menuData.value = menu
+    menuData.value = menu;
   }
-  const acceso = menuStore.getAccesoItems
+  const acceso = menuStore.getAccesoItems;
   if (acceso) {
-    accesoData.value = acceso
+    accesoData.value = acceso;
   }
 
-  const profile = menuStore.getProfileItems
+  const profile = menuStore.getProfileItems;
   if (profile.data !== undefined) {
-    console.log('the profile data: ', profile.data)
-    localStorage.setItem('periodo', profile.data[0].periodo)
-    localStorage.setItem('curso', profile.data[0].salon)
-    localStorage.setItem('seccion', profile.data[0].seccion)
-    localStorage.setItem('foto', profile.data[0].fotoUrl)
+    console.log('the profile data: ', profile.data);
+    localStorage.setItem('periodo', profile.data[0].periodo);
+    localStorage.setItem('curso', profile.data[0].salon);
+    localStorage.setItem('seccion', profile.data[0].seccion);
+    localStorage.setItem('foto', profile.data[0].fotoUrl);
   }
 
   // console.log('with value: ',allDataLoaded.value);
 
   if (allDataLoaded.value) {
-    handleOpen()
+    handleOpen();
   }
-})
+});
 </script>
 <template>
   <section class="container mx-auto relative px-4">

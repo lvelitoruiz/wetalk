@@ -1,34 +1,34 @@
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <!-- eslint-disable array-callback-return -->
 <script setup ts>
-import { useMenuStore } from '../stores/menu'
-import { watchEffect, defineEmits, ref } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { watchEffect, defineEmits, ref } from 'vue';
 
-const notifications = ref(null)
+const notifications = ref(null);
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
-const menuStore = useMenuStore()
+const menuStore = useMenuStore();
 
 watchEffect(async () => {
-  const notifData = menuStore.getNotificationItems
+  const notifData = menuStore.getNotificationItems;
   if (notifData) {
     let notifDataMapping = notifData
       .flatMap(({ data }) => data)
       .filter(({ status }) => status)
-      .map(({ tipo }) => ({ tipo }))
+      .map(({ tipo }) => ({ tipo }));
 
     // Adding new fields
     notifDataMapping.map((notificacion, _, self) => {
       if (notificacion.tipo === 'GENERAL') {
         notificacion.tipo =
           notificacion.tipo.charAt(0) +
-          notificacion.tipo.slice(1).toLowerCase()
+          notificacion.tipo.slice(1).toLowerCase();
       }
       notificacion.count = self.filter(
         (x) => x.tipo === notificacion.tipo,
-      ).length
-    })
+      ).length;
+    });
 
     // Distinct for unique values
     notifDataMapping = [
@@ -38,13 +38,13 @@ watchEffect(async () => {
           notificacion,
         ]),
       ).values(),
-    ]
-    notifications.value = notifDataMapping
+    ];
+    notifications.value = notifDataMapping;
   }
-})
+});
 
 function closeNotifications () {
-  emit('close')
+  emit('close');
 }
 </script>
 <template>

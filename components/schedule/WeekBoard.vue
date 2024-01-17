@@ -11,11 +11,11 @@ import {
   useBreakpoints,
   useNow,
   useScroll,
-} from '@vueuse/core'
+} from '@vueuse/core';
 
-import { getFullname } from '~~/utils/setFormatName'
-import { defineProps, ref, onMounted } from 'vue'
-import { getHour, getMinutes } from '../../utils/dateFunctions'
+import { getFullname } from '~~/utils/setFormatName';
+import { defineProps, ref, onMounted } from 'vue';
+import { getHour, getMinutes } from '../../utils/dateFunctions';
 
 const props = defineProps({
   data: {
@@ -33,23 +33,23 @@ const props = defineProps({
   displayed: Object,
   hours: Object,
   handleChange: Function,
-})
+});
 
-console.log('this is the data: ', props.allCourses)
+console.log('this is the data: ', props.allCourses);
 
-const earlierCourse = ref(Infinity)
-const store = scheduleState()
-const listP = store.sessions
-const datesList = ref(null)
-const coursesCalendar = ref(null)
-const listHours = ref(null)
-const { y } = useScroll(coursesCalendar)
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const smallerThanLg = breakpoints.smaller('lg')
-const now = ref(new Date())
-const nowMark = useNow()
+const earlierCourse = ref(Infinity);
+const store = scheduleState();
+const listP = store.sessions;
+const datesList = ref(null);
+const coursesCalendar = ref(null);
+const listHours = ref(null);
+const { y } = useScroll(coursesCalendar);
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const smallerThanLg = breakpoints.smaller('lg');
+const now = ref(new Date());
+const nowMark = useNow();
 
-console.log(store)
+console.log(store);
 
 // Horarios con cursos activos
 if (
@@ -62,11 +62,11 @@ if (
         state: true,
         DescEspecialCurso: course.DescEspecialCurso,
         CodCurso: course.CodCurso,
-      }
-      const hourInit = getHour(course.HoraInicioSesion)
-      earlierCourse.value = Math.min(earlierCourse.value, hourInit)
-    })
-  })
+      };
+      const hourInit = getHour(course.HoraInicioSesion);
+      earlierCourse.value = Math.min(earlierCourse.value, hourInit);
+    });
+  });
 }
 
 const getDiff = (init, fin) => {
@@ -74,64 +74,64 @@ const getDiff = (init, fin) => {
     getHour(fin) +
     getMinutes(fin) / 60 -
     (getHour(init) + getMinutes(init) / 60)
-  )
-}
+  );
+};
 
 const getTopAndHeight = (init, fin) => {
-  const hCard = smallerThanLg.value ? 62 : 55
-  const height = getDiff(init, fin) * (hCard - 0.5)
-  let top = 0
+  const hCard = smallerThanLg.value ? 62 : 55;
+  const height = getDiff(init, fin) * (hCard - 0.5);
+  let top = 0;
   Object.keys(props.hours)
     .sort()
     .forEach((item) => {
       if (Number(item) < getHour(init)) {
-        top = top + hCard
+        top = top + hCard;
       }
-    })
+    });
 
-  if (getMinutes(init) / 60 > 0) (top = top + 40), 5
+  if (getMinutes(init) / 60 > 0) (top = top + 40), 5;
   return {
     top: `${top + 10}px`,
     height: `${height}px`,
-  }
-}
+  };
+};
 
 const isRepeated = (session, name, lastname) => {
-  const professors = listP[session].docentes
-  if (professors.length === 0) return true
-  const fullname = getFullname(name, lastname)
-  return professors.indexOf(fullname) === 0
-}
+  const professors = listP[session].docentes;
+  if (professors.length === 0) return true;
+  const fullname = getFullname(name, lastname);
+  return professors.indexOf(fullname) === 0;
+};
 
 const sessionDate = (val) => {
-  const today = new Date()
+  const today = new Date();
   return new Date(
     today.setDate(today.getDate() - today.getDay() + val + 1),
-  ).getDate()
-}
+  ).getDate();
+};
 
 const calendarDay = (num) => {
-  if (num === 0) return 6
-  else return num - 1
-}
+  if (num === 0) return 6;
+  else return num - 1;
+};
 
-const heightBox = ref(smallerThanLg.value ? 62 : 55)
+const heightBox = ref(smallerThanLg.value ? 62 : 55);
 
 const getTopStyle = (inicioTime) => {
-  const date = getnowMarkour(inicioTime)
-  return `${(Number(date) - 7) * heightBox.value + 10}px`
-}
+  const date = getnowMarkour(inicioTime);
+  return `${(Number(date) - 7) * heightBox.value + 10}px`;
+};
 
 onMounted(() => {
-  y.value = (getnowMarkour(now.value) - 8) * 56.5
+  y.value = (getnowMarkour(now.value) - 8) * 56.5;
 
   coursesCalendar.value.addEventListener('scroll', () => {
-    const scrollXVal = coursesCalendar.value.scrollLeft
-    const scrollYVal = coursesCalendar.value.scrollTop
-    datesList.value.scrollLeft = scrollXVal
-    listHours.value.scrollTop = scrollYVal
-  })
-})
+    const scrollXVal = coursesCalendar.value.scrollLeft;
+    const scrollYVal = coursesCalendar.value.scrollTop;
+    datesList.value.scrollLeft = scrollXVal;
+    listHours.value.scrollTop = scrollYVal;
+  });
+});
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import Vue3Lottie from 'vue3-lottie'
+import Vue3Lottie from 'vue3-lottie';
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(Vue3Lottie)
-})
+  nuxtApp.vueApp.use(Vue3Lottie);
+});

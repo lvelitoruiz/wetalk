@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 defineProps({
   dataList: {
@@ -11,7 +11,7 @@ defineProps({
     type: Number,
     default: 1,
   },
-})
+});
 </script>
 <template>
   <div class="content_destacados">

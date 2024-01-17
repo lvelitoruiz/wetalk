@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 const props = defineProps({
   day: {
@@ -22,7 +22,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+});
 </script>
 <template>
   <div class="col-span-2 flex items-center justify-center xl:order-1">

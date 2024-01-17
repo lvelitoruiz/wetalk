@@ -1,82 +1,82 @@
 <!-- eslint-disable vue/require-default-prop -->
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <script setup>
-import VueCal from 'vue-cal'
-import { dayDescription } from '@/utils/dateFunctions'
-import 'vue-cal/dist/vuecal.css'
-import { defineProps, ref } from 'vue'
+import VueCal from 'vue-cal';
+import { dayDescription } from '@/utils/dateFunctions';
+import 'vue-cal/dist/vuecal.css';
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
   data: Array,
-})
+});
 
-const arrListevents = props.data
-const eventsUpdate = ref([])
+const arrListevents = props.data;
+const eventsUpdate = ref([]);
 
-const events = []
-const feriados = []
-const academic = []
+const events = [];
+const feriados = [];
+const academic = [];
 
 const eventFech = (fecha1) => {
-  const eventDay = new Date(fecha1)
-  const dia = eventDay.getDate()
-  const mes = eventDay.getMonth() + 1
-  const anio = eventDay.getFullYear()
+  const eventDay = new Date(fecha1);
+  const dia = eventDay.getDate();
+  const mes = eventDay.getMonth() + 1;
+  const anio = eventDay.getFullYear();
 
-  const formtDay = anio + '-' + mes + '-' + dia
+  const formtDay = anio + '-' + mes + '-' + dia;
 
-  return formtDay
-}
+  return formtDay;
+};
 // Filtro de eventos activos
 const activeCalendar = arrListevents?.filter(
   (event) => event.mostrarEnCalendario === true,
-)
+);
 
 // Nueva lista de los eventos
 activeCalendar?.forEach((eventService) => {
   const fEnd =
     eventService.fechaEnd ?? null
       ? eventService.fechaInit
-      : eventService.fechaEnd
-  const start = eventFech(eventService.fechaInit)
-  const end = eventFech(fEnd)
+      : eventService.fechaEnd;
+  const start = eventFech(eventService.fechaInit);
+  const end = eventFech(fEnd);
   if (eventService.feriado) {
-    feriados.push(new Date(eventService.fechaInit).format())
-    feriados.push(new Date(eventService.fechaEnd).format())
+    feriados.push(new Date(eventService.fechaInit).format());
+    feriados.push(new Date(eventService.fechaEnd).format());
   } else {
     academic.push({
       title: eventService.tramite,
       start,
       end,
       feriado: eventService.feriado,
-    })
+    });
   }
   events.push({
     title: eventService.tramite,
     start,
     end,
     feriado: eventService.feriado,
-  })
-})
+  });
+});
 
 const numMonth = (dayFe) => {
-  const eventDay = new Date(dayFe)
-  const mes = eventDay.getMonth() + 1
-  return mes
-}
+  const eventDay = new Date(dayFe);
+  const mes = eventDay.getMonth() + 1;
+  return mes;
+};
 
-const eventDay = new Date()
+const eventDay = new Date();
 const res = events?.filter(
   (event) => numMonth(event.start) === numMonth(eventDay),
-)
-eventsUpdate.value = res
+);
+eventsUpdate.value = res;
 
 const calEvents = (t, n) => {
   const holidays = events.filter(
     (event) => numMonth(event.start) === numMonth(n.startDate) && event.feriado,
-  )
-  eventsUpdate.value = n.events.concat(holidays)
-}
+  );
+  eventsUpdate.value = n.events.concat(holidays);
+};
 </script>
 <template>
   <client-only>

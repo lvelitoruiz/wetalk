@@ -1,37 +1,37 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <script setup>
-import { useMenuStore } from '../stores/menu'
-import { useToast } from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
-import { apiUrl } from '~/consts'
-import { ref, watchEffect, onMounted } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+import { apiUrl } from '~/consts';
+import { ref, watchEffect, onMounted } from 'vue';
 
-const $toast = useToast()
-const teacher = ref('')
-const mail = ref('')
-const menuStore = useMenuStore()
+const $toast = useToast();
+const teacher = ref('');
+const mail = ref('');
+const menuStore = useMenuStore();
 
 watchEffect(async () => {
-  const profesorData = menuStore.getProfesorItems
+  const profesorData = menuStore.getProfesorItems;
   if (profesorData) {
-    const profesorNombre = profesorData[0]?.nombreCompleto
-    teacher.value = profesorNombre?.toLowerCase()
-    mail.value = profesorData[0]?.correo
+    const profesorNombre = profesorData[0]?.nombreCompleto;
+    teacher.value = profesorNombre?.toLowerCase();
+    mail.value = profesorData[0]?.correo;
   }
-})
+});
 
 onMounted(() => {
-  menuStore.fetchProfesorData(apiUrl)
-})
+  menuStore.fetchProfesorData(apiUrl);
+});
 
 const copyToClipboard = (email) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
       typeof: 'error',
-    })
-    return
+    });
+    return;
   }
   navigator.clipboard
     .writeText(mail.value)
@@ -39,22 +39,22 @@ const copyToClipboard = (email) => {
       $toast.open({
         message: 'Texto Copiado!!!',
         typeof: 'success',
-      })
+      });
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar texto',
         typeof: 'error',
-      })
-    })
+      });
+    });
 
   if (dataLayer) {
     dataLayer.push({
       event: 'Click-EmailProffesor',
       email,
-    })
+    });
   }
-}
+};
 </script>
 
 <template>

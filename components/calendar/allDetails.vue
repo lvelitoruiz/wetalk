@@ -1,61 +1,61 @@
 <script setup>
-import { ref, useRoute, watch } from 'vue'
-import { useScheduleData } from '../../composables/useScheduleData'
+import { ref, useRoute, watch } from 'vue';
+import { useScheduleData } from '../../composables/useScheduleData';
 
-const { getDataCalendar, getListCalendarPeriods, getDataCalendarPdf } = useScheduleData()
-const dataCalendar = ref(null)
-const { data: dataCAPeriodo } = await getDataCalendar('', true)
-dataCalendar.value = dataCAPeriodo.value?.data
+const { getDataCalendar, getListCalendarPeriods, getDataCalendarPdf } = useScheduleData();
+const dataCalendar = ref(null);
+const { data: dataCAPeriodo } = await getDataCalendar('', true);
+dataCalendar.value = dataCAPeriodo.value?.data;
 const {
   data: litsPeriodos,
   error: errorListPeriod,
   pending: pendingListPerid,
-} = await getListCalendarPeriods()
-const periodoValue = ref(dataCalendar.value[0]?.ciclo)
-const periodosList = ref(null)
-const route = useRoute()
-const isFromSuperapp = Boolean(route?.query?._app === 'superapp')
+} = await getListCalendarPeriods();
+const periodoValue = ref(dataCalendar.value[0]?.ciclo);
+const periodosList = ref(null);
+const route = useRoute();
+const isFromSuperapp = Boolean(route?.query?._app === 'superapp');
 watch(litsPeriodos, async (response) => {
   if (response.menssage !== null) {
-    periodosList.value = response
-    periodosList.value?.data.sort((x, y) => x.periodo - y.periodo)
+    periodosList.value = response;
+    periodosList.value?.data.sort((x, y) => x.periodo - y.periodo);
   }
-})
+});
 const { data: dataPdf, pending: pendingPdf } = await getDataCalendarPdf(
   periodoValue.value,
-)
-const contentPdf = ref([])
+);
+const contentPdf = ref([]);
 watch(dataPdf, (response) => {
   if (response?.flag) {
-    contentPdf.value = response.data
+    contentPdf.value = response.data;
   }
-})
-const pendingDC = ref(false)
-const pendingPfdChange = ref(false)
+});
+const pendingDC = ref(false);
+const pendingPfdChange = ref(false);
 const eventChangePeriodo = async () => {
-  pendingDC.value = true
-  pendingPfdChange.value = true
+  pendingDC.value = true;
+  pendingPfdChange.value = true;
   await getDataCalendar(periodoValue.value, false).then((response) => {
-    pendingDC.value = false
+    pendingDC.value = false;
     dataCalendar.value = response.data.value.data.filter(
       (item) => !item.feriado,
-    )
-  })
+    );
+  });
   await getDataCalendarPdf(periodoValue.value).then((response) => {
-    pendingPfdChange.value = false
-    contentPdf.value = response.data.value?.data
-  })
-}
+    pendingPfdChange.value = false;
+    contentPdf.value = response.data.value?.data;
+  });
+};
 const modalidad = JSON.parse(
   sessionStorage.getItem('infoAlumn'),
-).codModalidadEstActual
+).codModalidadEstActual;
 const modalidadActual = () => {
   if (modalidad === 'AC') {
-    return 'Pregrado'
+    return 'Pregrado';
   } else {
-    return 'EPE'
+    return 'EPE';
   }
-}
+};
 </script>
 <template>
   <h1 class="subtitle mb-5">Calendario Académico {{ modalidadActual() }}</h1>

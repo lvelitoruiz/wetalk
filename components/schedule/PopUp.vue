@@ -1,9 +1,9 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import sedes from '~/utils/locales.json'
-import { defineProps, ref, onMounted } from 'vue'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import sedes from '~/utils/locales.json';
+import { defineProps, ref, onMounted } from 'vue';
 
 const props = defineProps({
   course: Object,
@@ -13,13 +13,13 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
-const store = scheduleState()
-const listP = store.sessions
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const smallerThanLg = breakpoints.smaller('lg')
-const target = ref(null)
-onClickOutside(target, () => props.closePopup())
+});
+const store = scheduleState();
+const listP = store.sessions;
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const smallerThanLg = breakpoints.smaller('lg');
+const target = ref(null);
+onClickOutside(target, () => props.closePopup());
 </script>
 <template>
   <div

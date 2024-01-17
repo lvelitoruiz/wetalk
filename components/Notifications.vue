@@ -2,97 +2,97 @@
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <!-- eslint-disable array-callback-return -->
 <script setup ts>
-import { ref, watchEffect, defineEmits } from 'vue'
-import { useMenuStore } from '../stores/menu'
+import { ref, watchEffect, defineEmits } from 'vue';
+import { useMenuStore } from '../stores/menu';
 
-const emit = defineEmits(['close'])
-const notifications = ref(null)
-const categorizedItems = ref(null)
-const finalItems = ref(null)
-const generalItems = ref(null)
-const personalItems = ref(null)
-const menuStore = useMenuStore()
+const emit = defineEmits(['close']);
+const notifications = ref(null);
+const categorizedItems = ref(null);
+const finalItems = ref(null);
+const generalItems = ref(null);
+const personalItems = ref(null);
+const menuStore = useMenuStore();
 
 const convert = (element) => {
-  const elements = [[], []]
+  const elements = [[], []];
 
   categorizedItems.value[element][0].map((item) => {
-    const antiguedad = item.antiguedad
-    const valor = parseInt(antiguedad)
+    const antiguedad = item.antiguedad;
+    const valor = parseInt(antiguedad);
 
     if (antiguedad.includes('d')) {
       if (valor > 6) {
-        elements[0].push(item)
+        elements[0].push(item);
       } else {
-        elements[1].push(item)
+        elements[1].push(item);
       }
     } else if (antiguedad.includes('h') ?? antiguedad.includes('m')) {
-      elements[1].push(item)
+      elements[1].push(item);
     }
-  })
-  return elements
-}
+  });
+  return elements;
+};
 
 watchEffect(async () => {
-  const notifData = menuStore.getNotificationItems
+  const notifData = menuStore.getNotificationItems;
   if (notifData) {
     notifData.map((item, index) => {
       if (index === 1) {
-        item.active = true
+        item.active = true;
       } else {
-        item.active = false
+        item.active = false;
       }
-    })
-    notifications.value = notifData
+    });
+    notifications.value = notifData;
   }
 
-  const items = {}
+  const items = {};
 
   notifications.value.forEach((item) => {
-    const category = item.category
+    const category = item.category;
     if (!items[category]) {
-      items[category] = []
+      items[category] = [];
     }
-    items[category].push(item.data)
-  })
+    items[category].push(item.data);
+  });
 
-  categorizedItems.value = items
+  categorizedItems.value = items;
 
   if (categorizedItems.value.General.length) {
-    generalItems.value = convert('General')
+    generalItems.value = convert('General');
   }
 
   if (categorizedItems.value.Personal.length) {
-    personalItems.value = convert('Personal')
-    finalItems.value = convert('Personal')
+    personalItems.value = convert('Personal');
+    finalItems.value = convert('Personal');
   }
-})
+});
 
 function closeNotifications () {
-  emit('close')
+  emit('close');
 }
 
 const changeItems = (value) => {
   notifications.value.map((item) => {
     if (item.category === value) {
-      item.active = true
+      item.active = true;
     } else {
-      item.active = false
+      item.active = false;
     }
     if (value === 'Personal') {
-      finalItems.value = personalItems.value
+      finalItems.value = personalItems.value;
     } else {
-      finalItems.value = generalItems.value
+      finalItems.value = generalItems.value;
     }
-  })
+  });
   if (dataLayer) {
     dataLayer.push({
       event: 'Evento_Click_Category_Notification',
       name: 'Click_Category_Notification',
       categoria: value,
-    })
+    });
   }
-}
+};
 
 const eventClickCardNotification = (
   text,
@@ -116,9 +116,9 @@ const eventClickCardNotification = (
       codCampania: campania,
       registrosTotales: registros,
       poblacionFija: poblacion,
-    })
+    });
   }
-}
+};
 </script>
 <template>
   <div

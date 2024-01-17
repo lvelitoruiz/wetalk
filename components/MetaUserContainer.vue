@@ -1,25 +1,25 @@
 <script setup>
-import { useMetaStore } from '../stores/meta'
-import { watchEffect, ref } from 'vue'
-const selectedImage = ref('')
-const metaText = ref('')
+import { useMetaStore } from '../stores/meta';
+import { watchEffect, ref } from 'vue';
+const selectedImage = ref('');
+const metaText = ref('');
 
-const metaStore = useMetaStore()
+const metaStore = useMetaStore();
 
 watchEffect(() => {
-  const data = metaStore.getMetaData
+  const data = metaStore.getMetaData;
   if (data.length > 0) {
-    selectedImage.value = data[0].imagen
-    metaText.value = data[0].meta
+    selectedImage.value = data[0].imagen;
+    metaText.value = data[0].meta;
   }
-  const images = metaStore.getImages
+  const images = metaStore.getImages;
   if (images) {
-    selectedImage.value = images[0].imagen
+    selectedImage.value = images[0].imagen;
   }
-})
+});
 
-const isOpen = true
-const haveLink = true
+const isOpen = true;
+const haveLink = true;
 </script>
 <template>
   <Breadcrumb page="Mi perfil" />

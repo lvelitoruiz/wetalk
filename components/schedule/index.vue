@@ -1,8 +1,8 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-valid-default-prop -->
 <script setup>
-import { defineProps, ref, onBeforeUnmount } from 'vue'
-import { getDay } from '../../utils/dateFunctions'
+import { defineProps, ref, onBeforeUnmount } from 'vue';
+import { getDay } from '../../utils/dateFunctions';
 
 const props = defineProps({
   data: {
@@ -310,11 +310,11 @@ const props = defineProps({
       // }
     ],
   },
-})
+});
 
-const selectedCourseDay = ref('Todos')
-const selectedCourseWeek = ref('Todos')
-const allCourses = ref({})
+const selectedCourseDay = ref('Todos');
+const selectedCourseWeek = ref('Todos');
+const allCourses = ref({});
 const hours = ref({
   '07': 55,
   '08': 55,
@@ -334,58 +334,58 @@ const hours = ref({
   22: 55,
   23: 55,
   24: 0,
-})
-const today = getDay(new Date())
+});
+const today = getDay(new Date());
 
 onBeforeUnmount(() => {
-  states.setDay(today)
-  selectedCourseDay.value = 'Todos'
-  selectedCourseWeek.value = 'Todos'
-})
+  states.setDay(today);
+  selectedCourseDay.value = 'Todos';
+  selectedCourseWeek.value = 'Todos';
+});
 
-const states = scheduleState()
-states.setDay(today)
-states.setWeekCourses(props.data)
-states.setcoursesListDay(states.fullWeek[states.day])
-states.setSessions(props.data)
+const states = scheduleState();
+states.setDay(today);
+states.setWeekCourses(props.data);
+states.setcoursesListDay(states.fullWeek[states.day]);
+states.setSessions(props.data);
 
 const handleChange = (val) => {
-  states.changeDay(val)
-  states.setcoursesListDay(states.fullWeek[states.day])
-  selectedCourseDay.value = 'Todos'
-}
+  states.changeDay(val);
+  states.setcoursesListDay(states.fullWeek[states.day]);
+  selectedCourseDay.value = 'Todos';
+};
 
-const active = ref('day')
+const active = ref('day');
 const changeView = (str) => {
-  active.value = str
-  selectedCourseDay.value = 'Todos'
-  selectedCourseWeek.value = 'Todos'
-  states.setDay(today)
-  states.setcoursesListDay(states.fullWeek[states.day])
-}
+  active.value = str;
+  selectedCourseDay.value = 'Todos';
+  selectedCourseWeek.value = 'Todos';
+  states.setDay(today);
+  states.setcoursesListDay(states.fullWeek[states.day]);
+};
 
 const handleFilter = (e) => {
-  selectedCourseDay.value = e.target.value
-}
+  selectedCourseDay.value = e.target.value;
+};
 const handleFilterWeek = (e) => {
   Object.keys(allCourses.value).forEach((cod) => {
-    allCourses.value[cod].state = false
-  })
-  selectedCourseWeek.value = e.target.value
+    allCourses.value[cod].state = false;
+  });
+  selectedCourseWeek.value = e.target.value;
   if (e.target.value !== 'Todos') {
-    allCourses.value[e.target.value].state = true
+    allCourses.value[e.target.value].state = true;
   }
-}
+};
 
 const sessionDate = computed(() => {
   if (states.coursesListDay?.empty) {
-    const today = new Date()
+    const today = new Date();
     return new Date(
       today.setDate(today.getDate() - today.getDay() + states.day + 1),
-    ).toDateString()
+    ).toDateString();
   }
-  return states.coursesListDay?.DTOHorarioAlumnoCab.FechaSesion
-})
+  return states.coursesListDay?.DTOHorarioAlumnoCab.FechaSesion;
+});
 </script>
 
 <template>

@@ -127,90 +127,90 @@
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, ref, watch, defineExpose } from 'vue'
+import { defineProps, ref, watch, defineExpose } from 'vue';
 
-const notas = ref(null)
-const calculus = ref(null)
-const promedio = ref(null)
-const newVariable = ref(null)
-const notesNull = ref(false)
+const notas = ref(null);
+const calculus = ref(null);
+const promedio = ref(null);
+const newVariable = ref(null);
+const notesNull = ref(false);
 const props = defineProps({
   notasData: Array,
   dashboard: Boolean,
   simulator: Boolean,
   formula: String,
   showPromedio: Boolean,
-})
+});
 
 if (props.notasData !== null && props.notasData !== undefined) {
-  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)))
-  notas.value = props.notasData.slice(0, -2)
-  calculus.value = [...newvalue]
-  promedio.value = props.notasData.slice(-2, -1)
+  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
+  notas.value = props.notasData.slice(0, -2);
+  calculus.value = [...newvalue];
+  promedio.value = props.notasData.slice(-2, -1);
   newVariable.value = parseInt(
     props.notasData.slice(-2, -1)[0]?.nota,
-  )?.toFixed()
+  )?.toFixed();
 }
 
 const recoverNotes = () => {
-  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)))
-  calculus.value = [...newvalue]
-}
+  const newvalue = JSON.parse(JSON.stringify(props.notasData?.slice(0, -2)));
+  calculus.value = [...newvalue];
+};
 
 const colorForProm = (nota) => {
   if (nota === '00' || nota === null || nota === '-' || notesNull.value) {
-    return 'bg-[#BFBFBF]'
+    return 'bg-[#BFBFBF]';
   } else if (nota < 13) {
-    return 'bg-[#E50A17]'
+    return 'bg-[#E50A17]';
   } else {
-    return 'bg-[#039C6D]'
+    return 'bg-[#039C6D]';
   }
-}
+};
 
 const getColorClass = (nota) => {
   if (nota === '00' || nota === null || nota === '-') {
-    notesNull.value = true
-    return 'bg-[#BFBFBF]'
+    notesNull.value = true;
+    return 'bg-[#BFBFBF]';
   } else if (nota < 13) {
-    return 'bg-[#E50A17]'
+    return 'bg-[#E50A17]';
   } else {
-    return 'bg-[#039C6D]'
+    return 'bg-[#039C6D]';
   }
-}
+};
 
 const validateInput = (index) => {
-  const regex = /^\d*\.?\d*$/
+  const regex = /^\d*\.?\d*$/;
 
   if (!regex.test(calculus.value[index].nota)) {
-    calculus.value[index].nota = ''
+    calculus.value[index].nota = '';
   }
 
   if (calculus.value[index].nota > 20) {
-    calculus.value[index].nota = 20
+    calculus.value[index].nota = 20;
   }
 
-  calculus.value[index].nota = calculus.value[index].nota.slice(0, 2)
-}
+  calculus.value[index].nota = calculus.value[index].nota.slice(0, 2);
+};
 
 const recalculateNewVariable = () => {
-  const inputs = calculus.value.map((data) => data.nota)
+  const inputs = calculus.value.map((data) => data.nota);
 
   if (inputs.some((item) => item === '')) {
-    newVariable.value = '-'
+    newVariable.value = '-';
   } else {
     const weightedSum =
       0.3 * inputs[0] +
       0.3 * inputs[1] +
       0.2 * inputs[2] +
       0.1 * inputs[3] +
-      0.1 * inputs[4]
-    newVariable.value = weightedSum.toFixed()
+      0.1 * inputs[4];
+    newVariable.value = weightedSum.toFixed();
   }
-}
+};
 
-watch(calculus, recalculateNewVariable, { deep: true })
+watch(calculus, recalculateNewVariable, { deep: true });
 
 defineExpose({
   recoverNotes,
-})
+});
 </script>

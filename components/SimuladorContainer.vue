@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-const datesInasistencia = ['03/10/2023', '05/10/2023']
+const datesInasistencia = ['03/10/2023', '05/10/2023'];
 </script>
 
 <style></style>

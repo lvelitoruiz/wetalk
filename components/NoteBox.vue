@@ -1,77 +1,77 @@
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable no-undef -->
 <script setup>
-import { useMenuStore } from '../stores/menu'
-import { apiUrl } from '~/consts'
-import { defineProps, ref } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
+import { defineProps, ref } from 'vue';
 
-const notasData = ref(null)
-const inasistencia = ref(null)
+const notasData = ref(null);
+const inasistencia = ref(null);
 
-const formula = ref(null)
+const formula = ref(null);
 
-const tableNotes = ref(null)
+const tableNotes = ref(null);
 
-const showSimulator = ref(false)
+const showSimulator = ref(false);
 
-const menuStore = useMenuStore()
+const menuStore = useMenuStore();
 
 const props = defineProps({
   dashboard: Boolean,
   showPromedio: Boolean,
-})
+});
 
 const reestablishNotes = () => {
-  tableNotes.value.recoverNotes()
+  tableNotes.value.recoverNotes();
   if (dataLayer) {
     dataLayer.push({
       event: 'Simular_Promedio',
       name: 'Evento_Simular_Promedio',
       Click_Text: 'Reestablecer notas',
-    })
+    });
   }
-}
+};
 
 const fetchData = async () => {
-  await menuStore.fetchNotasData(apiUrl)
-  await menuStore.fetchFaltasData(apiUrl)
-}
+  await menuStore.fetchNotasData(apiUrl);
+  await menuStore.fetchFaltasData(apiUrl);
+};
 
 watchEffect(async () => {
-  const notas = menuStore.getNotasItems
+  const notas = menuStore.getNotasItems;
   if (notas) {
-    notasData.value = notas.notas
-    console.log('passing formula: ', notas.dscFormula)
-    formula.value = notas.dscFormula
+    notasData.value = notas.notas;
+    console.log('passing formula: ', notas.dscFormula);
+    formula.value = notas.dscFormula;
   }
 
-  const faltaData = menuStore.getfaltasItems
+  const faltaData = menuStore.getfaltasItems;
   if (faltaData) {
-    inasistencia.value = faltaData.cantidad
+    inasistencia.value = faltaData.cantidad;
   }
-})
+});
 
 const irSimulador = () => {
-  showSimulator.value = !showSimulator.value
+  showSimulator.value = !showSimulator.value;
   if ((dataLayer, !showSimulator.value)) {
     dataLayer.push({
       event: 'Simular_Promedio',
       name: 'Evento_Simular_Promedio',
       Click_Text: 'Cancelar',
-    })
+    });
   }
   if ((dataLayer, showSimulator.value)) {
     dataLayer.push({
       event: 'Simular_Promedio',
       name: 'Evento_Simular_Promedio',
       Click_Text: 'Simulador de promedio',
-    })
+    });
   }
-}
+};
 
 onMounted(() => {
-  fetchData()
-})
+  fetchData();
+});
 
 const eventClickVerMas = () => {
   if (dataLayer) {
@@ -79,9 +79,9 @@ const eventClickVerMas = () => {
       event: 'Click_Click_Ver_Mas',
       name: 'Evento_Click_Ver_Mas',
       titulo_caja: 'Notas',
-    })
+    });
   }
-}
+};
 </script>
 
 <template>

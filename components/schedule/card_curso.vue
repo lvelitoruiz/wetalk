@@ -1,16 +1,16 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref } from 'vue';
 
-import locales from '~/utils/locales.json'
+import locales from '~/utils/locales.json';
 defineProps({
   i: Object,
-})
+});
 
-const showItem = ref(false)
+const showItem = ref(false);
 const showCourse = () => {
-  showItem.value = !showItem.value
-}
+  showItem.value = !showItem.value;
+};
 </script>
 
 <template>

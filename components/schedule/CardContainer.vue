@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
   course: Object,
@@ -9,15 +9,15 @@ const props = defineProps({
   allCourses: Object,
   selectedCourse: String,
   positionX: Number,
-})
+});
 
-const popupIsVisible = ref(false)
+const popupIsVisible = ref(false);
 const showPopup = () => {
-  popupIsVisible.value = true
-}
+  popupIsVisible.value = true;
+};
 const hidePopup = () => {
-  popupIsVisible.value = false
-}
+  popupIsVisible.value = false;
+};
 </script>
 <template>
   <div

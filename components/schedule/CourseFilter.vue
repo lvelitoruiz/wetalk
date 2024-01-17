@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
   selectedCourse: {
@@ -16,7 +16,7 @@ const props = defineProps({
     required: true,
   },
   allCourses: Object,
-})
+});
 </script>
 <template>
   <div class="xl:flex items-center text-center xl:order-3">

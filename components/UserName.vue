@@ -18,25 +18,25 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
-import { useToast } from 'vue-toast-notification'
-import 'vue-toast-notification/dist/theme-sugar.css'
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
-const $toast = useToast()
+const $toast = useToast();
 
 const props = defineProps({
   name: String,
   code: String,
-})
+});
 
 const copyToClipboard = (name, code) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
       typeof: 'error',
-    })
-    return
+    });
+    return;
   }
   navigator.clipboard
     .writeText(props.code)
@@ -44,21 +44,21 @@ const copyToClipboard = (name, code) => {
       $toast.open({
         message: 'Código Copiado!!!',
         typeof: 'success',
-      })
+      });
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar código',
         typeof: 'error',
-      })
-    })
+      });
+    });
   if (dataLayer) {
     dataLayer.push({
       event: 'Mis_Datos',
       name: 'Evento_Mis_Datos',
       text: name,
       Click_Text: code,
-    })
+    });
   }
-}
+};
 </script>

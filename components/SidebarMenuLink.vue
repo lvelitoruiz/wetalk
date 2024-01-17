@@ -1,7 +1,7 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref, defineProps } from 'vue';
 
 const props = defineProps({
   label: String,
@@ -11,20 +11,20 @@ const props = defineProps({
   etiqueta: String,
   hasSubMenu: Boolean,
   subMenu: Array,
-})
+});
 
-const isActive = ref(false)
+const isActive = ref(false);
 
 const handleActivation = (label) => {
-  isActive.value = !isActive.value
+  isActive.value = !isActive.value;
   if (dataLayer) {
     dataLayer.push({
       event: 'Click-BarraLateral',
       name: 'Click-BarraLateral',
       Click_Text: label,
-    })
+    });
   }
-}
+};
 
 const eventClickSubMenu = (url, name) => {
   if (dataLayer) {
@@ -33,9 +33,9 @@ const eventClickSubMenu = (url, name) => {
       name: 'Click-SubBarraLateral',
       url,
       Click_Text: name,
-    })
+    });
   }
-}
+};
 
 const getIconClass = () => {
   return {
@@ -44,8 +44,8 @@ const getIconClass = () => {
     'icon-creditcard': props.etiqueta === 'pagos',
     'icon-user-chat': props.etiqueta === 'networking',
     'icon-puzzle': props.etiqueta === 'beyond_wetalk',
-  }
-}
+  };
+};
 </script>
 <template>
   <div class="relative">

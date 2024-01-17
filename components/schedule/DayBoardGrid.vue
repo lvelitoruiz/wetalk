@@ -1,8 +1,8 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { useElementSize, useNow } from '@vueuse/core'
-import { defineProps, ref, onMounted } from 'vue'
+import { useElementSize, useNow } from '@vueuse/core';
+import { defineProps, ref, onMounted } from 'vue';
 
 const props = defineProps({
   coursesCalendar: Object,
@@ -10,23 +10,23 @@ const props = defineProps({
     type: String,
     default: 'Todos',
   },
-})
-const { y } = useScroll(props.coursesCalendar)
-const now = ref(new Date())
-const nowMark = useNow()
-const el = ref(null)
-const { width } = useElementSize(el)
+});
+const { y } = useScroll(props.coursesCalendar);
+const now = ref(new Date());
+const nowMark = useNow();
+const el = ref(null);
+const { width } = useElementSize(el);
 
-const data = scheduleState()
+const data = scheduleState();
 const getTopStyle = (inicioTime) => {
-  const date = getnowMarkour(inicioTime)
-  return `${(Number(date) - 7) * 60 - 10}px`
-}
+  const date = getnowMarkour(inicioTime);
+  return `${(Number(date) - 7) * 60 - 10}px`;
+};
 
 onMounted(() => {
-  const nowScroll = getnowMarkour(now.value)
-  y.value = (nowScroll - 8) * 61.5
-})
+  const nowScroll = getnowMarkour(now.value);
+  y.value = (nowScroll - 8) * 61.5;
+});
 </script>
 
 <template>

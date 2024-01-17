@@ -2,12 +2,12 @@
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable no-undef -->
 <script setup lang="ts">
-import { useUserStore } from '~/stores/auth'
+import { useUserStore } from '~/stores/auth';
 // import { logout } from "../utils/authHeaders";
-const { $msal, $config } = useNuxtApp()
-const userStore = useUserStore()
+const { $msal, $config } = useNuxtApp();
+const userStore = useUserStore();
 
-const accessDomain = ref(false)
+const accessDomain = ref(false);
 
 const isDomainAllowed = (
   userEmailDomain: string | undefined,
@@ -18,8 +18,8 @@ const isDomainAllowed = (
     allowedDomains.some((allowedDomain) =>
       userEmailDomain.includes(allowedDomain),
     )
-  )
-}
+  );
+};
 
 // const logout = async () => {
 //   if ($msal().isAuthenticated()) {
@@ -35,39 +35,39 @@ const isDomainAllowed = (
 // });
 
 if ($config.public.stage !== 'prod') {
-  accessDomain.value = true
+  accessDomain.value = true;
   // await userStore.fetchUserData(true,"","");
-  navigateTo('/', { replace: true })
+  navigateTo('/', { replace: true });
 } else {
-  const accounts = $msal().getAccounts()
-  const accessToken = await $msal().acquireTokenSilent()
+  const accounts = $msal().getAccounts();
+  const accessToken = await $msal().acquireTokenSilent();
 
-  const userEmailDomain = accounts?.length > 0 ? accounts[0].username : ''
+  const userEmailDomain = accounts?.length > 0 ? accounts[0].username : '';
   // const listDomain = ["upc.edu.pe", "upn.pe"];
-  const listDomain = ['upn.pe']
+  const listDomain = ['upn.pe'];
 
   const isAuthenticated =
-    $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain)
-  const stringCodUser = accounts[0]?.username
+    $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
+  const stringCodUser = accounts[0]?.username;
 
-  const entidadActiva = ref('')
+  const entidadActiva = ref('');
   if (stringCodUser) {
     for (let index = 0; index < listDomain.length; index++) {
-      const element = listDomain[index]
+      const element = listDomain[index];
       if (stringCodUser.includes(element)) {
-        entidadActiva.value = element.substring(0, 3)
+        entidadActiva.value = element.substring(0, 3);
       }
     }
   }
 
-  let userCode = ''
+  let userCode = '';
   switch (entidadActiva.value) {
     case 'upc':
-      userCode = stringCodUser?.replace(/[^0-9]+/g, '')
-      break
+      userCode = stringCodUser?.replace(/[^0-9]+/g, '');
+      break;
     case 'upn':
-      userCode = stringCodUser?.match(/([^@]+)/)?.at(0) ?? ''
-      break
+      userCode = stringCodUser?.match(/([^@]+)/)?.at(0) ?? '';
+      break;
   }
 
   if (isAuthenticated) {
@@ -76,25 +76,25 @@ if ($config.public.stage !== 'prod') {
       bearerToken: accessToken,
       codUser: userCode,
       institucion: entidadActiva,
-    }
-    localStorage.setItem('tokenH', accessToken!)
-    localStorage.setItem('codUser', userCode)
-    accessDomain.value = true
+    };
+    localStorage.setItem('tokenH', accessToken!);
+    localStorage.setItem('codUser', userCode);
+    accessDomain.value = true;
     userStore.fetchUserData(
       Boolean(isDomainAllowed(userEmailDomain, listDomain)),
       JSON.stringify(accessToken),
       user,
-    )
+    );
   }
 
   if (accounts?.length === 0) {
-    navigateTo('/login', { replace: true })
+    navigateTo('/login', { replace: true });
   }
 
   if (!isAuthenticated) {
-    accessDomain.value = false
+    accessDomain.value = false;
   } else if (isAuthenticated) {
-    navigateTo('/', { replace: true })
+    navigateTo('/', { replace: true });
   }
 }
 </script>

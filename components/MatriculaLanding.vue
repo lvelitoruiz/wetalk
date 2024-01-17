@@ -1,20 +1,20 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/valid-define-emits -->
 <script setup>
-import { defineEmits } from 'vue'
+import { defineEmits } from 'vue';
 
-const emit = defineEmits()
+const emit = defineEmits();
 
 const triggerModal = (text) => {
-  emit('modal-open')
+  emit('modal-open');
   if (dataLayer) {
     dataLayer.push({
       event: 'Mas_Informacion',
       name: 'Evento_Mas_Informacion',
       Click_text: text,
-    })
+    });
   }
-}
+};
 </script>
 
 <template>

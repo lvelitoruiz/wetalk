@@ -56,7 +56,7 @@
 
 <!-- eslint-disable no-undef -->
 <script setup lang="ts">
-import { ref, defineProps, getCurrentInstance } from 'vue'
+import { ref, defineProps, getCurrentInstance } from 'vue';
 
 const props = defineProps({
   tabs: {
@@ -72,14 +72,14 @@ const props = defineProps({
     type: String,
     default: '',
   },
-})
+});
 
-const tabActive = ref('tab-all')
-const instance = getCurrentInstance()
+const tabActive = ref('tab-all');
+const instance = getCurrentInstance();
 
 const handleActiveTab = (tab: string, value: boolean | null) => {
-  tabActive.value = tab
-  const isActive = tab === tabActive.value
-  instance?.emit('tabChange', value ?? tab)
-}
+  tabActive.value = tab;
+  const isActive = tab === tabActive.value;
+  instance?.emit('tabChange', value ?? tab);
+};
 </script>

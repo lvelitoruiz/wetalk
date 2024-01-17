@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 const props = defineProps({
   label: String,
@@ -14,7 +14,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+});
 
 const getButtonClasses = () => {
   return {
@@ -26,16 +26,16 @@ const getButtonClasses = () => {
       props.secundary && !props.disabled,
     'bg-[#808080] text-white transition-all duration-300 ease-in-out':
       props.disabled && props.primary,
-  }
-}
+  };
+};
 
 const getBorderClass = () => {
   return {
     'border-[#808080]': props.disabled && props.primary,
     'border-[#E50A17]': !props.disabled && (props.secundary ?? props.primary),
     'border border-[#808080]': props.disabled && props.secundary,
-  }
-}
+  };
+};
 </script>
 
 <template>

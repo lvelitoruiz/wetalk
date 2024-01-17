@@ -68,5 +68,5 @@ const tablaNotas = [
     peso: '10%',
     nota: '-',
   },
-]
+];
 </script>

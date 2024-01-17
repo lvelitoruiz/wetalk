@@ -1,7 +1,7 @@
 <script setup>
-const isOpen = false
-const haveLink = false
-const haveTabs = false
+const isOpen = false;
+const haveLink = false;
+const haveTabs = false;
 </script>
 <template>
   <Breadcrumb page="Contenido" />

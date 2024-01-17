@@ -1,26 +1,26 @@
 <script setup>
-import { useMenuStore } from '~/stores/menu'
-import { ref, onMounted, watchEffect } from 'vue'
+import { useMenuStore } from '~/stores/menu';
+import { ref, onMounted, watchEffect } from 'vue';
 
-const sidebarMenuList = ref([])
+const sidebarMenuList = ref([]);
 
-const linkList = ref([])
+const linkList = ref([]);
 
 onMounted(async () => {
-  const store = useMenuStore()
+  const store = useMenuStore();
 
   watchEffect(() => {
-    const accesoValues = store.getAccesoItems
+    const accesoValues = store.getAccesoItems;
 
     if (accesoValues) {
       linkList.value = accesoValues.map((item) => ({
         label: item.titulo,
         link: item.url ?? '#',
         code: item.status,
-      }))
+      }));
     }
 
-    const menuValues = store.getMenuItems
+    const menuValues = store.getMenuItems;
 
     if (menuValues) {
       sidebarMenuList.value = menuValues.map((item) => ({
@@ -33,10 +33,10 @@ onMounted(async () => {
           text: subItem.nombre,
           direction: subItem.url ?? '#',
         })),
-      }))
+      }));
     }
-  })
-})
+  });
+});
 </script>
 
 <template>

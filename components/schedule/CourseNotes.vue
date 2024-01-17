@@ -1,43 +1,43 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
   cursosItems: {
     type: Object,
   },
-})
-const { getScheduleCourse } = useScheduleData()
+});
+const { getScheduleCourse } = useScheduleData();
 
-const showItem = ref(false)
-const detailsNote = ref({})
-const errorDate = ref()
-const loading = ref(true)
-const errorMsg = ref(null)
+const showItem = ref(false);
+const detailsNote = ref({});
+const errorDate = ref();
+const loading = ref(true);
+const errorMsg = ref(null);
 
 const showCourse = async (curso) => {
-  showItem.value = !showItem.value
+  showItem.value = !showItem.value;
 
   if (showItem.value) {
-    const { matricula1, error } = await getScheduleCourse(curso)
-    loading.value = false
-    errorDate.value = error.value
+    const { matricula1, error } = await getScheduleCourse(curso);
+    loading.value = false;
+    errorDate.value = error.value;
     if (matricula1.value?.flag && Boolean(matricula1.value.data?.notas)) {
-      detailsNote.value = matricula1.value.data
+      detailsNote.value = matricula1.value.data;
     } else if (matricula1.value?.error) {
       errorMsg.value = {
         ...matricula1.value.error,
         flag: matricula1.value.flag,
-      }
+      };
     }
   }
-}
+};
 
 const validateNote = (nota) => {
-  if (nota === 0 || nota === null || nota === '' || nota > 20) return '-'
-  return nota
-}
+  if (nota === 0 || nota === null || nota === '' || nota > 20) return '-';
+  return nota;
+};
 </script>
 <template>
   <div

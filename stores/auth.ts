@@ -19,9 +19,9 @@ export const useUserStore = defineStore({
   },
   actions: {
     async fetchUserData (accesUser: boolean, token: string, userdata: Object) {
-      this.accesUser = accesUser
-      this.userToken = token
-      this.userdata = userdata
+      this.accesUser = accesUser;
+      this.userToken = token;
+      this.userdata = userdata;
     },
   },
-})
+});

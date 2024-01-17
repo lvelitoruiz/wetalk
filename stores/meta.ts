@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable no-undef */
-import axios from 'axios'
-import { useUserStore } from './auth'
+import axios from 'axios';
+import { useUserStore } from './auth';
 
 // const authHeader = localStorage.getItem("tokenH");
 // const codUser = localStorage.getItem("codUser");
@@ -22,17 +22,17 @@ export const useMetaStore = defineStore({
   },
   actions: {
     async fetchData () {
-      const userStore = useUserStore()
-      const dataU = userStore.getUserData
-      const { $msal } = useNuxtApp()
+      const userStore = useUserStore();
+      const dataU = userStore.getUserData;
+      const { $msal } = useNuxtApp();
 
-      const token = $msal ? await $msal()?.acquireTokenSilent() : ''
+      const token = $msal ? await $msal()?.acquireTokenSilent() : '';
       const dataUser = {
         localHeader: token,
         localCodUser: dataU.codUser,
         localIntitution: dataU.institucion,
-      }
-      return dataUser
+      };
+      return dataUser;
     },
     async fetchMetaData (apiUrl: string) {
       try {
@@ -44,20 +44,20 @@ export const useMetaStore = defineStore({
           headers: {
             Authorization: (await this.fetchData())?.localHeader,
           },
-        }
+        };
 
         const response = await axios
           .create(axiosConf)
           .get<any>(
             `/Perfil/v1/meta/obtener?institucion=${(await this.fetchData())?.localIntitution}&id=${(await this.fetchData())?.localCodUser}`,
-          )
+          );
 
-        this.metaData = response.data.data
+        this.metaData = response.data.data;
       } catch (error) {
-        console.error('Error fetching meta data:', error)
+        console.error('Error fetching meta data:', error);
       }
 
-      return this.metaData
+      return this.metaData;
     },
 
     async registerMetaData (apiUrl: string, metaInfo: MetaItem) {
@@ -70,18 +70,18 @@ export const useMetaStore = defineStore({
           headers: {
             Authorization: (await this.fetchData())?.localHeader,
           },
-        }
+        };
 
         const response = await axios
           .create(axiosConf)
           .post(
             `/Perfil/v1/meta/registrar?institucion=${(await this.fetchData())?.localIntitution}`,
             metaInfo,
-          )
+          );
 
-        this.metaData = response.data
+        this.metaData = response.data;
       } catch (error) {
-        console.error('Error registering meta data:', error)
+        console.error('Error registering meta data:', error);
       }
     },
 
@@ -95,21 +95,21 @@ export const useMetaStore = defineStore({
           headers: {
             Authorization: (await this.fetchData())?.localHeader,
           },
-        }
+        };
 
         const response = await axios
           .create(axiosConf)
           .get(
             `/Perfil/v1/meta/listar/imagenes?institucion=${(await this.fetchData())?.localIntitution}`,
-          )
+          );
 
-        this.imagesData = response.data.data
+        this.imagesData = response.data.data;
       } catch (error) {
-        console.error('Error getting images:', error)
+        console.error('Error getting images:', error);
       }
     },
   },
-})
+});
 
 interface MetaItem {
   id: string

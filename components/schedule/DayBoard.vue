@@ -1,19 +1,19 @@
 <!-- eslint-disable no-undef -->
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
   filter: {
     type: String,
     default: 'Todos',
   },
-})
-const coursesCalendar = ref(null)
-const coursesToday = ref(null)
-const { y } = useScroll(coursesCalendar)
-const now = ref(new Date())
+});
+const coursesCalendar = ref(null);
+const coursesToday = ref(null);
+const { y } = useScroll(coursesCalendar);
+const now = ref(new Date());
 
-const data = scheduleState()
+const data = scheduleState();
 const hours = [
   '07',
   '08',
@@ -33,18 +33,18 @@ const hours = [
   '22',
   '23',
   '24',
-]
+];
 
-const isToday = (today) => (today === 0 ? 6 : getDay(today) - 1)
+const isToday = (today) => (today === 0 ? 6 : getDay(today) - 1);
 
 onMounted(() => {
-  const nowScroll = getnowMarkour(now.value)
-  y.value = (nowScroll - 8) * 61.5
-})
+  const nowScroll = getnowMarkour(now.value);
+  y.value = (nowScroll - 8) * 61.5;
+});
 
 watchEffect(async () => {
-  coursesToday.value = data.coursesSelectedDay('Todos').length
-})
+  coursesToday.value = data.coursesSelectedDay('Todos').length;
+});
 </script>
 
 <template>

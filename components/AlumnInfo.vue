@@ -1,19 +1,19 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
-import { useMenuStore } from '../stores/menu'
+import { ref, watchEffect } from 'vue';
+import { useMenuStore } from '../stores/menu';
 
-const alumnInfo = ref(null)
-const alumnPhoto = ref('')
+const alumnInfo = ref(null);
+const alumnPhoto = ref('');
 
-const menuStore = useMenuStore()
+const menuStore = useMenuStore();
 
 watchEffect(async () => {
-  const alumnData = menuStore.getProfileItems
+  const alumnData = menuStore.getProfileItems;
   if (alumnData) {
-    alumnPhoto.value = alumnData.data[0].fotoUrl
-    alumnInfo.value = alumnData.data[0]
+    alumnPhoto.value = alumnData.data[0].fotoUrl;
+    alumnInfo.value = alumnData.data[0];
   }
-})
+});
 </script>
 <template>
   <ContainerBoxSimple>

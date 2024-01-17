@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 defineProps({
   changeView: {
@@ -10,7 +10,7 @@ defineProps({
     type: String,
     default: 'day',
   },
-})
+});
 </script>
 <template>
   <div class="xl:flex items-center text-center xl:mr-8 xl:mb-0 xl:order-2">

@@ -1,11 +1,11 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 const props = defineProps({
   data: Array,
   section: String,
-})
+});
 </script>
 
 <template>

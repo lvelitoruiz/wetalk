@@ -1,33 +1,33 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 const props = defineProps({
   data: {
     type: Array,
     default: [],
   },
-})
+});
 
 const codCursos = () => {
   const arrCursos = props.data
     .map((item) => {
-      const itemFiltrado = item.ListaDTOHorarioAlumnoDet
-      return itemFiltrado
+      const itemFiltrado = item.ListaDTOHorarioAlumnoDet;
+      return itemFiltrado;
     })
-    .flat()
+    .flat();
 
-  const hash = {}
+  const hash = {};
   let arregloSinRepetidos = arrCursos.filter(function (item) {
-    const go = item.CodCurso !== undefined ? String(item.CodCurso) : ''
-    const exists = !hash[go] || false
-    hash[go] = true
-    return exists
-  })
+    const go = item.CodCurso !== undefined ? String(item.CodCurso) : '';
+    const exists = !hash[go] || false;
+    hash[go] = true;
+    return exists;
+  });
 
-  arregloSinRepetidos = JSON.parse(JSON.stringify(arregloSinRepetidos))
-  return arregloSinRepetidos
-}
+  arregloSinRepetidos = JSON.parse(JSON.stringify(arregloSinRepetidos));
+  return arregloSinRepetidos;
+};
 </script>
 
 <template>

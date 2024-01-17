@@ -23,7 +23,6 @@ module.exports = {
   parser: 'vue-eslint-parser',
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    semi: ['error', 'always'],
     quotes: ['error', 'single'],
     indent: ['error', 2],
     '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
@@ -35,8 +34,7 @@ module.exports = {
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     'padded-blocks': ['error', { blocks: 'never', switches: 'never' }],
     // 'no-tabs': 'off',
-    semi: 'off',
-    '@typescript-eslint/semi': 'error',
+    '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/strict-boolean-expressions': 0,
     '@typescript-eslint/explicit-function-return-type': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
@@ -56,10 +54,10 @@ module.exports = {
       'error',
       {
         singleline: {
-          max: 1,
+          max: 3,
         },
         multiline: {
-          max: 1,
+          max: 2,
         },
       },
     ],
@@ -68,4 +66,4 @@ module.exports = {
     extraFileExtensions: ['.vue'],
     parser: '@typescript-eslint/parser',
   },
-}
+};

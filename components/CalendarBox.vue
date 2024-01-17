@@ -1,20 +1,20 @@
 <script setup>
-import { useMenuStore } from '../stores/menu'
-import { ref, watchEffect } from 'vue'
+import { useMenuStore } from '../stores/menu';
+import { ref, watchEffect } from 'vue';
 
-const calData = ref(null)
+const calData = ref(null);
 
-const menuStore = useMenuStore()
+const menuStore = useMenuStore();
 
 watchEffect(async () => {
-  const calendarData = menuStore.getCalendarItems
+  const calendarData = menuStore.getCalendarItems;
   if (calendarData) {
-    calData.value = calendarData
-    console.log('calendar data: ', [...calData.value])
-    console.log(typeof calData.value)
-    console.log(typeof calendarData)
+    calData.value = calendarData;
+    console.log('calendar data: ', [...calData.value]);
+    console.log(typeof calData.value);
+    console.log(typeof calendarData);
   }
-})
+});
 </script>
 <template>
   <div class="min-w-[65%]">

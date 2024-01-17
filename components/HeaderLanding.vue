@@ -1,17 +1,17 @@
 <!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
   lists: Array,
-})
+});
 
-const showSidebar = ref(false)
+const showSidebar = ref(false);
 
 const openMenu = () => {
-  showSidebar.value = !showSidebar.value
-}
+  showSidebar.value = !showSidebar.value;
+};
 
 const eventClickBarraSuperior = (text) => {
   if (dataLayer) {
@@ -19,9 +19,9 @@ const eventClickBarraSuperior = (text) => {
       event: 'Clics_Barra_Superior',
       name: 'Evento_clics_barra-superior',
       Click_text: text,
-    })
+    });
   }
-}
+};
 </script>
 
 <template>

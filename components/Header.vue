@@ -1,71 +1,71 @@
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable no-undef -->
 <script setup>
-import { useUserStore } from '~/stores/auth'
-import { apiUrl } from '~/consts'
-import { onMounted, ref } from 'vue'
-import { useMenuStore } from '../stores/menu'
+import { useUserStore } from '~/stores/auth';
+import { apiUrl } from '~/consts';
+import { onMounted, ref } from 'vue';
+import { useMenuStore } from '../stores/menu';
 
-const userStore = useUserStore()
-const menuStore = useMenuStore()
+const userStore = useUserStore();
+const menuStore = useMenuStore();
 
-const nameUser = userStore.getUserData?.name
-console.log(nameUser, 'name user')
-const pres = ref(false)
-const nots = ref(false)
+const nameUser = userStore.getUserData?.name;
+console.log(nameUser, 'name user');
+const pres = ref(false);
+const nots = ref(false);
 
-const foto = ref(null)
+const foto = ref(null);
 
 onMounted(() => {
-  openPres()
-})
+  openPres();
+});
 
 const openClose = () => {
-  pres.value = false
-  nots.value = !nots.value
+  pres.value = false;
+  nots.value = !nots.value;
 
   if (dataLayer) {
     dataLayer.push({
       event: 'Load-Notifications',
       name: 'Evento_Load-Notifications',
-    })
+    });
   }
-}
+};
 
-const showSidebar = ref(false)
+const showSidebar = ref(false);
 
 const openMenu = () => {
-  showSidebar.value = !showSidebar.value
-}
+  showSidebar.value = !showSidebar.value;
+};
 
-const showOption = ref(false)
+const showOption = ref(false);
 const openList = () => {
-  showOption.value = !showOption.value
+  showOption.value = !showOption.value;
   if (dataLayer) {
     dataLayer.push({
       event: 'Menu_Perfil',
       name: 'Evento_Menu_Perfil',
-    })
+    });
   }
-}
+};
 
 const openPres = () => {
-  const showIn = localStorage.getItem('presOpened')
+  const showIn = localStorage.getItem('presOpened');
   if (showIn == null) {
-    localStorage.setItem('presOpened', 'true')
-    pres.value = true
+    localStorage.setItem('presOpened', 'true');
+    pres.value = true;
     setTimeout(() => {
-      pres.value = false
-    }, 5000)
+      pres.value = false;
+    }, 5000);
   }
-}
+};
 
 onMounted(() => {
-  foto.value = localStorage.getItem('foto')
+  foto.value = localStorage.getItem('foto');
   menuStore.fetchNotificationData(apiUrl, '0').then((response) => {
-    console.log('obtaining the response here: ', response)
-  })
-})
+    console.log('obtaining the response here: ', response);
+  });
+});
 
 const eventClickCorreo = (text) => {
   if (dataLayer) {
@@ -73,9 +73,9 @@ const eventClickCorreo = (text) => {
       event: 'Header_Correo',
       name: 'Evento_Header_Correo',
       url: text,
-    })
+    });
   }
-}
+};
 
 const eventClickPerfil = (text, url) => {
   if (dataLayer) {
@@ -84,9 +84,9 @@ const eventClickPerfil = (text, url) => {
       name: 'Evento_Click_Perfil',
       text,
       url,
-    })
+    });
   }
-}
+};
 
 const eventClickPerfilFoto = (text, url) => {
   if (dataLayer) {
@@ -95,9 +95,9 @@ const eventClickPerfilFoto = (text, url) => {
       name: 'Evento_Click_PerfilFoto',
       text,
       url,
-    })
+    });
   }
-}
+};
 
 const eventClickLogout = (text) => {
   if (dataLayer) {
@@ -105,9 +105,9 @@ const eventClickLogout = (text) => {
       event: 'Cerrar_Sesion',
       name: 'Evento_Cerrar_Sesion',
       text,
-    })
+    });
   }
-}
+};
 </script>
 
 <template>

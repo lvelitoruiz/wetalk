@@ -1,44 +1,44 @@
 <!-- eslint-disable no-undef -->
 <script setup>
-import sedes from '~/utils/locales.json'
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-import { defineProps, ref } from 'vue'
-import { getFullname } from '~/utils/setFormatName'
+import sedes from '~/utils/locales.json';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { defineProps, ref } from 'vue';
+import { getFullname } from '~/utils/setFormatName';
 
 const props = defineProps({
   course: {
     type: Object,
     required: true,
   },
-})
+});
 
-const store = scheduleState()
-const listP = store.sessions
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const smallerThanLg = breakpoints.smaller('lg')
+const store = scheduleState();
+const listP = store.sessions;
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const smallerThanLg = breakpoints.smaller('lg');
 const courseDuration = (init, fin) => {
-  return getHour(fin) - getHour(init)
-}
+  return getHour(fin) - getHour(init);
+};
 
 const getTopStyle = (inicioTime) => {
-  const date = getHour(inicioTime)
-  return `${(Number(date) - 7) * 60 + 1}px`
-}
+  const date = getHour(inicioTime);
+  return `${(Number(date) - 7) * 60 + 1}px`;
+};
 
-const popupIsVisible = ref(false)
+const popupIsVisible = ref(false);
 const showPopup = () => {
-  popupIsVisible.value = true
-}
+  popupIsVisible.value = true;
+};
 const hidePopup = () => {
-  popupIsVisible.value = false
-}
+  popupIsVisible.value = false;
+};
 
 const isRepeated = (session, name, lastname) => {
-  const professors = listP[session].docentes
-  if (professors.length === 0) return true
-  const fullname = getFullname(name, lastname)
-  return professors.indexOf(fullname) === 0
-}
+  const professors = listP[session].docentes;
+  if (professors.length === 0) return true;
+  const fullname = getFullname(name, lastname);
+  return professors.indexOf(fullname) === 0;
+};
 </script>
 <template>
   <div

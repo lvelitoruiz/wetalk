@@ -1,23 +1,23 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import { bg_triangles_gray } from '@/assets/index.ts'
-import { useRouter } from 'vue-router'
-import { ref, defineProps, watchEffect } from 'vue'
+import { bg_triangles_gray } from '@/assets/index.ts';
+import { useRouter } from 'vue-router';
+import { ref, defineProps, watchEffect } from 'vue';
 
-const router = useRouter()
-const dataContent = ref([])
+const router = useRouter();
+const dataContent = ref([]);
 
 const props = defineProps({
   data: Array,
-})
+});
 
 watchEffect(() => {
-  dataContent.value = props.data
-})
+  dataContent.value = props.data;
+});
 
 const goBack = () => {
-  router.go(-1)
-}
+  router.go(-1);
+};
 </script>
 
 <template>
