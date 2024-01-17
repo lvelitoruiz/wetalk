@@ -1,22 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./app.vue",
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './app.vue'
   ],
   theme: {
     extend: {
       colors: {
-        'primary': 'var(--primary)',
+        primary: 'var(--primary)',
         'primary-100': 'var(--primary-100)',
         'primary-700': 'var(--primary-700)',
         'primary-900': 'var(--primary-900)',
         'secondary-100': 'var(--secondary-100)',
         'secondary-400': 'var(--secondary-400)',
-        'secondary': 'var(--secondary)',
+        secondary: 'var(--secondary)',
         'secondary-700': 'var(--secondary-700)',
         'secondary-600': 'var(--secondary-600)',
         'tertiary-100': 'var(--tertiary-100)',
@@ -47,10 +47,10 @@ export default {
         'main-content-courses': 'calc(100vh - 180px)'
       },
       minHeight: {
-        'aside': 'calc(100vh - 62px)',
+        aside: 'calc(100vh - 62px)'
       },
       maxHeight: {
-        'full-notification': 'calc(100vh - 80px)',
+        'full-notification': 'calc(100vh - 80px)'
       },
       minWidth: {
         'full-main': 'calc(100% + 5rem)'
@@ -58,8 +58,7 @@ export default {
       gridTemplateColumns: {
         weekly: 'repeat(7, minmax(73px, 1fr))'
       }
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 }
-

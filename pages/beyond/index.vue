@@ -1,7 +1,8 @@
+<!-- eslint-disable no-undef -->
 <script setup ts>
 definePageMeta({
-    middleware: 'auth'
-});
+  middleware: 'auth'
+})
 </script>
 <template>
   <div>

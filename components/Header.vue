@@ -1,108 +1,113 @@
+<!-- eslint-disable @typescript-eslint/no-floating-promises -->
+<!-- eslint-disable no-undef -->
 <script setup>
-import { useUserStore } from "~/stores/auth";
-import { apiUrl } from "~/consts";
-const userStore = useUserStore();
+import { useUserStore } from '~/stores/auth'
+import { apiUrl } from '~/consts'
+import { onMounted, ref } from 'vue'
+import { useMenuStore } from '../stores/menu'
 
-const menuStore = useMenuStore();
+const userStore = useUserStore()
+const menuStore = useMenuStore()
 
-const nameUser = userStore.getUserData?.name;
-console.log(nameUser, "name user");
-const pres = ref(false);
-const nots = ref(false);
+const nameUser = userStore.getUserData?.name
+console.log(nameUser, 'name user')
+const pres = ref(false)
+const nots = ref(false)
 
-const foto = ref(null);
+const foto = ref(null)
 
 onMounted(() => {
-  openPres();
-});
+  openPres()
+})
 
 const openClose = () => {
-  pres.value = false;
-  nots.value = !nots.value;
+  pres.value = false
+  nots.value = !nots.value
+
   if (dataLayer) {
     dataLayer.push({
-      event: "Load-Notifications",
-      name: "Evento_Load-Notifications",
-    });
+      event: 'Load-Notifications',
+      name: 'Evento_Load-Notifications'
+    })
   }
-};
+}
 
-const showSidebar = ref(false);
+const showSidebar = ref(false)
 
 const openMenu = () => {
-  showSidebar.value = !showSidebar.value;
-};
+  showSidebar.value = !showSidebar.value
+}
 
-const showOption = ref(false);
+const showOption = ref(false)
 const openList = () => {
-  showOption.value = !showOption.value;
+  showOption.value = !showOption.value
   if (dataLayer) {
     dataLayer.push({
-      event: "Menu_Perfil",
-      name: "Evento_Menu_Perfil",
-    });
+      event: 'Menu_Perfil',
+      name: 'Evento_Menu_Perfil'
+    })
   }
-};
+}
 
 const openPres = () => {
-  const showIn = localStorage.getItem("presOpened");
+  const showIn = localStorage.getItem('presOpened')
   if (showIn == null) {
-    localStorage.setItem("presOpened", "true");
-    pres.value = true;
+    localStorage.setItem('presOpened', 'true')
+    pres.value = true
     setTimeout(() => {
-      pres.value = false;
-    }, 5000);
+      pres.value = false
+    }, 5000)
   }
-};
+}
 
 onMounted(() => {
-  foto.value = localStorage.getItem("foto");
-  menuStore
-    .fetchNotificationData(apiUrl, "0")
-    .then((response) => console.log('obtaining the response here: ',response));
-});
+  foto.value = localStorage.getItem('foto')
+  menuStore.fetchNotificationData(apiUrl, '0').then((response) => {
+    console.log('obtaining the response here: ', response)
+  })
+})
 
 const eventClickCorreo = (text) => {
   if (dataLayer) {
     dataLayer.push({
-      event: "Header_Correo",
-      name: "Evento_Header_Correo",
-      url: text,
-    });
+      event: 'Header_Correo',
+      name: 'Evento_Header_Correo',
+      url: text
+    })
   }
-};
+}
 
 const eventClickPerfil = (text, url) => {
   if (dataLayer) {
     dataLayer.push({
-      event: "Click_Perfil",
-      name: "Evento_Click_Perfil",
-      text: text,
-      url: url,
-    });
+      event: 'Click_Perfil',
+      name: 'Evento_Click_Perfil',
+      text,
+      url
+    })
   }
-};
+}
 
 const eventClickPerfilFoto = (text, url) => {
   if (dataLayer) {
     dataLayer.push({
-      event: "Click_PerfilFoto",
-      name: "Evento_Click_PerfilFoto",
-      text: text,
-      url: url,
-    });
+      event: 'Click_PerfilFoto',
+      name: 'Evento_Click_PerfilFoto',
+      text,
+      url
+    })
   }
-};
+}
 
 const eventClickLogout = (text) => {
   if (dataLayer) {
     dataLayer.push({
-      event: "Cerrar_Sesion",
-      name: "Evento_Cerrar_Sesion",
-      text: text,
-    });
+      event: 'Cerrar_Sesion',
+      name: 'Evento_Cerrar_Sesion',
+      text
+    })
   }
-};
+}
 </script>
 
 <template>
@@ -110,8 +115,11 @@ const eventClickLogout = (text) => {
     class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-6 lg:px-9 justify-between"
   >
     <div class="flex">
-      <button class="lg:hidden mr-2" @click="openMenu">
-        <i class="text-[28px] text-[#191919] icon-nav"></i>
+      <button
+        class="lg:hidden mr-2"
+        @click="openMenu"
+      >
+        <i class="text-[28px] text-[#191919] icon-nav" />
       </button>
       <div
         class="absolute w-full h-[100vh] left-0 bg-black bg-opacity-60 z-50"
@@ -120,7 +128,7 @@ const eventClickLogout = (text) => {
         <div class="bg-[#E6F0FF] w-[83%] pt-10 h-[100vh] flex items-start">
           <SidebarContainer />
           <button @click="openMenu">
-            <i class="icon-close"> </i>
+            <i class="icon-close" />
           </button>
         </div>
       </div>
@@ -132,17 +140,25 @@ const eventClickLogout = (text) => {
             @click="eventClickCorreo('https://outlook.live.com/')"
             class="hidden lg:block"
           >
-            <a href="https://outlook.live.com/" target="_blank">
-              <i class="text-3xl text-[#191919] icon-email"></i
-            ></a>
+            <a
+              href="https://outlook.live.com/"
+              target="_blank"
+            >
+              <i class="text-3xl text-[#191919] icon-email" /></a>
           </button>
           <div class="relative">
             <Bell @show="openClose" />
             <Transition>
-              <PreNotifications v-if="pres" @close="pres = false" />
+              <PreNotifications
+                v-if="pres"
+                @close="pres = false"
+              />
             </Transition>
             <Transition>
-              <Notifications v-if="nots" @close="nots = false" />
+              <Notifications
+                v-if="nots"
+                @close="nots = false"
+              />
             </Transition>
           </div>
         </div>
@@ -163,7 +179,11 @@ const eventClickLogout = (text) => {
                 to="/meta"
                 class="h-full hidden lg:flex justify-center items-center"
               >
-                <img class="h-full w-full object-cover" :src="foto" alt="" />
+                <img
+                  class="h-full w-full object-cover"
+                  :src="foto"
+                  alt=""
+                >
               </RouterLink>
               <div class="h-full flex lg:hidden justify-center items-center">
                 <img
@@ -171,11 +191,14 @@ const eventClickLogout = (text) => {
                   class="h-full w-full object-cover"
                   :src="foto"
                   alt=""
-                />
+                >
               </div>
             </div>
-            <button class="hidden lg:block" @click="openList">
-              <i class="icon-arrow-down text-[#191919]"></i>
+            <button
+              class="hidden lg:block"
+              @click="openList"
+            >
+              <i class="icon-arrow-down text-[#191919]" />
             </button>
           </div>
 
@@ -189,22 +212,25 @@ const eventClickLogout = (text) => {
                 class="flex items-center pb-[15.5px] pt-1 leading-5 text-[#666666]"
                 to="/meta"
               >
-                <i class="icon-user mr-2 text-[#026849] text-xl"></i>
+                <i class="icon-user mr-2 text-[#026849] text-xl" />
                 Mi perfil
               </router-link>
               <div class="py-[15.5px] text-[#E50A17]">
-                <i class="hidden lg:inline icon-logOut mr-2 text-xl"></i>
-                <i class="lg:hidden icon-logOut2 mr-2 text-xl"></i>
-                <Logout @click="eventClickLogout('Cerrar sesión')"></Logout>
+                <i class="hidden lg:inline icon-logOut mr-2 text-xl" />
+                <i class="lg:hidden icon-logOut2 mr-2 text-xl" />
+                <Logout @click="eventClickLogout('Cerrar sesión')" />
               </div>
             </div>
           </div>
-          <RouterLink to="/" class="h-full flex justify-center items-center">
+          <RouterLink
+            to="/"
+            class="h-full flex justify-center items-center"
+          >
             <img
               class="lg:h-[39px] h-7"
               src="@/assets/images/wetalk_logo_upn.svg"
               alt=""
-            />
+            >
           </RouterLink>
         </div>
       </div>

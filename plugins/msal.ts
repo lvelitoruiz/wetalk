@@ -1,7 +1,13 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable no-undef */
 import {
-  PublicClientApplication, BrowserCacheLocation, EventType } from "@azure/msal-browser";
+  PublicClientApplication,
+  BrowserCacheLocation,
+  EventType
+} from '@azure/msal-browser'
 
-let tokenExpirationTimer: any;
+let tokenExpirationTimer: any
 
 export default defineNuxtPlugin(async ({ $config }) => {
   const msalConfig = {
@@ -10,134 +16,134 @@ export default defineNuxtPlugin(async ({ $config }) => {
       authority: $config.public.authority,
       redirectUri: $config.public.redirectUri,
       postLogoutRedirectUri: $config.public.postLogoutRedirectUri,
-      navigateToLoginRequestUrl: false,
+      navigateToLoginRequestUrl: false
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
-      storeAuthStateInCookie: true,
+      storeAuthStateInCookie: true
     },
     system: {
-      tokenRenewalOffsetSeconds: 300,
-    },
-  };
+      tokenRenewalOffsetSeconds: 300
+    }
+  }
 
-  const msalInstance = new PublicClientApplication(msalConfig);
-  await msalInstance.initialize();
+  const msalInstance = new PublicClientApplication(msalConfig)
+  await msalInstance.initialize()
 
   // Handle redirect promise after login or redirect
   await msalInstance
     .handleRedirectPromise() // Handles the redirect promise and obtains the response
     .then(handleResponse)
     .catch((err) => {
-      throw new Error(err);
-    });
+      throw new Error(err)
+    })
 
   // Add event callback for login success
   msalInstance.addEventCallback((event) => {
     if (event.eventType === EventType.LOGIN_SUCCESS) {
-      setupTokenExpirationTimer();
+      setupTokenExpirationTimer()
     }
-  });
+  })
 
   // Set up timer for refreshing access token upon expiration
-  function setupTokenExpirationTimer() {
-    const accounts = msalInstance.getAllAccounts();
+  function setupTokenExpirationTimer () {
+    const accounts = msalInstance.getAllAccounts()
     if (accounts.length > 0) {
-      const account = accounts[0];
+      const account = accounts[0]
       if (account.idTokenClaims && account.idTokenClaims.exp) {
-        const tokenExpirationTime = account.idTokenClaims.exp * 1000;
-        const currentTime = Date.now();
-        const timeUntilExpiration = tokenExpirationTime - currentTime;
+        const tokenExpirationTime = account.idTokenClaims.exp * 1000
+        const currentTime = Date.now()
+        const timeUntilExpiration = tokenExpirationTime - currentTime
 
-        clearTimeout(tokenExpirationTimer);
+        clearTimeout(tokenExpirationTimer)
 
         tokenExpirationTimer = setTimeout(() => {
-          refreshAccessToken(account);
-        }, timeUntilExpiration);
+          refreshAccessToken(account)
+        }, timeUntilExpiration)
       }
     }
   }
 
   // Refresh access token
-  async function refreshAccessToken(account: any) {
+  async function refreshAccessToken (account: any) {
     try {
       const response = await msalInstance.acquireTokenSilent({
         account,
-        scopes: ["User.Read"],
-      });
-      console.log("Refreshed Access Token:", response.accessToken);
-      setupTokenExpirationTimer();
+        scopes: ['User.Read']
+      })
+      console.log('Refreshed Access Token:', response.accessToken)
+      setupTokenExpirationTimer()
     } catch (err) {
-      console.error("Token refresh error:", err);
-      signOut(account.homeAccountId);
+      console.error('Token refresh error:', err)
+      signOut(account.homeAccountId)
     }
   }
 
   // Handle the response after login or redirect
-  function handleResponse(resp: any) {
+  function handleResponse (resp: any) {
     if (resp?.account) {
-      setupTokenExpirationTimer();
+      setupTokenExpirationTimer()
     } else {
-      console.log("LOGIN");
+      console.log('LOGIN')
     }
   }
 
   // Acquire access token silently
-  async function acquireTokenSilent() {
-    const accounts = msalInstance.getAllAccounts();
+  async function acquireTokenSilent () {
+    const accounts = msalInstance.getAllAccounts()
     if (accounts.length > 0) {
-      const account = accounts[0];
-      msalInstance.setActiveAccount(account);
+      const account = accounts[0]
+      msalInstance.setActiveAccount(account)
       try {
         const response = await msalInstance.acquireTokenSilent({
           account,
-          scopes: ["User.Read"],
-        });
-        return response.accessToken;
+          scopes: ['User.Read']
+        })
+        return response.accessToken
       } catch (err) {
-        return null;
+        return null
       }
     } else {
-      console.error("No accounts found");
-      return null;
+      console.error('No accounts found')
+      return null
     }
   }
 
   const loginRequest = {
-    scopes: ["User.Read"],
-  };
+    scopes: ['User.Read']
+  }
 
   // Sign in with redirect
-  async function signIn() {
+  async function signIn () {
     try {
-      await msalInstance.loginRedirect(loginRequest);
+      await msalInstance.loginRedirect(loginRequest)
     } catch (err) {
-      console.log("Login error:", err);
+      console.log('Login error:', err)
     }
   }
 
   // Get all MSAL accounts
-  function getAccounts() {
-    return msalInstance.getAllAccounts();
+  function getAccounts () {
+    return msalInstance.getAllAccounts()
   }
 
   // Check if user is authenticated
-  function isAuthenticated() {
-    return getAccounts().length > 0;
+  function isAuthenticated () {
+    return getAccounts().length > 0
   }
 
   // Sign out user
-  function signOut(accountId: string) {
+  function signOut (accountId: string) {
     const account = accountId
       ? msalInstance.getAccountByHomeId(accountId)
-      : null;
+      : null
     if (account) {
       msalInstance.logoutRedirect({
-        account,
-      });
-      localStorage.clear();
+        account
+      })
+      localStorage.clear()
     } else {
-      console.error("Account not found");
+      console.error('Account not found')
     }
   }
 
@@ -146,12 +152,12 @@ export default defineNuxtPlugin(async ({ $config }) => {
     getAccounts,
     isAuthenticated,
     signOut,
-    acquireTokenSilent,
-  };
+    acquireTokenSilent
+  }
 
   return {
     provide: {
-      msal: () => msalObj,
-    },
-  };
-});
+      msal: () => msalObj
+    }
+  }
+})

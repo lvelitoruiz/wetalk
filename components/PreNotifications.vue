@@ -1,58 +1,68 @@
+<!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
+<!-- eslint-disable array-callback-return -->
 <script setup ts>
-import { useMenuStore } from "../stores/menu";
-import { watchEffect, defineEmits } from "vue";
+import { useMenuStore } from '../stores/menu'
+import { watchEffect, defineEmits, ref } from 'vue'
 
-const notifications = ref(null);
+const notifications = ref(null)
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close'])
 
-const menuStore = useMenuStore();
+const menuStore = useMenuStore()
 
 watchEffect(async () => {
-  const notifData = menuStore.getNotificationItems;
+  const notifData = menuStore.getNotificationItems
   if (notifData) {
     let notifDataMapping = notifData
       .flatMap(({ data }) => data)
       .filter(({ status }) => status)
-      .map(({ tipo }) => ({ tipo }));
+      .map(({ tipo }) => ({ tipo }))
 
-    //Adding new fields
+    // Adding new fields
     notifDataMapping.map((notificacion, _, self) => {
-      if(notificacion.tipo == "GENERAL") {
-        notificacion.tipo = notificacion.tipo.charAt(0) + notificacion.tipo.slice(1).toLowerCase();
+      if (notificacion.tipo === 'GENERAL') {
+        notificacion.tipo =
+          notificacion.tipo.charAt(0) +
+          notificacion.tipo.slice(1).toLowerCase()
       }
       notificacion.count = self.filter(
-        (x) => x.tipo == notificacion.tipo
-      ).length;
-    });
+        (x) => x.tipo === notificacion.tipo
+      ).length
+    })
 
     // Distinct for unique values
     notifDataMapping = [
       ...new Map(
         notifDataMapping.map((notificacion) => [
           notificacion.tipo,
-          notificacion,
+          notificacion
         ])
-      ).values(),
-    ];
-    notifications.value = notifDataMapping;
+      ).values()
+    ]
+    notifications.value = notifDataMapping
   }
-});
+})
 
-function closeNotifications() {
-  emit("close");
+function closeNotifications () {
+  emit('close')
 }
 </script>
 <template>
   <div class="absolute left-[-20px] right-[-25px] xl:left-[-25px] top-[70px]">
-    <div class="ml-[20px] triangulo-up"></div>
+    <div class="ml-[20px] triangulo-up" />
     <div
       class="bg-white relative rounded-lg pl-6 pr-4 py-4 shadow-[0_0_20px_0_rgba(77,39,37,0.25)] min-w-[300px] lg:min-w-[312px]"
     >
-      <p v-if="notifications.length > 0" class="text-sm text-[#191919] mb-2">
+      <p
+        v-if="notifications.length > 0"
+        class="text-sm text-[#191919] mb-2"
+      >
         Tienes nuevas notificaciones
       </p>
-      <p v-else class="text-sm text-[#191919] mb-0">
+      <p
+        v-else
+        class="text-sm text-[#191919] mb-0"
+      >
         No tienes nuevas notificaciones
       </p>
       <div class="flex items-center gap-2">
@@ -89,15 +99,12 @@ function closeNotifications() {
                 'icon-general': notification.tipo === 'General',
               },
             ]"
-          ></i>
-          <span class="text-[#554A00] hidden lg:block text-xs leaning-none"
-            >{{ notification.tipo || "General" }} ({{
-              notification.count
-            }})</span
-          >
+          />
+          <span class="text-[#554A00] hidden lg:block text-xs leaning-none">{{ notification.tipo || 'General' }} ({{
+            notification.count
+          }})</span>
           <span class="text-[#554A00] lg:hidden text-xs leaning-none">
-            {{ notification.count }}</span
-          >
+            {{ notification.count }}</span>
         </div>
 
         <!-- <div class="bg-[#FFF4AA] p-1 flex items-center gap-1 rounded cursor-pointer">
@@ -112,7 +119,7 @@ function closeNotifications() {
       <i
         class="text-[#35158C] absolute right-6 top-4 text-xs icon-close cursor-pointer"
         @click="closeNotifications"
-      ></i>
+      />
     </div>
   </div>
 </template>

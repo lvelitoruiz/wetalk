@@ -1,7 +1,8 @@
+<!-- eslint-disable no-undef -->
 <script setup ts>
 definePageMeta({
-    middleware: 'auth'
-});
+  middleware: 'auth'
+})
 </script>
 <template>
   <div>
@@ -9,7 +10,7 @@ definePageMeta({
       <div class="flex min-h-[calc(100vh-80px)] bg-[#FFF4F6]">
         <SidebarContainer />
         <MainContainer>
-          <SimuladorContainer/>
+          <SimuladorContainer />
         </MainContainer>
       </div>
     </NuxtLayout>

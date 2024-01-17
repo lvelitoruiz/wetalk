@@ -1,50 +1,44 @@
+<!-- eslint-disable array-callback-return -->
+<!-- eslint-disable no-undef -->
 <script setup>
-import { ref, watchEffect } from "vue";
-import { apiUrl } from "~/consts";
-import { useMetaStore } from "../stores/meta";
-import GraphemeSplitter from "grapheme-splitter";
+import { ref, watchEffect, onMounted } from 'vue'
+import { apiUrl } from '~/consts'
+import { useMetaStore } from '../stores/meta'
+import GraphemeSplitter from 'grapheme-splitter'
+import { Vue3Lottie } from 'vue3-lottie'
 
-import animation from "@/assets/images/Ilustracion1.json";
-import { Vue3Lottie } from "vue3-lottie";
-
-const metaStore = useMetaStore();
-const metaData = ref(null);
-const illustrations = ref(null);
-const meta = ref("");
-const selectedColor = ref("#FE91A4");
-const selectedImage = ref(
-  ""
-);
-
-const anotherdImage = ref(
-  ""
-);
-
-const graphemesNow = ref(0);
+const metaStore = useMetaStore()
+const metaData = ref(null)
+const illustrations = ref(null)
+const meta = ref('')
+const selectedColor = ref('#FE91A4')
+const selectedImage = ref('')
+const anotherdImage = ref('')
+const graphemesNow = ref(0)
 
 const handleMeta = (event) => {
-  const splitter = new GraphemeSplitter();
-  const graphemes = splitter.splitGraphemes(meta.value);
-  graphemesNow.value = graphemes;
+  const splitter = new GraphemeSplitter()
+  const graphemes = splitter.splitGraphemes(meta.value)
+  graphemesNow.value = graphemes
 
   if (graphemes.length > 65) {
-    meta.value = graphemes.slice(0, 65).join("");
+    meta.value = graphemes.slice(0, 65).join('')
   }
-};
+}
 
 const fetchMetaInfo = async () => {
-  await metaStore.fetchMetaData(apiUrl);
-};
+  await metaStore.fetchMetaData(apiUrl)
+}
 
 watchEffect(() => {
-  const data = metaStore.getMetaData;
-  const images = metaStore.getImages;
+  const data = metaStore.getMetaData
+  const images = metaStore.getImages
   if (data.length > 0) {
-    metaData.value = data[0];
-    meta.value = metaData.value?.meta;
-    selectedColor.value = metaData.value?.color;
-    if(metaData.value?.imagen !== '' && metaData.value?.imagen !== null) {
-      selectedImage.value = metaData.value?.imagen;
+    metaData.value = data[0]
+    meta.value = metaData.value?.meta
+    selectedColor.value = metaData.value?.color
+    if (metaData.value?.imagen !== '' && metaData.value?.imagen !== null) {
+      selectedImage.value = metaData.value?.imagen
     }
   }
   if (images) {
@@ -52,88 +46,87 @@ watchEffect(() => {
       imagen: item.imagen,
       imagen_estatica: item.imagen_estatica,
       categoria: item.categoria,
-      active: false,
-    }));
+      active: false
+    }))
 
-    anotherdImage.value = images[0].imagen;
-    illustrations.value = formattedImages;
+    anotherdImage.value = images[0].imagen
+    illustrations.value = formattedImages
   }
-});
+})
 
 onMounted(async () => {
-  const splitter = new GraphemeSplitter();
-  const graphemes = splitter.splitGraphemes(meta.value);
-  graphemesNow.value = graphemes;
-});
+  const splitter = new GraphemeSplitter()
+  const graphemes = splitter.splitGraphemes(meta.value)
+  graphemesNow.value = graphemes
+})
 
-const hasMeta = computed(() => meta.value !== "");
+const hasMeta = computed(() => meta.value !== '')
 
 const markImage = () => {
   illustrations.value.map((item, index) => {
     if (item.imagen === selectedImage.value) {
-      item.active = true;
-    } else if ((index = 0 && selectedImage.value == "")) {
-      item.active = true;
+      item.active = true
+    } else if ((index === 0 && selectedImage.value === '')) {
+      item.active = true
     } else {
-      item.active = false;
+      item.active = false
     }
-  });
-};
+  })
+}
 
 const updateMeta = async (ignoreDataLayer) => {
   // const codUser = localStorage.getItem("codUser");
-  const codUser = (await metaStore.fetchData())?.localCodUser;
-  
-  let metaItem = {
+  const codUser = (await metaStore.fetchData())?.localCodUser
+
+  const metaItem = {
     id: codUser,
     imagen: selectedImage.value,
     meta: meta.value,
-    color: "#FFA439",
-  };
-
-  await metaStore.registerMetaData(apiUrl, metaItem);
-  await fetchMetaInfo();
-  markImage();
-  if(!ignoreDataLayer) {
-      if(dataLayer){
-          dataLayer.push({
-              event: 'Mi_Meta_Guardar',
-              'name': 'Evento_Mi_Meta_Guardar',
-              'Click_Text': 'Guardar cambios',
-          })
-      }
+    color: '#FFA439'
   }
 
-};
+  await metaStore.registerMetaData(apiUrl, metaItem)
+  await fetchMetaInfo()
+  markImage()
+  if (!ignoreDataLayer) {
+    if (dataLayer) {
+      dataLayer.push({
+        event: 'Mi_Meta_Guardar',
+        name: 'Evento_Mi_Meta_Guardar',
+        Click_Text: 'Guardar cambios'
+      })
+    }
+  }
+}
 
 const cleanMeta = async () => {
-  meta.value = "";
-  selectedColor.value = "";
-  selectedImage.value = "";
-  await updateMeta(true);
-  await fetchMetaInfo();
-  graphemesNow.value = "";
-  markImage();
-  if(dataLayer){
-        dataLayer.push({
-            event: 'Mi_Meta_Eliminar',
-            'name': 'Evento_Mi_Meta_Eliminar',
-            'Click_Text': 'Eliminar meta',
-        })
+  meta.value = ''
+  selectedColor.value = ''
+  selectedImage.value = ''
+  await updateMeta(true)
+  await fetchMetaInfo()
+  graphemesNow.value = ''
+  markImage()
+  if (dataLayer) {
+    dataLayer.push({
+      event: 'Mi_Meta_Eliminar',
+      name: 'Evento_Mi_Meta_Eliminar',
+      Click_Text: 'Eliminar meta'
+    })
   }
-};
+}
 
 const changeImage = (indexItem, newImage) => {
-  console.log('illustrations: ',illustrations.value,indexItem,newImage);
+  console.log('illustrations: ', illustrations.value, indexItem, newImage)
   illustrations.value.map((item, index) => {
     if (index === indexItem) {
-      item.active = true;
+      item.active = true
     } else {
-      item.active = false;
+      item.active = false
     }
-  });
-  selectedImage.value = newImage;
-};
+  })
+  selectedImage.value = newImage
+}
 </script>
 <template>
   <ContainerBoxSimple>
@@ -164,21 +157,24 @@ const changeImage = (indexItem, newImage) => {
           <client-only>
             <Vue3Lottie
               v-if="selectedImage !== ''"
-              :animationLink="selectedImage"
+              :animation-link="selectedImage"
               :height="200"
               :width="255"
               class="min-w-[255px] h-auto"
             />
             <Vue3Lottie
               v-else
-              :animationLink="anotherdImage"
+              :animation-link="anotherdImage"
               :height="200"
               :width="255"
               class="min-w-[255px] h-auto"
             />
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
-            <div class="triangulo-up" style="position: relative;"></div>
+            <div
+              class="triangulo-up"
+              style="position: relative"
+            />
             <div
               class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] px-5 py-2 w-full flex justify-between items-center rounded-lg"
             >
@@ -217,7 +213,7 @@ const changeImage = (indexItem, newImage) => {
               :src="illustration.imagen_estatica"
               alt=""
               @click="() => changeImage(index, illustration.imagen)"
-            />
+            >
           </div>
         </div>
         <div class="relative">
@@ -235,7 +231,7 @@ const changeImage = (indexItem, newImage) => {
             placeholder="Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆"
             type="text"
             @input="handleMeta"
-          />
+          >
           <div class="pt-2 lg:hidden flex justify-end mb-4">
             <p class="text-xs text-[#808080]">
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65

@@ -1,5 +1,6 @@
-<script lang="ts" >
-import { defineComponent } from "vue";
+<!-- eslint-disable vue/require-default-prop -->
+<script lang="ts">
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
@@ -7,14 +8,14 @@ export default defineComponent({
     size: String,
     color: {
       type: String,
-      default: "",
+      default: ''
     },
     padding: {
       type: Boolean,
       default: true
     }
-  },
-});
+  }
+})
 </script>
 
 <template>
@@ -50,72 +51,78 @@ export default defineComponent({
   > -->
 
   <div
-    :class="[{
-       'pt-[22px] pb-[22px] z-[1] px-7': padding
-    }] "
+    :class="[
+      {
+        'pt-[22px] pb-[22px] z-[1] px-7': padding,
+      },
+    ]"
     class="bg-white shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] rounded-[14px] w-full min-h-[40px] relative"
   >
-    <div :class="[{
-       'bg-[#039C6D]' : color === 'green',
-       'bg-[#9DE7D6]' : color === 'greenLigth',
-       'bg-[#FFDF00]' : color === 'yellow',
-       'bg-[#699A8F]' : color === 'cyan',
-       'bg-[#5598FF]' : color === 'blueLigth',
-       'bg-[#E50A17]' : color === 'red',
-       'bg-[#FEB6C2]' : color === 'pink',
-       'bg-[#191919]' : color === 'black',
-    }] "
-    class="h-2 w-full absolute left-0 top-0 rounded-t-[14px]"></div>
-    <slot></slot>
+    <div
+      :class="[
+        {
+          'bg-[#039C6D]': color === 'green',
+          'bg-[#9DE7D6]': color === 'greenLigth',
+          'bg-[#FFDF00]': color === 'yellow',
+          'bg-[#699A8F]': color === 'cyan',
+          'bg-[#5598FF]': color === 'blueLigth',
+          'bg-[#E50A17]': color === 'red',
+          'bg-[#FEB6C2]': color === 'pink',
+          'bg-[#191919]': color === 'black',
+        },
+      ]"
+      class="h-2 w-full absolute left-0 top-0 rounded-t-[14px]"
+    />
+    <slot />
   </div>
 </template>
 <style>
-  ::-webkit-scrollbar {
-  width: 6px; 
+::-webkit-scrollbar {
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1; 
+  background-color: #f1f1f1;
 }
 
 .green-scroll::-webkit-scrollbar-thumb {
-  background-color: #039C6D; 
-  border-radius: 6px; 
+  background-color: #039c6d;
+  border-radius: 6px;
 }
 
 .greenLigth-scroll::-webkit-scrollbar-thumb {
-  background-color: #9DE7D6; 
-  border-radius: 6px; 
+  background-color: #9de7d6;
+  border-radius: 6px;
 }
 
 .yellow-scroll::-webkit-scrollbar-thumb {
-  background-color: #FFDF00; 
-  border-radius: 6px; 
+  background-color: #ffdf00;
+  border-radius: 6px;
 }
 
 .cyan-scroll::-webkit-scrollbar-thumb {
-  background-color: #699A8F; 
-  border-radius: 6px; 
+  background-color: #699a8f;
+  border-radius: 6px;
 }
 
 .blueLigth-scroll::-webkit-scrollbar-thumb {
-  background-color: #5598FF; 
-  border-radius: 6px; 
+  background-color: #5598ff;
+  border-radius: 6px;
 }
 
 .red-scroll::-webkit-scrollbar-thumb {
-  background-color: #E50A17; 
-  border-radius: 6px; 
+  background-color: #e50a17;
+  border-radius: 6px;
 }
 
 .pink-scroll::-webkit-scrollbar-thumb {
-  background-color: #FEB6C2; 
-  border-radius: 6px; 
+  background-color: #feb6c2;
+  border-radius: 6px;
 }
 
 .black-scroll::-webkit-scrollbar-thumb {
-  background-color: #191919; 
-  border-radius: 6px; 
+  background-color: #191919;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
