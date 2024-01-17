@@ -5,62 +5,63 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    @apply bg-[#FFF4F6]
+    @apply bg-[#FFF4F6];
   }
 
   @font-face {
-    font-family: "solano";
+    font-family: 'solano';
     font-style: normal;
     font-weight: 700;
-    src: url("../fonts/upc_sgothic-bdcap-webfont.woff") format("woff");
+    src: url('../fonts/upc_sgothic-bdcap-webfont.woff') format('woff');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Public Sans";
+    font-family: 'Public Sans';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../fonts/public-sans.woff2") format("woff2");
+    src: url('../fonts/public-sans.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
   }
 
   @font-face {
-    font-family: "Public Sans";
+    font-family: 'Public Sans';
     font-style: bold;
     font-weight: 700;
     font-display: swap;
-    src: url("../fonts/public-sans.woff2") format("woff2");
+    src: url('../fonts/public-sans.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
   }
 
   @font-face {
-    font-family: "zizou-bold";
+    font-family: 'zizou-bold';
     font-style: normal;
     font-weight: 700;
-    src: url("../fonts/zizou-slab-bold.woff") format("woff");
+    src: url('../fonts/zizou-slab-bold.woff') format('woff');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "zizou-regular";
+    font-family: 'zizou-regular';
     font-style: normal;
     font-weight: normal;
-    src: url("../fonts/zizou-slab-regular.woff") format("woff");
+    src: url('../fonts/zizou-slab-regular.woff') format('woff');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "icomoon";
-    src: url("../fonts/icomoon.eot?8n8hpa");
-    src: url("../fonts/icomoon.eot?8n8hpa#iefix") format("embedded-opentype"),
-      url("../fonts/icomoon.ttf?8n8hpa") format("truetype"),
-      url("../fonts/icomoon.woff?8n8hpa") format("woff"),
-      url("../fonts/icomoon.svg?8n8hpa#icomoon") format("svg");
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?8n8hpa');
+    src:
+      url('../fonts/icomoon.eot?8n8hpa#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?8n8hpa') format('truetype'),
+      url('../fonts/icomoon.woff?8n8hpa') format('woff'),
+      url('../fonts/icomoon.svg?8n8hpa#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -71,10 +72,10 @@
     @apply font-publicSans;
   }
 
-  [class^="icon-"],
-  [class*=" icon-"] {
+  [class^='icon-'],
+  [class*=' icon-'] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: "icomoon" !important;
+    font-family: 'icomoon' !important;
     speak: never;
     font-style: normal;
     font-weight: normal;
@@ -88,97 +89,96 @@
   }
 
   .icon-close:before {
-    content: "\e915";
+    content: '\e915';
   }
   .icon-general:before {
-    content: "\e916";
+    content: '\e916';
   }
   .icon-globe:before {
-    content: "\e917";
+    content: '\e917';
   }
   .icon-newtab:before {
-    content: "\e918";
+    content: '\e918';
   }
   .icon-plane:before {
-    content: "\e90e";
+    content: '\e90e';
   }
   .icon-users:before {
-    content: "\e90f";
+    content: '\e90f';
   }
   .icon-work:before {
-    content: "\e910";
+    content: '\e910';
   }
   .icon-language:before {
-    content: "\e911";
+    content: '\e911';
   }
   .icon-graduate:before {
-    content: "\e912";
+    content: '\e912';
   }
   .icon-flag:before {
-    content: "\e913";
+    content: '\e913';
   }
   .icon-book:before {
-    content: "\e914";
+    content: '\e914';
   }
   .icon-edit:before {
-    content: "\e90b";
+    content: '\e90b';
   }
   .icon-phone:before {
-    content: "\e90c";
+    content: '\e90c';
   }
   .icon-wsp:before {
-    content: "\e90d";
+    content: '\e90d';
   }
   .icon-arrow-down:before {
-    content: "\e900";
+    content: '\e900';
   }
   .icon-arrow-right:before {
-    content: "\e901";
+    content: '\e901';
   }
   .icon-bell:before {
-    content: "\e902";
+    content: '\e902';
   }
   .icon-book-open:before {
-    content: "\e903";
+    content: '\e903';
   }
   .icon-creditcard:before {
-    content: "\e904";
+    content: '\e904';
   }
   .icon-email:before {
-    content: "\e905";
+    content: '\e905';
   }
   .icon-file-copy:before {
-    content: "\e906";
+    content: '\e906';
   }
   .icon-home:before {
-    content: "\e907";
+    content: '\e907';
   }
   .icon-puzzle:before {
-    content: "\e908";
+    content: '\e908';
   }
   .icon-user-chat:before {
-    content: "\e909";
+    content: '\e909';
   }
   .icon-user:before {
-    content: "\e90a";
+    content: '\e90a';
   }
   .icon-download:before {
-    content: "\e919";
+    content: '\e919';
   }
   .icon-logOut:before {
-    content: "\e91a";
+    content: '\e91a';
   }
   .icon-logOut2:before {
-    content: "\e91b";
+    content: '\e91b';
   }
   .icon-nav:before {
-    content: "\e91c";
+    content: '\e91c';
   }
   .icon-trash:before {
-    content: "\e91d";
+    content: '\e91d';
   }
 }
-
 
 @layer components {
   .fastLink {
@@ -240,7 +240,7 @@
   }
 
   .triangle:before {
-    content: "";
+    content: '';
     position: absolute;
     top: -13px;
     left: 14px;
@@ -251,19 +251,19 @@
     border-width: 8px 12px 8px 0;
     border-color: transparent #ffffff transparent transparent;
 
-    @media (min-width: 768px) { 
+    @media (min-width: 768px) {
       top: 50%;
       left: -16px;
       transform: translateY(-50%);
       transform: rotate(0);
       border-width: 12px 24px 12px 0;
-     }
+    }
   }
 
   .triangulo-up {
     position: relative;
     width: 20px;
-    z-index: 10
+    z-index: 10;
   }
 
   @media screen and (max-width: 560px) {
@@ -288,7 +288,7 @@
   }
 
   .text-hover-red:hover {
-    color: #E50A17;
+    color: #e50a17;
   }
 
   :root {

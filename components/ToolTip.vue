@@ -1,4 +1,7 @@
+<!-- eslint-disable vue/require-default-prop -->
 <script setup>
+import { defineProps } from 'vue';
+
 const props = defineProps({
   title: String,
   text: String,

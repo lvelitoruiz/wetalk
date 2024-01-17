@@ -1,13 +1,16 @@
 <template>
   <div>
-    <ul v-bind="$attrs" class="flex items-center gap-4 mb-[22px]">
+    <ul
+      v-bind="$attrs"
+      class="flex items-center gap-4 mb-[22px]"
+    >
       <li v-if="optionAll">
-        <button @click="handleActiveTab('tab-all', null)" 
+        <button
+          @click="handleActiveTab('tab-all', null)"
           :class="[
-            {'black' : props.colorActive === 'black' && tabActive === `tab-all`},
+            { black: props.colorActive === 'black' && tabActive === `tab-all` },
             {
-              'bg-[#FFDAE1] text-[#B70812]':
-                tabActive === `tab-all`,
+              'bg-[#FFDAE1] text-[#B70812]': tabActive === `tab-all`,
             },
             { 'bg-[#F2F2F2] text-[#595959]': tabActive !== `tab-all` },
           ]"
@@ -16,14 +19,19 @@
           Todo
         </button>
       </li>
-      <li v-for="(tab, i) in tabs" :key="i" class="flex-shrink-0">
+      <li
+        v-for="(tab, i) in tabs"
+        :key="i"
+        class="flex-shrink-0"
+      >
         <button
-          @click="handleActiveTab(`tab-${i}`,tab.value)"
+          @click="handleActiveTab(`tab-${i}`, tab.value)"
           :class="[
-            {'black' : props.colorActive === 'black' && tabActive === `tab-${i}`},
             {
-              'bg-[#FFDAE1] text-[#B70812]':
-                tabActive === `tab-${i}`,
+              black: props.colorActive === 'black' && tabActive === `tab-${i}`,
+            },
+            {
+              'bg-[#FFDAE1] text-[#B70812]': tabActive === `tab-${i}`,
             },
             { 'bg-[#F2F2F2] text-[#595959]': tabActive !== `tab-${i}` },
           ]"
@@ -34,20 +42,21 @@
       </li>
     </ul>
     <div>
-      <slot :tabSelected="tabActive" />
+      <slot :tab-selected="tabActive" />
     </div>
   </div>
 </template>
 
 <style>
-  .black {
-    background: #191919;
-    color: #FFFFFF;
-  }
+.black {
+  background: #191919;
+  color: #ffffff;
+}
 </style>
 
+<!-- eslint-disable no-undef -->
 <script setup lang="ts">
-import { ref, defineProps, getCurrentInstance } from "vue";
+import { ref, defineProps, getCurrentInstance } from 'vue';
 
 const props = defineProps({
   tabs: {
@@ -55,23 +64,22 @@ const props = defineProps({
     required: true,
   },
   optionAll: {
-  type: Boolean,
-  default: false,
-  required: false
-},
+    type: Boolean,
+    default: false,
+    required: false,
+  },
   colorActive: {
-      type: String,
-      default: "",
-    },
+    type: String,
+    default: '',
+  },
 });
 
-const tabActive = ref("tab-all");
+const tabActive = ref('tab-all');
 const instance = getCurrentInstance();
 
-const handleActiveTab = (tab: string,value: boolean | null) => {
+const handleActiveTab = (tab: string, value: boolean | null) => {
   tabActive.value = tab;
   const isActive = tab === tabActive.value;
-  instance?.emit("tabChange", value ?? tab);
+  instance?.emit('tabChange', value ?? tab);
 };
-
 </script>
