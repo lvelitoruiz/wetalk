@@ -3,7 +3,6 @@
 <script setup>
 import { defineProps } from 'vue'
 
-const nombre = 'Juan'
 const props = defineProps({
   page: String,
 })
@@ -13,7 +12,10 @@ const props = defineProps({
   <div
     class="hidden lg:flex items-center w-full lg:w-[1023px] mx-auto pb-[18px] gap-[6px]"
   >
-    <router-link class="text-[#575759] text-[15px] underline" to="/dashboard">
+    <router-link
+      class="text-[#575759] text-[15px] underline"
+      to="/dashboard"
+    >
       Inicio
     </router-link>
     <span class="text-[#575759] text-[15px]">></span>
@@ -21,7 +23,10 @@ const props = defineProps({
   </div>
   <div class="lg:hidden flex items-center w-full mx-auto pb-[18px] gap-[6px]">
     <i class="icon-arrow-right rotate-180" />
-    <router-link class="text-[#575759] text-[15px] underline" to="/dashboard">
+    <router-link
+      class="text-[#575759] text-[15px] underline"
+      to="/dashboard"
+    >
       Atrás
     </router-link>
   </div>
