@@ -4,7 +4,7 @@
 import { defineProps } from 'vue'
 
 const nombre = 'Juan'
-var props = defineProps({
+const props = defineProps({
   page: String,
 })
 </script>
