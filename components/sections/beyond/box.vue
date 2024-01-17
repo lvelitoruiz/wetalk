@@ -12,6 +12,13 @@
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link> -->
+         
+        </div>
+        <div class="flex justify-center my-[20px]">
+          <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
+            <input type="text" placeholder="Buscar" class="w-[95%] placeholder:text-sm">
+            <i class="icon-trash"></i>
+          </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
           <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'"></TabContent>
