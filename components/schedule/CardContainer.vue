@@ -8,7 +8,7 @@ const props = defineProps({
   getTopAndHeight: Function,
   allCourses: Object,
   selectedCourse: String,
-  positionX: Number
+  positionX: Number,
 })
 
 const popupIsVisible = ref(false)

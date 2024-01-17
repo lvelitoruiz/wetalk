@@ -4,7 +4,7 @@ import { defineProps, ref } from 'vue'
 
 import locales from '~/utils/locales.json'
 defineProps({
-  i: Object
+  i: Object,
 })
 
 const showItem = ref(false)

@@ -8,8 +8,8 @@ const props = defineProps({
   coursesCalendar: Object,
   filter: {
     type: String,
-    default: 'Todos'
-  }
+    default: 'Todos',
+  },
 })
 const { y } = useScroll(props.coursesCalendar)
 const now = ref(new Date())

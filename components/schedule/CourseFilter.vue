@@ -5,17 +5,17 @@ import { defineProps, ref } from 'vue'
 const props = defineProps({
   selectedCourse: {
     type: String,
-    default: 'Todos'
+    default: 'Todos',
   },
   selectedCourseWeek: {
     type: String,
-    default: 'Todos'
+    default: 'Todos',
   },
   handleCourse: {
     type: Function,
-    required: true
+    required: true,
   },
-  allCourses: Object
+  allCourses: Object,
 })
 </script>
 <template>

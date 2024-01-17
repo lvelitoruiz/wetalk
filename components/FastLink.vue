@@ -12,14 +12,14 @@ const props = defineProps({
   labelCode: String,
   code: String,
   link: String,
-  hasCode: Boolean
+  hasCode: Boolean,
 })
 
 const copyToClipboard = (code) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
-      typeof: 'error'
+      typeof: 'error',
     })
     return
   }
@@ -28,20 +28,20 @@ const copyToClipboard = (code) => {
     .then(() => {
       $toast.open({
         message: 'Código Copiado!!!',
-        typeof: 'success'
+        typeof: 'success',
       })
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar código',
-        typeof: 'error'
+        typeof: 'error',
       })
     })
   if (dataLayer) {
     dataLayer.push({
       event: 'Click-CodActivacion',
       name: 'Click-CodActivacion',
-      Click_Text: code
+      Click_Text: code,
     })
   }
 }
@@ -52,7 +52,7 @@ const eventClickFastLinks = (text, url) => {
       event: 'Click-LinksRapidos',
       name: 'Click-LinksRapidos',
       Click_Text: text,
-      url
+      url,
     })
   }
 }

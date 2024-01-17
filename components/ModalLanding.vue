@@ -17,7 +17,7 @@ const enlaces = [
   { true: 'https://idiomas.upc.edu.pe/', false: 'https://idiomas.upc.edu.pe/' },
   { true: 'https://wa.link/yd1ig9', false: 'https://bit.ly/3h2sVlt' },
   { true: 'https://wa.link/5ouyu7', false: 'https://wa.link/m236ca' },
-  { true: 'http://bit.ly/3rAA7h6', false: 'https://idiomas.upc.edu.pe/' }
+  { true: 'http://bit.ly/3rAA7h6', false: 'https://idiomas.upc.edu.pe/' },
 ]
 
 const eventClickMasInformacion = (text) => {
@@ -26,7 +26,7 @@ const eventClickMasInformacion = (text) => {
     dataLayer.push({
       event: 'Mas_Informacion_Modal',
       name: 'Evento_Mas_Informacion_Modal',
-      Click_text: text
+      Click_text: text,
     })
   }
 }

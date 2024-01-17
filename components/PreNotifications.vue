@@ -26,7 +26,7 @@ watchEffect(async () => {
           notificacion.tipo.slice(1).toLowerCase()
       }
       notificacion.count = self.filter(
-        (x) => x.tipo === notificacion.tipo
+        (x) => x.tipo === notificacion.tipo,
       ).length
     })
 
@@ -35,9 +35,9 @@ watchEffect(async () => {
       ...new Map(
         notifDataMapping.map((notificacion) => [
           notificacion.tipo,
-          notificacion
-        ])
-      ).values()
+          notificacion,
+        ]),
+      ).values(),
     ]
     notifications.value = notifDataMapping
   }

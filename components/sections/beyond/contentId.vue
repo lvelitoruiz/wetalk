@@ -8,7 +8,7 @@ const router = useRouter()
 const dataContent = ref([])
 
 const props = defineProps({
-  data: Array
+  data: Array,
 })
 
 watchEffect(() => {

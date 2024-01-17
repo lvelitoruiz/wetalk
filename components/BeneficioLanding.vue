@@ -3,7 +3,7 @@
 import { defineProps } from 'vue'
 
 const props = defineProps({
-  items: Array
+  items: Array,
 })
 </script>
 

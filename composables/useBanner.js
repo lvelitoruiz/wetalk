@@ -8,14 +8,14 @@ const useScheduleData = () => {
     const response = useLazyFetch(
       `${config.public.baseURL}Home/v1/Banner?destacado=true`,
       {
-        headers: getAuthHeaders()
-      }
+        headers: getAuthHeaders(),
+      },
     )
     return await response
   }
 
   return {
-    getBanner
+    getBanner,
   }
 }
 

@@ -88,16 +88,16 @@ import { ref } from 'vue'
 const lists = [
   {
     title: 'Matrícula',
-    id: '#matricula'
+    id: '#matricula',
   },
   {
     title: 'BENEFICIOS',
-    id: '#beneficio'
+    id: '#beneficio',
   },
   {
     title: 'Niveles',
-    id: '#nivel'
-  }
+    id: '#nivel',
+  },
 ]
 
 const showLanding = ref(false)

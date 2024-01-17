@@ -11,7 +11,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       enabled: true, // defaults to true. Plugin can be disabled by setting this to false for Ex: enabled: !!GDPR_Cookie (optional)
       // debug: true, // Whether or not display console logs debugs (optional)
       vueRouter: useRouter(), // Pass the router instance to automatically sync with router (optional)
-      trackOnNextTick: false
-    })
+      trackOnNextTick: false,
+    }),
   )
 })

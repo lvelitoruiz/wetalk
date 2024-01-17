@@ -8,13 +8,13 @@ export default defineComponent({
     size: String,
     color: {
       type: String,
-      default: ''
+      default: '',
     },
     padding: {
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
 })
 </script>
 

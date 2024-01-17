@@ -5,12 +5,12 @@ import { defineProps } from 'vue'
 defineProps({
   dataList: {
     type: Array,
-    default: []
+    default: [],
   },
   slideQty: {
     type: Number,
-    default: 1
-  }
+    default: 1,
+  },
 })
 </script>
 <template>

@@ -30,43 +30,43 @@ const tablaNotas = [
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '20%',
-    nota: 20
+    nota: 20,
   },
   {
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '20%',
-    nota: 13
+    nota: 13,
   },
   {
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '10%',
-    nota: 18
+    nota: 18,
   },
   {
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '10%',
-    nota: '05'
+    nota: '05',
   },
   {
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '20%',
-    nota: '-'
+    nota: '-',
   },
   {
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '10%',
-    nota: '-'
+    nota: '-',
   },
   {
     tipo: 'PA1',
     evaluacion: 'Prod. oral - sesión sinc.',
     peso: '10%',
-    nota: '-'
-  }
+    nota: '-',
+  },
 ]
 </script>

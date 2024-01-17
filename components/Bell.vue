@@ -35,14 +35,14 @@ async function showNotifications () {
       .flatMap((notification) => notification.data)
       .map((notification) => ({
         id: notification.id,
-        tipo: notification.tipo
+        tipo: notification.tipo,
       }))
 
     const codUser = (await menuStore.fetchData()).localCodUser
 
     const notificationData = {
       codAlumno: codUser,
-      notificaciones: notificationItems
+      notificaciones: notificationItems,
     }
 
     const cantidadNotificaciones =

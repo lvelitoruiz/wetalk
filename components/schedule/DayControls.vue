@@ -4,24 +4,24 @@ import { defineProps } from 'vue'
 const props = defineProps({
   day: {
     type: Number,
-    default: 0
+    default: 0,
   },
   sessionDate: {
     type: String,
-    required: true
+    required: true,
   },
   courses: {
     type: Array,
-    required: true
+    required: true,
   },
   handleChange: {
     type: Function,
-    required: true
+    required: true,
   },
   active: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 </script>
 <template>

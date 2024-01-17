@@ -18,7 +18,7 @@ const menuStore = useMenuStore()
 
 const props = defineProps({
   dashboard: Boolean,
-  showPromedio: Boolean
+  showPromedio: Boolean,
 })
 
 const reestablishNotes = () => {
@@ -27,7 +27,7 @@ const reestablishNotes = () => {
     dataLayer.push({
       event: 'Simular_Promedio',
       name: 'Evento_Simular_Promedio',
-      Click_Text: 'Reestablecer notas'
+      Click_Text: 'Reestablecer notas',
     })
   }
 }
@@ -57,14 +57,14 @@ const irSimulador = () => {
     dataLayer.push({
       event: 'Simular_Promedio',
       name: 'Evento_Simular_Promedio',
-      Click_Text: 'Cancelar'
+      Click_Text: 'Cancelar',
     })
   }
   if ((dataLayer, showSimulator.value)) {
     dataLayer.push({
       event: 'Simular_Promedio',
       name: 'Evento_Simular_Promedio',
-      Click_Text: 'Simulador de promedio'
+      Click_Text: 'Simulador de promedio',
     })
   }
 }
@@ -78,7 +78,7 @@ const eventClickVerMas = () => {
     dataLayer.push({
       event: 'Click_Click_Ver_Mas',
       name: 'Evento_Click_Ver_Mas',
-      titulo_caja: 'Notas'
+      titulo_caja: 'Notas',
     })
   }
 }

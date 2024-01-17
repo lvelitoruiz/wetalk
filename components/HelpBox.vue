@@ -21,7 +21,7 @@ const eventClickAyuda = (url) => {
     dataLayer.push({
       event: 'Ayuda',
       name: 'Evento_Ayuda',
-      Click_text: url
+      Click_text: url,
     })
   }
 }

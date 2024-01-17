@@ -9,20 +9,20 @@ export const scheduleState = defineStore('scheduleState', {
     sessionDaily: null,
     fullWeek: Array(7).fill({ empty: true }),
     earlierCourseDay: Infinity,
-    dayFilter: {}
+    dayFilter: {},
   }),
   persist: {
-    storage: persistedState.localStorage
+    storage: persistedState.localStorage,
   },
   getters: {
     coursesSelectedDay (state) {
       return (filter = 'Todos') => {
         if (filter === 'Todos') { return state.coursesListDay?.ListaDTOHorarioAlumnoDet }
         return state.coursesListDay?.ListaDTOHorarioAlumnoDet.filter(
-          (item) => item.CodCurso === filter
+          (item) => item.CodCurso === filter,
         )
       }
-    }
+    },
   },
   actions: {
     changeDay (val) {
@@ -40,7 +40,7 @@ export const scheduleState = defineStore('scheduleState', {
           dayFilter[course.CodCurso] = {
             state: true,
             DescEspecialCurso: course.DescEspecialCurso,
-            CodCurso: course.CodCurso
+            CodCurso: course.CodCurso,
           }
         })
         this.dayFilter = dayFilter
@@ -57,7 +57,7 @@ export const scheduleState = defineStore('scheduleState', {
           const fullname = getFullname(course.NombresImag, course.ApePatImag)
           if (!hashCourses[course.IdSesion]) {
             hashCourses[course.IdSesion] = {
-              docentes: fullname ? [fullname] : []
+              docentes: fullname ? [fullname] : [],
             }
           } else {
             hashCourses[course.IdSesion].docentes =
@@ -82,6 +82,6 @@ export const scheduleState = defineStore('scheduleState', {
         if (index === 0) this.fullWeek[6] = course
         else this.fullWeek[index - 1] = course
       })
-    }
-  }
+    },
+  },
 })

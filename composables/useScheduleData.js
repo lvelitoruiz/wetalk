@@ -14,9 +14,9 @@ const useScheduleData = () => {
           CodModalEst: 'AC',
           CodUsuario: 'U201520067',
           CodAlumno: '201520067',
-          CodPeriodo: '201502'
-        }
-      }
+          CodPeriodo: '201502',
+        },
+      },
     )
 
     return data.value
@@ -38,9 +38,9 @@ const useScheduleData = () => {
           CodPeriodo: JSON.parse(sessionStorage.getItem('infoAlumn'))
             .codPeriodoActual,
           Grupo: course.grupo,
-          Seccion: course.seccion
-        }
-      }
+          Seccion: course.seccion,
+        },
+      },
     )
 
     return { matricula1, error }
@@ -62,9 +62,9 @@ const useScheduleData = () => {
           CodPeriodo: JSON.parse(sessionStorage.getItem('infoAlumn'))
             .codPeriodoActual,
           FechaSesion2: `${day2}T23:00:00Z`,
-          FechaSesion1: `${day1}T00:00:00Z`
-        }
-      }
+          FechaSesion1: `${day1}T00:00:00Z`,
+        },
+      },
     )
 
     return response
@@ -77,9 +77,9 @@ const useScheduleData = () => {
         headers: getAuthHeaders(),
         params: {
           modalidad: JSON.parse(sessionStorage.getItem('infoAlumn'))
-            .codModalidadEstActual
-        }
-      }
+            .codModalidadEstActual,
+        },
+      },
     )
 
     return responses
@@ -94,9 +94,9 @@ const useScheduleData = () => {
           periodo: actualCode,
           periodoActual: activo,
           modalidad: JSON.parse(sessionStorage.getItem('infoAlumn'))
-            .codModalidadEstActual
-        }
-      }
+            .codModalidadEstActual,
+        },
+      },
     )
 
     return responses
@@ -110,9 +110,9 @@ const useScheduleData = () => {
         params: {
           periodo: actualCode,
           modalidad: JSON.parse(sessionStorage.getItem('infoAlumn'))
-            .codModalidadEstActual
-        }
-      }
+            .codModalidadEstActual,
+        },
+      },
     )
 
     return responses
@@ -134,9 +134,9 @@ const useScheduleData = () => {
           CodPeriodo: JSON.parse(sessionStorage.getItem('infoAlumn'))
             .codPeriodoActual,
           FechaSesion2: `${params}T23:00:00Z`,
-          FechaSesion1: `${params}T00:00:00Z`
-        }
-      }
+          FechaSesion1: `${params}T00:00:00Z`,
+        },
+      },
     )
 
     return await response
@@ -149,7 +149,7 @@ const useScheduleData = () => {
     getListCalendarPeriods,
     getDataCalendar,
     getDataCalendarPdf,
-    getDataHome
+    getDataHome,
   }
 }
 

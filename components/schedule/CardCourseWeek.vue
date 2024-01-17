@@ -6,7 +6,7 @@ import { defineProps } from 'vue'
 
 defineProps({
   course: Object,
-  popupIsVisible: Boolean
+  popupIsVisible: Boolean,
 })
 
 const store = scheduleState()

@@ -11,8 +11,8 @@ const props = defineProps({
   positionX: Number,
   daily: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 const store = scheduleState()
 const listP = store.sessions

@@ -14,7 +14,7 @@ const courseName = menuStore.getProfileItems?.data?.at(0)?.descCurso ?? ''
 const selectedImage = ref('')
 const anotherImage = ref('')
 const metaText = ref(
-  'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆'
+  'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆',
 )
 const metaStore = useMetaStore()
 const dataMeta = ref(null)
@@ -50,7 +50,7 @@ const eventClickMeta = (text, url) => {
       event: 'Ver_Mi_Meta',
       name: 'Evento_Ver_Mi_Meta',
       Click_Text: text,
-      url
+      url,
     })
   }
 }

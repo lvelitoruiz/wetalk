@@ -46,7 +46,7 @@ watchEffect(() => {
       imagen: item.imagen,
       imagen_estatica: item.imagen_estatica,
       categoria: item.categoria,
-      active: false
+      active: false,
     }))
 
     anotherdImage.value = images[0].imagen
@@ -82,7 +82,7 @@ const updateMeta = async (ignoreDataLayer) => {
     id: codUser,
     imagen: selectedImage.value,
     meta: meta.value,
-    color: '#FFA439'
+    color: '#FFA439',
   }
 
   await metaStore.registerMetaData(apiUrl, metaItem)
@@ -93,7 +93,7 @@ const updateMeta = async (ignoreDataLayer) => {
       dataLayer.push({
         event: 'Mi_Meta_Guardar',
         name: 'Evento_Mi_Meta_Guardar',
-        Click_Text: 'Guardar cambios'
+        Click_Text: 'Guardar cambios',
       })
     }
   }
@@ -111,7 +111,7 @@ const cleanMeta = async () => {
     dataLayer.push({
       event: 'Mi_Meta_Eliminar',
       name: 'Evento_Mi_Meta_Eliminar',
-      Click_Text: 'Eliminar meta'
+      Click_Text: 'Eliminar meta',
     })
   }
 }

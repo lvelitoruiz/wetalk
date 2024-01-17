@@ -4,7 +4,7 @@ import { defineProps } from 'vue'
 
 const props = defineProps({
   pmail: String,
-  number: String
+  number: String,
 })
 </script>
 

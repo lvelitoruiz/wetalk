@@ -29,7 +29,7 @@ const copyToClipboard = (email) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
-      typeof: 'error'
+      typeof: 'error',
     })
     return
   }
@@ -38,20 +38,20 @@ const copyToClipboard = (email) => {
     .then(() => {
       $toast.open({
         message: 'Texto Copiado!!!',
-        typeof: 'success'
+        typeof: 'success',
       })
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar texto',
-        typeof: 'error'
+        typeof: 'error',
       })
     })
 
   if (dataLayer) {
     dataLayer.push({
       event: 'Click-EmailProffesor',
-      email
+      email,
     })
   }
 }

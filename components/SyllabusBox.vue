@@ -15,7 +15,7 @@ const courses = ref([])
 
 const tabs = [
   { texto: 'Ciclo Actual', value: true },
-  { texto: 'Próximo Ciclo', value: false }
+  { texto: 'Próximo Ciclo', value: false },
 ]
 
 watchEffect(() => {
@@ -43,20 +43,20 @@ onMounted(() => {
 const props = defineProps({
   open: {
     type: Boolean,
-    default: false
+    default: false,
   },
   link: {
     type: Boolean,
-    default: false
+    default: false,
   },
   tabShow: {
     type: Boolean,
-    default: true
+    default: true,
   },
   fetchCoursesData: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 
 const actual = ref(true)
@@ -78,7 +78,7 @@ const downloadFile = () => {
     dataLayer.push({
       event: 'Descargar_Sylabus',
       name: 'Evento_Descargar_Sylabus',
-      contenido: fileUrl
+      contenido: fileUrl,
     })
   }
 }
@@ -92,7 +92,7 @@ const eventClickVerMas = () => {
     dataLayer.push({
       event: 'Click_Click_Ver_Mas',
       name: 'Evento_Click_Ver_Mas',
-      titulo_caja: 'Contenido'
+      titulo_caja: 'Contenido',
     })
   }
 }

@@ -20,7 +20,7 @@ const handleTabChange = (selectedTab) => {
     filteredNewsData.value = newsData.value
   } else {
     filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
+      (item) => item.tab === selectedTab,
     )
   }
 }
@@ -42,18 +42,18 @@ watchEffect(async () => {
       return {
         ...item,
         texto: item.categoria,
-        tab
+        tab,
       }
     })
 
     const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
+      modifiedNews.map((item) => item.categoria),
     )
     const uniqueNews = Array.from(uniqueCategoriesSet)
       .map((category) => {
         const tab = tabMapping[category]
         const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
+          (item) => item.categoria === category && item.tab === tab,
         )
         return correspondingItem
       })

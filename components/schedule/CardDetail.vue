@@ -8,8 +8,8 @@ import { getFullname } from '~/utils/setFormatName'
 const props = defineProps({
   course: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const store = scheduleState()

@@ -10,10 +10,10 @@ const userStore = useUserStore()
 const selectedCodUser = ref(null)
 
 definePageMeta({
-  middleware: 'auth'
+  middleware: 'auth',
 })
 useHead({
-  title: 'Portal WeTALK'
+  title: 'Portal WeTALK',
 })
 
 async function login () {
@@ -25,7 +25,7 @@ async function login () {
       name: 'Lesdy Huamán Cartagena',
       bearerToken: accessToken,
       codUser: userCode,
-      institucion: 'upn'
+      institucion: 'upn',
     }
 
     // localStorage.setItem("tokenH", accessToken);

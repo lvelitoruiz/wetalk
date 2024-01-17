@@ -308,8 +308,8 @@ const props = defineProps({
       //         }
       //     ]
       // }
-    ]
-  }
+    ],
+  },
 })
 
 const selectedCourseDay = ref('Todos')
@@ -333,7 +333,7 @@ const hours = ref({
   21: 55,
   22: 55,
   23: 55,
-  24: 0
+  24: 0,
 })
 const today = getDay(new Date())
 
@@ -381,7 +381,7 @@ const sessionDate = computed(() => {
   if (states.coursesListDay?.empty) {
     const today = new Date()
     return new Date(
-      today.setDate(today.getDate() - today.getDay() + states.day + 1)
+      today.setDate(today.getDate() - today.getDay() + states.day + 1),
     ).toDateString()
   }
   return states.coursesListDay?.DTOHorarioAlumnoCab.FechaSesion

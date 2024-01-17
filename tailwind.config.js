@@ -5,7 +5,7 @@ export default {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    './app.vue'
+    './app.vue',
   ],
   theme: {
     extend: {
@@ -27,13 +27,13 @@ export default {
         'neutral-2': 'var(--neutral-2)',
         'neutral-3': 'var(--neutral-3)',
         'neutral-4': 'var(--gray-700)',
-        'dark-600': 'var(--dark-600)'
+        'dark-600': 'var(--dark-600)',
       },
       fontFamily: {
         solano: ['solano'],
         publicSans: ['Public Sans'],
         'zizou-bold': ['zizou-bold'],
-        'zizou-regular': ['zizou-regular']
+        'zizou-regular': ['zizou-regular'],
       },
       spacing: {
         'full-2': 'calc(100% - 2px)',
@@ -44,21 +44,21 @@ export default {
         'full-3': 'calc(100vw - 1.5rem)',
         'weekly-calendar': 'calc(100vh - 25rem)',
         'daily-calendar': 'calc(100vh - 25rem)',
-        'main-content-courses': 'calc(100vh - 180px)'
+        'main-content-courses': 'calc(100vh - 180px)',
       },
       minHeight: {
-        aside: 'calc(100vh - 62px)'
+        aside: 'calc(100vh - 62px)',
       },
       maxHeight: {
-        'full-notification': 'calc(100vh - 80px)'
+        'full-notification': 'calc(100vh - 80px)',
       },
       minWidth: {
-        'full-main': 'calc(100% + 5rem)'
+        'full-main': 'calc(100% + 5rem)',
       },
       gridTemplateColumns: {
-        weekly: 'repeat(7, minmax(73px, 1fr))'
-      }
-    }
+        weekly: 'repeat(7, minmax(73px, 1fr))',
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }

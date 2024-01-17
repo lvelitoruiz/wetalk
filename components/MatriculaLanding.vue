@@ -11,7 +11,7 @@ const triggerModal = (text) => {
     dataLayer.push({
       event: 'Mas_Informacion',
       name: 'Evento_Mas_Informacion',
-      Click_text: text
+      Click_text: text,
     })
   }
 }

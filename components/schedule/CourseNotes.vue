@@ -5,8 +5,8 @@ import { defineProps, ref } from 'vue'
 
 const props = defineProps({
   cursosItems: {
-    type: Object
-  }
+    type: Object,
+  },
 })
 const { getScheduleCourse } = useScheduleData()
 
@@ -28,7 +28,7 @@ const showCourse = async (curso) => {
     } else if (matricula1.value?.error) {
       errorMsg.value = {
         ...matricula1.value.error,
-        flag: matricula1.value.flag
+        flag: matricula1.value.flag,
       }
     }
   }

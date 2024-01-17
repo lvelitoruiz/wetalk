@@ -4,7 +4,7 @@ import { defineProps } from 'vue'
 
 const props = defineProps({
   data: Array,
-  section: String
+  section: String,
 })
 </script>
 

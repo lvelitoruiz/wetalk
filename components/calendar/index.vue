@@ -7,7 +7,7 @@ import 'vue-cal/dist/vuecal.css'
 import { defineProps, ref } from 'vue'
 
 const props = defineProps({
-  data: Array
+  data: Array,
 })
 
 const arrListevents = props.data
@@ -29,7 +29,7 @@ const eventFech = (fecha1) => {
 }
 // Filtro de eventos activos
 const activeCalendar = arrListevents?.filter(
-  (event) => event.mostrarEnCalendario === true
+  (event) => event.mostrarEnCalendario === true,
 )
 
 // Nueva lista de los eventos
@@ -48,14 +48,14 @@ activeCalendar?.forEach((eventService) => {
       title: eventService.tramite,
       start,
       end,
-      feriado: eventService.feriado
+      feriado: eventService.feriado,
     })
   }
   events.push({
     title: eventService.tramite,
     start,
     end,
-    feriado: eventService.feriado
+    feriado: eventService.feriado,
   })
 })
 
@@ -67,13 +67,13 @@ const numMonth = (dayFe) => {
 
 const eventDay = new Date()
 const res = events?.filter(
-  (event) => numMonth(event.start) === numMonth(eventDay)
+  (event) => numMonth(event.start) === numMonth(eventDay),
 )
 eventsUpdate.value = res
 
 const calEvents = (t, n) => {
   const holidays = events.filter(
-    (event) => numMonth(event.start) === numMonth(n.startDate) && event.feriado
+    (event) => numMonth(event.start) === numMonth(n.startDate) && event.feriado,
   )
   eventsUpdate.value = n.events.concat(holidays)
 }

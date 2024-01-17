@@ -12,7 +12,7 @@ const triggerModal = (text, url) => {
       event: 'Clics_ir_wetalk',
       name: 'Evento_ir_wetalk',
       Click_text: text,
-      url
+      url,
     })
   }
 }

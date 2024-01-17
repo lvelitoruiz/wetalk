@@ -4,7 +4,7 @@
 import {
   PublicClientApplication,
   BrowserCacheLocation,
-  EventType
+  EventType,
 } from '@azure/msal-browser'
 
 let tokenExpirationTimer: any
@@ -16,15 +16,15 @@ export default defineNuxtPlugin(async ({ $config }) => {
       authority: $config.public.authority,
       redirectUri: $config.public.redirectUri,
       postLogoutRedirectUri: $config.public.postLogoutRedirectUri,
-      navigateToLoginRequestUrl: false
+      navigateToLoginRequestUrl: false,
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
-      storeAuthStateInCookie: true
+      storeAuthStateInCookie: true,
     },
     system: {
-      tokenRenewalOffsetSeconds: 300
-    }
+      tokenRenewalOffsetSeconds: 300,
+    },
   }
 
   const msalInstance = new PublicClientApplication(msalConfig)
@@ -69,7 +69,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
     try {
       const response = await msalInstance.acquireTokenSilent({
         account,
-        scopes: ['User.Read']
+        scopes: ['User.Read'],
       })
       console.log('Refreshed Access Token:', response.accessToken)
       setupTokenExpirationTimer()
@@ -97,7 +97,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
       try {
         const response = await msalInstance.acquireTokenSilent({
           account,
-          scopes: ['User.Read']
+          scopes: ['User.Read'],
         })
         return response.accessToken
       } catch (err) {
@@ -110,7 +110,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
   }
 
   const loginRequest = {
-    scopes: ['User.Read']
+    scopes: ['User.Read'],
   }
 
   // Sign in with redirect
@@ -139,7 +139,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
       : null
     if (account) {
       msalInstance.logoutRedirect({
-        account
+        account,
       })
       localStorage.clear()
     } else {
@@ -152,12 +152,12 @@ export default defineNuxtPlugin(async ({ $config }) => {
     getAccounts,
     isAuthenticated,
     signOut,
-    acquireTokenSilent
+    acquireTokenSilent,
   }
 
   return {
     provide: {
-      msal: () => msalObj
-    }
+      msal: () => msalObj,
+    },
   }
 })

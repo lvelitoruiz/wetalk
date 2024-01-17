@@ -61,17 +61,17 @@ import { ref, defineProps, getCurrentInstance } from 'vue'
 const props = defineProps({
   tabs: {
     type: Array as PropType<any[]>,
-    required: true
+    required: true,
   },
   optionAll: {
     type: Boolean,
     default: false,
-    required: false
+    required: false,
   },
   colorActive: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 })
 
 const tabActive = ref('tab-all')

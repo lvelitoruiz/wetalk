@@ -10,7 +10,7 @@ import {
   breakpointsTailwind,
   useBreakpoints,
   useNow,
-  useScroll
+  useScroll,
 } from '@vueuse/core'
 
 import { getFullname } from '~~/utils/setFormatName'
@@ -20,19 +20,19 @@ import { getHour, getMinutes } from '../../utils/dateFunctions'
 const props = defineProps({
   data: {
     type: Array,
-    default: []
+    default: [],
   },
   allCourses: Object,
   selectedCourse: {
-    type: String
+    type: String,
   },
   filter: {
     type: String,
-    default: 'Todos'
+    default: 'Todos',
   },
   displayed: Object,
   hours: Object,
-  handleChange: Function
+  handleChange: Function,
 })
 
 console.log('this is the data: ', props.allCourses)
@@ -61,7 +61,7 @@ if (
       props.allCourses[course.CodCurso] = {
         state: true,
         DescEspecialCurso: course.DescEspecialCurso,
-        CodCurso: course.CodCurso
+        CodCurso: course.CodCurso,
       }
       const hourInit = getHour(course.HoraInicioSesion)
       earlierCourse.value = Math.min(earlierCourse.value, hourInit)
@@ -92,7 +92,7 @@ const getTopAndHeight = (init, fin) => {
   if (getMinutes(init) / 60 > 0) (top = top + 40), 5
   return {
     top: `${top + 10}px`,
-    height: `${height}px`
+    height: `${height}px`,
   }
 }
 
@@ -106,7 +106,7 @@ const isRepeated = (session, name, lastname) => {
 const sessionDate = (val) => {
   const today = new Date()
   return new Date(
-    today.setDate(today.getDate() - today.getDay() + val + 1)
+    today.setDate(today.getDate() - today.getDay() + val + 1),
   ).getDate()
 }
 

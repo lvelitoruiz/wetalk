@@ -27,7 +27,7 @@ const openClose = () => {
   if (dataLayer) {
     dataLayer.push({
       event: 'Load-Notifications',
-      name: 'Evento_Load-Notifications'
+      name: 'Evento_Load-Notifications',
     })
   }
 }
@@ -44,7 +44,7 @@ const openList = () => {
   if (dataLayer) {
     dataLayer.push({
       event: 'Menu_Perfil',
-      name: 'Evento_Menu_Perfil'
+      name: 'Evento_Menu_Perfil',
     })
   }
 }
@@ -72,7 +72,7 @@ const eventClickCorreo = (text) => {
     dataLayer.push({
       event: 'Header_Correo',
       name: 'Evento_Header_Correo',
-      url: text
+      url: text,
     })
   }
 }
@@ -83,7 +83,7 @@ const eventClickPerfil = (text, url) => {
       event: 'Click_Perfil',
       name: 'Evento_Click_Perfil',
       text,
-      url
+      url,
     })
   }
 }
@@ -94,7 +94,7 @@ const eventClickPerfilFoto = (text, url) => {
       event: 'Click_PerfilFoto',
       name: 'Evento_Click_PerfilFoto',
       text,
-      url
+      url,
     })
   }
 }
@@ -104,7 +104,7 @@ const eventClickLogout = (text) => {
     dataLayer.push({
       event: 'Cerrar_Sesion',
       name: 'Evento_Cerrar_Sesion',
-      text
+      text,
     })
   }
 }

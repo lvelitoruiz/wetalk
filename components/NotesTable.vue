@@ -139,7 +139,7 @@ const props = defineProps({
   dashboard: Boolean,
   simulator: Boolean,
   formula: String,
-  showPromedio: Boolean
+  showPromedio: Boolean,
 })
 
 if (props.notasData !== null && props.notasData !== undefined) {
@@ -148,7 +148,7 @@ if (props.notasData !== null && props.notasData !== undefined) {
   calculus.value = [...newvalue]
   promedio.value = props.notasData.slice(-2, -1)
   newVariable.value = parseInt(
-    props.notasData.slice(-2, -1)[0]?.nota
+    props.notasData.slice(-2, -1)[0]?.nota,
   )?.toFixed()
 }
 
@@ -211,6 +211,6 @@ const recalculateNewVariable = () => {
 watch(calculus, recalculateNewVariable, { deep: true })
 
 defineExpose({
-  recoverNotes
+  recoverNotes,
 })
 </script>

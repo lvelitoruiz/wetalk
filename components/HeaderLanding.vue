@@ -4,7 +4,7 @@
 import { defineProps, ref } from 'vue'
 
 const props = defineProps({
-  lists: Array
+  lists: Array,
 })
 
 const showSidebar = ref(false)
@@ -18,7 +18,7 @@ const eventClickBarraSuperior = (text) => {
     dataLayer.push({
       event: 'Clics_Barra_Superior',
       name: 'Evento_clics_barra-superior',
-      Click_text: text
+      Click_text: text,
     })
   }
 }

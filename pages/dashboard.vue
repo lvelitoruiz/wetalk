@@ -5,7 +5,7 @@ import { apiUrl } from '~/consts'
 import { useMenuStore } from '../stores/menu'
 
 definePageMeta({
-  middleware: 'auth'
+  middleware: 'auth',
 })
 
 const menuStore = useMenuStore()

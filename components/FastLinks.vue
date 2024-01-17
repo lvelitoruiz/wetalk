@@ -3,7 +3,7 @@
 import { defineProps, onMounted } from 'vue'
 
 const props = defineProps({
-  links: Array
+  links: Array,
 })
 
 onMounted(async () => {

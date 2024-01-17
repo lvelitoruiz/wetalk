@@ -34,7 +34,7 @@ const pmail = ref('')
 const number = ref('')
 
 const props = defineProps({
-  userInfo: Object
+  userInfo: Object,
 })
 
 watchEffect(async () => {

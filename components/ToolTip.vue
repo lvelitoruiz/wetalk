@@ -4,7 +4,7 @@ import { defineProps } from 'vue'
 
 const props = defineProps({
   title: String,
-  text: String
+  text: String,
 })
 </script>
 <template>

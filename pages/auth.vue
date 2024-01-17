@@ -11,12 +11,12 @@ const accessDomain = ref(false)
 
 const isDomainAllowed = (
   userEmailDomain: string | undefined,
-  allowedDomains: string[]
+  allowedDomains: string[],
 ) => {
   return (
     userEmailDomain &&
     allowedDomains.some((allowedDomain) =>
-      userEmailDomain.includes(allowedDomain)
+      userEmailDomain.includes(allowedDomain),
     )
   )
 }
@@ -75,7 +75,7 @@ if ($config.public.stage !== 'prod') {
       ...accounts[0],
       bearerToken: accessToken,
       codUser: userCode,
-      institucion: entidadActiva
+      institucion: entidadActiva,
     }
     localStorage.setItem('tokenH', accessToken!)
     localStorage.setItem('codUser', userCode)
@@ -83,7 +83,7 @@ if ($config.public.stage !== 'prod') {
     userStore.fetchUserData(
       Boolean(isDomainAllowed(userEmailDomain, listDomain)),
       JSON.stringify(accessToken),
-      user
+      user,
     )
   }
 

@@ -4,12 +4,12 @@ import { defineProps } from 'vue'
 defineProps({
   changeView: {
     type: Function,
-    required: true
+    required: true,
   },
   active: {
     type: String,
-    default: 'day'
-  }
+    default: 'day',
+  },
 })
 </script>
 <template>

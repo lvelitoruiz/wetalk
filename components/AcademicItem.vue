@@ -11,15 +11,15 @@ const props = defineProps({
   value: String,
   showIcon: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const copyToClipboard = (label, value) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
-      typeof: 'error'
+      typeof: 'error',
     })
     return
   }
@@ -28,13 +28,13 @@ const copyToClipboard = (label, value) => {
     .then(() => {
       $toast.open({
         message: 'Texto Copiado!!!',
-        typeof: 'success'
+        typeof: 'success',
       })
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar texto',
-        typeof: 'error'
+        typeof: 'error',
       })
     })
   if (dataLayer) {
@@ -42,7 +42,7 @@ const copyToClipboard = (label, value) => {
       event: 'Mis_Datos',
       name: 'Evento_Mis_Datos',
       text: label,
-      Click_Text: value
+      Click_Text: value,
     })
   }
 }

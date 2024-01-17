@@ -5,8 +5,8 @@ import { defineProps } from 'vue'
 const props = defineProps({
   data: {
     type: Array,
-    default: []
-  }
+    default: [],
+  },
 })
 
 const codCursos = () => {

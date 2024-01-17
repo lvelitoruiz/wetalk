@@ -19,7 +19,7 @@ export const valiDate = (date) => {
 export const dayDescription = (inicioTime) => {
   return new Date(inicioTime).toLocaleDateString('es-es', {
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 export const dayDescriptionDay = (inicioTime) => {
@@ -31,13 +31,13 @@ export const getAbbrDate = (date) => {
   return `${new Date(date).toLocaleDateString('es-ES', {
     weekday: 'short',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   })}`
 }
 export const getFullTime = (date) => {
   return `${new Date(date).toLocaleTimeString([], {
     timeStyle: 'short',
-    hour12: true
+    hour12: true,
   })}`
 }
 
@@ -77,7 +77,7 @@ export const eventCLayer = (action, nameContent, locationView) => {
       event: 'Click-' + action,
       'content-name': slashAction + nameContent,
       'content-view-name': nameContent,
-      location: locationView
+      location: locationView,
     })
   }
 }
@@ -90,7 +90,7 @@ export const getDayName = (numDay, short = false) => {
     'Jueves',
     'Viernes',
     'Sábado',
-    'Domingo'
+    'Domingo',
   ]
   const dayNamesShort = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom']
   if (short) return dayNamesShort[numDay]

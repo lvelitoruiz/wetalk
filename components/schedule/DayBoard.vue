@@ -5,8 +5,8 @@ import { defineProps, ref } from 'vue'
 const props = defineProps({
   filter: {
     type: String,
-    default: 'Todos'
-  }
+    default: 'Todos',
+  },
 })
 const coursesCalendar = ref(null)
 const coursesToday = ref(null)
@@ -32,7 +32,7 @@ const hours = [
   '21',
   '22',
   '23',
-  '24'
+  '24',
 ]
 
 const isToday = (today) => (today === 0 ? 6 : getDay(today) - 1)

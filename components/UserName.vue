@@ -27,14 +27,14 @@ const $toast = useToast()
 
 const props = defineProps({
   name: String,
-  code: String
+  code: String,
 })
 
 const copyToClipboard = (name, code) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
-      typeof: 'error'
+      typeof: 'error',
     })
     return
   }
@@ -43,13 +43,13 @@ const copyToClipboard = (name, code) => {
     .then(() => {
       $toast.open({
         message: 'Código Copiado!!!',
-        typeof: 'success'
+        typeof: 'success',
       })
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar código',
-        typeof: 'error'
+        typeof: 'error',
       })
     })
   if (dataLayer) {
@@ -57,7 +57,7 @@ const copyToClipboard = (name, code) => {
       event: 'Mis_Datos',
       name: 'Evento_Mis_Datos',
       text: name,
-      Click_Text: code
+      Click_Text: code,
     })
   }
 }

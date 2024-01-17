@@ -10,7 +10,7 @@ const props = defineProps({
   url: String,
   etiqueta: String,
   hasSubMenu: Boolean,
-  subMenu: Array
+  subMenu: Array,
 })
 
 const isActive = ref(false)
@@ -21,7 +21,7 @@ const handleActivation = (label) => {
     dataLayer.push({
       event: 'Click-BarraLateral',
       name: 'Click-BarraLateral',
-      Click_Text: label
+      Click_Text: label,
     })
   }
 }
@@ -32,7 +32,7 @@ const eventClickSubMenu = (url, name) => {
       event: 'Click-SubBarraLateral',
       name: 'Click-SubBarraLateral',
       url,
-      Click_Text: name
+      Click_Text: name,
     })
   }
 }
@@ -43,7 +43,7 @@ const getIconClass = () => {
     'icon-book-open': props.etiqueta === 'curso',
     'icon-creditcard': props.etiqueta === 'pagos',
     'icon-user-chat': props.etiqueta === 'networking',
-    'icon-puzzle': props.etiqueta === 'beyond_wetalk'
+    'icon-puzzle': props.etiqueta === 'beyond_wetalk',
   }
 }
 </script>

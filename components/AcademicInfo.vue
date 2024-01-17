@@ -7,7 +7,7 @@ const props = defineProps({
   mod: String,
   carr: String,
   mail: String,
-  dni: String
+  dni: String,
 })
 </script>
 

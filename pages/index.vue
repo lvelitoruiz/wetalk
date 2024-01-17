@@ -9,7 +9,7 @@ import { useMetaStore } from '../stores/meta'
 import { useMenuStore } from '../stores/menu'
 
 definePageMeta({
-  middleware: 'auth'
+  middleware: 'auth',
 })
 
 const metaStore = useMetaStore()
@@ -49,7 +49,7 @@ const fetchMetaInfo = async () => {
         modalidad: profileData?.codModalidadEstActual,
         carrera: profileData?.desProducto,
         ciclo: profileData?.descCurso,
-        codigoAlumno: profileData?.codAlumno
+        codigoAlumno: profileData?.codAlumno,
       })
     }
   })

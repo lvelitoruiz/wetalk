@@ -89,7 +89,7 @@ const changeItems = (value) => {
     dataLayer.push({
       event: 'Evento_Click_Category_Notification',
       name: 'Click_Category_Notification',
-      categoria: value
+      categoria: value,
     })
   }
 }
@@ -102,7 +102,7 @@ const eventClickCardNotification = (
   id,
   campania,
   registros,
-  poblacion
+  poblacion,
 ) => {
   if (dataLayer) {
     dataLayer.push({
@@ -115,7 +115,7 @@ const eventClickCardNotification = (
       id,
       codCampania: campania,
       registrosTotales: registros,
-      poblacionFija: poblacion
+      poblacionFija: poblacion,
     })
   }
 }

@@ -9,7 +9,7 @@ dataCalendar.value = dataCAPeriodo.value?.data
 const {
   data: litsPeriodos,
   error: errorListPeriod,
-  pending: pendingListPerid
+  pending: pendingListPerid,
 } = await getListCalendarPeriods()
 const periodoValue = ref(dataCalendar.value[0]?.ciclo)
 const periodosList = ref(null)
@@ -22,7 +22,7 @@ watch(litsPeriodos, async (response) => {
   }
 })
 const { data: dataPdf, pending: pendingPdf } = await getDataCalendarPdf(
-  periodoValue.value
+  periodoValue.value,
 )
 const contentPdf = ref([])
 watch(dataPdf, (response) => {
@@ -38,7 +38,7 @@ const eventChangePeriodo = async () => {
   await getDataCalendar(periodoValue.value, false).then((response) => {
     pendingDC.value = false
     dataCalendar.value = response.data.value.data.filter(
-      (item) => !item.feriado
+      (item) => !item.feriado,
     )
   })
   await getDataCalendarPdf(periodoValue.value).then((response) => {
@@ -47,7 +47,7 @@ const eventChangePeriodo = async () => {
   })
 }
 const modalidad = JSON.parse(
-  sessionStorage.getItem('infoAlumn')
+  sessionStorage.getItem('infoAlumn'),
 ).codModalidadEstActual
 const modalidadActual = () => {
   if (modalidad === 'AC') {

@@ -5,7 +5,7 @@ export default function ({ $config }: { $config: { apiUrl: string } }) {
     baseURL: $config.apiUrl, // Use $config.apiUrl
     credentials: true, // Set to true if your API requires credentials (e.g., cookies, authentication headers)
     common: {
-      Accept: 'application/json, text/plain, */*' // Default headers for all requests
-    }
+      Accept: 'application/json, text/plain, */*', // Default headers for all requests
+    },
   }
 }

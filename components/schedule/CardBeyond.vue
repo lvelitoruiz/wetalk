@@ -4,8 +4,8 @@ import { defineProps } from 'vue'
 defineProps({
   item: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>
 <template>

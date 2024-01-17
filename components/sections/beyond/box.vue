@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/comma-dangle -->
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <script setup>
@@ -13,12 +14,12 @@ const menuStore = useMenuStore()
 const tabMapping = {}
 let nextTabIndex = 0
 
-const handleTabChange = selectedTab => {
+const handleTabChange = (selectedTab) => {
   if (selectedTab === 'tab-all') {
     filteredNewsData.value = newsData.value
   } else {
     filteredNewsData.value = newsData.value.filter(
-      item => item.tab === selectedTab
+      (item) => item.tab === selectedTab
     )
   }
 }
@@ -31,7 +32,7 @@ watchEffect(async () => {
   filteredNewsData.value = newsData.value
   const news = menuStore.getNews
   if (news) {
-    const modifiedNews = news.map(item => {
+    const modifiedNews = news.map((item) => {
       const tab =
         tabMapping[item.categoria] !== undefined
           ? tabMapping[item.categoria]
@@ -40,18 +41,18 @@ watchEffect(async () => {
       return {
         ...item,
         texto: item.categoria,
-        tab
+        tab,
       }
     })
 
     const uniqueCategoriesSet = new Set(
-      modifiedNews.map(item => item.categoria)
+      modifiedNews.map((item) => item.categoria)
     )
     const uniqueNews = Array.from(uniqueCategoriesSet)
-      .map(category => {
+      .map((category) => {
         const tab = tabMapping[category]
         const correspondingItem = modifiedNews.find(
-          item => item.categoria === category && item.tab === tab
+          (item) => item.categoria === category && item.tab === tab
         )
         return correspondingItem
       })
@@ -75,7 +76,7 @@ onMounted(() => {
           :src="bg_triangles_gray"
           alt="Background Image"
           class="absolute top-[0px] left-[0px] z-[-1]"
-        >
+        />
         <div class="flex items-baseline justify-between pb-2">
           <h3 class="text-[#404040] text-2xl">
             <span class="uppercase font-bold font-solano">Beyond WeTALK</span>

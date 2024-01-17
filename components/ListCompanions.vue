@@ -8,8 +8,8 @@ import { defineProps } from 'vue'
 
 const props = defineProps({
   dataCompanions: {
-    type: Array
-  }
+    type: Array,
+  },
 })
 
 const $toast = useToast()
@@ -17,7 +17,7 @@ const copyToClipboard = (email, student) => {
   if (!navigator.clipboard) {
     $toast.open({
       message: 'No se puede copiar en tu navegador.',
-      typeof: 'error'
+      typeof: 'error',
     })
     return
   }
@@ -26,13 +26,13 @@ const copyToClipboard = (email, student) => {
     .then(() => {
       $toast.open({
         message: 'Texto Copiado!!!',
-        typeof: 'success'
+        typeof: 'success',
       })
     })
     .catch((_err) => {
       $toast.open({
         message: 'Error al copiar texto',
-        typeof: 'error'
+        typeof: 'error',
       })
     })
   if (dataLayer) {
@@ -41,7 +41,7 @@ const copyToClipboard = (email, student) => {
       name: 'Evento_Click_Copiar',
       titulo_caja: 'Compañeros',
       Click_Text: email,
-      titulo: student
+      titulo: student,
     })
   }
 }

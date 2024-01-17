@@ -16,7 +16,7 @@ onMounted(async () => {
       linkList.value = accesoValues.map((item) => ({
         label: item.titulo,
         link: item.url ?? '#',
-        code: item.status
+        code: item.status,
       }))
     }
 
@@ -31,8 +31,8 @@ onMounted(async () => {
         hasSubMenu: !!item.submenu.length,
         subMenu: item.submenu.map((subItem) => ({
           text: subItem.nombre,
-          direction: subItem.url ?? '#'
-        }))
+          direction: subItem.url ?? '#',
+        })),
       }))
     }
   })
