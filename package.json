@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "eslint": "eslint --ext .ts,js,.vue .",
-    "eslint-fix": "eslint --fix --ext .ts,js,.vue ."
+    "eslint-fix": "eslint --fix --ext .ts,js,.vue .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
