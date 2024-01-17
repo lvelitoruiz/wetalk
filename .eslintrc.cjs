@@ -50,9 +50,19 @@ module.exports = {
         checksVoidReturn: false,
       },
     ],
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: 3,
+        multiline: {
+          max: 1,
+          allowFirstLine: true,
+        },
+      },
+    ],
   },
   parserOptions: {
     extraFileExtensions: ['.vue'],
     parser: '@typescript-eslint/parser',
   },
-};
+}
