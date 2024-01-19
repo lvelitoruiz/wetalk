@@ -1,36 +1,3 @@
-<template>
-  <div>
-    <div class="pb-7">
-      <BoxContainer color="black">
-        <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
-        <div class="flex items-baseline justify-between pb-2">
-          <h3 class="text-[#404040] text-2xl">
-            <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
-            <p class="text-[14px] font-publicSans">Recomendaciones para ti</p>
-          </h3>
-          <!-- <router-link @click="event()" class="flex items-center gap-2" to="/notas">
-            <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
-            <i class="icon-arrow-right text-[#E50A17]"></i>
-          </router-link> -->
-         
-        </div>
-        <div class="flex justify-center my-[20px]">
-          <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
-            <input type="text" placeholder="Buscar" class="w-[95%] placeholder:text-sm">
-            <i class="icon-trash"></i>
-          </div>
-        </div>
-        <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'"></TabContent>
-        </div>
-        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
-          <Card :data="filteredNewsData" :section="'beyond'" />
-        </div>
-      </BoxContainer>
-    </div>
-  </div>
-</template>
-
 <script setup >
 import { bg_triangles_gray } from '@/assets/index.ts';
 import { useMenuStore } from "../stores/menu";
@@ -39,9 +6,15 @@ import { apiUrl } from "~/consts";
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const userStore = useUserStore();
 const menuStore = useMenuStore();
 const tabMapping = {};
 let nextTabIndex = 0;
+
+
+const nameUser = userStore.getUserData?.name?.split(' ')[0];
+console.log(nameUser?.split(' ')[0])
+
 
 const props = defineProps({
 })
@@ -90,3 +63,39 @@ onMounted( () => {
 });
 
 </script>
+
+<template>
+  <div>
+    <div class="pb-7">
+      <BoxContainer color="black">
+        <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
+        <div class="flex items-baseline justify-between pb-2">
+          <h3 class="text-[#404040] text-2xl">
+            <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
+          </h3>
+          <!-- <router-link @click="event()" class="flex items-center gap-2" to="/notas">
+            <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
+            <i class="icon-arrow-right text-[#E50A17]"></i>
+          </router-link> -->
+         
+        </div>
+        <div class="flex justify-center">
+          <p class="text-xl font-solano"> <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos todo esto para ti </p>
+        </div>
+        <div class="flex justify-center my-[20px]">
+          <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
+            <input type="text" placeholder="Buscar" class="w-[95%] placeholder:text-sm">
+            <i class="icon-trash"></i>
+          </div>
+        </div>
+        <div class="relative flex mb-[20px] justify-center">
+          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'"></TabContent>
+        </div>
+        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
+          <Card :data="filteredNewsData" :section="'beyond'" />
+        </div>
+      </BoxContainer>
+    </div>
+  </div>
+</template>
+
