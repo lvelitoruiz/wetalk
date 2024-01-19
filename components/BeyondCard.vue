@@ -6,7 +6,7 @@ const props = defineProps({
   dataPost: Object,
 });
 
-const dataList = [...props.dataPost].sort((a, b) => a.destacado - b.destacado).slice(0, 5);
+const dataList = [...props.dataPost].filter(item => item.destacado !== null).sort((a, b) => a.destacado - b.destacado).slice(0, 5);
 
 </script>
 <template>
