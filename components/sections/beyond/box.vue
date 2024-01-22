@@ -95,6 +95,14 @@ onMounted( () => {
           <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
+      <div class="mt-5 flex justify-center items-center">
+        <Pagination
+          totalItems="20"
+          itemsPerPage="5"
+          :onClickHandler="onClickHandler"
+          current-page="1"
+        />
+      </div>
     </div>
   </div>
 </template>
