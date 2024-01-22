@@ -6,6 +6,10 @@ import { apiUrl } from "~/consts";
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const totalCount = ref(4);
+const pageSize = ref(4);
+const actualPage = ref(1);
+const term = ref("");
 const userStore = useUserStore();
 const menuStore = useMenuStore();
 const tabMapping = {};
@@ -29,12 +33,20 @@ const handleTabChange = (selectedTab) => {
 
 const fetchData = async () => {
   await menuStore
-    .fetchNewsData(apiUrl)
+    .fetchNewsData(apiUrl,actualPage.value.toString(),term.value,"4")
+}
+
+const onClickHandler = async (page) => {
+    actualPage.value = page;
+    await fetchData();
+    handleTabChange('tab-all');
 }
 
 watchEffect(async () => {
   filteredNewsData.value = newsData.value;
-  const news = menuStore.getNews
+  const news = menuStore.getNews;
+  const meta = menuStore.getNewsMeta;
+  totalCount.value = meta.count;
   if (news) {
     const modifiedNews = news.map((item) => {
       const tab = tabMapping[item.categoria] !== undefined ? tabMapping[item.categoria] : `tab-${nextTabIndex++}`;
@@ -60,6 +72,7 @@ watchEffect(async () => {
 
 onMounted( () => {
   fetchData();
+  console.log('mounted here!!');
 });
 
 </script>
@@ -97,10 +110,10 @@ onMounted( () => {
       </BoxContainer>
       <div class="mt-5 flex justify-center items-center">
         <Pagination
-          totalItems="20"
-          itemsPerPage="5"
+          :totalItems="totalCount"
+          :itemsPerPage="pageSize"
           :onClickHandler="onClickHandler"
-          current-page="1"
+          :current-page="actualPage"
         />
       </div>
     </div>

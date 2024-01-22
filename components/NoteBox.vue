@@ -44,9 +44,6 @@
             <Button @click="reestablishNotes" label="Reestablecer notas" primary />
           </div>
         </div>
-        <!-- <div class="min-h-[350px] flex items-center justify-center">
-          <ErrorMensaje message="tus notas" />
-        </div> -->
       </BoxContainer>
     </div>
   </div>

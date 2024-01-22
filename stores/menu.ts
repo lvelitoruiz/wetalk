@@ -22,6 +22,7 @@ export const useMenuStore = defineStore({
     faltasData: [] as any,
     companionsData: [] as any,
     newsData: [] as any,
+    newsDataMeta: [] as any,
     newsDataId: [] as any,
   }),
   persist: {
@@ -37,6 +38,7 @@ export const useMenuStore = defineStore({
     getProfileItems: (state) => state.profileData,
     getCourses: (state) => state.coursesData,
     getNews: (state) => state.newsData,
+    getNewsMeta: (state) => state.newsDataMeta,
     getNewsId: (state) => state.newsDataId,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
@@ -378,7 +380,7 @@ export const useMenuStore = defineStore({
         console.error("Error fetching courses data:", error);
       }
     },
-    async fetchNewsData(apiUrl: string) {
+    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "4") {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -393,9 +395,10 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}`
           );
         this.newsData = response.data?.data ?? [];
+        this.newsDataMeta = response.data ?? [];
       } catch (error) {
         console.error("Error fetching News data:", error);
       }
