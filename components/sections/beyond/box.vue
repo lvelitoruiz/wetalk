@@ -32,12 +32,25 @@ const handleTabChange = (selectedTab) => {
 };
 
 const fetchData = async () => {
-  await menuStore
+  let termAlter = "";
+  if(term.value.length >= 3) {
+    await menuStore
     .fetchNewsData(apiUrl,actualPage.value.toString(),term.value,"4")
+  } else {
+    await menuStore
+    .fetchNewsData(apiUrl,actualPage.value.toString(),termAlter,"4")
+  }
+  
 }
 
 const onClickHandler = async (page) => {
     actualPage.value = page;
+    await fetchData();
+    handleTabChange('tab-all');
+}
+
+const searchTab = async () => {
+    console.log('the search: ',term.value)
     await fetchData();
     handleTabChange('tab-all');
 }
@@ -97,8 +110,8 @@ onMounted( () => {
         </div>
         <div class="flex justify-center my-[20px]">
           <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
-            <input type="text" placeholder="Buscar" class="w-[95%] placeholder:text-sm">
-            <i class="icon-trash"></i>
+            <input type="text" placeholder="Buscar" v-model="term" class="w-[95%] placeholder:text-sm">
+            <i class="icon-trash" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
