@@ -87,6 +87,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .icon-search:before {
+    content: "\e91f";
+  }
+  
   .icon-close:before {
     content: "\e915";
   }
