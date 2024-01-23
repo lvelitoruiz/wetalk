@@ -137,8 +137,7 @@ const eventClickLogout = (text) => {
             class="hidden lg:block"
           >
             <a href="https://outlook.live.com/" target="_blank">
-              <i class="text-3xl text-[#191919] icon-email"
-            /></a>
+              <i class="text-3xl text-[#191919] icon-email" /></a>
           </button>
           <div class="relative">
             <Bell @show="openClose" />

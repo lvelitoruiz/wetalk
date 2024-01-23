@@ -26,7 +26,7 @@ watchEffect(async () => {
   total.value = totalNotifs;
 });
 
-async function showNotifications() {
+async function showNotifications () {
   emit('show');
 
   if (total.value > 0) {
@@ -57,7 +57,6 @@ async function showNotifications() {
     <span
       v-if="total > 0"
       class="flex items-center justify-center w-[18px] h-[18px] p-1 rounded-full bg-[#E50A17] font-bold text-[10px] text-white absolute top-0 right-0"
-      >{{ total > 9 ? '+9' : total }}</span
-    >
+    >{{ total > 9 ? '+9' : total }}</span>
   </button>
 </template>

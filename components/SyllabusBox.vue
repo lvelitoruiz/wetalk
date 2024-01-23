@@ -174,8 +174,7 @@ const eventClickVerMas = () => {
               <div class="flex items-center gap-2">
                 <span
                   class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
-                  >{{ item.unidad }}</span
-                >
+                >{{ item.unidad }}</span>
                 <p class="text-sm text-[#A9616D] font-bold">{{ item.texto }}</p>
               </div>
               <div
@@ -198,8 +197,7 @@ const eventClickVerMas = () => {
               <div class="flex items-center gap-2">
                 <span
                   class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
-                  >{{ item.unidad }}</span
-                >
+                >{{ item.unidad }}</span>
                 <p class="text-sm text-[#A9616D] font-bold">{{ item.texto }}</p>
               </div>
               <div
