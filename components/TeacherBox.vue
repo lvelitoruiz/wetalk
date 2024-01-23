@@ -79,7 +79,8 @@ const copyToClipboard = (email) => {
               a
               :href="`mailTo:${mail}`"
               class="text-sm font-publicSans text-[#404040]"
-            >{{ mail }}</a>
+              >{{ mail }}</a
+            >
             <i
               @click="copyToClipboard(mail)"
               class="icon-file-copy text-xl text-[#699A8F] hidden lg:block"

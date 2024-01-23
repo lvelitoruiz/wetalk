@@ -36,7 +36,7 @@ onMounted(() => {
   }
 
   menuStore.fetchContenidoData(apiUrl, '0').then((response) => {
-    console.log(response.data);
+    return null;
   });
 });
 
@@ -114,10 +114,7 @@ const eventClickVerMas = () => {
             <span class="text-[#E50A17] font-zizou-bold text-sm">Ver más</span>
             <i class="icon-arrow-right text-[#E50A17]" />
           </router-link>
-          <div
-            class="hidden lg:block"
-            v-if="!props.link"
-          >
+          <div class="hidden lg:block" v-if="!props.link">
             <Button
               v-if="!props.link"
               label="Descargar Syllabus"
@@ -133,10 +130,7 @@ const eventClickVerMas = () => {
             :tabs="tabs"
             @tab-change="handleTabChange"
           />
-          <div
-            v-if="!props.tabShow"
-            class="flex items-center my-1.5"
-          >
+          <div v-if="!props.tabShow" class="flex items-center my-1.5">
             <select
               class="h-10 leading-10 w-[240px] flex items-center justify-between px-2.5 rounded border border-[#BFBFBF] text-sm cursor-pointer outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none"
               @change="triggerCycle()"
@@ -176,14 +170,12 @@ const eventClickVerMas = () => {
           :class="{ 'overflow-y-auto max-h-[422px]': props.open }"
         >
           <div v-if="actual">
-            <div
-              v-for="item in cicloNow"
-              :key="item"
-            >
+            <div v-for="item in cicloNow" :key="item">
               <div class="flex items-center gap-2">
                 <span
                   class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
-                >{{ item.unidad }}</span>
+                  >{{ item.unidad }}</span
+                >
                 <p class="text-sm text-[#A9616D] font-bold">{{ item.texto }}</p>
               </div>
               <div
@@ -202,14 +194,12 @@ const eventClickVerMas = () => {
             </div>
           </div>
           <div v-else>
-            <div
-              v-for="item in cicloNext"
-              :key="item"
-            >
+            <div v-for="item in cicloNext" :key="item">
               <div class="flex items-center gap-2">
                 <span
                   class="w-5 h-5 border-2 border-[#A9616D] flex items-center justify-center text-xs text-[#A9616D] font-bold rounded-full"
-                >{{ item.unidad }}</span>
+                  >{{ item.unidad }}</span
+                >
                 <p class="text-sm text-[#A9616D] font-bold">{{ item.texto }}</p>
               </div>
               <div

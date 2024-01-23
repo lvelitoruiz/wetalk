@@ -2,10 +2,20 @@
 <!-- eslint-disable vue/require-default-prop -->
 <script setup>
 import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const props = defineProps({
   page: String,
+  subPage: {
+    type: String,
+    required: false,
+  },
 });
+
+const goBack = () => {
+  router.go(-1);
+};
 </script>
 
 <template>
@@ -15,6 +25,14 @@ const props = defineProps({
     <router-link class="text-[#575759] text-[15px] underline" to="/dashboard">
       Inicio
     </router-link>
+    <div v-if="subPage" class="block">
+      <div @click="goBack()" class="cursor-pointer">
+        <span class="text-[#575759] text-[15px] mr-[5px]">></span>
+        <span class="text-[#575759] text-[15px] underline">
+          {{ subPage }}
+        </span>
+      </div>
+    </div>
     <span class="text-[#575759] text-[15px]">></span>
     <span class="text-[#575759] text-[15px]"> {{ page }} </span>
   </div>

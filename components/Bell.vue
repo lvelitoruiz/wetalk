@@ -16,7 +16,6 @@ watchEffect(async () => {
   let totalNotifs = 0;
   if (notifData) {
     notifications.value = notifData;
-    console.log('information about notifications: ', notifData);
   }
 
   notifications.value.map((item) => {
@@ -27,7 +26,7 @@ watchEffect(async () => {
   total.value = totalNotifs;
 });
 
-async function showNotifications () {
+async function showNotifications() {
   emit('show');
 
   if (total.value > 0) {
@@ -53,14 +52,12 @@ async function showNotifications () {
 }
 </script>
 <template>
-  <button
-    class="relative"
-    @click="showNotifications"
-  >
+  <button class="relative" @click="showNotifications">
     <i class="text-3xl text-[#191919] icon-bell" />
     <span
       v-if="total > 0"
       class="flex items-center justify-center w-[18px] h-[18px] p-1 rounded-full bg-[#E50A17] font-bold text-[10px] text-white absolute top-0 right-0"
-    >{{ total > 9 ? '+9' : total }}</span>
+      >{{ total > 9 ? '+9' : total }}</span
+    >
   </button>
 </template>

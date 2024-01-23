@@ -21,7 +21,7 @@ const props = defineProps({
 });
 
 const sizeMedia = useSizeMedia();
-const tabActive = ref('tab-all');
+const tabActive = ref(props.optionAll ? 'tab-all' : 'tab-0');
 const instance = getCurrentInstance();
 
 const shouldShowScrollButton = () => {

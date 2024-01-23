@@ -12,7 +12,10 @@ const props = defineProps({
   labelCode: String,
   code: String,
   link: String,
-  hasCode: Boolean,
+  hasCode: {
+    type: [Boolean, String],
+    default: false,
+  },
 });
 
 const copyToClipboard = (code) => {
@@ -69,15 +72,9 @@ const eventClickFastLinks = (text, url) => {
       <span class="fastLink-label">{{ label }}</span>
       <i class="icon-arrow-right text-white" />
     </NuxtLink>
-    <div
-      v-if="code !== ''"
-      class="fastLink-code"
-    >
+    <div v-if="code !== ''" class="fastLink-code">
       <span class="block fastLink-code__label">Cód. de activación:</span>
-      <div
-        @click="copyToClipboard(code)"
-        class="fastLink-code__activeZone"
-      >
+      <div @click="copyToClipboard(code)" class="fastLink-code__activeZone">
         <span class="fastLink-code__activeZone--label">{{ code }}</span>
         <i class="text-[#404040] text-xs icon-file-copy" />
       </div>

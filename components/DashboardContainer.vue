@@ -14,7 +14,7 @@ const courseName = menuStore.getProfileItems?.data?.at(0)?.descCurso ?? '';
 const selectedImage = ref('');
 const anotherImage = ref('');
 const metaText = ref(
-  'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆',
+  'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆'
 );
 const metaStore = useMetaStore();
 const dataMeta = ref(null);
@@ -59,13 +59,6 @@ const isOpen = true;
 const haveLink = true;
 </script>
 <template>
-  <!-- <div class="lg:flex hidden items-center lg:w-[1023px] mx-auto pb-[18px] gap-[6px]">
-    <router-link class="text-[#575759] text-[15px] underline" to="/calendar"
-      >Inicio</router-link
-    >
-    <span class="text-[#575759] text-[15px]">></span>
-    <span class="text-[#575759] text-[15px]">Dashboard</span>
-  </div> -->
   <div class="lg:flex flex-col gap-6">
     <div
       class="lg:flex items-center justify-between lg:w-[1023px] mx-auto gap-5 pb-[28px]"
@@ -82,7 +75,6 @@ const haveLink = true;
           <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2">
             {{ courseName }}
           </span>
-          <!-- <span class="bg-[#553037] text-white px-1.5 py-1 rounded-[4px] mr-2"> Inglés 1 </span>  Lun y Mar 19:00h - 22:00h -->
         </p>
       </div>
       <div
@@ -115,10 +107,7 @@ const haveLink = true;
         >
           <div class="px-3">
             <p class="text-[#404040] text-sm font-bold">Meta:</p>
-            <p
-              v-if="metaText !== ''"
-              class="text-sm text-[#404040] font-light"
-            >
+            <p v-if="metaText !== ''" class="text-sm text-[#404040] font-light">
               {{ metaText }}
             </p>
             <p
@@ -146,10 +135,7 @@ const haveLink = true;
               <Beyond />
             </div>
             <div class="lg:w-[50%]">
-              <NoteBox
-                inasistencia="2"
-                :dashboard="true"
-              />
+              <NoteBox inasistencia="2" :dashboard="true" />
             </div>
           </div>
           <div>
@@ -160,19 +146,12 @@ const haveLink = true;
             />
           </div>
         </div>
-        <!-- <div  class="min-w-[calc(28%-24px)]">
-          <HelpBox />
-        </div> -->
         <div class="min-w-[calc(40%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
           <ListCompanions :data-companions="dataCompanios" />
           <HelpBox />
         </div>
       </div>
-      <!-- <div class="lg:flex gap-[28px]">
-        <SyllabusBox :open="isOpen" :link="haveLink" />
-        <HelpBox />
-      </div> -->
     </div>
   </div>
 </template>
