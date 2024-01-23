@@ -102,8 +102,6 @@ onMounted(() => {
 });
 </script>
 
-</script>
-
 <template>
   <div>
     <div class="pb-7">

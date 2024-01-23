@@ -62,10 +62,3 @@ const props = defineProps({
     </a>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  data: Array,
-  section: String,
-})
-</script>
