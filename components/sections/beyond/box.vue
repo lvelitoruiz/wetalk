@@ -51,6 +51,7 @@ const onClickHandler = async (page) => {
 
 const searchTab = async () => {
     console.log('the search: ',term.value)
+    actualPage.value = 1;
     await fetchData();
     handleTabChange('tab-all');
 }
