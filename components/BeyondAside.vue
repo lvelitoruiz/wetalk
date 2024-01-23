@@ -11,6 +11,9 @@ const menuStore = useMenuStore();
 const tabMapping = {};
 let nextTabIndex = 0;
 
+const course = menuStore.getProfileItems.data[0].desProducto;
+const career = menuStore.getProfileItems.data[0].descCurso;
+
 const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
@@ -24,7 +27,7 @@ const handleTabChange = (selectedTab) => {
 };
 
 const fetchData = async () => {
-  await menuStore.fetchNewsData(apiUrl);
+  await menuStore.fetchNewsData(apiUrl, "1", "", "15", course, career);
 };
 
 watchEffect(async () => {
@@ -68,18 +71,16 @@ onMounted(() => {
 </script>
 <template>
   <BoxContainer color="black">
-      <div class="flex items-center justify-between">
-        <h3 class="text-[#404040] text-2xl">
-          <span class="uppercase font-bold font-solano">recomendadas</span>
-        </h3>
-        
-      </div>
-      <BeyondCard :dataPost="newsData" />
-      <router-link class="flex items-center justify-center mt-4 gap-2" to="#">
-        <span class="text-[#E50A17] font-bold font-zizou-bold text-sm"
-          >Editar intereses</span
-        >
-        <i class="icon-arrow-right text-[#E50A17]"></i>
-      </router-link>
+    <div class="flex items-center justify-between">
+      <h3 class="text-[#404040] text-2xl">
+        <span class="uppercase font-bold font-solano">recomendadas</span>
+      </h3>
+
+    </div>
+    <BeyondCard :dataPost="newsData" />
+    <router-link class="flex items-center justify-center mt-4 gap-2" to="#">
+      <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
+      <i class="icon-arrow-right text-[#E50A17]"></i>
+    </router-link>
   </BoxContainer>
 </template>

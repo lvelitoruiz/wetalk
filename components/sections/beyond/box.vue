@@ -7,8 +7,8 @@ import { ref, watchEffect, onMounted } from 'vue';
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
-const totalCount = ref(4);
-const pageSize = ref(4);
+const totalCount = ref(15);
+const pageSize = ref(15);
 const actualPage = ref(1);
 const term = ref("");
 const userStore = useUserStore();
@@ -19,6 +19,9 @@ let nextTabIndex = 0;
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
 console.log(nameUser?.split(' ')[0])
+
+const course = menuStore.getProfileItems.data[0].desProducto;
+const career = menuStore.getProfileItems.data[0].descCurso;
 
 
 const props = defineProps({
@@ -35,18 +38,20 @@ const handleTabChange = (selectedTab) => {
 };
 
 const fetchData = async () => {
+  console.log('adding the data where is needed');
   let termAlter = "";
   if (term.value.length >= 3) {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "4")
+      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "15", course, career)
   } else {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "4")
+      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "15", course, career)
   }
 
 }
 
 const onClickHandler = async (page) => {
+  console.log('here!!');
   actualPage.value = page;
   await fetchData();
   handleTabChange('tab-all');
@@ -98,7 +103,6 @@ watchEffect(async () => {
 
 onMounted(() => {
   fetchData();
-  console.log('mounted here!!');
 });
 </script>
 

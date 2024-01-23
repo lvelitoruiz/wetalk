@@ -392,7 +392,7 @@ export const useMenuStore = defineStore({
         console.error('Error fetching courses data:', error);
       }
     },
-    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "4") {
+    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career = "", course = "") {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -407,7 +407,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${career}&user_career_name=${course}`
           );
         this.newsData = response.data?.data ?? [];
         this.newsDataMeta = response.data ?? [];
