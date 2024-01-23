@@ -1,43 +1,36 @@
 parameters:
+  - name: variablesGroup
+    default: 'ubuntu-x'
 
-- name: variablesGroup
-  default: 'ubuntu-x'
- 
- 
 jobs:
-- job:  'CDK'
-  displayName: "Build Environment"
-  variables:
-    - group: ${{parameters.variablesGroup}}
-  steps:
+  - job: 'CDK'
+    displayName: 'Build Environment'
+    variables:
+      - group: ${{parameters.variablesGroup}}
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: 18.*
+          addToPath: true
 
-  - task: NodeTool@0
-    inputs:
-      versionSpec:  18.* 
-      addToPath: true
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '.cdk-infra'
+          artifact: '.cdk-infra'
+        displayName: 'Publicar artefacto del directorio drop'
 
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: '.cdk-infra'
-      artifact: '.cdk-infra'
-    displayName: 'Publicar artefacto del directorio drop'
-  
-  - script: |        
-      cd .cdk-infra
-      pwd   
-      npm install       
-    displayName: 'instalar  AWS CDK'    
+      - script: |
+          cd .cdk-infra
+          pwd   
+          npm install
+        displayName: 'instalar  AWS CDK'
 
-  - script: |
-      ls -la
-      mkdir -p app
-      touch app/index.html      
-      ls -la app
-      cd .cdk-infra
-      pwd
-      ./node_modules/.bin/cdk synth
-    displayName: 'synth proyecto AWS CDK'  
-
-
-  
- 
+      - script: |
+          ls -la
+          mkdir -p app
+          touch app/index.html      
+          ls -la app
+          cd .cdk-infra
+          pwd
+          ./node_modules/.bin/cdk synth
+        displayName: 'synth proyecto AWS CDK'

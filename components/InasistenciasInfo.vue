@@ -28,7 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from "../stores/menu";
+import { ref, watchEffect } from 'vue';
+import { useMenuStore } from '../stores/menu';
 
 const menuStore = useMenuStore();
 

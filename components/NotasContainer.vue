@@ -5,7 +5,7 @@
     <div class="w-full lg:w-[1023px] mx-auto">
       <div class="block lg:flex gap-[28px]">
         <div class="min-w-[100%] lg:min-w-[65%]">
-          <NoteBox :showPromedio=true />
+          <NoteBox :show-promedio="true" />
         </div>
         <div class="flex-col flex gap-7">
           <!-- <InasistenciasInfo inasistencia="2" :dates="datesInasistencia" /> -->
@@ -18,8 +18,7 @@
 </template>
 
 <script setup>
-const datesInasistencia = ["03/10/2023", "05/10/2023"];
+const datesInasistencia = ['03/10/2023', '05/10/2023'];
 </script>
 
-<style>
-</style>
+<style></style>

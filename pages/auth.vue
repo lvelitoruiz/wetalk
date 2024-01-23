@@ -1,5 +1,8 @@
+<!-- eslint-disable indent -->
+<!-- eslint-disable @typescript-eslint/no-floating-promises -->
+<!-- eslint-disable no-undef -->
 <script setup lang="ts">
-import { useUserStore } from "~/stores/auth";
+import { useUserStore } from '~/stores/auth';
 // import { logout } from "../utils/authHeaders";
 const { $msal, $config } = useNuxtApp();
 const userStore = useUserStore();
@@ -8,12 +11,12 @@ const accessDomain = ref(false);
 
 const isDomainAllowed = (
   userEmailDomain: string | undefined,
-  allowedDomains: string[]
+  allowedDomains: string[],
 ) => {
   return (
     userEmailDomain &&
     allowedDomains.some((allowedDomain) =>
-      userEmailDomain.includes(allowedDomain)
+      userEmailDomain.includes(allowedDomain),
     )
   );
 };
@@ -31,39 +34,40 @@ const isDomainAllowed = (
 //   }
 // });
 
-
-if($config.public.stage != 'prod') {
-  
-    accessDomain.value = true;
-    // await userStore.fetchUserData(true,"","");
-    navigateTo("/", { replace: true });
-
+if ($config.public.stage !== 'prod') {
+  accessDomain.value = true;
+  // await userStore.fetchUserData(true,"","");
+  navigateTo('/', { replace: true });
 } else {
-
   const accounts = $msal().getAccounts();
   const accessToken = await $msal().acquireTokenSilent();
 
-  const userEmailDomain = accounts?.length > 0 ? accounts[0].username : "";
+  const userEmailDomain = accounts?.length > 0 ? accounts[0].username : '';
   // const listDomain = ["upc.edu.pe", "upn.pe"];
-  const listDomain = ["upn.pe"];
+  const listDomain = ['upn.pe'];
 
-  let isAuthenticated = $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
-  let stringCodUser = accounts[0]?.username
+  const isAuthenticated =
+    $msal().isAuthenticated() && isDomainAllowed(userEmailDomain, listDomain);
+  const stringCodUser = accounts[0]?.username;
 
   const entidadActiva = ref('');
-  if(stringCodUser){
-  for (let index = 0; index < listDomain.length; index++) {
+  if (stringCodUser) {
+    for (let index = 0; index < listDomain.length; index++) {
       const element = listDomain[index];
-      if(stringCodUser.includes(element)){
-        entidadActiva.value = element.substring(0, 3)
+      if (stringCodUser.includes(element)) {
+        entidadActiva.value = element.substring(0, 3);
       }
-  }
+    }
   }
 
-  let userCode = "";
-  switch(entidadActiva.value) {
-    case "upc": userCode = stringCodUser?.replace(/[^0-9]+/g, ""); break;
-    case "upn": userCode = stringCodUser?.match(/([^@]+)/)?.at(0) ?? ""; break;
+  let userCode = '';
+  switch (entidadActiva.value) {
+    case 'upc':
+      userCode = stringCodUser?.replace(/[^0-9]+/g, '');
+      break;
+    case 'upn':
+      userCode = stringCodUser?.match(/([^@]+)/)?.at(0) ?? '';
+      break;
   }
 
   if (isAuthenticated) {
@@ -71,41 +75,39 @@ if($config.public.stage != 'prod') {
       ...accounts[0],
       bearerToken: accessToken,
       codUser: userCode,
-      institucion : entidadActiva
+      institucion: entidadActiva,
     };
-    localStorage.setItem("tokenH", accessToken!);
-    localStorage.setItem("codUser", userCode);
+    localStorage.setItem('tokenH', accessToken!);
+    localStorage.setItem('codUser', userCode);
     accessDomain.value = true;
     userStore.fetchUserData(
       Boolean(isDomainAllowed(userEmailDomain, listDomain)),
       JSON.stringify(accessToken),
-      user
+      user,
     );
-    
   }
 
   if (accounts?.length === 0) {
-    navigateTo("/login", { replace: true });
+    navigateTo('/login', { replace: true });
   }
 
   if (!isAuthenticated) {
     accessDomain.value = false;
   } else if (isAuthenticated) {
-    navigateTo("/", { replace: true });
+    navigateTo('/', { replace: true });
   }
 }
-
 </script>
 <template>
   <div class="text-center h-[300px] flex justify-center items-center">
     <div>
       <!-- <p class="text-center mt-[20px]" v-if="loading">Validando Sesión...</p> -->
 
-      <div class="flex items-center w-full justify-center mt-5"></div>
+      <div class="flex items-center w-full justify-center mt-5" />
       <div v-if="!accessDomain">
         <p class="my-5">No tienes permisos para acceder</p>
         <!-- <p>Inicie sesión con otra cuenta</p> -->
-        <Logout></Logout>
+        <Logout />
         <!-- <button @click="logout">Cerrar sesión</button> -->
       </div>
       <div v-if="accessDomain">Iniciando Sesión</div>

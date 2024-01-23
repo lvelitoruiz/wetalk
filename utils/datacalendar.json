@@ -1,174 +1,174 @@
 {
-    "message": "Succesful",
-    "flag": true,
-    "data": [
-        {
-            "tramite": "Matrícula Complementaria en Línea (De 9:00 am. a 9:00 pm.) ",
-            "fecha": "07 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "07/01/2023",
-            "fechaEnd": ""
-        },
-        {
-            "tramite": "Trámite de agregación de carrera. ",
-            "fecha": " Del 06 de febrero al 10 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "06/02/2023",
-            "fechaEnd": "10/03/2023"
-        },
-        {
-            "tramite": "Trámite de corrección de evaluación ",
-            "fecha": " Del 09 de enero al 04 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "09/01/2023",
-            "fechaEnd": "04/03/2023"
-        },
-        {
-            "tramite": "Recuperación y devolución de examen. ",
-            "fecha": " Del 02 de marzo al 04 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "02/03/2023",
-            "fechaEnd": "04/03/2023"
-        },
-        {
-            "tramite": "Trámite virtual de carta de permanencia (2) ",
-            "fecha": " Del 06 de febrero al 10 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "06/02/2023",
-            "fechaEnd": "10/03/2023"
-        },
-        {
-            "tramite": "Inicio de clases ",
-            "fecha": "09 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "09/01/2023",
-            "fechaEnd": ""
-        },
-        {
-            "tramite": "Último día de clases. ",
-            "fecha": "25 de febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "25/02/2023",
-            "fechaEnd": ""
-        },
-        {
-            "tramite": "Consulta de Cursos Hábiles (Intención de Matrícula (De 12:00 M. a 11:59 pm.) ",
-            "fecha": " Del 15 de diciembre al 01 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "15/12/2022",
-            "fechaEnd": "01/01/2023"
-        },
-        {
-            "tramite": "Trámite virtual de devolución de pagos ",
-            "fecha": " Del 23 de enero al 25 de febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "23/01/2023",
-            "fechaEnd": "25/02/2023"
-        },
-        {
-            "tramite": "Trámite virtual de reanudación de estudios o habilitación de reserva de matrícula ",
-            "fecha": " Del 24 de octubre al 09 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "24/10/2022",
-            "fechaEnd": "09/01/2023"
-        },
-        {
-            "tramite": "Duplicado  del carné universitario ",
-            "fecha": " Del 09 de enero al 09 de Febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "09/01/2023",
-            "fechaEnd": "09/02/2023"
-        },
-        {
-            "tramite": "Resultado del trámite de convalidación de asignatura (1) ",
-            "fecha": "18 de febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "18/02/2023",
-            "fechaEnd": ""
-        },
-        {
-            "tramite": "Trámite virtual de retiro de asignatura. ",
-            "fecha": " Del 11 de enero al 24 de febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "11/01/2023",
-            "fechaEnd": "24/02/2023"
-        },
-        {
-            "tramite": "Trámite virtual de retiro de ciclo. ",
-            "fecha": " Del 23 de enero al 24 de febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "23/01/2023",
-            "fechaEnd": "24/02/2023"
-        },
-        {
-            "tramite": "Trámite de traslado de pregrado a EPE. ",
-            "fecha": " Del 06 de febrero al 10 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "06/02/2023",
-            "fechaEnd": "10/03/2023"
-        },
-        {
-            "tramite": "Matrícula Regular en Línea (De 8:00 am. a 11:59 pm.) ",
-            "fecha": " Del 03 al 05 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "03/01/2023",
-            "fechaEnd": "05/01/2023"
-        },
-        {
-            "tramite": "Trámite virtual de Permisos de Matrícula (Llevar Cursos de Otra Carrera / Dispersión de Niveles) ",
-            "fecha": " Del 14 de diciembre al 07 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "14/12/2022",
-            "fechaEnd": "07/01/2023"
-        },
-        {
-            "tramite": "Trámite virtual de subsanación de evaluaciones no rendidas.",
-            "fecha": " Del 09 de enero al 02 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "09/01/2023",
-            "fechaEnd": "02/03/2023"
-        },
-        {
-            "tramite": "Trámite virtual de recuperación de evaluación. ",
-            "fecha": " Del 09 de enero al 01 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "09/01/2023",
-            "fechaEnd": "01/03/2023"
-        },
-        {
-            "tramite": "Evaluaciones parciales ",
-            "fecha": " Del 30 de enero al 04 de febrero",
-            "ciclo": "2023-00",
-            "fechaInit": "30/01/2023",
-            "fechaEnd": "04/02/2023"
-        },
-        {
-            "tramite": "Trámite virtual de traslado interno de carrera (No aplica para la carrera de Medicina)",
-            "fecha": " Del 16 de enero al 02 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "16/01/2023",
-            "fechaEnd": "02/03/2023"
-        },
-        {
-            "tramite": "Trámite virtual de convalidación de asignatura. ",
-            "fecha": " Del 23 de enero al 30 de enero",
-            "ciclo": "2023-00",
-            "fechaInit": "23/01/2023",
-            "fechaEnd": "30/01/2023"
-        },
-        {
-            "tramite": "Evaluaciones finales. ",
-            "fecha": " Del 27 de febrero al 01 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "27/02/2023",
-            "fechaEnd": "01/03/2023"
-        },
-        {
-            "tramite": "Trámite virtual de traslado de campus ",
-            "fecha": " Del 06 de febrero al 10 de marzo",
-            "ciclo": "2023-00",
-            "fechaInit": "06/02/2023",
-            "fechaEnd": "10/03/2023"
-        }
-    ]
+  "message": "Succesful",
+  "flag": true,
+  "data": [
+    {
+      "tramite": "Matrícula Complementaria en Línea (De 9:00 am. a 9:00 pm.) ",
+      "fecha": "07 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "07/01/2023",
+      "fechaEnd": ""
+    },
+    {
+      "tramite": "Trámite de agregación de carrera. ",
+      "fecha": " Del 06 de febrero al 10 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "06/02/2023",
+      "fechaEnd": "10/03/2023"
+    },
+    {
+      "tramite": "Trámite de corrección de evaluación ",
+      "fecha": " Del 09 de enero al 04 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "09/01/2023",
+      "fechaEnd": "04/03/2023"
+    },
+    {
+      "tramite": "Recuperación y devolución de examen. ",
+      "fecha": " Del 02 de marzo al 04 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "02/03/2023",
+      "fechaEnd": "04/03/2023"
+    },
+    {
+      "tramite": "Trámite virtual de carta de permanencia (2) ",
+      "fecha": " Del 06 de febrero al 10 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "06/02/2023",
+      "fechaEnd": "10/03/2023"
+    },
+    {
+      "tramite": "Inicio de clases ",
+      "fecha": "09 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "09/01/2023",
+      "fechaEnd": ""
+    },
+    {
+      "tramite": "Último día de clases. ",
+      "fecha": "25 de febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "25/02/2023",
+      "fechaEnd": ""
+    },
+    {
+      "tramite": "Consulta de Cursos Hábiles (Intención de Matrícula (De 12:00 M. a 11:59 pm.) ",
+      "fecha": " Del 15 de diciembre al 01 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "15/12/2022",
+      "fechaEnd": "01/01/2023"
+    },
+    {
+      "tramite": "Trámite virtual de devolución de pagos ",
+      "fecha": " Del 23 de enero al 25 de febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "23/01/2023",
+      "fechaEnd": "25/02/2023"
+    },
+    {
+      "tramite": "Trámite virtual de reanudación de estudios o habilitación de reserva de matrícula ",
+      "fecha": " Del 24 de octubre al 09 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "24/10/2022",
+      "fechaEnd": "09/01/2023"
+    },
+    {
+      "tramite": "Duplicado  del carné universitario ",
+      "fecha": " Del 09 de enero al 09 de Febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "09/01/2023",
+      "fechaEnd": "09/02/2023"
+    },
+    {
+      "tramite": "Resultado del trámite de convalidación de asignatura (1) ",
+      "fecha": "18 de febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "18/02/2023",
+      "fechaEnd": ""
+    },
+    {
+      "tramite": "Trámite virtual de retiro de asignatura. ",
+      "fecha": " Del 11 de enero al 24 de febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "11/01/2023",
+      "fechaEnd": "24/02/2023"
+    },
+    {
+      "tramite": "Trámite virtual de retiro de ciclo. ",
+      "fecha": " Del 23 de enero al 24 de febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "23/01/2023",
+      "fechaEnd": "24/02/2023"
+    },
+    {
+      "tramite": "Trámite de traslado de pregrado a EPE. ",
+      "fecha": " Del 06 de febrero al 10 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "06/02/2023",
+      "fechaEnd": "10/03/2023"
+    },
+    {
+      "tramite": "Matrícula Regular en Línea (De 8:00 am. a 11:59 pm.) ",
+      "fecha": " Del 03 al 05 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "03/01/2023",
+      "fechaEnd": "05/01/2023"
+    },
+    {
+      "tramite": "Trámite virtual de Permisos de Matrícula (Llevar Cursos de Otra Carrera / Dispersión de Niveles) ",
+      "fecha": " Del 14 de diciembre al 07 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "14/12/2022",
+      "fechaEnd": "07/01/2023"
+    },
+    {
+      "tramite": "Trámite virtual de subsanación de evaluaciones no rendidas.",
+      "fecha": " Del 09 de enero al 02 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "09/01/2023",
+      "fechaEnd": "02/03/2023"
+    },
+    {
+      "tramite": "Trámite virtual de recuperación de evaluación. ",
+      "fecha": " Del 09 de enero al 01 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "09/01/2023",
+      "fechaEnd": "01/03/2023"
+    },
+    {
+      "tramite": "Evaluaciones parciales ",
+      "fecha": " Del 30 de enero al 04 de febrero",
+      "ciclo": "2023-00",
+      "fechaInit": "30/01/2023",
+      "fechaEnd": "04/02/2023"
+    },
+    {
+      "tramite": "Trámite virtual de traslado interno de carrera (No aplica para la carrera de Medicina)",
+      "fecha": " Del 16 de enero al 02 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "16/01/2023",
+      "fechaEnd": "02/03/2023"
+    },
+    {
+      "tramite": "Trámite virtual de convalidación de asignatura. ",
+      "fecha": " Del 23 de enero al 30 de enero",
+      "ciclo": "2023-00",
+      "fechaInit": "23/01/2023",
+      "fechaEnd": "30/01/2023"
+    },
+    {
+      "tramite": "Evaluaciones finales. ",
+      "fecha": " Del 27 de febrero al 01 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "27/02/2023",
+      "fechaEnd": "01/03/2023"
+    },
+    {
+      "tramite": "Trámite virtual de traslado de campus ",
+      "fecha": " Del 06 de febrero al 10 de marzo",
+      "ciclo": "2023-00",
+      "fechaInit": "06/02/2023",
+      "fechaEnd": "10/03/2023"
+    }
+  ]
 }

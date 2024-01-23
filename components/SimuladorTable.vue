@@ -1,3 +1,12 @@
+<!-- eslint-disable vue/require-default-prop -->
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  notasData: Array,
+});
+</script>
+
 <template>
   <div class="px-[9px] h-[410px] overflow-y-scroll">
     <table class="table-auto w-full">
@@ -26,7 +35,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(data, index) in notasData" :key="index" class="h-[52px]">
+        <tr
+          v-for="(data, index) in notasData"
+          :key="index"
+          class="h-[52px]"
+        >
           <td class="text-start text-sm font-sans text-[#404040]">
             {{ data.tipo }}
           </td>
@@ -40,8 +53,8 @@
             <input
               type="text"
               v-model="data.nota"
-              class="w-[32px] border rounded h-[26px] text-sm outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none  font-normal font-sans flex items-center text-[404040] justify-center text-center"
-            />
+              class="w-[32px] border rounded h-[26px] text-sm outline-none hover:outline-[#191919] hover:border-none focus:outline-black focus:border-none invalid:outline-red-700 invalid:border-none font-normal font-sans flex items-center text-[404040] justify-center text-center"
+            >
           </td>
         </tr>
       </tbody>
@@ -53,14 +66,6 @@
     <p class="text-[#404040] text-sm font-bold">Promedio final</p>
     <span
       class="bg-[#BFBFBF] w-[32px] h-[26px] text-sm font-bold rounded-[6px] flex items-center text-white justify-center"
-      >-</span
-    >
+    >-</span>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  notasData: Array,
-});
-
-</script>
