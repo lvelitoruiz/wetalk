@@ -140,7 +140,7 @@ const haveLink = true;
     </div>
     <div class="lg:w-[1023px] mx-auto">
       <div class="lg:flex gap-[28px]">
-        <div class="min-w-[calc(60%-28px)] mb-6 lg:mb-0">
+        <div class="min-w-[calc(70%-28px)] mb-6 lg:mb-0">
           <div class="lg:flex gap-[28px]">
             <div class="lg:w-[50%] mb-5">
               <Beyond />
@@ -163,7 +163,7 @@ const haveLink = true;
         <!-- <div  class="min-w-[calc(28%-24px)]">
           <HelpBox />
         </div> -->
-        <div class="min-w-[calc(40%-28px)] mb-6 lg:mb-0">
+        <div class="min-w-[calc(30%-28px)] mb-6 lg:mb-0">
           <TeacherBox />
           <ListCompanions :data-companions="dataCompanios" />
           <HelpBox />
