@@ -1,7 +1,8 @@
 <script setup >
 import { bg_triangles_gray } from '@/assets/index.ts';
-import { useMenuStore } from "../stores/menu";
-import { apiUrl } from "~/consts";
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
+import { ref, watchEffect, onMounted } from 'vue';
 
 const newsData = ref(null);
 const tabsNewsData = ref(null);
@@ -27,33 +28,35 @@ const handleTabChange = (selectedTab) => {
   if (selectedTab === 'tab-all') {
     filteredNewsData.value = newsData.value;
   } else {
-    filteredNewsData.value = newsData.value.filter(item => item.tab === selectedTab);
+    filteredNewsData.value = newsData.value.filter(
+      (item) => item.tab === selectedTab
+    );
   }
 };
 
 const fetchData = async () => {
   let termAlter = "";
-  if(term.value.length >= 3) {
+  if (term.value.length >= 3) {
     await menuStore
-    .fetchNewsData(apiUrl,actualPage.value.toString(),term.value,"4")
+      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "4")
   } else {
     await menuStore
-    .fetchNewsData(apiUrl,actualPage.value.toString(),termAlter,"4")
+      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "4")
   }
-  
+
 }
 
 const onClickHandler = async (page) => {
-    actualPage.value = page;
-    await fetchData();
-    handleTabChange('tab-all');
+  actualPage.value = page;
+  await fetchData();
+  handleTabChange('tab-all');
 }
 
 const searchTab = async () => {
-    console.log('the search: ',term.value)
-    actualPage.value = 1;
-    await fetchData();
-    handleTabChange('tab-all');
+  console.log('the search: ', term.value)
+  actualPage.value = 1;
+  await fetchData();
+  handleTabChange('tab-all');
 }
 
 watchEffect(async () => {
@@ -63,31 +66,41 @@ watchEffect(async () => {
   totalCount.value = meta.count;
   if (news) {
     const modifiedNews = news.map((item) => {
-      const tab = tabMapping[item.categoria] !== undefined ? tabMapping[item.categoria] : `tab-${nextTabIndex++}`;
+      const tab =
+        tabMapping[item.categoria] !== undefined
+          ? tabMapping[item.categoria]
+          : `tab-${nextTabIndex++}`;
       tabMapping[item.categoria] = tab;
       return {
         ...item,
         texto: item.categoria,
-        tab: tab
+        tab,
       };
     });
 
-    const uniqueCategoriesSet = new Set(modifiedNews.map(item => item.categoria));
-    const uniqueNews = Array.from(uniqueCategoriesSet).map((category) => {
-      const tab = tabMapping[category];
-      const correspondingItem = modifiedNews.find(item => item.categoria === category && item.tab === tab);
-      return correspondingItem;
-    }).filter(Boolean);
-    
+    const uniqueCategoriesSet = new Set(
+      modifiedNews.map((item) => item.categoria)
+    );
+    const uniqueNews = Array.from(uniqueCategoriesSet)
+      .map((category) => {
+        const tab = tabMapping[category];
+        const correspondingItem = modifiedNews.find(
+          (item) => item.categoria === category && item.tab === tab
+        );
+        return correspondingItem;
+      })
+      .filter(Boolean);
+
     newsData.value = modifiedNews;
     tabsNewsData.value = uniqueNews;
   }
 });
 
-onMounted( () => {
+onMounted(() => {
   fetchData();
   console.log('mounted here!!');
 });
+</script>
 
 </script>
 
@@ -104,10 +117,11 @@ onMounted( () => {
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link> -->
-         
+
         </div>
         <div class="flex justify-center">
-          <p class="text-xl font-solano"> <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos todo esto para ti </p>
+          <p class="text-xl font-solano"> <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos todo esto para
+            ti </p>
         </div>
         <div class="flex justify-center my-[20px]">
           <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
@@ -116,19 +130,16 @@ onMounted( () => {
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'"></TabContent>
+          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'">
+          </TabContent>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
           <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
       <div class="mt-5 flex justify-center items-center">
-        <Pagination
-          :totalItems="totalCount"
-          :itemsPerPage="pageSize"
-          :onClickHandler="onClickHandler"
-          :current-page="actualPage"
-        />
+        <Pagination :totalItems="totalCount" :itemsPerPage="pageSize" :onClickHandler="onClickHandler"
+          :current-page="actualPage" />
       </div>
     </div>
   </div>

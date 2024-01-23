@@ -18,7 +18,8 @@ Make sure to install the dependencies:
 npm install
 ```
 
-Pinia: due to an *ERESOLVE unable to resolve dependency tree* error, the following was added to the `package.json`:
+Pinia: due to an _ERESOLVE unable to resolve dependency tree_ error, the following was added to the `package.json`:
+
 ```bash
 "overrides": {
   "vue": "latest"
@@ -64,27 +65,25 @@ NUXT_API_KEY=
 NUXT_URL_TM=GTM-PF3RQPRR
 ```
 
- 
-
 ## Despliegue
 
-### Objetos de despliegue 
+### Objetos de despliegue
 
-|                                        | Develop                 | Stage                          | Production                    |
-| -------------------------------------- | ----------------------- | ------------------------------ | ----------------------------- |
-| S3                                     | s3-nombre               | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx          |
-| Cloud front                            | nombre cloudfront       | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxx               |
-| CNAME                                  | nombre                  | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx          |
-| dominio                                | nombre de dominio       | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx          |
-| Response headers - CloudFront-Policies | upc-portal-fe           | xxxxxxxxxxxxxxxxxxxxxxxxxxxxx  | xxxxxxxxxxxxxxxxxxxx          |
+|                                        | Develop           | Stage                          | Production           |
+| -------------------------------------- | ----------------- | ------------------------------ | -------------------- |
+| S3                                     | s3-nombre         | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| Cloud front                            | nombre cloudfront | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxx      |
+| CNAME                                  | nombre            | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| dominio                                | nombre de dominio | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xxxxxxxxxxxxxxxxxxxx |
+| Response headers - CloudFront-Policies | upc-portal-fe     | xxxxxxxxxxxxxxxxxxxxxxxxxxxxx  | xxxxxxxxxxxxxxxxxxxx |
 
-#### CloudFront /Policies/Response headers / Security headers 
+#### CloudFront /Policies/Response headers / Security headers
 
-##### Content-Security-Policy 
+##### Content-Security-Policy
 
 ```yaml
 - key: Content-Security-Policy
-  value: 
+  value:
     default-src 'self';
     img-src 'self' www.google.com.pe *.upc.edu.pe *.stage01.link *.wetalk.pe res.cloudinary.com *.chattigo.com;
     font-src 'self' data: *.chattigo.com *.mouseflow.com;
@@ -95,9 +94,7 @@ NUXT_URL_TM=GTM-PF3RQPRR
     script-src 'self' 'unsafe-inline' *.chattigo.com *.googletagmanager.com *.mouseflow.com *.google-analytics.com  www.youtube.com;
 ```
 
-
-
-### Comandos de despliegue 
+### Comandos de despliegue
 
 ```bash
 #generar el fuente
@@ -117,8 +114,6 @@ aws cloudfront create-invalidation --distribution-id id --paths "/*"
 
 ```
 
-
-
 ## comando local
 
 Start the development server on http://localhost:3000
@@ -126,4 +121,3 @@ Start the development server on http://localhost:3000
 ```bash
 npm run dev
 ```
-

@@ -1,7 +1,11 @@
+<!-- eslint-disable vue/require-default-prop -->
+<!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <script setup>
-import VueCal from "vue-cal";
-import { dayDescription } from "@/utils/dateFunctions";
-import "vue-cal/dist/vuecal.css";
+import VueCal from 'vue-cal';
+import { dayDescription } from '@/utils/dateFunctions';
+import 'vue-cal/dist/vuecal.css';
+import { defineProps, ref } from 'vue';
+
 const props = defineProps({
   data: Array,
 });
@@ -14,61 +18,62 @@ const feriados = [];
 const academic = [];
 
 const eventFech = (fecha1) => {
-  let eventDay = new Date(fecha1);
-  let dia = eventDay.getDate();
-  let mes = eventDay.getMonth() + 1;
-  let anio = eventDay.getFullYear();
+  const eventDay = new Date(fecha1);
+  const dia = eventDay.getDate();
+  const mes = eventDay.getMonth() + 1;
+  const anio = eventDay.getFullYear();
 
-  let formtDay = anio + "-" + mes + "-" + dia;
+  const formtDay = anio + '-' + mes + '-' + dia;
 
   return formtDay;
 };
-//Filtro de eventos activos
+// Filtro de eventos activos
 const activeCalendar = arrListevents?.filter(
-  (event) => event.mostrarEnCalendario == true
+  (event) => event.mostrarEnCalendario === true,
 );
 
 // Nueva lista de los eventos
 activeCalendar?.forEach((eventService) => {
-  let fEnd =
-    eventService.fechaEnd == null
+  const fEnd =
+    eventService.fechaEnd ?? null
       ? eventService.fechaInit
       : eventService.fechaEnd;
-  let start = eventFech(eventService.fechaInit);
-  let end = eventFech(fEnd);
+  const start = eventFech(eventService.fechaInit);
+  const end = eventFech(fEnd);
   if (eventService.feriado) {
     feriados.push(new Date(eventService.fechaInit).format());
     feriados.push(new Date(eventService.fechaEnd).format());
-  } else
+  } else {
     academic.push({
       title: eventService.tramite,
-      start: start,
-      end: end,
+      start,
+      end,
       feriado: eventService.feriado,
     });
+  }
   events.push({
     title: eventService.tramite,
-    start: start,
-    end: end,
+    start,
+    end,
     feriado: eventService.feriado,
   });
 });
 
 const numMonth = (dayFe) => {
-  let eventDay = new Date(dayFe);
-  let mes = eventDay.getMonth() + 1;
+  const eventDay = new Date(dayFe);
+  const mes = eventDay.getMonth() + 1;
   return mes;
 };
 
-let eventDay = new Date();
+const eventDay = new Date();
 const res = events?.filter(
-  (event) => numMonth(event.start) == numMonth(eventDay)
+  (event) => numMonth(event.start) === numMonth(eventDay),
 );
 eventsUpdate.value = res;
 
 const calEvents = (t, n) => {
   const holidays = events.filter(
-    (event) => numMonth(event.start) === numMonth(n.startDate) && event.feriado
+    (event) => numMonth(event.start) === numMonth(n.startDate) && event.feriado,
   );
   eventsUpdate.value = n.events.concat(holidays);
 };
@@ -87,10 +92,16 @@ const calEvents = (t, n) => {
       @view-change="calEvents('view-change', $event)"
     >
       <template #arrow-prev>
-        <nuxt-icon class="text-[14px] no-fill text-primary" name="left" />
+        <nuxt-icon
+          class="text-[14px] no-fill text-primary"
+          name="left"
+        />
       </template>
       <template #arrow-next>
-        <nuxt-icon class="text-[14px] no-fill text-primary" name="right" />
+        <nuxt-icon
+          class="text-[14px] no-fill text-primary"
+          name="right"
+        />
       </template>
     </vue-cal>
   </client-only>
@@ -106,14 +117,16 @@ const calEvents = (t, n) => {
     >
       <h3 class="font-bold">{{ event.title }}</h3>
       <div class="flex details">
-        <nuxt-icon class="text-[14px] mr-2" name="IconCalendarDays" />
+        <nuxt-icon
+          class="text-[14px] mr-2"
+          name="IconCalendarDays"
+        />
         <span class="date-text">
           {{ dayDescription(event.start) }}
           <span
             v-if="dayDescription(event.start) !== dayDescription(event.end)"
           >
-            - {{ dayDescription(event.end) }}</span
-          >
+            - {{ dayDescription(event.end) }}</span>
         </span>
       </div>
     </div>
@@ -125,7 +138,7 @@ const calEvents = (t, n) => {
   @apply cursor-default;
 }
 .C_calendar .vuecal__cell--disabled .vuecal__cell-date {
-  @apply relative text-[#B70812] cursor-default after:content-[''] after:absolute 
+  @apply relative text-[#B70812] cursor-default after:content-[''] after:absolute
   after:left-[50%] after:w-[1px] after:h-[90%] after:bg-[#B70812] after:rotate-45;
 }
 .C_calendar {
@@ -149,7 +162,7 @@ const calEvents = (t, n) => {
 }
 .vuecal__title-bar {
   background-color: transparent;
-  font-family: "solano";
+  font-family: 'solano';
   font-size: 20px !important;
   width: 70%;
 }

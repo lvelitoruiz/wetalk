@@ -1,3 +1,15 @@
+<!-- eslint-disable vue/html-indent -->
+<!-- eslint-disable vue/html-closing-bracket-newline -->
+<!-- eslint-disable vue/require-default-prop -->
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  data: Array,
+  section: String,
+});
+</script>
+
 <template>
   <div v-for="(data, index) in props.data" :key="index" class="p-3 border rounded-[8px] border-[#D9D9D9] mb-3 mr-4">
     <router-link v-if="!data.url_externa" :to="'/' + props.section + '/' + data.id">
