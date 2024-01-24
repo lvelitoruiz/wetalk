@@ -139,10 +139,10 @@ onMounted(() => {
           <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
-      <!-- <div class="mt-5 flex justify-center items-center">
+      <div class="mt-5 flex justify-center items-center">
         <Pagination :totalItems="totalCount" :itemsPerPage="pageSize" :onClickHandler="onClickHandler"
           :current-page="actualPage" />
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

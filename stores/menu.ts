@@ -28,6 +28,7 @@ export const useMenuStore = defineStore({
     companionsData: [] as any,
     newsData: [] as any,
     newsDataMeta: [] as any,
+    newsDataRecomended: [] as any,
     newsDataId: [] as any,
     interestedData: [] as any,
     manageableData: [] as any,
@@ -46,6 +47,7 @@ export const useMenuStore = defineStore({
     getCourses: (state) => state.coursesData,
     getNews: (state) => state.newsData,
     getNewsMeta: (state) => state.newsDataMeta,
+    getNewsRecomended: (state) => state.newsDataRecomended,
     getNewsId: (state) => state.newsDataId,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
@@ -432,7 +434,31 @@ export const useMenuStore = defineStore({
         console.error('Error fetching courses data:', error);
       }
     },
-    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career: string = "", course: string = "", recomendados: boolean = false ) {
+    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career: string = "", course: string = "" ) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${career}&user_career_name=${course}`
+          );
+        this.newsData = response.data?.data ?? [];
+        this.newsDataMeta = response.data ?? [];
+      } catch (error) {
+        console.error('Error fetching News data:', error);
+      }
+    },
+
+    async fetchNewsRecomended(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career: string = "", course: string = "", recomendados: boolean = false ) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -449,8 +475,7 @@ export const useMenuStore = defineStore({
           .get<any>(
             `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${career}&user_career_name=${course}&solo_recomendados=${recomendados}`
           );
-        this.newsData = response.data?.data ?? [];
-        this.newsDataMeta = response.data ?? [];
+        this.newsDataRecomended = response.data?.data ?? [];
       } catch (error) {
         console.error('Error fetching News data:', error);
       }

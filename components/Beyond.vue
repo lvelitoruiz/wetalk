@@ -24,7 +24,7 @@ const course = menuStore.getProfileItems.data[0].desProducto;
 const career = menuStore.getProfileItems.data[0].descCurso;
 
 const fetchData = async () => {
-  await menuStore.fetchNewsData(apiUrl, "1", "", "15", course, career, true);
+  await menuStore.fetchNewsRecomended(apiUrl, "1", "", "15", course, career, true);
   await menuStore.fetchInterestData(apiUrl, 'beyond');
   await menuStore.fetchManageableData(apiUrl, 'beyond');
 };
@@ -33,7 +33,7 @@ watchEffect(async () => {
   dynamicData.value = menuStore.getManageableItems;
   console.log('dynamic: ', dynamicData);
   filteredNewsData.value = newsData.value;
-  const news = menuStore.getNews;
+  const news = menuStore.getNewsRecomended;
   const interested = menuStore.getInterestedItems;
 
   if (news) {
