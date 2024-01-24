@@ -140,11 +140,11 @@ const markSelectedOptions = () => {
     const answerIds = props.selected.answer;
 
     answerIds.forEach((selectedItem) => {
-      const itemIndex = items.value.findIndex(
+      const itemIndex = items.value?.findIndex(
         (item) => item.id === selectedItem
       );
 
-      if (itemIndex !== -1) {
+      if (itemIndex && itemIndex !== -1) {
         items.value[itemIndex].checked = true;
 
         const selectedOptionIndex = selectedItems.value.findIndex(
