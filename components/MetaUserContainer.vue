@@ -1,9 +1,8 @@
 <script setup>
-import { useMetaStore } from "../stores/meta";
-const selectedImage = ref(
-  ""
-);
-const metaText = ref("");
+import { useMetaStore } from '../stores/meta';
+import { watchEffect, ref } from 'vue';
+const selectedImage = ref('');
+const metaText = ref('');
 
 const metaStore = useMetaStore();
 
@@ -24,7 +23,7 @@ const haveLink = true;
 </script>
 <template>
   <Breadcrumb page="Mi perfil" />
-  
+
   <div class="flex flex-col gap-6">
     <div class="w-full lg:w-[1023px] mx-auto">
       <div class="flex flex-col gap-[28px]">

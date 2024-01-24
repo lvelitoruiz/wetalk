@@ -1,19 +1,28 @@
+<!-- eslint-disable vue/require-default-prop -->
 <script setup>
-import locales from '~/utils/locales.json'
+import { defineProps, ref } from 'vue';
+
+import locales from '~/utils/locales.json';
 defineProps({
-  i: Object
+  i: Object,
 });
 
 const showItem = ref(false);
 const showCourse = () => {
   showItem.value = !showItem.value;
-}
+};
 </script>
 
 <template>
-  <div class="cursor-pointer" @click="showCourse()">
+  <div
+    class="cursor-pointer"
+    @click="showCourse()"
+  >
     <div class="flex justify-between">
-      <h3 class="font-solano text-xl uppercase leading-[1]" v-bind:class="{ 'text-primary': showItem }">
+      <h3
+        class="font-solano text-xl uppercase leading-[1]"
+        :class="{ 'text-primary': showItem }"
+      >
         {{ i.DescEspecialCurso }}
       </h3>
       <nuxt-icon
@@ -21,7 +30,11 @@ const showCourse = () => {
         name="menos"
         v-if="showItem"
       />
-      <nuxt-icon class="text-[14px] text-primary" name="mas" v-else />
+      <nuxt-icon
+        class="text-[14px] text-primary"
+        name="mas"
+        v-else
+      />
     </div>
   </div>
   <div

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
@@ -10,40 +11,41 @@ export default defineNuxtConfig({
       postLogoutRedirectUri: process.env.POSTLOGOUT_REDIRECT_URI,
       stage: process.env.STAGE,
       varUTM: process.env.NUXT_URL_TM,
-    }
+    },
   },
   devtools: { enabled: true },
-  css: ["~/assets/css/main.scss"],
+  css: ['~/assets/css/main.scss'],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  plugins: [{ src: "~/plugins/msal.ts", mode: "client" }],
+  plugins: [{ src: '~/plugins/msal.ts', mode: 'client' }],
   modules: [
     [
-      "@pinia/nuxt",
+      '@pinia/nuxt',
       {
-        autoImports: ["defineStore", "acceptHMRUpdate"],
+        autoImports: ['defineStore', 'acceptHMRUpdate'],
       },
     ],
-    "@pinia-plugin-persistedstate/nuxt",
+    '@pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt',
-    'nuxt-icons'
+    'nuxt-icons',
+    'nuxt-swiper',
   ],
   piniaPersistedstate: {
     cookieOptions: {
       sameSite: 'strict',
     },
-    storage: 'localStorage'
+    storage: 'localStorage',
   },
   imports: {
     dirs: ['stores'],
   },
   app: {
     head: {
-        link: [{ rel: 'icon', type: 'image/png', href: '/logo-upc.png' }]
-    }
-},
+      link: [{ rel: 'icon', type: 'image/png', href: '/logo-upc.png' }],
+    },
+  },
 });
