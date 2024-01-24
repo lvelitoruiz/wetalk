@@ -124,23 +124,8 @@ watchEffect(() => {
   }
 });
 
-const markSelectedOptions = () => {
-  if (selectedIntereses.value.length > 0) {
-    // Itera sobre los checkboxes y establece la propiedad checked según los IDs
-    itemAlternatives.value.alternativas.forEach((alternativa) => {
-      alternativa.checked = selectedIntereses.value[1].includes(alternativa.id);
-    });
-  }
-};
-console.log(interestedData.value[0]);
-
-watchEffect(() => {
-  markSelectedOptions();
-});
-
 onMounted(() => {
   fetchData();
-  markSelectedOptions();
 });
 </script>
 
