@@ -99,6 +99,7 @@ watchEffect(() => {
       value: interestedDataValue,
       total: interestedDataValue.length,
     };
+
     selectedIntereses.value = interestedDataValue.find(
       (x) => x.etiqueta === 'hobby'
     ).answer;

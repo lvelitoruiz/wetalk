@@ -32,8 +32,8 @@ const fetchData = async () => {
   await menuStore.fetchManageableData(apiUrl, 'beyond');
   await menuStore.fetchRecommendedData(
     apiUrl,
-    externalCategory,
-    externalCareer
+    externalCategory.replace(/\s/g, ''),
+    externalCareer.replace(/\s/g, '')
   );
 };
 
