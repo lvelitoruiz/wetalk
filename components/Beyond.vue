@@ -39,7 +39,6 @@ const fetchData = async () => {
 
 watchEffect(async () => {
   dynamicData.value = menuStore.getManageableItems;
-  console.log('dynamic: ', dynamicData);
   filteredNewsData.value = newsData.value;
   const news = menuStore.getNewsRecomended;
   const interested = menuStore.getInterestedItems;
@@ -89,7 +88,6 @@ watchEffect(async () => {
     };
   }
 });
-console.log(interestedData.value.total);
 
 onMounted(() => {
   fetchData();
@@ -110,7 +108,7 @@ onMounted(() => {
         }}</span>
       </h3>
       <router-link
-        v-if="interestedData.value.total > 0"
+        v-if="interestedData.value.total !== 0"
         class="flex items-center gap-2"
         to="/beyond"
       >
@@ -121,14 +119,11 @@ onMounted(() => {
       </router-link>
     </div>
     <p class="text-[14px] font-publicSans">{{ dynamicData[1].texto }}</p>
-    <BeyondCard v-if="interestedData.value.total > 0" :data-post="newsData" />
-    <div
-      v-else-if="interestedData.value.total === 0"
-      class="mt-[35px] w-[220px] m-auto text-center"
-    >
+    <BeyondCard v-if="interestedData.value.total !== 0" :data-post="newsData" />
+    <div v-else class="mt-[35px] w-[220px] m-auto text-center">
       <img :src="dynamicData[3].imagen" class="m-auto" />
       <p class="text-[14px] font-publicSans mt-[10px]">
-        Practicar inglés no siempre tiene que sentirse como una tarea
+        {{ dynamicData[3].texto }}
       </p>
       <router-link to="/interested">
         <Button :label="dynamicData[4].texto" primary class="mt-[35px]" />

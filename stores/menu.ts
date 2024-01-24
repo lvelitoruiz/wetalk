@@ -490,7 +490,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${career}&user_career_name=${course}&solo_recomendados=${recomendados}`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&solo_recomendados=${recomendados}`
           );
         this.newsDataRecomended = response.data?.data ?? [];
       } catch (error) {
@@ -536,6 +536,7 @@ export const useMenuStore = defineStore({
           .get<any>(
             `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=${curso}&student_code=${(await this.fetchData())?.localCodUser}`
           );
+        console.log(`${(await this.fetchData())?.localCodUser}`);
 
         if (response.status >= 200 && response.status < 300) {
           if (response.data) {
@@ -577,7 +578,6 @@ export const useMenuStore = defineStore({
             return null;
           }
         }
-        console.log(`${(await this.fetchData())?.localCodUser}`);
       } catch (error) {
         // if (error.response.status === 404) {
         //   return null;
