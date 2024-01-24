@@ -39,7 +39,7 @@ const fetchMetaInfo = async () => {
     .fetchAccesoDirectoData(apiUrl)
     .then((response) => (keyAcceso.value = true));
 
-  const profiler = await menuStore.fetchProfileData(apiUrl).then((response) => {
+const profiler = await menuStore.fetchProfileData(apiUrl).then((response) => {
     keyProfile.value = true;
     const profileData = menuStore.getProfileItems?.data[0];
     if (menuStore.getProfileItems?.data?.length > 0 && dataLayer) {
