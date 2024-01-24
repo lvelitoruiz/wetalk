@@ -436,7 +436,14 @@ export const useMenuStore = defineStore({
         console.error('Error fetching courses data:', error);
       }
     },
-    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career: string = "", course: string = "" ) {
+    async fetchNewsData(
+      apiUrl: string,
+      page: string = '1',
+      searchTerm: string = '',
+      limit: string = '15',
+      career: string = '',
+      course: string = ''
+    ) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -460,7 +467,15 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchNewsRecomended(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career: string = "", course: string = "", recomendados: boolean = false ) {
+    async fetchNewsRecomended(
+      apiUrl: string,
+      page: string = '1',
+      searchTerm: string = '',
+      limit: string = '15',
+      career: string = '',
+      course: string = '',
+      recomendados: boolean = false
+    ) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -505,6 +520,7 @@ export const useMenuStore = defineStore({
     },
 
     async fetchInterestData(apiUrl: string, landingType: string) {
+      const curso = localStorage.getItem('curso');
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -518,7 +534,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=N10000004`
+            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=${curso}&student_code=${(await this.fetchData())?.localCodUser}`
           );
 
         if (response.status >= 200 && response.status < 300) {
@@ -617,10 +633,11 @@ export const useMenuStore = defineStore({
     async fetchRecommendedData(
       apiUrl: string,
       categories: string,
-      course: string,
-      hobbies: string,
-      career: string
+      hobbies: string
     ) {
+      const curso = localStorage.getItem('curso');
+      const carrera = localStorage.getItem('carrera');
+
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -634,11 +651,9 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=${(await this.fetchData())?.localIntitution}&user_category_ids=${categories}&user_course_name=${course}&user_hooby_ids=${hobbies}&user_career_name=${career}&solo_recomendados=true`
+            `/Informativos/v1/Informativo?institucion=${(await this.fetchData())?.localIntitution}&user_category_ids=${categories}&user_course_name=${curso}&user_hooby_ids=${hobbies}&user_career_name=${carrera}&solo_recomendados=true`
           );
-        // `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=${(await this.fetchData())?.localCodUser}`
 
-        console.log((await this.fetchData())?.localHeader);
         if (response.status >= 200 && response.status < 300) {
           if (response.data) {
             this.recommendedData = response.data.data;

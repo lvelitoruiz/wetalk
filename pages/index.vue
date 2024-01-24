@@ -119,9 +119,10 @@ watchEffect(async () => {
     localStorage.setItem('curso', profile.data[0].salon);
     localStorage.setItem('seccion', profile.data[0].seccion);
     localStorage.setItem('foto', profile.data[0].fotoUrl);
+    localStorage.setItem('carrera', profile.data[0].desProducto);
   }
 
-  // console.log('with value: ',allDataLoaded.value);
+  console.log(profile);
 
   if (allDataLoaded.value) {
     handleOpen();
@@ -172,8 +173,8 @@ watchEffect(async () => {
         <div
           v-if="
             metaData === null ||
-              metaData.length <= 0 ||
-              metaData[0]?.meta === ''
+            metaData.length <= 0 ||
+            metaData[0]?.meta === ''
           "
         >
           <p class="text-[#344D47] text-[28px] uppercase font-bold font-solano">

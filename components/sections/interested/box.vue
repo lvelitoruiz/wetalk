@@ -52,27 +52,31 @@ const saveInterested = async () => {
     const selectedTopicsArray = selectedTopics.value.map((item) => item.id);
 
     const registerData = {
-      // student_code: dataU.codUser,
-      student_code: 'N10000005',
-      course_code: 'CONEJOS1',
+      student_code: dataU.codUser,
+      course_code: localStorage.getItem('curso'),
       component_name: 'beyond',
       answers: [
         {
           contenido_dinamico_id: idFirstQuestions,
           answer: selectedTopicsArray.join(','),
+          tag: idFirstQuestions?.etiqueta,
         },
         {
           contenido_dinamico_id: idSecondQuestions,
           answer: selectedInteresesArray.join(','),
+          tag: idSecondQuestions?.etiqueta,
         },
       ],
     };
 
-    console.log(registerData);
-    // const registerCount = await menuStore.registerInterestedData(
-    //   apiUrl,
-    //   registerData
-    // );
+    const registerCount = await menuStore.registerInterestedData(
+      apiUrl,
+      registerData
+    );
+
+    if (registerCount === 0) {
+      router.push('/recommended');
+    }
   } catch (error) {
     console.error('Error al intentar registrar:', error);
   }
@@ -87,6 +91,7 @@ watchEffect(() => {
       return {
         contenido_dinamico_id: item.contenido_dinamico_id,
         answer: item.answer.split(',').map(Number),
+        etiqueta: item.tag,
       };
     });
 
@@ -94,7 +99,9 @@ watchEffect(() => {
       value: interestedDataValue,
       total: interestedDataValue.length,
     };
-    selectedIntereses.value = interestedDataValue[1].answer;
+    selectedIntereses.value = interestedDataValue.find(
+      (x) => x.etiqueta === 'hobby'
+    ).answer;
   }
 
   if (manageable) {
@@ -171,9 +178,11 @@ onMounted(() => {
               </p>
               <MultiSelect
                 :data="itemFirstQuestions?.alternativas"
-                :selected="interestedData.value[0]"
-                @on-selection-change="handleSelectionChange"
-              />
+                :selected="
+                  interestedData.value.find((x) => x.etiqueta == 'category')
+                "
+              >
+              </MultiSelect>
             </div>
             <div class="relative">
               <p

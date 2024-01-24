@@ -13,20 +13,27 @@ const menuStore = useMenuStore();
 const userStore = useUserStore();
 const dataU = userStore.getUserData;
 const recommendedData = ref();
+const profileData = ref();
+const interestedData = ref({
+  value: [],
+});
+const selectedIntereses = ref([]);
 const itemTitle = ref(null);
 const manageableData = ref(null);
 const idTitle = 5;
 const page = 'page2';
 const nameToFind = 'beyond';
+let externalCategory = null;
+let externalCareer = null;
 
 const fetchData = async () => {
+  await menuStore.fetchInterestData(apiUrl, 'beyond');
+  await menuStore.fetchProfileData(apiUrl);
   await menuStore.fetchManageableData(apiUrl, 'beyond');
   await menuStore.fetchRecommendedData(
     apiUrl,
-    '1',
-    'High beginner',
-    '5,6',
-    'Psicología'
+    externalCategory,
+    externalCareer
   );
 };
 
@@ -40,8 +47,26 @@ const getFirstName = (fullName) => {
 };
 
 watchEffect(() => {
+  const interested = menuStore.getInterestedItems;
   const manageable = menuStore.getManageableItems;
   const recommended = menuStore.getRecommendedItems;
+  const profile = menuStore.getProfileItems;
+
+  if (interested) {
+    const interestedDataValue = interested.map((item) => {
+      return {
+        contenido_dinamico_id: item.contenido_dinamico_id,
+        answer: item.answer.split(',').join(', '),
+      };
+    });
+
+    interestedData.value = {
+      value: interestedDataValue,
+    };
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+    externalCategory = selectedIntereses.value[0];
+    externalCareer = selectedIntereses.value[1];
+  }
 
   if (manageable) {
     manageableData.value = manageable;
