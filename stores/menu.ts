@@ -506,7 +506,7 @@ export const useMenuStore = defineStore({
           if (response.data) {
             this.interestedData = response.data.data;
           } else {
-            return null;
+            this.interestedData = null;
           }
         }
         console.log(`${(await this.fetchData())?.localCodUser}`);
