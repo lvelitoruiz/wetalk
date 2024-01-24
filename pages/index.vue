@@ -122,8 +122,6 @@ watchEffect(async () => {
     localStorage.setItem('carrera', profile.data[0].desProducto);
   }
 
-  console.log(profile);
-
   if (allDataLoaded.value) {
     handleOpen();
   }

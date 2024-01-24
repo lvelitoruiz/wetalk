@@ -42,10 +42,10 @@ const fetchData = async () => {
   const termAlter = '';
   if (term.value.length >= 3) {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "15", course, career, false)
+      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, '15', course, career, false);
   } else {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "15", course, career, false)
+      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, '15', course, career, false);
   }
 };
 
@@ -127,13 +127,20 @@ onMounted(() => {
         </div>
         <div class="flex justify-center my-[20px]">
           <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
-            <input type="text" placeholder="Buscar" v-model="term"
-              class="w-[95%] focus:outline-none placeholder:text-sm" />
+            <input
+              type="text" placeholder="Buscar"
+              v-model="term"
+              class="w-[95%] focus:outline-none placeholder:text-sm"
+            />
             <i class="icon-search" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="tabsNewsData" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
+          <TabContent
+            :tabs="tabsNewsData" @tab-change="handleTabChange"
+            :option-all="true"
+            :color-active="'black'"
+          >
           </TabContent>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
@@ -141,8 +148,11 @@ onMounted(() => {
         </div>
       </BoxContainer>
       <div class="mt-5 flex justify-center items-center">
-        <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
-          :current-page="actualPage" />
+        <Pagination
+          :total-items="totalCount" :items-per-page="pageSize"
+          :on-click-handler="onClickHandler"
+          :current-page="actualPage"
+        />
       </div>
     </div>
   </div>
