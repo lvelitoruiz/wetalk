@@ -100,7 +100,7 @@ watchEffect(() => {
       value: interestedDataValue,
       total: interestedDataValue.length,
     };
-    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+    selectedIntereses.value = interestedDataValue[1].answer;
   }
 
   if (manageable) {
