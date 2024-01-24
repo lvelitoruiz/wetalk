@@ -21,7 +21,7 @@ const props = defineProps({});
 
 const fetchData = async () => {
   await menuStore.fetchNewsData(apiUrl);
-  await menuStore.fetchInterestsData(apiUrl, 'beyond');
+  await menuStore.fetchInterestData(apiUrl, 'beyond');
 };
 
 watchEffect(async () => {
@@ -70,7 +70,6 @@ watchEffect(async () => {
 
     interestedData.value = {
       value: interestedDataValue,
-      // Obtener la cantidad total de resultados
       total: interestedDataValue.length,
     };
   }

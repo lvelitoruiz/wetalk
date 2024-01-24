@@ -2,26 +2,146 @@
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <script setup>
+import { useUserStore } from '../../../stores/auth';
 import { useMenuStore } from '../stores/menu';
 import { apiUrl } from '~/consts';
-import { ref, watchEffect, onMounted } from 'vue';
+import { ref, watchEffect, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const newsData = ref(null);
-const fetchData = async () => {};
+const menuStore = useMenuStore();
+const userStore = useUserStore();
+const dataU = userStore.getUserData;
+const interestedData = ref({
+  value: [],
+});
+const itemTitle = ref(null);
+const itemFirstQuestions = ref(null);
+const itemSecondQuestions = ref(null);
+const itemAlternatives = ref({
+  value: [],
+});
+const itemTopicAlternatives = ref({
+  value: [],
+});
+
+const manageableData = ref(null);
+const idTitle = 5;
+const idFirstQuestions = 6;
+const idSecondQuestions = 7;
+const nameToFind = 'beyond';
+
+const fetchData = async () => {
+  await menuStore.fetchManageableData(apiUrl, 'beyond');
+  await menuStore.fetchInterestData(apiUrl, 'beyond');
+};
 
 const goBack = () => {
   router.go(-1);
 };
 
+const getFirstName = (fullName) => {
+  const words = fullName.split(' ');
+  return words.length > 0 ? words[0] : '';
+};
+
 const selectedIntereses = ref([]);
+const selectedTopics = ref([]);
+
+const handleSelectionChange = (selectedItems) => {
+  selectedTopics.value = selectedItems;
+};
+
+const saveInterested = async () => {
+  try {
+    const selectedInteresesArray = Object.values(selectedIntereses.value);
+    const selectedTopicsArray = selectedTopics.value.map((item) => item.id);
+
+    const registerData = {
+      // student_code: dataU.codUser,
+      student_code: 'N10000005',
+      course_code: 'CONEJOS1',
+      component_name: 'beyond',
+      answers: [
+        {
+          contenido_dinamico_id: idFirstQuestions,
+          answer: selectedTopicsArray.join(','),
+        },
+        {
+          contenido_dinamico_id: idSecondQuestions,
+          answer: selectedInteresesArray.join(','),
+        },
+      ],
+    };
+
+    console.log(registerData);
+    // const registerCount = await menuStore.registerInterestedData(
+    //   apiUrl,
+    //   registerData
+    // );
+  } catch (error) {
+    console.error('Error al intentar registrar:', error);
+  }
+};
 
 watchEffect(() => {
-  console.log(selectedIntereses.value);
+  const interested = menuStore.getInterestedItems;
+  const manageable = menuStore.getManageableItems;
+
+  if (interested) {
+    const interestedDataValue = interested.map((item) => {
+      return {
+        contenido_dinamico_id: item.contenido_dinamico_id,
+        answer: item.answer.split(',').map(Number),
+      };
+    });
+
+    interestedData.value = {
+      value: interestedDataValue,
+      total: interestedDataValue.length,
+    };
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+  }
+
+  if (manageable) {
+    manageableData.value = manageable;
+
+    itemTitle.value = manageableData.value.find(
+      (item) => item.id === idTitle && item.nombre === nameToFind
+    );
+    itemFirstQuestions.value = manageableData.value.find(
+      (item) => item.id === idFirstQuestions && item.nombre === nameToFind
+    );
+    itemSecondQuestions.value = manageableData.value.find(
+      (item) => item.id === idSecondQuestions && item.nombre === nameToFind
+    );
+    itemAlternatives.value = manageableData.value.find(
+      (item) => item.id === idSecondQuestions && item.nombre === nameToFind
+    );
+    itemTopicAlternatives.value = manageableData.value.find(
+      (item) => item.id === idFirstQuestions && item.nombre === nameToFind
+    );
+  }
 });
 
-onMounted(() => {});
+const markSelectedOptions = () => {
+  if (selectedIntereses.value.length > 0) {
+    // Itera sobre los checkboxes y establece la propiedad checked según los IDs
+    itemAlternatives.value.alternativas.forEach((alternativa) => {
+      alternativa.checked = selectedIntereses.value[1].includes(alternativa.id);
+    });
+  }
+};
+console.log(interestedData.value[0]);
+
+watchEffect(() => {
+  markSelectedOptions();
+});
+
+onMounted(() => {
+  fetchData();
+  markSelectedOptions();
+});
 </script>
 
 <template>
@@ -41,87 +161,60 @@ onMounted(() => {});
             </div>
           </div>
         </div>
-        <div class="mx-[60px]">
+        <div class="md:mx-[60px] mx-0">
           <h3 class="text-[#404040] text-center">
             <span class="uppercase font-bold font-solano text-2xl">
-              GIANINNA,
+              {{ getFirstName(dataU.name) }},
             </span>
             <span class="uppercase font-bold font-solano text-[1.3rem]">
-              cuéntanos tus intereses
+              {{ itemTitle?.texto }}
             </span>
           </h3>
           <div
             class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]"
           >
             <div class="relative">
-              <p class="mt-[20px] font-bold text-[14px] font-publicSans">
-                ¿Qué temas te interesan?*
+              <p
+                class="mt-[20px] font-bold md:text-[16px] text-[12px] font-publicSans"
+              >
+                {{ itemFirstQuestions?.texto }}
+                <span class="text-[#E50A17]">*</span>
               </p>
-              <MultiSelect />
+              <MultiSelect
+                :data="itemTopicAlternatives?.alternativas"
+                :selected="interestedData.value[0]"
+                @on-selection-change="handleSelectionChange"
+              />
             </div>
             <div class="relative">
               <p
-                class="mt-[20px] mb-[10px] font-bold text-[14px] font-publicSans"
+                class="mt-[20px] mb-[10px] font-bold md:text-[16px] text-[12px] font-publicSans"
               >
-                ¿Cómo te gustaría practicar el inglés?*
+                {{ itemSecondQuestions?.texto }}
+                <span class="text-[#E50A17]">*</span>
               </p>
-              <label class="checkbox mb-[8px]">
+              <label
+                v-for="alternativa in itemAlternatives?.alternativas"
+                :key="alternativa.id"
+                class="checkbox mb-[8px]"
+              >
                 <input
                   class="checkbox-input"
                   type="checkbox"
-                  checked="checked"
-                  value="Leer"
+                  :value="alternativa.id"
                   v-model="selectedIntereses"
                 />
                 <span class="checkbox-checkmark-box">
                   <span class="checkbox-checkmark"></span>
                 </span>
-                <span class="ml-[10px]">Leer</span>
-              </label>
-              <label class="checkbox mb-[8px]">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  value="Escuchar podcasts"
-                  v-model="selectedIntereses"
-                />
-                <span class="checkbox-checkmark-box">
-                  <span class="checkbox-checkmark"></span>
-                </span>
-                <span class="ml-[10px]">Escuchar podcasts</span>
-              </label>
-              <label class="checkbox mb-[8px]">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  value="Ver videos"
-                  v-model="selectedIntereses"
-                />
-                <span class="checkbox-checkmark-box">
-                  <span class="checkbox-checkmark"></span>
-                </span>
-                <span class="ml-[10px]">Ver videos</span>
-              </label>
-              <label class="checkbox mb-[8px]">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  value="Escuchar"
-                  v-model="selectedIntereses"
-                />
-                <span class="checkbox-checkmark-box">
-                  <span class="checkbox-checkmark"></span>
-                </span>
-                <span class="ml-[10px]">Escuchar música</span>
+                <span class="ml-[10px] md:text-[14px] text-[12px]">{{
+                  alternativa.nombre
+                }}</span>
               </label>
               <div class="mx-auto mb-[20px] text-center">
-                <router-link to="/interested">
-                  <Button
-                    label="Cuéntanos tus intereses"
-                    primary
-                    class="mt-[35px]"
-                  />
-                </router-link>
+                <div @click="saveInterested">
+                  <Button label="Enviar" primary class="mt-[35px] !w-[200px]" />
+                </div>
               </div>
             </div>
           </div>

@@ -29,6 +29,7 @@ export const useMenuStore = defineStore({
     newsData: [] as any,
     newsDataId: [] as any,
     interestedData: [] as any,
+    manageableData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -49,6 +50,7 @@ export const useMenuStore = defineStore({
     getListStudents: (state) => state.companionsData,
     getProfesorItems: (state) => state.profesorData,
     getInterestedItems: (state) => state.interestedData,
+    getManageableItems: (state) => state.manageableData,
   },
   actions: {
     async fetchData() {
@@ -471,7 +473,7 @@ export const useMenuStore = defineStore({
       }
     },
 
-    async fetchInterestsData(apiUrl: string, landingType: string) {
+    async fetchInterestData(apiUrl: string, landingType: string) {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -485,7 +487,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=N20123123`
+            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=N10000004`
           );
         // `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=${(await this.fetchData())?.localCodUser}`
 
@@ -500,6 +502,78 @@ export const useMenuStore = defineStore({
       } catch (error) {
         if (error.response.status === 404) {
           return null;
+        }
+      }
+    },
+
+    async fetchManageableData(apiUrl: string, landingType: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Masservicios/v1/ContenidoDinamico?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}`
+          );
+
+        if (response.status >= 200 && response.status < 300) {
+          if (response.data) {
+            this.manageableData = response.data.data;
+          } else {
+            return null;
+          }
+        }
+        console.log(`${(await this.fetchData())?.localCodUser}`);
+      } catch (error) {
+        if (error.response.status === 404) {
+          return null;
+        }
+      }
+    },
+
+    async registerInterestedData(
+      apiUrl: string,
+      answers: RegisterInterestedData
+    ) {
+      try {
+        const axiosConfig = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConfig)
+          .post(
+            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}`,
+            answers
+          );
+
+        if (response.status >= 200 && response.status < 300) {
+          return response.data?.registerCount ?? 0;
+        } else {
+          console.error(
+            'Error en la respuesta de la solicitud:',
+            response.status,
+            response.data
+          );
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error('Error al procesar la solicitud:', error.message);
+        } else {
+          console.error('Error de tipo desconocido:', error);
         }
       }
     },
@@ -556,4 +630,16 @@ interface NotificatioDataItem {
 interface RegisterNotificationData {
   codAlumno: string;
   notificaciones: NotificatioDataItem[];
+}
+
+interface AnswersDataItem {
+  contenido_dinamico_id: number;
+  answer: string;
+}
+
+interface RegisterInterestedData {
+  student_code: string;
+  course_code: string;
+  component_name: string;
+  answers: AnswersDataItem[];
 }
