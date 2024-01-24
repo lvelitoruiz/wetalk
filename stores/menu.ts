@@ -27,6 +27,7 @@ export const useMenuStore = defineStore({
     faltasData: [] as any,
     companionsData: [] as any,
     newsData: [] as any,
+    newsDataMeta: [] as any,
     newsDataId: [] as any,
     interestedData: [] as any,
     manageableData: [] as any,
@@ -44,6 +45,7 @@ export const useMenuStore = defineStore({
     getProfileItems: (state) => state.profileData,
     getCourses: (state) => state.coursesData,
     getNews: (state) => state.newsData,
+    getNewsMeta: (state) => state.newsDataMeta,
     getNewsId: (state) => state.newsDataId,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
@@ -430,8 +432,7 @@ export const useMenuStore = defineStore({
         console.error('Error fetching courses data:', error);
       }
     },
-
-    async fetchNewsData(apiUrl: string) {
+    async fetchNewsData(apiUrl: string, page: string = "1", searchTerm: string = "", limit: string = "15", career = "", course = "") {
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -445,8 +446,11 @@ export const useMenuStore = defineStore({
 
         const response = await axios
           .create(axiosConf)
-          .get<any>('/Informativos/v1/Informativo?institucion=upn');
+          .get<any>(
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${career}&user_career_name=${course}`
+          );
         this.newsData = response.data?.data ?? [];
+        this.newsDataMeta = response.data ?? [];
       } catch (error) {
         console.error('Error fetching News data:', error);
       }
@@ -489,7 +493,6 @@ export const useMenuStore = defineStore({
           .get<any>(
             `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=N10000004`
           );
-        // `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=${(await this.fetchData())?.localCodUser}`
 
         if (response.status >= 200 && response.status < 300) {
           if (response.data) {
@@ -500,9 +503,10 @@ export const useMenuStore = defineStore({
         }
         console.log(`${(await this.fetchData())?.localCodUser}`);
       } catch (error) {
-        if (error.response.status === 404) {
-          return null;
-        }
+        // if (error.response.status === 404) {
+        //   return null;
+        // }
+        console.log(error);
       }
     },
 
@@ -532,9 +536,10 @@ export const useMenuStore = defineStore({
         }
         console.log(`${(await this.fetchData())?.localCodUser}`);
       } catch (error) {
-        if (error.response.status === 404) {
-          return null;
-        }
+        // if (error.response.status === 404) {
+        //   return null;
+        // }
+        console.log(error);
       }
     },
 
