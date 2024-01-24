@@ -32,7 +32,7 @@ const handleTabChange = (selectedTab) => {
     filteredNewsData.value = newsData.value;
   } else {
     filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
+      (item) => item.tab === selectedTab,
     );
   }
 };
@@ -47,7 +47,7 @@ const fetchData = async () => {
       term.value,
       '15',
       course,
-      career
+      career,
     );
   } else {
     await menuStore.fetchNewsData(
@@ -56,7 +56,7 @@ const fetchData = async () => {
       termAlter,
       '15',
       course,
-      career
+      career,
     );
   }
 };
@@ -95,13 +95,13 @@ watchEffect(async () => {
     });
 
     const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
+      modifiedNews.map((item) => item.categoria),
     );
     const uniqueNews = Array.from(uniqueCategoriesSet)
       .map((category) => {
         const tab = tabMapping[category];
         const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
+          (item) => item.categoria === category && item.tab === tab,
         );
         return correspondingItem;
       })
