@@ -18,15 +18,9 @@ const interestedData = ref({
 const itemTitle = ref(null);
 const itemFirstQuestions = ref(null);
 const itemSecondQuestions = ref(null);
-const itemAlternatives = ref({
-  value: [],
-});
-const itemTopicAlternatives = ref({
-  value: [],
-});
-
 const manageableData = ref(null);
 const idTitle = 5;
+const page = 'page1';
 const idFirstQuestions = 6;
 const idSecondQuestions = 7;
 const nameToFind = 'beyond';
@@ -107,19 +101,27 @@ watchEffect(() => {
     manageableData.value = manageable;
 
     itemTitle.value = manageableData.value.find(
-      (item) => item.id === idTitle && item.nombre === nameToFind
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'title' &&
+        item.es_vista_interna === true
     );
     itemFirstQuestions.value = manageableData.value.find(
-      (item) => item.id === idFirstQuestions && item.nombre === nameToFind
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'question_alternatives' &&
+        item.es_vista_interna === true &&
+        item.etiqueta === 'category'
     );
     itemSecondQuestions.value = manageableData.value.find(
-      (item) => item.id === idSecondQuestions && item.nombre === nameToFind
-    );
-    itemAlternatives.value = manageableData.value.find(
-      (item) => item.id === idSecondQuestions && item.nombre === nameToFind
-    );
-    itemTopicAlternatives.value = manageableData.value.find(
-      (item) => item.id === idFirstQuestions && item.nombre === nameToFind
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'question_alternatives' &&
+        item.es_vista_interna === true &&
+        item.etiqueta === 'hobby'
     );
   }
 });
@@ -148,7 +150,9 @@ onMounted(() => {
         </div>
         <div class="md:mx-[60px] mx-0">
           <h3 class="text-[#404040] text-center">
-            <span class="uppercase font-bold font-solano text-2xl">
+            <span
+              class="uppercase font-bold font-solano text-2xl text-[#000000]"
+            >
               {{ getFirstName(dataU.name) }},
             </span>
             <span class="uppercase font-bold font-solano text-[1.3rem]">
@@ -166,7 +170,7 @@ onMounted(() => {
                 <span class="text-[#E50A17]">*</span>
               </p>
               <MultiSelect
-                :data="itemTopicAlternatives?.alternativas"
+                :data="itemFirstQuestions?.alternativas"
                 :selected="interestedData.value[0]"
                 @on-selection-change="handleSelectionChange"
               />
@@ -179,7 +183,7 @@ onMounted(() => {
                 <span class="text-[#E50A17]">*</span>
               </p>
               <label
-                v-for="alternativa in itemAlternatives?.alternativas"
+                v-for="alternativa in itemSecondQuestions?.alternativas"
                 :key="alternativa.id"
                 class="checkbox mb-[8px]"
               >

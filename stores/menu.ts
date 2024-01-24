@@ -31,6 +31,7 @@ export const useMenuStore = defineStore({
     newsDataId: [] as any,
     interestedData: [] as any,
     manageableData: [] as any,
+    recommendedData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -53,6 +54,7 @@ export const useMenuStore = defineStore({
     getProfesorItems: (state) => state.profesorData,
     getInterestedItems: (state) => state.interestedData,
     getManageableItems: (state) => state.manageableData,
+    getRecommendedItems: (state) => state.recommendedData,
   },
   actions: {
     async fetchData() {
@@ -586,6 +588,48 @@ export const useMenuStore = defineStore({
         } else {
           console.error('Error de tipo desconocido:', error);
         }
+      }
+    },
+
+    async clearInterestData() {
+      this.interestedData = [];
+    },
+
+    async fetchRecommendedData(
+      apiUrl: string,
+      categories: string,
+      course: string,
+      hobbies: string,
+      career: string
+    ) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Informativos/v1/Informativo?institucion=${(await this.fetchData())?.localIntitution}&user_category_ids=${categories}&user_course_name=${course}&user_hooby_ids=${hobbies}&user_career_name=${career}&solo_recomendados=true`
+          );
+        // `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=CONEJOS1&student_code=${(await this.fetchData())?.localCodUser}`
+
+        console.log((await this.fetchData())?.localHeader);
+        if (response.status >= 200 && response.status < 300) {
+          if (response.data) {
+            this.recommendedData = response.data.data;
+          } else {
+            return null;
+          }
+        }
+        console.log(`${(await this.fetchData())?.localCodUser}`);
+      } catch (error) {
+        console.error(error);
       }
     },
   },
