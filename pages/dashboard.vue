@@ -15,12 +15,12 @@ const fetchMetaInfo = async () => {
 };
 
 watchEffect(async () => {
-  const data = menuStore.getCalendarItems;
-  if (data && data?.length > 0) {
-    console.log(data);
-  } else {
-    await fetchMetaInfo();
-  }
+  // const data = menuStore.getCalendarItems;
+  // if (data && data?.length > 0) {
+  //   console.log(data);
+  // } else {
+  //   await fetchMetaInfo();
+  // }
 });
 </script>
 <template>
