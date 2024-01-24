@@ -32,6 +32,7 @@ const idSecondQuestions = 7;
 const nameToFind = 'beyond';
 
 const fetchData = async () => {
+  await menuStore.clearInterestData();
   await menuStore.fetchManageableData(apiUrl, 'beyond');
   await menuStore.fetchInterestData(apiUrl, 'beyond');
 };
@@ -96,11 +97,12 @@ watchEffect(() => {
       };
     });
 
+    console.log(interestedData.value);
     interestedData.value = {
       value: interestedDataValue,
       total: interestedDataValue.length,
     };
-    selectedIntereses.value = interestedDataValue[1].answer;
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
   }
 
   if (manageable) {
