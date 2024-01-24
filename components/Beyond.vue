@@ -10,6 +10,7 @@ import { image_person_laptop, bg_triangles_gray_card } from '../assets/index';
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const dynamicData = ref(null);
 const interestedData = ref({
   value: [],
 });
@@ -19,12 +20,18 @@ let nextTabIndex = 0;
 
 const props = defineProps({});
 
+const course = menuStore.getProfileItems.data[0].desProducto;
+const career = menuStore.getProfileItems.data[0].descCurso;
+
 const fetchData = async () => {
-  await menuStore.fetchNewsData(apiUrl);
+  await menuStore.fetchNewsData(apiUrl, "1", "", "15", course, career, true);
   await menuStore.fetchInterestData(apiUrl, 'beyond');
+  await menuStore.fetchManageableData(apiUrl, 'beyond');
 };
 
 watchEffect(async () => {
+  dynamicData.value = menuStore.getManageableItems;
+  console.log('dynamic: ', dynamicData);
   filteredNewsData.value = newsData.value;
   const news = menuStore.getNews;
   const interested = menuStore.getInterestedItems;
@@ -83,34 +90,26 @@ onMounted(() => {
 <template>
   <BoxContainer color="black">
     <div class="flex items-center justify-between">
-      <img
-        :src="bg_triangles_gray_card"
-        alt="Background Image"
-        class="absolute top-[0px] left-[0px] z-[-1]"
-      />
+      <img :src="bg_triangles_gray_card" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
       <h3 class="text-[#404040] text-2xl">
-        <span class="uppercase font-bold font-solano">BEYOND WeTALK</span>
+        <span class="uppercase font-bold font-solano">{{ dynamicData[0].texto }}</span>
       </h3>
-      <router-link
-        v-if="interestedData.value.total > 0"
-        class="flex items-center gap-2"
-        to="/beyond"
-      >
+      <router-link v-if="interestedData.value.total > 0" class="flex items-center gap-2" to="/beyond">
         <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
-          Ver más
+          {{ dynamicData[2].texto }}
         </span>
         <i class="icon-arrow-right text-[#E50A17]" />
       </router-link>
     </div>
-    <p class="text-[14px] font-publicSans">Recomendaciones para ti</p>
+    <p class="text-[14px] font-publicSans">{{ dynamicData[1].texto }}</p>
     <BeyondCard v-if="interestedData.value.total > 0" :data-post="newsData" />
     <div v-else class="mt-[35px] w-[220px] m-auto text-center">
-      <img :src="image_person_laptop" class="m-auto" />
+      <img :src="dynamicData[3].imagen" class="m-auto" />
       <p class="text-[14px] font-publicSans mt-[10px]">
         Practicar inglés no siempre tiene que sentirse como una tarea
       </p>
       <router-link to="/interested">
-        <Button label="Cuéntanos tus intereses" primary class="mt-[35px]" />
+        <Button :label="dynamicData[4].texto" primary class="mt-[35px]" />
       </router-link>
     </div>
   </BoxContainer>

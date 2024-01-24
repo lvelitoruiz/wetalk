@@ -27,7 +27,7 @@ const handleTabChange = (selectedTab) => {
 };
 
 const fetchData = async () => {
-  await menuStore.fetchNewsData(apiUrl, "1", "", "15", course, career);
+  // await menuStore.fetchNewsData(apiUrl, "1", "", "15", course, career, true);
 };
 
 watchEffect(async () => {

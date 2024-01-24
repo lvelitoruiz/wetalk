@@ -42,10 +42,10 @@ const fetchData = async () => {
   let termAlter = "";
   if (term.value.length >= 3) {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "15", course, career)
+      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "15", course, career, false)
   } else {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "15", course, career)
+      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "15", course, career, false)
   }
 
 }
@@ -139,10 +139,10 @@ onMounted(() => {
           <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
-      <div class="mt-5 flex justify-center items-center">
+      <!-- <div class="mt-5 flex justify-center items-center">
         <Pagination :totalItems="totalCount" :itemsPerPage="pageSize" :onClickHandler="onClickHandler"
           :current-page="actualPage" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
