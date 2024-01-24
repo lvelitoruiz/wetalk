@@ -4,6 +4,8 @@ import { defineProps } from 'vue';
 
 const props = defineProps({
   label: String,
+  iconRight: Boolean,
+  iconLeft: Boolean,
   primary: Boolean,
   secundary: Boolean,
   downloadIcon: {
@@ -64,6 +66,8 @@ const getBorderClass = () => {
             fill="white"
           />
         </svg>
+        <i v-if="iconRight" class="icon-arrow-right"></i>
+        <i v-if="iconLeft" class="icon-arrow-right rotate-180"></i>
         {{ props.label }}
       </div>
     </span>
