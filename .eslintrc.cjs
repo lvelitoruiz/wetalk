@@ -38,6 +38,11 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 0,
     '@typescript-eslint/explicit-function-return-type': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'vue/attribute-hyphenation': [
+      'error',
+      'always',
+      { ignore: ['onSelectionChange'] },
+    ],
     'no-unused-vars': 'off',
     'vue/html-self-closing': 'off',
     'vue/multi-word-component-names': 'off',

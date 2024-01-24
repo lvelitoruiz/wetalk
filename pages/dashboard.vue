@@ -15,12 +15,12 @@ const fetchMetaInfo = async () => {
 };
 
 watchEffect(async () => {
-  const data = menuStore.getCalendarItems;
-  if (data && data?.length > 0) {
-    console.log(data);
-  } else {
-    await fetchMetaInfo();
-  }
+  // const data = menuStore.getCalendarItems;
+  // if (data && data?.length > 0) {
+  //   console.log(data);
+  // } else {
+  //   await fetchMetaInfo();
+  // }
 });
 </script>
 <template>
@@ -33,13 +33,6 @@ watchEffect(async () => {
         <MainContainer>
           <DashboardContainer />
         </MainContainer>
-        <!-- <client-only>
-          <Vue3Lottie
-            :animationData="animation"
-            :height="800"
-            :width="800"
-          />
-        </client-only> -->
       </div>
     </NuxtLayout>
   </div>

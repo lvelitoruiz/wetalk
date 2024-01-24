@@ -1,7 +1,10 @@
+<!-- eslint-disable @typescript-eslint/no-floating-promises -->
+<!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
 <script setup>
-import { bg_triangles_gray } from "@/assets/index.ts";
-import { useMenuStore } from "../stores/menu";
-import { apiUrl } from "~/consts";
+import { ref, onMounted, defineProps, watchEffect } from 'vue';
+import { bg_triangles_gray } from '@/assets/index.ts';
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
 
 const newsData = ref(null);
 const tabsNewsData = ref(null);
@@ -17,22 +20,22 @@ const career = menuStore.getProfileItems.data[0].descCurso;
 const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
-  if (selectedTab === "tab-all") {
+  if (selectedTab === 'tab-all') {
     filteredNewsData.value = newsData.value;
   } else {
     filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
+      (item) => item.tab === selectedTab,
     );
   }
 };
 
 const fetchData = async () => {
-  await menuStore.fetchNewsData(apiUrl, "1", "", "15", course, career);
+  await menuStore.fetchNewsRecomended(apiUrl, '1', '', '15', course, career, true);
 };
 
 watchEffect(async () => {
   filteredNewsData.value = newsData.value;
-  const news = menuStore.getNews;
+  const news = menuStore.getNewsRecomended;
   if (news) {
     const modifiedNews = news.map((item) => {
       const tab =
@@ -43,18 +46,18 @@ watchEffect(async () => {
       return {
         ...item,
         texto: item.categoria,
-        tab: tab,
+        tab,
       };
     });
 
     const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
+      modifiedNews.map((item) => item.categoria),
     );
     const uniqueNews = Array.from(uniqueCategoriesSet)
       .map((category) => {
         const tab = tabMapping[category];
         const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
+          (item) => item.categoria === category && item.tab === tab,
         );
         return correspondingItem;
       })
@@ -75,11 +78,12 @@ onMounted(() => {
       <h3 class="text-[#404040] text-2xl">
         <span class="uppercase font-bold font-solano">recomendadas</span>
       </h3>
-
     </div>
-    <BeyondCard :dataPost="newsData" />
+    <BeyondCard :data-post="newsData" />
     <router-link class="flex items-center justify-center mt-4 gap-2" to="#">
-      <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
+      <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
+        Editar intereses
+      </span>
       <i class="icon-arrow-right text-[#E50A17]"></i>
     </router-link>
   </BoxContainer>

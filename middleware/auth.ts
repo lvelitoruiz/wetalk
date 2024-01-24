@@ -24,6 +24,6 @@ export default defineNuxtRouteMiddleware(async (to, form) => {
   } else if (to.name === 'login' && userStore.getAccesUser) {
     return await navigateTo('/', { replace: true });
   } else {
-    console.log('');
+    return null;
   }
 });

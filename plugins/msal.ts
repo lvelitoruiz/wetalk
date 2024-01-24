@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/space-before-function-paren */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable no-undef */
@@ -46,7 +47,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
   });
 
   // Set up timer for refreshing access token upon expiration
-  function setupTokenExpirationTimer () {
+  function setupTokenExpirationTimer() {
     const accounts = msalInstance.getAllAccounts();
     if (accounts.length > 0) {
       const account = accounts[0];
@@ -65,7 +66,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
   }
 
   // Refresh access token
-  async function refreshAccessToken (account: any) {
+  async function refreshAccessToken(account: any) {
     try {
       const response = await msalInstance.acquireTokenSilent({
         account,
@@ -80,16 +81,14 @@ export default defineNuxtPlugin(async ({ $config }) => {
   }
 
   // Handle the response after login or redirect
-  function handleResponse (resp: any) {
+  function handleResponse(resp: any) {
     if (resp?.account) {
       setupTokenExpirationTimer();
-    } else {
-      console.log('LOGIN');
     }
   }
 
   // Acquire access token silently
-  async function acquireTokenSilent () {
+  async function acquireTokenSilent() {
     const accounts = msalInstance.getAllAccounts();
     if (accounts.length > 0) {
       const account = accounts[0];
@@ -103,9 +102,6 @@ export default defineNuxtPlugin(async ({ $config }) => {
       } catch (err) {
         return null;
       }
-    } else {
-      console.error('No accounts found');
-      return null;
     }
   }
 
@@ -114,7 +110,7 @@ export default defineNuxtPlugin(async ({ $config }) => {
   };
 
   // Sign in with redirect
-  async function signIn () {
+  async function signIn() {
     try {
       await msalInstance.loginRedirect(loginRequest);
     } catch (err) {
@@ -123,17 +119,17 @@ export default defineNuxtPlugin(async ({ $config }) => {
   }
 
   // Get all MSAL accounts
-  function getAccounts () {
+  function getAccounts() {
     return msalInstance.getAllAccounts();
   }
 
   // Check if user is authenticated
-  function isAuthenticated () {
+  function isAuthenticated() {
     return getAccounts().length > 0;
   }
 
   // Sign out user
-  function signOut (accountId: string) {
+  function signOut(accountId: string) {
     const account = accountId
       ? msalInstance.getAccountByHomeId(accountId)
       : null;

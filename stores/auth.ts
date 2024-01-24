@@ -1,7 +1,6 @@
+/* eslint-disable @typescript-eslint/space-before-function-paren */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-undef */
-// import { defineStore } from "pinia";
-
 export const useUserStore = defineStore({
   id: 'auth',
   state: () => ({
@@ -18,7 +17,7 @@ export const useUserStore = defineStore({
     getAccesUser: (state) => state.accesUser,
   },
   actions: {
-    async fetchUserData (accesUser: boolean, token: string, userdata: Object) {
+    async fetchUserData(accesUser: boolean, token: string, userdata: Object) {
       this.accesUser = accesUser;
       this.userToken = token;
       this.userdata = userdata;
