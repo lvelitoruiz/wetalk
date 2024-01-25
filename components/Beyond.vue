@@ -12,7 +12,8 @@ const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
 const dynamicData = ref(null);
 const interestedData = ref({
-  value: [],
+  data: [],
+  total: 0
 });
 const menuStore = useMenuStore();
 const tabMapping = {};
@@ -83,8 +84,8 @@ watchEffect(async () => {
     });
 
     interestedData.value = {
-      value: interestedDataValue,
-      total: interestedDataValue.length,
+      data: interestedDataValue,
+      total: interestedDataValue?.length ?? 0,
     };
   }
 });
@@ -104,29 +105,29 @@ onMounted(() => {
       />
       <h3 class="text-[#404040] text-2xl">
         <span class="uppercase font-bold font-solano">{{
-          dynamicData[0].texto
+          dynamicData[0]?.texto ?? ""
         }}</span>
       </h3>
       <router-link
-        v-if="interestedData.value.total !== 0"
+        v-if="interestedData.total !== 0"
         class="flex items-center gap-2"
         to="/beyond"
       >
         <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
-          {{ dynamicData[2].texto }}
+          {{ dynamicData[2]?.texto ?? "" }}
         </span>
         <i class="icon-arrow-right text-[#E50A17]" />
       </router-link>
     </div>
-    <p class="text-[14px] font-publicSans">{{ dynamicData[1].texto }}</p>
-    <BeyondCard v-if="interestedData.value.total !== 0" :data-post="newsData" />
+    <p class="text-[14px] font-publicSans">{{ dynamicData[1]?.texto ?? "" }}</p>
+    <BeyondCard v-if="interestedData.total !== 0" :data-post="newsData" />
     <div v-else class="mt-[35px] w-[220px] m-auto text-center">
-      <img :src="dynamicData[3].imagen" class="m-auto" />
+      <img :src="dynamicData[3]?.imagen ?? ''" class="m-auto" />
       <p class="text-[14px] font-publicSans mt-[10px]">
-        {{ dynamicData[3].texto }}
+        {{ dynamicData[3]?.texto ?? "" }}
       </p>
       <router-link to="/interested">
-        <Button :label="dynamicData[4].texto" primary class="mt-[35px]" />
+        <Button :label="dynamicData[4]?.texto ?? ''" primary class="mt-[35px]" />
       </router-link>
     </div>
   </BoxContainer>
