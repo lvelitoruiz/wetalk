@@ -72,7 +72,7 @@ onMounted(() => {
         </button>
       </li>
       <li v-for="(tab, i) in tabs" :key="i" class="flex-shrink-0">
-        <button @click="handleActiveTab(`${tab.id}`, tab.value)" :class="[
+        <button @click="handleActiveTab(`tab-${i}`, tab.value)" :class="[
           {
             black: props.colorActive === 'black' && tabActive === `tab-${i}`,
           },
@@ -81,7 +81,7 @@ onMounted(() => {
           },
           { 'bg-[#F2F2F2] text-[#595959]': tabActive !== `tab-${i}` },
         ]" class="py-1 px-3 rounded font-medium font-zizou-bold text-[16px]">
-          {{ tab.nombre }}
+          {{ tab.texto }}
         </button>
       </li>
     </ul>
