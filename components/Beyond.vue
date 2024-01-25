@@ -23,7 +23,10 @@ const page = 'page1';
 const nameToFind = 'beyond';
 const menuStore = useMenuStore();
 const tabMapping = {};
+const selectedIntereses = ref([]);
 let nextTabIndex = 0;
+let externalCategory = null;
+let externalCareer = null;
 
 const props = defineProps({});
 
@@ -38,7 +41,9 @@ const fetchData = async () => {
     '15',
     course,
     career,
-    true
+    true,
+    externalCategory.replace(/\s/g, ''),
+    externalCareer.replace(/\s/g, '')
   );
   await menuStore.fetchInterestData(apiUrl, 'beyond');
   await menuStore.fetchManageableData(apiUrl, 'beyond');
@@ -93,6 +98,10 @@ watchEffect(async () => {
       data: interestedDataValue,
       total: interestedDataValue?.length ?? 0,
     };
+
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+    externalCategory = selectedIntereses.value[0];
+    externalCareer = selectedIntereses.value[1];
   }
 
   if (dynamic) {
