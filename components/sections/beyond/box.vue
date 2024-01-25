@@ -24,8 +24,8 @@ const interestedData = ref({
 const selectedIntereses = ref([]);
 const tabMapping = {};
 let nextTabIndex = 0;
-let externalCategory = null;
-let externalCareer = null;
+let externalCategory = ref("");
+let externalCareer = ref("");
 
 const categorySelected = ref("");
 
@@ -59,8 +59,8 @@ const fetchData = async () => {
       course,
       career,
       categorySelected.value,
-      externalCategory.replace(/\s/g, ''),
-      externalCareer.replace(/\s/g, '')
+      externalCategory.value,
+      externalCareer.value
     );
   } else {
     await menuStore.fetchNewsData(
@@ -71,8 +71,8 @@ const fetchData = async () => {
       course,
       career,
       categorySelected.value,
-      externalCategory.replace(/\s/g, ''),
-      externalCareer.replace(/\s/g, '')
+      externalCategory.value,
+      externalCareer.value
     );
   }
 };
@@ -146,21 +146,21 @@ watchEffect(async () => {
   // tabsNewsData.value = uniqueNews;
   // filteredNewsData.value = newsData.value;
 
-  // if (interested) {
-  //   const interestedDataValue = interested.map((item) => {
-  //     return {
-  //       contenido_dinamico_id: item.contenido_dinamico_id,
-  //       answer: item.answer.split(',').join(', '),
-  //     };
-  //   });
+  if (interested) {
+    const interestedDataValue = interested.map((item) => {
+      return {
+        contenido_dinamico_id: item.contenido_dinamico_id,
+        answer: item.answer.split(',').join(', '),
+      };
+    });
 
-  //   interestedData.value = {
-  //     value: interestedDataValue,
-  //   };
-  //   selectedIntereses.value = interestedDataValue.map((item) => item.answer);
-  //   externalCategory = selectedIntereses.value[0];
-  //   externalCareer = selectedIntereses.value[1];
-  // }
+    interestedData.value = {
+      value: interestedDataValue,
+    };
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+    externalCategory.value = selectedIntereses.value[0];
+    externalCareer.value = selectedIntereses.value[1];
+  }
 });
 
 onMounted(() => {
