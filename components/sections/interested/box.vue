@@ -42,10 +42,6 @@ const getFirstName = (fullName) => {
 const selectedIntereses = ref([]);
 const selectedTopics = ref([]);
 
-const handleSelectionChange = (selectedItems) => {
-  selectedTopics.value = selectedItems;
-};
-
 const saveInterested = async () => {
   try {
     const selectedInteresesArray = Object.values(selectedIntereses.value);
