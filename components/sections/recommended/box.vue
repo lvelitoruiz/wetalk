@@ -122,7 +122,7 @@ onMounted(() => {
             <Card :data="recommendedData" :section="'beyond'" />
           </div>
           <div class="mx-auto mb-[20px] text-center">
-            <router-link to="/interested">
+            <router-link to="/beyond">
               <Button
                 label="Ver otras opciones"
                 primary
