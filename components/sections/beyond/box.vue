@@ -38,13 +38,20 @@ const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
   console.log('this is the event: ', selectedTab);
-  if (selectedTab === 'tab-all') {
-    categorySelected.value = "";
+
+  const numericPart = selectedTab.match(/\d+/);
+
+  if (numericPart) {
+
+    const numericValue = parseInt(numericPart[0], 10);
+
+    categorySelected.value = categories.value[numericValue].id;
     fetchData();
   } else {
-    categorySelected.value = selectedTab;
+    categorySelected.value = "";
     fetchData();
   }
+
 };
 
 const fetchData = async () => {
@@ -96,55 +103,9 @@ watchEffect(async () => {
   const interested = menuStore.getInterestedItems;
   console.log('the value!! ', totalCount.value);
   console.log('the values!! ', categories);
-  // if (news) {
-  //   const modifiedNews = news.map((item) => {
-  //     const tab =
-  //       tabMapping[item.categoria] !== undefined
-  //         ? tabMapping[item.categoria]
-  //         : `tab-${nextTabIndex++}`;
-  //     tabMapping[item.categoria] = tab;
-  //     return {
-  //       ...item,
-  //       texto: item.categoria,
-  //       tab,
-  //     };
-  //   });
-
-
-  // if (news) {
-  //   const modifiedNews = news.map((item) => {
-  //     const tab =
-  //       tabMapping[item.categoria] !== undefined
-  //         ? tabMapping[item.categoria]
-  //         : `tab-${nextTabIndex++}`;
-  //     tabMapping[item.categoria] = tab;
-  //     return {
-  //       ...item,
-  //       texto: item.categoria,
-  //       tab,
-  //     };
-  //   });
-
-  //   const uniqueCategoriesSet = new Set(
-  //     modifiedNews.map((item) => item.categoria)
-  //   );
-  //   const uniqueNews = Array.from(uniqueCategoriesSet)
-  //     .map((category) => {
-  //       const tab = tabMapping[category];
-  //       const correspondingItem = modifiedNews.find(
-  //         (item) => item.categoria === category && item.tab === tab
-  //       );
-  //       return correspondingItem;
-  //     })
-  //     .filter(Boolean);
-
-  //   newsData.value = modifiedNews;
-  //   tabsNewsData.value = uniqueNews;
-  //   filteredNewsData.value = newsData.value;
-  // }
-  // newsData.value = modifiedNews;
-  // tabsNewsData.value = uniqueNews;
-  // filteredNewsData.value = newsData.value;
+  categories.value.map((item) => {
+    item.texto = item.nombre;
+  })
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
@@ -200,8 +161,11 @@ onMounted(() => {
           <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
           </TabContent>
         </div>
-        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
+        <div v-if="newsData.length" class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
           <Card :data="newsData" :section="'beyond'" />
+        </div>
+        <div v-else class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px] pt-20">
+          <ErrorMensaje />
         </div>
       </BoxContainer>
       <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
