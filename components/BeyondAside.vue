@@ -92,7 +92,6 @@ watchEffect(async () => {
     externalCategory.value = selectedIntereses.value[0];
     externalCareer.value = selectedIntereses.value[1];
   }
-  fetchData();
 });
 
 onMounted(() => {
