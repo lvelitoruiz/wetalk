@@ -11,6 +11,7 @@ import { useUserStore } from '../../../stores/auth';
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const categories = ref(null);
 const totalCount = ref(15);
 const pageSize = ref(15);
 const actualPage = ref(1);
@@ -23,8 +24,10 @@ const interestedData = ref({
 const selectedIntereses = ref([]);
 const tabMapping = {};
 let nextTabIndex = 0;
-let externalCategory = null;
-let externalCareer = null;
+let externalCategory = ref("");
+let externalCareer = ref("");
+
+const categorySelected = ref("");
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
 
@@ -34,12 +37,13 @@ const career = menuStore.getProfileItems.data[0].descCurso;
 const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
+  console.log('this is the event: ', selectedTab);
   if (selectedTab === 'tab-all') {
-    filteredNewsData.value = newsData.value;
+    categorySelected.value = "";
+    fetchData();
   } else {
-    filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
-    );
+    categorySelected.value = selectedTab;
+    fetchData();
   }
 };
 
@@ -54,8 +58,9 @@ const fetchData = async () => {
       '15',
       course,
       career,
-      externalCategory.replace(/\s/g, ''),
-      externalCareer.replace(/\s/g, '')
+      categorySelected.value,
+      externalCategory.value,
+      externalCareer.value
     );
   } else {
     await menuStore.fetchNewsData(
@@ -65,8 +70,9 @@ const fetchData = async () => {
       '15',
       course,
       career,
-      externalCategory.replace(/\s/g, ''),
-      externalCareer.replace(/\s/g, '')
+      categorySelected.value,
+      externalCategory.value,
+      externalCareer.value
     );
   }
 };
@@ -83,42 +89,62 @@ const searchTab = async () => {
 };
 
 watchEffect(async () => {
-  const news = menuStore.getNews;
+  newsData.value = menuStore.getNews;
   const meta = menuStore.getNewsMeta;
-  const interested = menuStore.getInterestedItems;
+  categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
+  const interested = menuStore.getInterestedItems;
+  console.log('the value!! ', totalCount.value);
+  console.log('the values!! ', categories);
+  // if (news) {
+  //   const modifiedNews = news.map((item) => {
+  //     const tab =
+  //       tabMapping[item.categoria] !== undefined
+  //         ? tabMapping[item.categoria]
+  //         : `tab-${nextTabIndex++}`;
+  //     tabMapping[item.categoria] = tab;
+  //     return {
+  //       ...item,
+  //       texto: item.categoria,
+  //       tab,
+  //     };
+  //   });
 
-  if (news) {
-    const modifiedNews = news.map((item) => {
-      const tab =
-        tabMapping[item.categoria] !== undefined
-          ? tabMapping[item.categoria]
-          : `tab-${nextTabIndex++}`;
-      tabMapping[item.categoria] = tab;
-      return {
-        ...item,
-        texto: item.categoria,
-        tab,
-      };
-    });
 
-    const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
-    );
-    const uniqueNews = Array.from(uniqueCategoriesSet)
-      .map((category) => {
-        const tab = tabMapping[category];
-        const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
-        );
-        return correspondingItem;
-      })
-      .filter(Boolean);
+  // if (news) {
+  //   const modifiedNews = news.map((item) => {
+  //     const tab =
+  //       tabMapping[item.categoria] !== undefined
+  //         ? tabMapping[item.categoria]
+  //         : `tab-${nextTabIndex++}`;
+  //     tabMapping[item.categoria] = tab;
+  //     return {
+  //       ...item,
+  //       texto: item.categoria,
+  //       tab,
+  //     };
+  //   });
 
-    newsData.value = modifiedNews;
-    tabsNewsData.value = uniqueNews;
-    filteredNewsData.value = newsData.value;
-  }
+  //   const uniqueCategoriesSet = new Set(
+  //     modifiedNews.map((item) => item.categoria)
+  //   );
+  //   const uniqueNews = Array.from(uniqueCategoriesSet)
+  //     .map((category) => {
+  //       const tab = tabMapping[category];
+  //       const correspondingItem = modifiedNews.find(
+  //         (item) => item.categoria === category && item.tab === tab
+  //       );
+  //       return correspondingItem;
+  //     })
+  //     .filter(Boolean);
+
+  //   newsData.value = modifiedNews;
+  //   tabsNewsData.value = uniqueNews;
+  //   filteredNewsData.value = newsData.value;
+  // }
+  // newsData.value = modifiedNews;
+  // tabsNewsData.value = uniqueNews;
+  // filteredNewsData.value = newsData.value;
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
@@ -132,13 +158,14 @@ watchEffect(async () => {
       value: interestedDataValue,
     };
     selectedIntereses.value = interestedDataValue.map((item) => item.answer);
-    externalCategory = selectedIntereses.value[0];
-    externalCareer = selectedIntereses.value[1];
+    externalCategory.value = selectedIntereses.value[0];
+    externalCareer.value = selectedIntereses.value[1];
   }
 });
 
 onMounted(() => {
   fetchData();
+  menuStore.fetchCategories(apiUrl);
 });
 </script>
 
@@ -170,14 +197,14 @@ onMounted(() => {
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="tabsNewsData" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
+          <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
           </TabContent>
         </div>
         <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
-          <Card :data="filteredNewsData" :section="'beyond'" />
+          <Card :data="newsData" :section="'beyond'" />
         </div>
       </BoxContainer>
-      <div v-if="totalCount !== undefined || totalCount < 0" class="mt-5 flex justify-center items-center">
+      <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
         <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
           :current-page="actualPage" />
       </div>

@@ -25,8 +25,8 @@ const menuStore = useMenuStore();
 const tabMapping = {};
 const selectedIntereses = ref([]);
 let nextTabIndex = 0;
-let externalCategory = null;
-let externalCareer = null;
+let externalCategory = ref("");
+let externalCareer = ref("");
 
 const props = defineProps({});
 
@@ -34,6 +34,7 @@ const course = menuStore.getProfileItems.data[0].desProducto;
 const career = menuStore.getProfileItems.data[0].descCurso;
 
 const fetchData = async () => {
+  await menuStore.fetchInterestData(apiUrl, 'beyond');
   await menuStore.fetchNewsRecomended(
     apiUrl,
     '1',
@@ -42,10 +43,9 @@ const fetchData = async () => {
     course,
     career,
     true,
-    externalCategory.replace(/\s/g, ''),
-    externalCareer.replace(/\s/g, '')
+    externalCategory.value,
+    externalCareer.value
   );
-  await menuStore.fetchInterestData(apiUrl, 'beyond');
   await menuStore.fetchManageableData(apiUrl, 'beyond');
 };
 
@@ -99,9 +99,11 @@ watchEffect(async () => {
       total: interestedDataValue?.length ?? 0,
     };
 
+    console.log('items data: *** ', interestedData.value.data.length);
+
     selectedIntereses.value = interestedDataValue.map((item) => item.answer);
-    externalCategory = selectedIntereses.value[0];
-    externalCareer = selectedIntereses.value[1];
+    externalCategory.value = selectedIntereses.value[0];
+    externalCareer.value = selectedIntereses.value[1];
   }
 
   if (dynamic) {
@@ -148,21 +150,13 @@ onMounted(() => {
 <template>
   <BoxContainer color="black">
     <div class="flex items-center justify-between">
-      <img
-        :src="bg_triangles_gray_card"
-        alt="Background Image"
-        class="absolute top-[0px] left-[0px] z-[-1]"
-      />
+      <img :src="bg_triangles_gray_card" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
       <h3 class="text-[#404040] text-2xl">
         <span class="uppercase font-bold font-solano">
           {{ itemTitle?.texto ?? '' }}
         </span>
       </h3>
-      <router-link
-        v-if="interestedData.total !== 0"
-        class="flex items-center gap-2"
-        to="/beyond"
-      >
+      <router-link v-if="interestedData.total !== 0" class="flex items-center gap-2" to="/beyond">
         <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
           {{ itemSubtitle?.texto ?? '' }}
         </span>
@@ -170,7 +164,7 @@ onMounted(() => {
       </router-link>
     </div>
     <p class="text-[14px] font-publicSans">{{ dynamicData[1]?.texto ?? '' }}</p>
-    <BeyondCard v-if="interestedData.total !== 0" :data-post="newsData" />
+    <BeyondCard v-if="interestedData.data.length" :data-post="newsData" />
     <div v-else class="mt-[35px] w-[220px] m-auto text-center">
       <img :src="itemImage?.imagen ?? ''" class="m-auto" />
       <p class="text-[14px] font-publicSans mt-[10px]">
