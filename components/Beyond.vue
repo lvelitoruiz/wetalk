@@ -13,8 +13,14 @@ const filteredNewsData = ref(null);
 const dynamicData = ref(null);
 const interestedData = ref({
   data: [],
-  total: 0
+  total: 0,
 });
+const itemTitle = ref(null);
+const itemSubtitle = ref(null);
+const itemImage = ref(null);
+const itemButton = ref(null);
+const page = 'page1';
+const nameToFind = 'beyond';
 const menuStore = useMenuStore();
 const tabMapping = {};
 let nextTabIndex = 0;
@@ -39,7 +45,7 @@ const fetchData = async () => {
 };
 
 watchEffect(async () => {
-  dynamicData.value = menuStore.getManageableItems;
+  const dynamic = menuStore.getManageableItems;
   filteredNewsData.value = newsData.value;
   const news = menuStore.getNewsRecomended;
   const interested = menuStore.getInterestedItems;
@@ -88,6 +94,41 @@ watchEffect(async () => {
       total: interestedDataValue?.length ?? 0,
     };
   }
+
+  if (dynamic) {
+    dynamicData.value = dynamic;
+
+    itemTitle.value = dynamicData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'title' &&
+        item.es_vista_interna === false
+    );
+
+    itemSubtitle.value = dynamicData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'more' &&
+        item.es_vista_interna === false
+    );
+
+    itemImage.value = dynamicData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'image' &&
+        item.es_vista_interna === false
+    );
+
+    itemButton.value = dynamicData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'main_button'
+    );
+  }
 });
 
 onMounted(() => {
@@ -104,9 +145,9 @@ onMounted(() => {
         class="absolute top-[0px] left-[0px] z-[-1]"
       />
       <h3 class="text-[#404040] text-2xl">
-        <span class="uppercase font-bold font-solano">{{
-          dynamicData[0]?.texto ?? ""
-        }}</span>
+        <span class="uppercase font-bold font-solano">
+          {{ itemTitle?.texto ?? '' }}
+        </span>
       </h3>
       <router-link
         v-if="interestedData.total !== 0"
@@ -114,20 +155,20 @@ onMounted(() => {
         to="/beyond"
       >
         <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
-          {{ dynamicData[2]?.texto ?? "" }}
+          {{ itemSubtitle?.texto ?? '' }}
         </span>
         <i class="icon-arrow-right text-[#E50A17]" />
       </router-link>
     </div>
-    <p class="text-[14px] font-publicSans">{{ dynamicData[1]?.texto ?? "" }}</p>
+    <p class="text-[14px] font-publicSans">{{ dynamicData[1]?.texto ?? '' }}</p>
     <BeyondCard v-if="interestedData.total !== 0" :data-post="newsData" />
     <div v-else class="mt-[35px] w-[220px] m-auto text-center">
-      <img :src="dynamicData[3]?.imagen ?? ''" class="m-auto" />
+      <img :src="itemImage?.imagen ?? ''" class="m-auto" />
       <p class="text-[14px] font-publicSans mt-[10px]">
-        {{ dynamicData[3]?.texto ?? "" }}
+        {{ itemImage?.texto ?? '' }}
       </p>
       <router-link to="/interested">
-        <Button :label="dynamicData[4]?.texto ?? ''" primary class="mt-[35px]" />
+        <Button :label="itemButton?.texto ?? ''" primary class="mt-[35px]" />
       </router-link>
     </div>
   </BoxContainer>
