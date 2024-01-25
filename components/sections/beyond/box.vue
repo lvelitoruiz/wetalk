@@ -18,13 +18,18 @@ const actualPage = ref(1);
 const term = ref('');
 const userStore = useUserStore();
 const menuStore = useMenuStore();
+const interestedData = ref({
+  value: [],
+});
+const selectedIntereses = ref([]);
 const tabMapping = {};
 let nextTabIndex = 0;
+let externalCategory = null;
+let externalCareer = null;
 
 const categorySelected = ref("");
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
-console.log(nameUser?.split(' ')[0]);
 
 const course = menuStore.getProfileItems.data[0].desProducto;
 const career = menuStore.getProfileItems.data[0].descCurso;
@@ -43,7 +48,7 @@ const handleTabChange = (selectedTab) => {
 };
 
 const fetchData = async () => {
-  console.log('adding the data where is needed');
+  await menuStore.fetchInterestData(apiUrl, 'beyond');
   const termAlter = '';
   if (term.value.length >= 3) {
     await menuStore.fetchNewsData(
@@ -53,7 +58,9 @@ const fetchData = async () => {
       '15',
       course,
       career,
-      categorySelected.value
+      categorySelected.value,
+      externalCategory.replace(/\s/g, ''),
+      externalCareer.replace(/\s/g, '')
     );
   } else {
     await menuStore.fetchNewsData(
@@ -63,20 +70,19 @@ const fetchData = async () => {
       '15',
       course,
       career,
-      categorySelected.value
+      categorySelected.value,
+      externalCategory.replace(/\s/g, ''),
+      externalCareer.replace(/\s/g, '')
     );
   }
 };
-
 const onClickHandler = async (page) => {
-  console.log('here!!');
   actualPage.value = page;
   await fetchData();
   handleTabChange('tab-all');
 };
 
 const searchTab = async () => {
-  console.log('the search: ', term.value);
   actualPage.value = 1;
   await fetchData();
   handleTabChange('tab-all');
@@ -87,8 +93,24 @@ watchEffect(async () => {
   const meta = menuStore.getNewsMeta;
   categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
+  const interested = menuStore.getInterestedItems;
   console.log('the value!! ', totalCount.value);
   console.log('the values!! ', categories);
+  // if (news) {
+  //   const modifiedNews = news.map((item) => {
+  //     const tab =
+  //       tabMapping[item.categoria] !== undefined
+  //         ? tabMapping[item.categoria]
+  //         : `tab-${nextTabIndex++}`;
+  //     tabMapping[item.categoria] = tab;
+  //     return {
+  //       ...item,
+  //       texto: item.categoria,
+  //       tab,
+  //     };
+  //   });
+
+
   // if (news) {
   //   const modifiedNews = news.map((item) => {
   //     const tab =
@@ -119,6 +141,25 @@ watchEffect(async () => {
   //   newsData.value = modifiedNews;
   //   tabsNewsData.value = uniqueNews;
   //   filteredNewsData.value = newsData.value;
+  // }
+  // newsData.value = modifiedNews;
+  // tabsNewsData.value = uniqueNews;
+  // filteredNewsData.value = newsData.value;
+
+  // if (interested) {
+  //   const interestedDataValue = interested.map((item) => {
+  //     return {
+  //       contenido_dinamico_id: item.contenido_dinamico_id,
+  //       answer: item.answer.split(',').join(', '),
+  //     };
+  //   });
+
+  //   interestedData.value = {
+  //     value: interestedDataValue,
+  //   };
+  //   selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+  //   externalCategory = selectedIntereses.value[0];
+  //   externalCareer = selectedIntereses.value[1];
   // }
 });
 

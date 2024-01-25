@@ -444,9 +444,11 @@ export const useMenuStore = defineStore({
       page: string = '1',
       searchTerm: string = '',
       limit: string = '15',
-      career: string = '',
       course: string = '',
-      category: string = ''
+      career: string = '',
+      category: string = '',
+      categories: string = '',
+      hobbies: string = ''
     ) {
       try {
         const axiosConf = {
@@ -462,7 +464,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&category=${category}`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&category=${category}&user_hooby_ids=${hobbies}&user_category_ids=${categories}`
           );
         this.newsData = response.data?.data ?? [];
         this.newsDataMeta = response.data ?? [];
@@ -476,9 +478,11 @@ export const useMenuStore = defineStore({
       page: string = '1',
       searchTerm: string = '',
       limit: string = '15',
-      career: string = '',
       course: string = '',
-      recomendados: boolean = false
+      career: string = '',
+      recomendados: boolean = false,
+      categories: string,
+      hobbies: string
     ) {
       try {
         const axiosConf = {
@@ -494,7 +498,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&solo_recomendados=${recomendados}`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&user_hooby_ids=${hobbies}&user_category_ids=${categories}&solo_recomendados=${recomendados}`
           );
         this.newsDataRecomended = response.data?.data ?? [];
       } catch (error) {
@@ -691,7 +695,6 @@ export const useMenuStore = defineStore({
             return null;
           }
         }
-        console.log(`${(await this.fetchData())?.localCodUser}`);
       } catch (error) {
         console.error(error);
       }

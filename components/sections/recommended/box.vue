@@ -28,7 +28,6 @@ let externalCareer = null;
 
 const fetchData = async () => {
   await menuStore.fetchInterestData(apiUrl, 'beyond');
-  await menuStore.fetchProfileData(apiUrl);
   await menuStore.fetchManageableData(apiUrl, 'beyond');
   await menuStore.fetchRecommendedData(
     apiUrl,
@@ -50,7 +49,6 @@ watchEffect(() => {
   const interested = menuStore.getInterestedItems;
   const manageable = menuStore.getManageableItems;
   const recommended = menuStore.getRecommendedItems;
-  const profile = menuStore.getProfileItems;
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
@@ -124,7 +122,7 @@ onMounted(() => {
             <Card :data="recommendedData" :section="'beyond'" />
           </div>
           <div class="mx-auto mb-[20px] text-center">
-            <router-link to="/interested">
+            <router-link to="/beyond">
               <Button
                 label="Ver otras opciones"
                 primary
