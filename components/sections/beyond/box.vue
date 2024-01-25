@@ -11,6 +11,7 @@ import { useUserStore } from '../../../stores/auth';
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const categories = ref(null);
 const totalCount = ref(15);
 const pageSize = ref(15);
 const actualPage = ref(1);
@@ -19,6 +20,8 @@ const userStore = useUserStore();
 const menuStore = useMenuStore();
 const tabMapping = {};
 let nextTabIndex = 0;
+
+const categorySelected = ref("");
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
 console.log(nameUser?.split(' ')[0]);
@@ -29,12 +32,13 @@ const career = menuStore.getProfileItems.data[0].descCurso;
 const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
+  console.log('this is the event: ', selectedTab);
   if (selectedTab === 'tab-all') {
-    filteredNewsData.value = newsData.value;
+    categorySelected.value = "";
+    fetchData();
   } else {
-    filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
-    );
+    categorySelected.value = selectedTab;
+    fetchData();
   }
 };
 
@@ -49,7 +53,7 @@ const fetchData = async () => {
       '15',
       course,
       career,
-      false
+      categorySelected.value
     );
   } else {
     await menuStore.fetchNewsData(
@@ -59,7 +63,7 @@ const fetchData = async () => {
       '15',
       course,
       career,
-      false
+      categorySelected.value
     );
   }
 };
@@ -79,45 +83,48 @@ const searchTab = async () => {
 };
 
 watchEffect(async () => {
-  const news = menuStore.getNews;
+  newsData.value = menuStore.getNews;
   const meta = menuStore.getNewsMeta;
+  categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
   console.log('the value!! ', totalCount.value);
-  if (news) {
-    const modifiedNews = news.map((item) => {
-      const tab =
-        tabMapping[item.categoria] !== undefined
-          ? tabMapping[item.categoria]
-          : `tab-${nextTabIndex++}`;
-      tabMapping[item.categoria] = tab;
-      return {
-        ...item,
-        texto: item.categoria,
-        tab,
-      };
-    });
+  console.log('the values!! ', categories);
+  // if (news) {
+  //   const modifiedNews = news.map((item) => {
+  //     const tab =
+  //       tabMapping[item.categoria] !== undefined
+  //         ? tabMapping[item.categoria]
+  //         : `tab-${nextTabIndex++}`;
+  //     tabMapping[item.categoria] = tab;
+  //     return {
+  //       ...item,
+  //       texto: item.categoria,
+  //       tab,
+  //     };
+  //   });
 
-    const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
-    );
-    const uniqueNews = Array.from(uniqueCategoriesSet)
-      .map((category) => {
-        const tab = tabMapping[category];
-        const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
-        );
-        return correspondingItem;
-      })
-      .filter(Boolean);
+  //   const uniqueCategoriesSet = new Set(
+  //     modifiedNews.map((item) => item.categoria)
+  //   );
+  //   const uniqueNews = Array.from(uniqueCategoriesSet)
+  //     .map((category) => {
+  //       const tab = tabMapping[category];
+  //       const correspondingItem = modifiedNews.find(
+  //         (item) => item.categoria === category && item.tab === tab
+  //       );
+  //       return correspondingItem;
+  //     })
+  //     .filter(Boolean);
 
-    newsData.value = modifiedNews;
-    tabsNewsData.value = uniqueNews;
-    filteredNewsData.value = newsData.value;
-  }
+  //   newsData.value = modifiedNews;
+  //   tabsNewsData.value = uniqueNews;
+  //   filteredNewsData.value = newsData.value;
+  // }
 });
 
 onMounted(() => {
   fetchData();
+  menuStore.fetchCategories(apiUrl);
 });
 </script>
 
@@ -125,11 +132,7 @@ onMounted(() => {
   <div>
     <div class="pb-7">
       <BoxContainer color="black">
-        <img
-          :src="bg_triangles_gray"
-          alt="Background Image"
-          class="absolute top-[0px] left-[0px] z-[-1]"
-        />
+        <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
         <div class="flex items-baseline justify-between pb-2">
           <h3 class="text-[#404040] text-2xl">
             <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
@@ -146,43 +149,23 @@ onMounted(() => {
           </p>
         </div>
         <div class="flex justify-center my-[20px]">
-          <div
-            class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center"
-          >
-            <input
-              type="text"
-              placeholder="Buscar"
-              v-model="term"
-              class="w-[95%] focus:outline-none placeholder:text-sm"
-            />
+          <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
+            <input type="text" placeholder="Buscar" v-model="term"
+              class="w-[95%] focus:outline-none placeholder:text-sm" />
             <i class="icon-search" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent
-            :tabs="tabsNewsData"
-            @tab-change="handleTabChange"
-            :option-all="true"
-            :color-active="'black'"
-          >
+          <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
           </TabContent>
         </div>
-        <div
-          class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]"
-        >
-          <Card :data="filteredNewsData" :section="'beyond'" />
+        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
+          <Card :data="newsData" :section="'beyond'" />
         </div>
       </BoxContainer>
-      <div
-        v-if="totalCount !== undefined"
-        class="mt-5 flex justify-center items-center"
-      >
-        <Pagination
-          :total-items="totalCount"
-          :items-per-page="pageSize"
-          :on-click-handler="onClickHandler"
-          :current-page="actualPage"
-        />
+      <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
+        <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
+          :current-page="actualPage" />
       </div>
     </div>
   </div>

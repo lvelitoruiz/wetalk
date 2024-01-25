@@ -33,6 +33,7 @@ export const useMenuStore = defineStore({
     interestedData: [] as any,
     manageableData: [] as any,
     recommendedData: [] as any,
+    categoriesData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -57,6 +58,7 @@ export const useMenuStore = defineStore({
     getInterestedItems: (state) => state.interestedData,
     getManageableItems: (state) => state.manageableData,
     getRecommendedItems: (state) => state.recommendedData,
+    getCategoryItems: (state) => state.categoriesData,
   },
   actions: {
     async fetchData() {
@@ -443,7 +445,8 @@ export const useMenuStore = defineStore({
       searchTerm: string = '',
       limit: string = '15',
       career: string = '',
-      course: string = ''
+      course: string = '',
+      category: string = ''
     ) {
       try {
         const axiosConf = {
@@ -459,7 +462,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&category=${category}`
           );
         this.newsData = response.data?.data ?? [];
         this.newsDataMeta = response.data ?? [];
@@ -624,6 +627,32 @@ export const useMenuStore = defineStore({
         } else {
           console.error('Error de tipo desconocido:', error);
         }
+      }
+    },
+
+    async fetchCategories(apiUrl: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Informativos/v1/Informativo/Categoria?institucion=upn`
+          );
+
+        this.categoriesData = response.data.data;
+      } catch (error) {
+        // if (error.response.status === 404) {
+        //   return null;
+        // }
+        console.log(error);
       }
     },
 
