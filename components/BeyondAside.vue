@@ -9,6 +9,8 @@ import { apiUrl } from '~/consts';
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const externalCategory = ref("");
+const externalCareer = ref("");
 
 const menuStore = useMenuStore();
 const tabMapping = {};
@@ -17,17 +19,13 @@ let nextTabIndex = 0;
 const course = menuStore.getProfileItems.data[0].desProducto;
 const career = menuStore.getProfileItems.data[0].descCurso;
 
-const props = defineProps({});
+const interestedData = ref({
+  value: [],
+});
 
-const handleTabChange = (selectedTab) => {
-  if (selectedTab === 'tab-all') {
-    filteredNewsData.value = newsData.value;
-  } else {
-    filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
-    );
-  }
-};
+const selectedIntereses = ref([]);
+
+const props = defineProps({});
 
 const fetchData = async () => {
   await menuStore.fetchNewsRecomended(
@@ -37,43 +35,64 @@ const fetchData = async () => {
     '15',
     course,
     career,
-    true
+    true,
+    "",
+    externalCategory.value,
+    externalCareer.value
   );
 };
 
 watchEffect(async () => {
   filteredNewsData.value = newsData.value;
-  const news = menuStore.getNewsRecomended;
-  if (news) {
-    const modifiedNews = news.map((item) => {
-      const tab =
-        tabMapping[item.categoria] !== undefined
-          ? tabMapping[item.categoria]
-          : `tab-${nextTabIndex++}`;
-      tabMapping[item.categoria] = tab;
+  newsData.value = menuStore.getNewsRecomended;
+  const interested = menuStore.getInterestedItems;
+  // if (news) {
+  //   const modifiedNews = news.map((item) => {
+  //     const tab =
+  //       tabMapping[item.categoria] !== undefined
+  //         ? tabMapping[item.categoria]
+  //         : `tab-${nextTabIndex++}`;
+  //     tabMapping[item.categoria] = tab;
+  //     return {
+  //       ...item,
+  //       texto: item.categoria,
+  //       tab,
+  //     };
+  //   });
+
+  //   const uniqueCategoriesSet = new Set(
+  //     modifiedNews.map((item) => item.categoria)
+  //   );
+  //   const uniqueNews = Array.from(uniqueCategoriesSet)
+  //     .map((category) => {
+  //       const tab = tabMapping[category];
+  //       const correspondingItem = modifiedNews.find(
+  //         (item) => item.categoria === category && item.tab === tab
+  //       );
+  //       return correspondingItem;
+  //     })
+  //     .filter(Boolean);
+
+  //   newsData.value = modifiedNews;
+  //   tabsNewsData.value = uniqueNews;
+  // }
+
+  if (interested) {
+    const interestedDataValue = interested.map((item) => {
       return {
-        ...item,
-        texto: item.categoria,
-        tab,
+        contenido_dinamico_id: item.contenido_dinamico_id,
+        answer: item.answer.split(',').join(', '),
       };
     });
 
-    const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
-    );
-    const uniqueNews = Array.from(uniqueCategoriesSet)
-      .map((category) => {
-        const tab = tabMapping[category];
-        const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
-        );
-        return correspondingItem;
-      })
-      .filter(Boolean);
-
-    newsData.value = modifiedNews;
-    tabsNewsData.value = uniqueNews;
+    interestedData.value = {
+      value: interestedDataValue,
+    };
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+    externalCategory.value = selectedIntereses.value[0];
+    externalCareer.value = selectedIntereses.value[1];
   }
+  fetchData();
 });
 
 onMounted(() => {
@@ -88,10 +107,7 @@ onMounted(() => {
       </h3>
     </div>
     <BeyondCard :data-post="newsData" />
-    <router-link
-      class="flex items-center justify-center mt-4 gap-2"
-      to="/interested"
-    >
+    <router-link class="flex items-center justify-center mt-4 gap-2" to="/interested">
       <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
         Editar intereses
       </span>
