@@ -11,7 +11,7 @@ const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
 const totalCount = ref(15);
-const pageSize = ref(5);
+const pageSize = ref(15);
 const actualPage = ref(1);
 const term = ref('');
 const userStore = useUserStore();
@@ -42,10 +42,10 @@ const fetchData = async () => {
   const termAlter = '';
   if (term.value.length >= 3) {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, '5', course, career, false);
+      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, '15', course, career, false);
   } else {
     await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, '5', course, career, false);
+      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, '15', course, career, false);
   }
 };
 
@@ -67,6 +67,7 @@ watchEffect(async () => {
   const news = menuStore.getNews;
   const meta = menuStore.getNewsMeta;
   totalCount.value = meta.count;
+  console.log('the value!! ', totalCount.value);
   if (news) {
     const modifiedNews = news.map((item) => {
       const tab =
@@ -97,9 +98,6 @@ watchEffect(async () => {
     newsData.value = modifiedNews;
     tabsNewsData.value = uniqueNews;
     filteredNewsData.value = newsData.value;
-
-    console.log('the value!! ', totalCount.value);
-    console.log('the value 2!! ', newsData.value.length);
   }
 });
 
@@ -143,7 +141,7 @@ onMounted(() => {
           <Card :data="filteredNewsData" :section="'beyond'" />
         </div>
       </BoxContainer>
-      <div v-if="totalCount !== undefined || totalCount < 1" class="mt-5 flex justify-center items-center">
+      <div v-if="totalCount !== undefined || totalCount < 0" class="mt-5 flex justify-center items-center">
         <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
           :current-page="actualPage" />
       </div>
