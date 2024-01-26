@@ -788,6 +788,9 @@ export const useMenuStore = defineStore({
       categories: string = '',
       hobbies: string = ''
     ) {
+      categories = categories ? Object.values(categories).join(',') : '';
+      hobbies = hobbies ? Object.values(hobbies).join(',') : '';
+
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -822,6 +825,9 @@ export const useMenuStore = defineStore({
       categories: string,
       hobbies: string
     ) {
+      categories = categories ? Object.values(categories).join(',') : '';
+      hobbies = hobbies ? Object.values(hobbies).join(',') : '';
+
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -985,9 +991,7 @@ export const useMenuStore = defineStore({
         };
         const response = await axios
           .create(axiosConf)
-          .get<any>(
-            '/Informativos/v1/Informativo/Categoria?institucion=upn'
-          );
+          .get<any>('/Informativos/v1/Informativo/Categoria?institucion=upn');
 
         this.categoriesData = response.data.data;
       } catch (error) {
@@ -1009,6 +1013,8 @@ export const useMenuStore = defineStore({
     ) {
       const curso = localStorage.getItem('curso');
       const carrera = localStorage.getItem('carrera');
+      categories = categories ? Object.values(categories).join(',') : '';
+      hobbies = hobbies ? Object.values(hobbies).join(',') : '';
 
       try {
         const axiosConf = {

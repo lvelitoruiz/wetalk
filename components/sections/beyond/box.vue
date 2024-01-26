@@ -10,8 +10,7 @@ import { ref, watchEffect, onMounted, defineProps } from 'vue';
 import { useUserStore } from '../../../stores/auth';
 
 const newsData = ref(null);
-const tabsNewsData = ref(null);
-const filteredNewsData = ref(null);
+const texts = ref(null);
 const categories = ref(null);
 const totalCount = ref(15);
 const pageSize = ref(15);
@@ -27,6 +26,7 @@ const tabMapping = {};
 const nextTabIndex = 0;
 const externalCategory = ref('');
 const externalCareer = ref('');
+const greeting = ref('');
 
 const categorySelected = ref('');
 
@@ -44,13 +44,9 @@ const handleTabChange = (selectedTab) => {
 
   // term.value = ""
 
-
-
   const numericPart = selectedTab.match(/\d+/);
 
   if (numericPart) {
-
-
     const numericValue = parseInt(numericPart[0], 10);
 
     categorySelected.value = categories.value[numericValue].id;
@@ -104,6 +100,11 @@ const searchTab = async () => {
 
 watchEffect(async () => {
   newsData.value = menuStore.getNews;
+  texts.value = menuStore.getManageableItems;
+  console.log('the greeting: ', texts.value);
+  const greetingItem = texts.value.find(item => item.id === 11);
+  console.log('the greeting: ', greetingItem.texto);
+  greeting.value = greetingItem.texto;
   const meta = menuStore.getNewsMeta;
   categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
@@ -134,6 +135,7 @@ watchEffect(async () => {
 onMounted(() => {
   fetchData();
   menuStore.fetchCategories(apiUrl);
+  menuStore.fetchManageableData(apiUrl, 'beyond');
 });
 </script>
 
@@ -153,19 +155,25 @@ onMounted(() => {
         </div>
         <div class="flex justify-center">
           <p class="text-xl font-solano">
-            <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos
-            todo esto para ti
+            <span class="font-bold text-2xl"> {{ nameUser }}, </span> {{ greeting }}
           </p>
         </div>
         <div class="flex justify-center my-[20px]">
           <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
-            <input type="text" placeholder="Buscar" v-model="term"
-              class="w-[95%] focus:outline-none placeholder:text-sm" />
+            <input
+              type="text" placeholder="Buscar"
+              v-model="term"
+              class="w-[95%] focus:outline-none placeholder:text-sm"
+            />
             <i class="icon-search cursor-pointer" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
+          <TabContent
+            :tabs="categories" @tab-change="handleTabChange"
+            :option-all="true"
+            :color-active="'black'"
+          >
           </TabContent>
         </div>
         <div v-if="newsData.length" class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
@@ -176,8 +184,11 @@ onMounted(() => {
         </div>
       </BoxContainer>
       <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
-        <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
-          :current-page="actualPage" />
+        <Pagination
+          :total-items="totalCount" :items-per-page="pageSize"
+          :on-click-handler="onClickHandler"
+          :current-page="actualPage"
+        />
       </div>
     </div>
   </div>
