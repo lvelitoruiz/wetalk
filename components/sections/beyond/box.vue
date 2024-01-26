@@ -1,108 +1,139 @@
-<script setup >
+<!-- eslint-disable array-callback-return -->
+<!-- eslint-disable @typescript-eslint/comma-dangle -->
+<!-- eslint-disable @typescript-eslint/no-floating-promises -->
+<!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
+<script setup>
 import { bg_triangles_gray } from '@/assets/index.ts';
 import { useMenuStore } from '../stores/menu';
 import { apiUrl } from '~/consts';
-import { ref, watchEffect, onMounted } from 'vue';
+import { ref, watchEffect, onMounted, defineProps } from 'vue';
+import { useUserStore } from '../../../stores/auth';
 
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
+const categories = ref(null);
 const totalCount = ref(15);
 const pageSize = ref(15);
 const actualPage = ref(1);
-const term = ref("");
+const term = ref('');
 const userStore = useUserStore();
 const menuStore = useMenuStore();
+const interestedData = ref({
+  value: [],
+});
+const selectedIntereses = ref([]);
 const tabMapping = {};
-let nextTabIndex = 0;
+const nextTabIndex = 0;
+const externalCategory = ref('');
+const externalCareer = ref('');
 
+const categorySelected = ref('');
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
-console.log(nameUser?.split(' ')[0])
 
 const course = menuStore.getProfileItems.data[0].desProducto;
 const career = menuStore.getProfileItems.data[0].descCurso;
 
-
-const props = defineProps({
-})
+const props = defineProps({});
 
 const handleTabChange = (selectedTab) => {
-  if (selectedTab === 'tab-all') {
-    filteredNewsData.value = newsData.value;
+  console.log('this is the event: ', selectedTab);
+
+  actualPage.value = 1;
+
+  // term.value = ""
+
+
+
+  const numericPart = selectedTab.match(/\d+/);
+
+  if (numericPart) {
+
+
+    const numericValue = parseInt(numericPart[0], 10);
+
+    categorySelected.value = categories.value[numericValue].id;
+    fetchData();
   } else {
-    filteredNewsData.value = newsData.value.filter(
-      (item) => item.tab === selectedTab
-    );
+    categorySelected.value = '';
+    fetchData();
   }
 };
 
 const fetchData = async () => {
-  console.log('adding the data where is needed');
-  let termAlter = "";
+  await menuStore.fetchInterestData(apiUrl, 'beyond');
+  const termAlter = '';
   if (term.value.length >= 3) {
-    await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), term.value, "15", course, career)
+    await menuStore.fetchNewsData(
+      apiUrl,
+      actualPage.value.toString(),
+      term.value,
+      '15',
+      course,
+      career,
+      categorySelected.value,
+      externalCategory.value,
+      externalCareer.value
+    );
   } else {
-    await menuStore
-      .fetchNewsData(apiUrl, actualPage.value.toString(), termAlter, "15", course, career)
+    await menuStore.fetchNewsData(
+      apiUrl,
+      actualPage.value.toString(),
+      termAlter,
+      '15',
+      course,
+      career,
+      categorySelected.value,
+      externalCategory.value,
+      externalCareer.value
+    );
   }
-
-}
-
+};
 const onClickHandler = async (page) => {
-  console.log('here!!');
   actualPage.value = page;
   await fetchData();
-  handleTabChange('tab-all');
-}
+  // handleTabChange('tab-all');
+};
 
 const searchTab = async () => {
-  console.log('the search: ', term.value)
   actualPage.value = 1;
   await fetchData();
-  handleTabChange('tab-all');
-}
+  // handleTabChange('tab-all');
+};
 
 watchEffect(async () => {
-  filteredNewsData.value = newsData.value;
-  const news = menuStore.getNews;
+  newsData.value = menuStore.getNews;
   const meta = menuStore.getNewsMeta;
+  categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
-  if (news) {
-    const modifiedNews = news.map((item) => {
-      const tab =
-        tabMapping[item.categoria] !== undefined
-          ? tabMapping[item.categoria]
-          : `tab-${nextTabIndex++}`;
-      tabMapping[item.categoria] = tab;
+  const interested = menuStore.getInterestedItems;
+  console.log('the value!! ', totalCount.value);
+  console.log('the values!! ', categories);
+  categories.value.map((item) => {
+    item.texto = item.nombre;
+  });
+
+  if (interested) {
+    const interestedDataValue = interested.map((item) => {
       return {
-        ...item,
-        texto: item.categoria,
-        tab,
+        contenido_dinamico_id: item.contenido_dinamico_id,
+        answer: item.answer.split(',').join(', '),
       };
     });
 
-    const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
-    );
-    const uniqueNews = Array.from(uniqueCategoriesSet)
-      .map((category) => {
-        const tab = tabMapping[category];
-        const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
-        );
-        return correspondingItem;
-      })
-      .filter(Boolean);
-
-    newsData.value = modifiedNews;
-    tabsNewsData.value = uniqueNews;
+    interestedData.value = {
+      value: interestedDataValue,
+    };
+    selectedIntereses.value = interestedDataValue.map((item) => item.answer);
+    externalCategory.value = selectedIntereses.value[0];
+    externalCareer.value = selectedIntereses.value[1];
   }
 });
 
 onMounted(() => {
   fetchData();
+  menuStore.fetchCategories(apiUrl);
 });
 </script>
 
@@ -119,31 +150,35 @@ onMounted(() => {
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
             <i class="icon-arrow-right text-[#E50A17]"></i>
           </router-link> -->
-
         </div>
         <div class="flex justify-center">
-          <p class="text-xl font-solano"> <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos todo esto para
-            ti </p>
+          <p class="text-xl font-solano">
+            <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos
+            todo esto para ti
+          </p>
         </div>
         <div class="flex justify-center my-[20px]">
           <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
-            <input type="text" placeholder="Buscar" v-model="term" class="w-[95%] focus:outline-none placeholder:text-sm">
-            <i class="icon-search" :onclick="searchTab"></i>
+            <input type="text" placeholder="Buscar" v-model="term"
+              class="w-[95%] focus:outline-none placeholder:text-sm" />
+            <i class="icon-search cursor-pointer" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="tabsNewsData" @tabChange="handleTabChange" :optionAll="true" :colorActive="'black'">
+          <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
           </TabContent>
         </div>
-        <div class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
-          <Card :data="filteredNewsData" :section="'beyond'" />
+        <div v-if="newsData.length" class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
+          <Card :data="newsData" :section="'beyond'" />
+        </div>
+        <div v-else class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px] pt-20">
+          <ErrorMensaje />
         </div>
       </BoxContainer>
-      <div class="mt-5 flex justify-center items-center">
-        <Pagination :totalItems="totalCount" :itemsPerPage="pageSize" :onClickHandler="onClickHandler"
+      <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
+        <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
           :current-page="actualPage" />
       </div>
     </div>
   </div>
 </template>
-

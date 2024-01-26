@@ -50,19 +50,21 @@ const scrollTabs = (direction: 'left' | 'right') => {
     }
   }
 };
+
+onMounted(() => {
+  console.log('the categories: ', props.tabs);
+});
 </script>
 
 <template>
   <div class="flex overflow-x-auto tabs-box">
     <ul
-      ref="tabsList"
-      v-bind="$attrs"
+      ref="tabsList" v-bind="$attrs"
       class="tabs-container flex items-center gap-4 overflow-x--auto md:overflow-x-hidden"
     >
       <li v-if="optionAll">
         <button
-          @click="handleActiveTab('tab-all', null)"
-          :class="[
+          @click="handleActiveTab('tab-all', null)" :class="[
             { black: props.colorActive === 'black' && tabActive === `tab-all` },
             {
               'bg-[#FFDAE1] text-[#B70812]': tabActive === `tab-all`,
@@ -76,8 +78,7 @@ const scrollTabs = (direction: 'left' | 'right') => {
       </li>
       <li v-for="(tab, i) in tabs" :key="i" class="flex-shrink-0">
         <button
-          @click="handleActiveTab(`tab-${i}`, tab.value)"
-          :class="[
+          @click="handleActiveTab(`tab-${i}`, tab.value)" :class="[
             {
               black: props.colorActive === 'black' && tabActive === `tab-${i}`,
             },
@@ -92,11 +93,7 @@ const scrollTabs = (direction: 'left' | 'right') => {
         </button>
       </li>
     </ul>
-    <button
-      v-if="shouldShowScrollButton()"
-      @click="scrollTabs('right')"
-      class="px-[10px] block md:hidden"
-    >
+    <button v-if="shouldShowScrollButton()" @click="scrollTabs('right')" class="px-[10px] block md:hidden">
       <img :src="arrow_right_gray" alt="Icon Arrow Right" />
     </button>
     <div>
