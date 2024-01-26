@@ -2,7 +2,7 @@
 <script setup>
 import { defineProps, ref, watchEffect } from 'vue';
 
-const dataSlider = ref(null);
+const dataSlider = ref([]);
 const props = defineProps({
   dataList: {
     type: Array,
@@ -21,7 +21,8 @@ watchEffect(() => {
 <template>
   <div class="content_destacados">
     <ClientOnly>
-      <Swiper
+      <div v-if="dataSlider.length > 0">
+        <Swiper
         :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination]"
         :slides-per-view="1"
         :loop="true"
@@ -63,6 +64,7 @@ watchEffect(() => {
           />
         </div>
       </Swiper>
+      </div>
     </ClientOnly>
   </div>
 </template>
