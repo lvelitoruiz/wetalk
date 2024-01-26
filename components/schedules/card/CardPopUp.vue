@@ -100,11 +100,7 @@ onMounted(() => {
 
 			<div class="px-[32px] pb-[65px] lg:pb-[40px]">
 				<span
-					class="fon-telegraf text-[#000] text-[0.625rem] font-bold px-[8px] py-[4px] rounded-[16px]"
-					:class="{
-						'bg-[#FDBA30]': course.descripMetodoEducativo === 'Presencial',
-						'bg-[#00B9FF]': course.descripMetodoEducativo === 'Remoto',
-					}"
+					class="fon-telegraf bg-[#039C6D] text-white text-[0.625rem] font-bold px-[8px] py-[4px] rounded-[16px]"
 				>
 					{{ course.descripMetodoEducativo }}
 				</span>
@@ -117,7 +113,7 @@ onMounted(() => {
 				<div class="grid grid-cols-2 gap-y-[10px] gap-x-[16px]">
 					<div>
 						<p
-							class="font-publicSans text-secondary leading-[1] text-xs pb-[2px]"
+							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[2px]"
 						>
 							Horario
 						</p>
@@ -131,7 +127,7 @@ onMounted(() => {
 					</div>
 					<div>
 						<p
-							class="font-publicSans text-secondary leading-[1] text-xs pb-[2px]"
+							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[2px]"
 						>
 							Salón
 						</p>
@@ -158,7 +154,7 @@ onMounted(() => {
 					</div>
 					<div v-if="course.descripMetodoEducativo == 'Presencial'">
 						<p
-							class="font-publicSans text-secondary leading-[1] text-xs pb-[2px]"
+							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[2px]"
 						>
 							Campus
 						</p>
@@ -168,7 +164,7 @@ onMounted(() => {
 					</div>
 					<div v-if="course.descripMetodoEducativo == 'Presencial'">
 						<p
-							class="font-publicSans text-secondary leading-[1] text-xs pb-[2px]"
+							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[2px]"
 						>
 							Referencia
 						</p>
@@ -179,7 +175,7 @@ onMounted(() => {
 					<div v-if="course.profesor.length" class="col-span-2 lg:col-span-1">
 						<label
 							for="docentes"
-							class="font-publicSans text-secondary leading-[1] text-xs pb-[6px] h-full"
+							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[6px] h-full"
 						>
 							Docente
 						</label>
@@ -206,7 +202,7 @@ onMounted(() => {
 						class="flex flex-col justify-start col-span-2 lg:col-span-1 mt-3 lg:mt-0"
 					>
 						<p
-							class="font-publicSans text-secondary leading-[1] text-xs pb-[6px] mt-auto"
+							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[6px] mt-auto"
 						>
 							Correo del docente
 						</p>
@@ -219,7 +215,7 @@ onMounted(() => {
 								{{ selectedProfessor.correo }}
 							</a>
 							<button @click="copy(selectedProfessor.correo)">
-								<NuxtIcon class="iconCopy" name="copy" />
+								<NuxtIcon class="iconCopy" name="fileCopy" />
 							</button>
 							<div
 								v-if="msgCopy.id === selectedProfessor.correo"
@@ -259,7 +255,7 @@ onMounted(() => {
 	@apply font-solano uppercase text-lg lg:text-[20px] text-[#E50A17] mt-2 leading-[1] break-words col-span-2;
 }
 .iconCopy {
-	@apply text-[#699A8F] cursor-pointer;
+	@apply text-[#699A8F] text-[20px] cursor-pointer;
 }
 
 .copy-msg {

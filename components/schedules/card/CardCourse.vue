@@ -46,11 +46,11 @@ const getDiff = (init: string, fin: string) => {
 			class="mt-auto flex gap-1"
 		>
 			<div
-				class="text-[0.725rem] text-center px-1 font-telegraf color-black font-extrabold rounded min-w-[48px]"
+				class="text-[0.725rem] text-center font-telegraf font-extrabold pt-1"
 				:class="{
-					'bg-[#FDC979] text-[#FDBA30]':
+					'text-black':
 						course.descripMetodoEducativo === 'Presencial',
-					'bg-[#E6C2FF] text-[#00B9FF]':
+					'text-black':
 						course.descripMetodoEducativo === 'Remoto',
 				}"
 			>

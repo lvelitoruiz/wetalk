@@ -55,7 +55,7 @@ const positionFromTop = computed(() =>
 
 <style lang="postcss" scoped>
 .grid-box {
-	@apply border-r-[1px] border-b-[1px] border-[#404040];
+	@apply border-r-[1px] border-b-[1px] border-[#A6A6A6];
 }
 
 .hour-mark {

@@ -59,10 +59,10 @@ const eventClick = () => {
 			:errorService="errorService"
 			:error="error"
 		/>
-		<div class="lg:pt-5 text-sm">
+		<div class="lg:py-[40px] text-sm">
 			<div class="flex">
-				<p class="mr-[13px] before:bg-[#FDBA30] disclaimer">Curso Presencial</p>
-				<p class="mb-4 before:bg-[#00B9FF] disclaimer">Curso Remoto</p>
+				<p class="mr-[13px] before:bg-[#FDBA30] disclaimer"> Curso Presencial</p>
+				<p class="mb-4 before:bg-[#00B9FF] disclaimer"> Curso Remoto</p>
 			</div>
 			<p class="leading-[1]">
 				*Para dudas con los horarios, consúltalo en

@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div class="flex flex-col pl-1 pr-5 lg:py-2 bg-white rounded-b-[14px]">
+	<div class="flex flex-col pl-1 pr-5 lg:py-4 bg-white rounded-b-[14px] shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] ">
 		<!-- Días de la semana -->
 		<div ref="datesList" class="datesList">
 			<div v-for="(day, i) in getWeekDates()" :key="i" class="dateList-item">
@@ -101,11 +101,11 @@ onBeforeUnmount(() => {
 		<div v-else class="calendar-container">
 			<!-- Hora de clases -->
 			<div ref="listHours" class="hours-container relative">
-				<div class="h-[10px] border-neutral"></div>
+				<div class="h-[10px] border-[#A6A6A6]"></div>
 				<div
 					v-for="(hour, i) in Object.keys(hours!).sort()"
 					:key="hour"
-					class="relative border-r-[1px] border-neutral"
+					class="relative border-r-[1px] border-[#A6A6A6]"
 					:class="{
 						'h-[62px] lg:h-[72px]': i !== Object.keys(hours!).length - 1,
 					}"
@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
 			<div class="calendar-grid relative">
 				<div v-for="(item, ix) in states.fullWeek" :key="item" class="relative">
 					<div class="absolute top-0 w-full h-full">
-						<div class="h-[10px] border-b-[1px] border-neutral"></div>
+						<div class="h-[10px] border-b-[1px] border-[#A6A6A6]"></div>
 						<!-- cuadros horas y marca de hora actual -->
 						<SchedulesGridLayoutDesktop
 							v-for="(hour, i) in Object.keys(hours!).sort()"

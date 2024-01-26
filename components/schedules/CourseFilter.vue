@@ -36,7 +36,7 @@ const eventClick = () => {
 		<label class="text-sm text-white" for="filter">Ver:</label>
 		<select
 			id="filter"
-			class="base-select-purple text-[#404040] pl-3 pr-5 py-2 font-publicSans bg-white w-full lg:w-[200px] lg:ml-4 mt-2 lg:mt-0"
+			class="base-select-purple text-[#404040] text-[14px] pl-3 pr-5 py-2 font-publicSans bg-white w-full lg:w-[200px] lg:ml-4 mt-2 lg:mt-0"
 			:value="selectedCourseWeek"
 			@focus="eventClick"
 			@change="handleSelect"
