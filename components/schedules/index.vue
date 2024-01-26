@@ -59,7 +59,7 @@ const eventClick = () => {
 			:errorService="errorService"
 			:error="error"
 		/>
-		<div class="lg:py-[40px] text-sm">
+		<div class="py-[40px] text-sm">
 			<div class="flex">
 				<p class="mr-[13px] before:bg-[#FDBA30] disclaimer"> Curso Presencial</p>
 				<p class="mb-4 before:bg-[#00B9FF] disclaimer"> Curso Remoto</p>
@@ -82,7 +82,7 @@ const eventClick = () => {
 
 <style lang="postcss" scoped>
 .controls-container {
-	@apply bg-[#5598FF] rounded-t-[14px] gap-x-3 gap-y-4 flex flex-col xl:flex-row justify-between px-3 py-4 lg:px-6 lg:py-5 -mx-[12px] lg:mx-0;
+	@apply bg-[#5598FF] rounded-t-[14px] gap-x-3 gap-y-4 flex flex-col xl:flex-row justify-between px-3 py-4 lg:px-6 lg:py-5 lg:mx-0;
 }
 
 .disclaimer {

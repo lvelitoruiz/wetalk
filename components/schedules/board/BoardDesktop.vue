@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div class="flex flex-col pl-1 pr-5 lg:py-4 bg-white rounded-b-[14px] shadow-[0_10px_6px_0_rgba(0,0,0,0.05)] ">
+	<div class="flex flex-col pl-1 pr-5 lg:py-4 bg-white rounded-b-[14px] shadow-[0_10px_6px_0_rgba(0,0,0,0.05)]">
 		<!-- Días de la semana -->
 		<div ref="datesList" class="datesList">
 			<div v-for="(day, i) in getWeekDates()" :key="i" class="dateList-item">

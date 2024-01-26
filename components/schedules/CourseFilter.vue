@@ -45,7 +45,7 @@ const eventClick = () => {
 			<option
 				v-for="(item, i) in filteredCourses"
 				:key="i"
-				class="text-black"
+				class="text-black text-[12px]"
 				:value="item.CodCurso"
 			>
 				{{ item.DescEspecialCurso }}

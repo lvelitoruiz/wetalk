@@ -120,7 +120,7 @@ onBeforeUpdate(() => {
 </script>
 
 <template>
-	<div class="px-3 pt-1 mb-2">
+	<div class="bg-white px-3 pt-4 mb-2 rounded-b-[14px] shadow-[0_10px_6px_0_rgba(0,0,0,0.05)]">
 		<div class="datesList">
 			<button
 				v-for="(item, i) in getWeekDates()"
@@ -132,10 +132,10 @@ onBeforeUpdate(() => {
 					class="dateList-item-text"
 					:class="{ isToday: getNumDay(item.getDay()) === states.day }"
 				>
-					<p class="mb-1 capitalize text-xs">
+					<p class="font-solano text-[20px] mb-1">
 						{{ useDateFormat(item, 'ddd', { locales: 'es-ES' }).value }}
 					</p>
-					<p class="font-grotesk font-bold text-[1.25rem] leading-[1]">
+					<p class="font-solano text-[24px] leading-[1]">
 						{{ useDateFormat(item, 'DD', { locales: 'es-ES' }).value }}
 					</p>
 				</div>
