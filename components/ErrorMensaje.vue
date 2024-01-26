@@ -10,9 +10,9 @@ const props = defineProps({
     <img src="@/assets/images/upc-icon-exclamation-circle.svg" />
     <div class="text-center">
       <p class="text-sm font-bold font-publicSans mb-1">
-        Lo sentimos, no pudimos cargar {{ message }}
+        Lo sentimos, no pudimos encontrar información.
       </p>
-      <p class="text-sm font-publicSans">Inténtalo de nuevo más tarde</p>
+      <p class="text-sm font-publicSans">Intente buscando otro término.</p>
     </div>
   </div>
 </template>
