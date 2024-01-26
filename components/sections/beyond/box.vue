@@ -10,8 +10,7 @@ import { ref, watchEffect, onMounted, defineProps } from 'vue';
 import { useUserStore } from '../../../stores/auth';
 
 const newsData = ref(null);
-const tabsNewsData = ref(null);
-const filteredNewsData = ref(null);
+const texts = ref(null);
 const categories = ref(null);
 const totalCount = ref(15);
 const pageSize = ref(15);
@@ -27,6 +26,7 @@ const tabMapping = {};
 const nextTabIndex = 0;
 const externalCategory = ref('');
 const externalCareer = ref('');
+const greeting = ref('');
 
 const categorySelected = ref('');
 
@@ -104,6 +104,11 @@ const searchTab = async () => {
 
 watchEffect(async () => {
   newsData.value = menuStore.getNews;
+  texts.value = menuStore.getManageableItems;
+  console.log('the greeting: ', texts.value);
+  const greetingItem = texts.value.find(item => item.id === 11);
+  console.log('the greeting: ', greetingItem.texto);
+  greeting.value = greetingItem.texto;
   const meta = menuStore.getNewsMeta;
   categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
@@ -134,6 +139,7 @@ watchEffect(async () => {
 onMounted(() => {
   fetchData();
   menuStore.fetchCategories(apiUrl);
+  menuStore.fetchManageableData(apiUrl, 'beyond');
 });
 </script>
 
@@ -153,8 +159,7 @@ onMounted(() => {
         </div>
         <div class="flex justify-center">
           <p class="text-xl font-solano">
-            <span class="font-bold text-2xl"> {{ nameUser }}, </span> tenemos
-            todo esto para ti
+            <span class="font-bold text-2xl"> {{ nameUser }}, </span> {{ greeting }}
           </p>
         </div>
         <div class="flex justify-center my-[20px]">
