@@ -98,6 +98,10 @@ const getTopAndHeight = (init: string, fin: string) => {
 	};
 };
 
+const eventClick = (item: Date) => {
+	states.setDay(getNumDay(item.getDay()));
+};
+
 const getNumDay = (day: number) => (day + 6) % 7;
 
 const getSelectedDay = computed(() => {
@@ -122,6 +126,7 @@ onBeforeUpdate(() => {
 				v-for="(item, i) in getWeekDates()"
 				:key="i"
 				class="dateList-item"
+				@click="eventClick(item)"
 			>
 				<div
 					class="dateList-item-text"
@@ -193,6 +198,6 @@ onBeforeUpdate(() => {
 	@apply flex flex-col text-sm text-center py-1 lg:py-2;
 }
 .isToday {
-	@apply bg-[#E50A17] w-full h-full rounded-lg;
+	@apply bg-[#E50A17] text-white w-full h-full rounded-lg;
 }
 </style>

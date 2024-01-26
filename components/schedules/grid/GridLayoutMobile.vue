@@ -25,7 +25,7 @@ const getTopStyle = (currentHour: string) => {
 		<div v-for="hour in Object.keys(hours).sort()" :key="hour">
 			<div
 				class="relative flex leading-[1] lg:pr-3 text-[14px]"
-				:style="{ height: `${hours[hour as keyof typeof hours]}px` }"
+				:style="{ height: `${hours[hour]}px` }"
 			>
 				<p class="w-[40px] absolute -top-[8px] bg-white text-xs">
 					{{ hour === '24' ? '00' : hour }}:00
