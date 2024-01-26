@@ -102,7 +102,7 @@ watchEffect(async () => {
   newsData.value = menuStore.getNews;
   texts.value = menuStore.getManageableItems;
   console.log('the greeting: ', texts.value);
-  const greetingItem = texts.value.find(item => item.id === 11);
+  const greetingItem = texts.value.find(item => item.codigo_item === "title_2" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === true);
   console.log('the greeting: ', greetingItem.texto);
   greeting.value = greetingItem.texto;
   const meta = menuStore.getNewsMeta;
