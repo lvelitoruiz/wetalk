@@ -1,3 +1,4 @@
+<!-- eslint-disable array-callback-return -->
 <!-- eslint-disable @typescript-eslint/comma-dangle -->
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
@@ -23,11 +24,11 @@ const interestedData = ref({
 });
 const selectedIntereses = ref([]);
 const tabMapping = {};
-let nextTabIndex = 0;
-let externalCategory = ref("");
-let externalCareer = ref("");
+const nextTabIndex = 0;
+const externalCategory = ref('');
+const externalCareer = ref('');
 
-const categorySelected = ref("");
+const categorySelected = ref('');
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
 
@@ -55,10 +56,9 @@ const handleTabChange = (selectedTab) => {
     categorySelected.value = categories.value[numericValue].id;
     fetchData();
   } else {
-    categorySelected.value = "";
+    categorySelected.value = '';
     fetchData();
   }
-
 };
 
 const fetchData = async () => {
@@ -112,7 +112,7 @@ watchEffect(async () => {
   console.log('the values!! ', categories);
   categories.value.map((item) => {
     item.texto = item.nombre;
-  })
+  });
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
