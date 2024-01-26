@@ -39,9 +39,16 @@ const props = defineProps({});
 const handleTabChange = (selectedTab) => {
   console.log('this is the event: ', selectedTab);
 
+  actualPage.value = 1;
+
+  // term.value = ""
+
+
+
   const numericPart = selectedTab.match(/\d+/);
 
   if (numericPart) {
+
 
     const numericValue = parseInt(numericPart[0], 10);
 
@@ -86,13 +93,13 @@ const fetchData = async () => {
 const onClickHandler = async (page) => {
   actualPage.value = page;
   await fetchData();
-  handleTabChange('tab-all');
+  // handleTabChange('tab-all');
 };
 
 const searchTab = async () => {
   actualPage.value = 1;
   await fetchData();
-  handleTabChange('tab-all');
+  // handleTabChange('tab-all');
 };
 
 watchEffect(async () => {
@@ -154,7 +161,7 @@ onMounted(() => {
           <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
             <input type="text" placeholder="Buscar" v-model="term"
               class="w-[95%] focus:outline-none placeholder:text-sm" />
-            <i class="icon-search" :onclick="searchTab"></i>
+            <i class="icon-search cursor-pointer" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">

@@ -9,6 +9,7 @@ import { image_person_laptop, bg_triangles_gray_card } from '../assets/index';
 
 const newsData = ref(null);
 const tabsNewsData = ref(null);
+const news = ref(null);
 const filteredNewsData = ref(null);
 const dynamicData = ref(null);
 const interestedData = ref({
@@ -52,39 +53,39 @@ const fetchData = async () => {
 watchEffect(async () => {
   const dynamic = menuStore.getManageableItems;
   filteredNewsData.value = newsData.value;
-  const news = menuStore.getNewsRecomended;
+  news.value = menuStore.getNewsRecomended;
   const interested = menuStore.getInterestedItems;
 
-  if (news) {
-    const modifiedNews = news.map((item) => {
-      const tab =
-        tabMapping[item.categoria] !== undefined
-          ? tabMapping[item.categoria]
-          : `tab-${nextTabIndex++}`;
-      tabMapping[item.categoria] = tab;
-      return {
-        ...item,
-        texto: item.categoria,
-        tab,
-      };
-    });
+  // if (news) {
+  //   const modifiedNews = news.map((item) => {
+  //     const tab =
+  //       tabMapping[item.categoria] !== undefined
+  //         ? tabMapping[item.categoria]
+  //         : `tab-${nextTabIndex++}`;
+  //     tabMapping[item.categoria] = tab;
+  //     return {
+  //       ...item,
+  //       texto: item.categoria,
+  //       tab,
+  //     };
+  //   });
 
-    const uniqueCategoriesSet = new Set(
-      modifiedNews.map((item) => item.categoria)
-    );
-    const uniqueNews = Array.from(uniqueCategoriesSet)
-      .map((category) => {
-        const tab = tabMapping[category];
-        const correspondingItem = modifiedNews.find(
-          (item) => item.categoria === category && item.tab === tab
-        );
-        return correspondingItem;
-      })
-      .filter(Boolean);
+  //   const uniqueCategoriesSet = new Set(
+  //     modifiedNews.map((item) => item.categoria)
+  //   );
+  //   const uniqueNews = Array.from(uniqueCategoriesSet)
+  //     .map((category) => {
+  //       const tab = tabMapping[category];
+  //       const correspondingItem = modifiedNews.find(
+  //         (item) => item.categoria === category && item.tab === tab
+  //       );
+  //       return correspondingItem;
+  //     })
+  //     .filter(Boolean);
 
-    newsData.value = modifiedNews;
-    tabsNewsData.value = uniqueNews;
-  }
+  //   newsData.value = modifiedNews;
+  //   tabsNewsData.value = uniqueNews;
+  // }
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
@@ -164,7 +165,7 @@ onMounted(() => {
       </router-link>
     </div>
     <p class="text-[14px] font-publicSans">{{ dynamicData[1]?.texto ?? '' }}</p>
-    <BeyondCard v-if="interestedData.data.length" :data-post="newsData" />
+    <BeyondCard v-if="interestedData.data.length" :data-post="news" />
     <div v-else class="mt-[35px] w-[220px] m-auto text-center">
       <img :src="itemImage?.imagen ?? ''" class="m-auto" />
       <p class="text-[14px] font-publicSans mt-[10px]">
