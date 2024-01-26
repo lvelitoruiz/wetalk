@@ -54,6 +54,24 @@ const positionFromTop = computed(() =>
 </template>
 
 <style lang="postcss" scoped>
+
+.border-neutral {
+
+}
+
+.bg-magenta_30 {
+	background-color: aqua;
+}
+
+.text-magenta_70 {
+	color: aquamarine;
+}
+
+.bg-magenta_70 {
+	background-color: aqua;
+
+}
+
 .grid-box {
 	@apply border-r-[1px] border-b-[1px] border-neutral;
 }
@@ -64,6 +82,6 @@ const positionFromTop = computed(() =>
 
 .mark-today {
 	@apply bg-magenta_70 after:content-[''] after:absolute after:h-[5px] after:w-[5px]
-	after:rounded after:bg-magenta_70 after:top-0 after:translate-y-[-2px];
+	after:rounded after:bg-[#00B9FF] after:top-0 after:translate-y-[-2px];
 }
 </style>

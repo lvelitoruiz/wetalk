@@ -60,6 +60,14 @@ const getTopStyle = (currentHour: string) => {
 </template>
 
 <style lang="postcss" scoped>
+
+.bg-magenta_30 {
+	background-color: aqua;
+}
+
+.text-magenta_70 {
+	color: aquamarine;
+}
 .hour-mark {
 	@apply absolute left-[-5px] z-[15] bg-magenta_30 text-magenta_70 font-bold rounded-sm px-1 py-[1px] text-xs;
 }

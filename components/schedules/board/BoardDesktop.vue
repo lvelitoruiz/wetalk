@@ -87,14 +87,14 @@ onBeforeUnmount(() => {
 				</div>
 			</div>
 		</div>
-		<ScheduleStatusLoading v-if="pending" class="h-[280px]" />
-		<ScheduleStatusError
+		<SchedulesStatusLoading v-if="pending" class="h-[280px]" />
+		<SchedulesStatusError
 			v-else-if="error || Boolean(errorService)"
 			:text="
 				errorService?.titulo || 'Lo sentimos, no pudimos cargar tu horario'
 			"
 		/>
-		<ScheduleStatusNoData
+		<SchedulesStatusNoData
 			v-else-if="!states.dataStatus"
 			:text="errorService?.titulo || 'No tienes cursos asignados esta semana'"
 		/>
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
 					<div class="absolute top-0 w-full h-full">
 						<div class="h-[10px] border-b-[1px] border-neutral"></div>
 						<!-- cuadros horas y marca de hora actual -->
-						<ScheduleGridLayoutDesktop
+						<SchedulesGridLayoutDesktop
 							v-for="(hour, i) in Object.keys(hours!).sort()"
 							:key="hour"
 							:hours="hours"
@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
 					<!-- card -->
 					<template v-if="!item?.empty">
 						<template v-for="(course, i) in item.detalleHorario" :key="i">
-							<ScheduleCardContainer
+							<SchedulesCardContainer
 								:course="course"
 								:getTopAndHeight="getTopAndHeight"
 								:positionX="ix"

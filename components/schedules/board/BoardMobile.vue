@@ -151,26 +151,26 @@ onBeforeUpdate(() => {
 				{{ useDateFormat(getSelectedDay, 'MMM', { locales: 'es-ES' }).value }}.
 			</span>
 		</div>
-		<ScheduleStatusLoading v-if="pending" class="h-[280px]" />
-		<ScheduleStatusError
+		<SchedulesStatusLoading v-if="pending" class="h-[280px]" />
+		<SchedulesStatusError
 			v-else-if="error || Boolean(errorService)"
 			:text="
 				errorService?.titulo ?? 'Lo sentimos, no pudimos cargar tu horario'
 			"
 		/>
-		<ScheduleStatusNoData
+		<SchedulesStatusNoData
 			v-else-if="!states.dataStatus || !data?.detalleHorario"
 			:text="errorService?.titulo ?? 'No tienes cursos asignados este día'"
 		/>
 		<div v-else class="relative flex flex-col pr-3 lg:pr-4">
 			<!-- Hora de clases -->
-			<ScheduleGridLayoutMobile
+			<SchedulesGridLayoutMobile
 				:hours="hourModified"
 				:isToday="getNumDay(new Date().getDay()) === states.day"
 			/>
 			<!-- Grilla de cursos -->
 			<div class="w-full">
-				<ScheduleCardContainer
+				<SchedulesCardContainer
 					v-for="(course, i) in data?.detalleHorario"
 					:key="i"
 					:course="course"
