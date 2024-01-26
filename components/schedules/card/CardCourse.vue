@@ -22,8 +22,8 @@ const getDiff = (init: string, fin: string) => {
 		role="button"
 		tabindex="1"
 		:class="{
-			'before:bg-[#FDBA30]': course.descripMetodoEducativo === 'Presencial',
-			'before:bg-[#00B9FF]': course.descripMetodoEducativo === 'Remoto',
+			'before:bg-primary': course.descripMetodoEducativo === 'Presencial',
+			'before:bg-[#E50A17]': course.descripMetodoEducativo === 'Remoto',
 		}"
 	>
 		<span class="text-[0.625rem]">
@@ -63,10 +63,10 @@ const getDiff = (init: string, fin: string) => {
 		</div>
 		<div
 			class="absolute right-0 bottom-0"
-			:class="{ 'bg-purple_80 rounded-[4px]': popupIsVisible }"
+			:class="{ 'bg-[#A9616D] rounded-[4px]': popupIsVisible }"
 		>
 			<nuxt-icon
-				class="text-purple_80 text-xl"
+				class="text-[#A9616D] text-xl"
 				:class="{ 'text-white': popupIsVisible }"
 				name="defaultDia"
 			/>

@@ -43,7 +43,7 @@ const positionFromTop = computed(() =>
 			v-if="Number(hour) === currentHour"
 			class="absolute top-[10px] h-[1px] w-full z-[15]"
 			:class="{
-				'bg-magenta_30': columnNumber !== currentDay,
+				'bg-[#A9616D]': columnNumber !== currentDay,
 				'mark-today': columnNumber === currentDay,
 			}"
 			:style="{
@@ -54,34 +54,16 @@ const positionFromTop = computed(() =>
 </template>
 
 <style lang="postcss" scoped>
-
-.border-neutral {
-
-}
-
-.bg-magenta_30 {
-	background-color: aqua;
-}
-
-.text-magenta_70 {
-	color: aquamarine;
-}
-
-.bg-magenta_70 {
-	background-color: aqua;
-
-}
-
 .grid-box {
-	@apply border-r-[1px] border-b-[1px] border-neutral;
+	@apply border-r-[1px] border-b-[1px] border-[#404040];
 }
 
 .hour-mark {
-	@apply absolute right-[calc(100%_+_1px)] z-20 translate-y-[-50%] bg-magenta_30 text-magenta_70 rounded-sm px-1 py-[1px] text-xs font-bold;
+	@apply absolute right-[calc(100%_+_1px)] z-20 translate-y-[-50%] bg-[#FEB6C2] text-[#A9616D] rounded-sm px-1 py-[1px] text-xs font-bold;
 }
 
 .mark-today {
-	@apply bg-magenta_70 after:content-[''] after:absolute after:h-[5px] after:w-[5px]
-	after:rounded after:bg-[#00B9FF] after:top-0 after:translate-y-[-2px];
+	@apply bg-[#A9616D] after:content-[''] after:absolute after:h-[5px] after:w-[5px]
+	after:rounded after:bg-[#A9616D] after:top-0 after:translate-y-[-2px];
 }
 </style>

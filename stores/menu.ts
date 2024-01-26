@@ -654,7 +654,7 @@ export const useMenuStore = defineStore({
                                   "nombres": "",
                                   "apellidos": "",
                                   "nombreCompleto": "RODRIGO",
-                                  "correo": "medalit.lucho@upn.pe",
+                                  "correo": "rodrigo.lucho@upn.pe",
                                   "idBanner": "",
                                   "pidm": "",
                                   "tipoDesc": "Titular"
