@@ -27,6 +27,7 @@ const nextTabIndex = 0;
 const externalCategory = ref('');
 const externalCareer = ref('');
 const greeting = ref('');
+const headerText = ref('');
 
 const categorySelected = ref('');
 
@@ -101,16 +102,17 @@ const searchTab = async () => {
 watchEffect(async () => {
   newsData.value = menuStore.getNews;
   texts.value = menuStore.getManageableItems;
-  console.log('the greeting: ', texts.value);
+
   const greetingItem = texts.value.find(item => item.codigo_item === "title_2" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === true);
-  console.log('the greeting: ', greetingItem.texto);
   greeting.value = greetingItem.texto;
+
+  const headerTextItem = texts.value.find(item => item.codigo_item === "title" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === false);
+  headerText.value = headerTextItem.texto;
+
   const meta = menuStore.getNewsMeta;
   categories.value = menuStore.getCategoryItems;
   totalCount.value = meta.count;
   const interested = menuStore.getInterestedItems;
-  console.log('the value!! ', totalCount.value);
-  console.log('the values!! ', categories);
   categories.value.map((item) => {
     item.texto = item.nombre;
   });
@@ -146,7 +148,7 @@ onMounted(() => {
         <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
         <div class="flex items-baseline justify-between pb-2">
           <h3 class="text-[#404040] text-2xl">
-            <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
+            <span class="uppercase font-bold font-solano">{{ headerText ?? '' }}</span>
           </h3>
           <!-- <router-link @click="event()" class="flex items-center gap-2" to="/notas">
             <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">Editar intereses</span>
@@ -155,7 +157,7 @@ onMounted(() => {
         </div>
         <div class="flex justify-center">
           <p class="text-xl font-solano">
-            <span class="font-bold text-2xl"> {{ nameUser }}, </span> {{ greeting }}
+            <span class="font-bold text-2xl"> {{ nameUser ?? '' }}, </span> {{ greeting ?? '' }}
           </p>
         </div>
         <div class="flex justify-center my-[20px]">

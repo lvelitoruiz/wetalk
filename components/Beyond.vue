@@ -136,7 +136,8 @@ watchEffect(async () => {
       (item) =>
         item.nombre === nameToFind &&
         item.pagina === page &&
-        item.codigo_item === 'main_button'
+        item.codigo_item === 'main_button' &&
+        item.es_vista_interna === false
     );
   }
 });

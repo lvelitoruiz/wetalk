@@ -11,6 +11,7 @@ const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
 const externalCategory = ref('');
 const externalCareer = ref('');
+const editPreferences = ref('');
 
 const menuStore = useMenuStore();
 const tabMapping = {};
@@ -46,36 +47,8 @@ watchEffect(async () => {
   filteredNewsData.value = newsData.value;
   newsData.value = menuStore.getNewsRecomended;
   const interested = menuStore.getInterestedItems;
-  // if (news) {
-  //   const modifiedNews = news.map((item) => {
-  //     const tab =
-  //       tabMapping[item.categoria] !== undefined
-  //         ? tabMapping[item.categoria]
-  //         : `tab-${nextTabIndex++}`;
-  //     tabMapping[item.categoria] = tab;
-  //     return {
-  //       ...item,
-  //       texto: item.categoria,
-  //       tab,
-  //     };
-  //   });
-
-  //   const uniqueCategoriesSet = new Set(
-  //     modifiedNews.map((item) => item.categoria)
-  //   );
-  //   const uniqueNews = Array.from(uniqueCategoriesSet)
-  //     .map((category) => {
-  //       const tab = tabMapping[category];
-  //       const correspondingItem = modifiedNews.find(
-  //         (item) => item.categoria === category && item.tab === tab
-  //       );
-  //       return correspondingItem;
-  //     })
-  //     .filter(Boolean);
-
-  //   newsData.value = modifiedNews;
-  //   tabsNewsData.value = uniqueNews;
-  // }
+  const editPreferenceItem = menuStore.getManageableItems?.find(item => item.codigo_item === "hyperlink" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === true);
+  editPreferences.value = editPreferenceItem.texto;
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
@@ -108,7 +81,7 @@ onMounted(() => {
     <BeyondCard :data-post="newsData" />
     <router-link class="flex items-center justify-center mt-4 gap-2" to="/interested">
       <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
-        Editar intereses
+        {{ editPreferences }}
       </span>
       <i class="icon-arrow-right text-[#E50A17]"></i>
     </router-link>

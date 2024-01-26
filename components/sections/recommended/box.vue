@@ -19,6 +19,8 @@ const interestedData = ref({
 });
 const selectedIntereses = ref([]);
 const itemTitle = ref(null);
+const itemBack = ref(null);
+const itemButton = ref(null);
 const manageableData = ref(null);
 const idTitle = 5;
 const page = 'page2';
@@ -76,6 +78,22 @@ watchEffect(() => {
         item.codigo_item === 'title' &&
         item.es_vista_interna === true
     );
+
+    itemButton.value = manageableData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'main_button' &&
+        item.es_vista_interna === true
+    );
+
+    itemBack.value = manageableData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'back' &&
+        item.es_vista_interna === true
+    );
   }
 
   if (recommended) {
@@ -116,7 +134,7 @@ onMounted(() => {
           </div>
           <div class="mx-auto mb-[20px] text-center">
             <router-link to="/beyond">
-              <Button label="Ver otras opciones" primary class="mt-[35px] !w-[200px]" />
+              <Button :label="itemButton?.texto ?? ''" primary class="mt-[35px] !w-[200px]" />
             </router-link>
           </div>
         </div>

@@ -18,6 +18,7 @@ const interestedData = ref({
 const itemTitle = ref(null);
 const itemFirstQuestions = ref(null);
 const itemSecondQuestions = ref(null);
+const itemBack = ref(null);
 const manageableData = ref(null);
 const idTitle = 5;
 const page = 'page1';
@@ -127,6 +128,13 @@ watchEffect(() => {
         item.es_vista_interna === true &&
         item.etiqueta === 'hobby'
     );
+    itemBack.value = manageableData.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === page &&
+        item.codigo_item === 'back' &&
+        item.es_vista_interna === true
+    );
   }
 });
 
@@ -147,7 +155,7 @@ onMounted(() => {
             >
               <i class="icon-arrow-right text-[#404040] rotate-180" />
               <span class="text-[#404040] font-bold font-zizou-bold text-sm">
-                Atrás
+                {{ itemBack?.texto }}
               </span>
             </div>
           </div>
