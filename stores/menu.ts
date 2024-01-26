@@ -280,12 +280,360 @@ export const useMenuStore = defineStore({
           },
         };
 
-        const response = await axios
-          .create(axiosConf)
-          .get<any>(
-            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${(await this.fetchData())?.localCodUser}&CodAlumno=${(await this.fetchData())?.localCodUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${(await this.fetchData())?.localIntitution}`,
-          );
-        this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
+        // const response = await axios
+        //   .create(axiosConf)
+        //   .get<any>(
+        //     `/Horarios/v1/Horario_Alumno?institucion=${(await this.fetchData())?.localIntitution}&CodigoNivel=2247031001`,
+        //   );
+        // this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
+        this.calendarData = {
+          "message": "Se encontraron horarios",
+          "flag": true,
+          "error": null,
+          "data": [
+              {
+                  "horario": {
+                      "fechaInicio": null,
+                      "fechaFin": null,
+                      "diaNombre": "LUNES",
+                      "diaNumero": "0",
+                      "codPeriodo": null
+                  },
+                  "detalleHorario": [
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "DIAGNÓST.E INFORME PSICOLÓGICO",
+                          "codMateria": "PSGE1303A",
+                          "codSeccion": "2224344248",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "A507",
+                          "descripAula": "Edificio A",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "LUNES",
+                          "diaNumero": "0",
+                          "horaInicio": "12:30:00",
+                          "horaFin": "14:00:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "GIULIANA MARGARITA OBREGON LOPEZ",
+                                  "correo": "giuliana.obregon@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": null
+                      },
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "DIAGNÓST.E INFORME PSICOLÓGICO",
+                          "codMateria": "PSGE1303A",
+                          "codSeccion": "2224344248",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "AUFOG",
+                          "descripAula": "Edificio D",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-09-15",
+                          "fechaFin": "2023-11-28",
+                          "diaNombre": "LUNES",
+                          "diaNumero": "0",
+                          "horaInicio": "14:30:00",
+                          "horaFin": "16:00:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "GIULIANA MARGARITA OBREGON LOPEZ",
+                                  "correo": "giuliana.obregon@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": null
+                      },
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "PSIC.DE PERSONAS CON HAB.DIF.",
+                          "codMateria": "PSED1404A",
+                          "codSeccion": "2224344283",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "B404",
+                          "descripAula": "Edificio B",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "LUNES",
+                          "diaNumero": "0",
+                          "horaInicio": "19:30:00",
+                          "horaFin": "22:40:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "IGNACIO DE LOYOLA PEREZ DIAZ",
+                                  "correo": "ignacio.perez@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": null
+                      }
+                  ]
+              },
+              {
+                  "horario": {
+                      "fechaInicio": null,
+                      "fechaFin": null,
+                      "diaNombre": "MARTES",
+                      "diaNumero": "1",
+                      "codPeriodo": null
+                  },
+                  "detalleHorario": [
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "PSICOTERAPIA 1",
+                          "codMateria": "PSCL1421A",
+                          "codSeccion": "2224344261",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "B302",
+                          "descripAula": "Edificio B",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "MARTES",
+                          "diaNumero": "1",
+                          "horaInicio": "12:30:00",
+                          "horaFin": "17:40:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "GINA PAOLA NOEL BRAVO",
+                                  "correo": "gina.noel@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": null
+                      }
+                  ]
+              },
+              {
+                  "horario": {
+                      "fechaInicio": null,
+                      "fechaFin": null,
+                      "diaNombre": "MIÉRCOLES",
+                      "diaNumero": "2",
+                      "codPeriodo": null
+                  },
+                  "detalleHorario": [
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "SELECCIÓN DE PERSONAL",
+                          "codMateria": "PSOR1401",
+                          "codSeccion": "2224344265",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "B701",
+                          "descripAula": "Edificio B",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "MIÉRCOLES",
+                          "diaNumero": "2",
+                          "horaInicio": "08:00:00",
+                          "horaFin": "09:00:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "FIORELA MILAGROS ALFARO AMASIFEN",
+                                  "correo": "fiorela.alfaro@upn.edu.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": null
+                      },
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "SELECCIÓN DE PERSONAL",
+                          "codMateria": "PSOR1401",
+                          "codSeccion": "2224344265",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "AUFOG",
+                          "descripAula": "Edificio D",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "MIÉRCOLES",
+                          "diaNumero": "2",
+                          "horaInicio": "17:50:00",
+                          "horaFin": "19:20:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "FIORELA MILAGROS ALFARO AMASIFEN",
+                                  "correo": "fiorela.alfaro@upn.edu.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": null
+                      }
+                  ]
+              },
+              {
+                  "horario": {
+                      "fechaInicio": null,
+                      "fechaFin": null,
+                      "diaNombre": "VIERNES",
+                      "diaNumero": "4",
+                      "codPeriodo": null
+                  },
+                  "detalleHorario": [
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Presencial",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "PSICOPATOLOGÍA 2",
+                          "codMateria": "PSCL1412A",
+                          "codSeccion": "2224344253",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "B402",
+                          "descripAula": "Edificio B",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "VIERNES",
+                          "diaNumero": "4",
+                          "horaInicio": "17:50:00",
+                          "horaFin": "20:00:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "MEDALIT LILIANA LUCHO CABILLAS",
+                                  "correo": "medalit.lucho@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": 1
+                      },
+                      {
+                          "titulo": null,
+                          "nrc": null,
+                          "descripMetodoEducativo": "Remoto",
+                          "codmetodoEducativo": null,
+                          "descripMateria": "PSICOPATOLOGÍA 2",
+                          "codMateria": "PSCL1412A",
+                          "codSeccion": "2224344253",
+                          "descripPartePeriodo": null,
+                          "codPartePeriodo": "",
+                          "cantidadVeces": "1",
+                          "codAula": "B402",
+                          "descripAula": "Edificio B",
+                          "codCampus": "LE0",
+                          "descripCampus": "Lima San Juan de Lurigancho",
+                          "codEdificio": null,
+                          "descripEdificio": null,
+                          "fechaInicio": "2023-11-15",
+                          "fechaFin": "2023-12-28",
+                          "diaNombre": "VIERNES",
+                          "diaNumero": "4",
+                          "horaInicio": "18:50:00",
+                          "horaFin": "21:00:00",
+                          "profesor": [
+                              {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "MEDALIT LILIANA LUCHO CABILLAS",
+                                  "correo": "medalit.lucho@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              },
+                             {
+                                  "nombres": "",
+                                  "apellidos": "",
+                                  "nombreCompleto": "RODRIGO",
+                                  "correo": "medalit.lucho@upn.pe",
+                                  "idBanner": "",
+                                  "pidm": "",
+                                  "tipoDesc": "Titular"
+                              }
+                          ],
+                          "orden": 2
+                      }
+                  ]
+              }
+          ]
+      };
       } catch (error) {
         console.error('Error fetching acceso directo data:', error);
       }
