@@ -23,8 +23,8 @@ const manageableData = ref(null);
 const idTitle = 5;
 const page = 'page2';
 const nameToFind = 'beyond';
-let externalCategory = ref("");
-let externalCareer = ref("");
+const externalCategory = ref('');
+const externalCareer = ref('');
 
 const fetchData = async () => {
   await menuStore.fetchInterestData(apiUrl, 'beyond');

@@ -9,12 +9,12 @@ import { apiUrl } from '~/consts';
 const newsData = ref(null);
 const tabsNewsData = ref(null);
 const filteredNewsData = ref(null);
-const externalCategory = ref("");
-const externalCareer = ref("");
+const externalCategory = ref('');
+const externalCareer = ref('');
 
 const menuStore = useMenuStore();
 const tabMapping = {};
-let nextTabIndex = 0;
+const nextTabIndex = 0;
 
 const course = menuStore.getProfileItems.data[0].desProducto;
 const career = menuStore.getProfileItems.data[0].descCurso;
@@ -36,9 +36,9 @@ const fetchData = async () => {
     course,
     career,
     true,
-    "",
+    '',
     externalCategory.value,
-    externalCareer.value
+    externalCareer.value,
   );
 };
 
