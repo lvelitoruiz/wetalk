@@ -40,9 +40,17 @@ const props = defineProps({});
 const handleTabChange = (selectedTab) => {
   console.log('this is the event: ', selectedTab);
 
+  actualPage.value = 1;
+
+  // term.value = ""
+
+
+
   const numericPart = selectedTab.match(/\d+/);
 
   if (numericPart) {
+
+
     const numericValue = parseInt(numericPart[0], 10);
 
     categorySelected.value = categories.value[numericValue].id;
@@ -85,13 +93,13 @@ const fetchData = async () => {
 const onClickHandler = async (page) => {
   actualPage.value = page;
   await fetchData();
-  handleTabChange('tab-all');
+  // handleTabChange('tab-all');
 };
 
 const searchTab = async () => {
   actualPage.value = 1;
   await fetchData();
-  handleTabChange('tab-all');
+  // handleTabChange('tab-all');
 };
 
 watchEffect(async () => {
@@ -133,11 +141,7 @@ onMounted(() => {
   <div>
     <div class="pb-7">
       <BoxContainer color="black">
-        <img
-          :src="bg_triangles_gray"
-          alt="Background Image"
-          class="absolute top-[0px] left-[0px] z-[-1]"
-        />
+        <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
         <div class="flex items-baseline justify-between pb-2">
           <h3 class="text-[#404040] text-2xl">
             <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
@@ -154,47 +158,26 @@ onMounted(() => {
           </p>
         </div>
         <div class="flex justify-center my-[20px]">
-          <div
-            class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center"
-          >
-            <input
-              type="text"
-              placeholder="Buscar"
-              v-model="term"
-              class="w-[95%] focus:outline-none placeholder:text-sm"
-            />
-            <i class="icon-search" :onclick="searchTab"></i>
+          <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
+            <input type="text" placeholder="Buscar" v-model="term"
+              class="w-[95%] focus:outline-none placeholder:text-sm" />
+            <i class="icon-search cursor-pointer" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent
-            :tabs="categories"
-            @tab-change="handleTabChange"
-            :option-all="true"
-            :color-active="'black'"
-          >
+          <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
           </TabContent>
         </div>
-        <div
-          v-if="newsData.length"
-          class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]"
-        >
+        <div v-if="newsData.length" class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
           <Card :data="newsData" :section="'beyond'" />
         </div>
-        <div
-          v-else
-          class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px] pt-20"
-        >
+        <div v-else class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px] pt-20">
           <ErrorMensaje />
         </div>
       </BoxContainer>
       <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
-        <Pagination
-          :total-items="totalCount"
-          :items-per-page="pageSize"
-          :on-click-handler="onClickHandler"
-          :current-page="actualPage"
-        />
+        <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
+          :current-page="actualPage" />
       </div>
     </div>
   </div>
