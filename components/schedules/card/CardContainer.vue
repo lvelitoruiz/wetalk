@@ -52,13 +52,13 @@ const hidePopup = () => {
 		}"
 		:style="getTopAndHeight(course.horaInicio, course.horaFin)"
 	>
-		<ScheduleCardCourse
+		<SchedulesCardCourse
 			v-if="showPopup"
 			:course="course"
 			:popupIsVisible="popupIsVisible"
 			@click="showPopup"
 		/>
-		<ScheduleCardPopUp
+		<SchedulesCardPopUp
 			v-if="popupIsVisible"
 			:closePopup="hidePopup"
 			:course="course"

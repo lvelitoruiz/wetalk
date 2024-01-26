@@ -20,15 +20,20 @@ const endDate = `${
 	useDateFormat(weekDate.Sunday, 'YYYY-MM-DD').value
 }T23:59:00Z`;
 
-const { data, error, pending } = menuStore.fetchCalendarData(
-	apiUrl
-);
 const errorService = ref(null);
-watch(data, (response) => {
-	console.log(response, 'Pruba');
-	if (response?.flag && response?.data.length) {
-		states.setWeekCourses(response.data);
-		states.setFilter(response.data);
+const response = ref({});
+
+onMounted(() => {
+  menuStore.fetchCalendarData(
+	  apiUrl
+  );
+});
+
+watchEffect(() => {
+  response.value = menuStore.getCalendarItems;
+	if (response && response.value.flag && response.value.data.length) {
+		states.setWeekCourses(response.value.data);
+		states.setFilter(response.value.data);
 		states.setDataStatus(true);
 	} else if (response?.error) {
 		errorService.value = response?.error;
