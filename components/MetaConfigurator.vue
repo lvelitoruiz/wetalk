@@ -66,7 +66,7 @@ const markImage = () => {
   illustrations.value.map((item, index) => {
     if (item.imagen === selectedImage.value) {
       item.active = true;
-    } else if ((index === 0 && selectedImage.value === '')) {
+    } else if (index === 0 && selectedImage.value === '') {
       item.active = true;
     } else {
       item.active = false;
@@ -171,10 +171,7 @@ const changeImage = (indexItem, newImage) => {
             />
           </client-only>
           <div class="relative flex items-center flex-col justify-center">
-            <div
-              class="triangulo-up"
-              style="position: relative"
-            />
+            <div class="triangulo-up" style="position: relative" />
             <div
               class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] px-5 py-2 w-full flex justify-between items-center rounded-lg"
             >
@@ -201,19 +198,19 @@ const changeImage = (indexItem, newImage) => {
               Selecciona una ilustración
             </p>
           </div>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid md:grid-cols-4 grid-cols-2 gap-4">
             <img
               v-for="(illustration, index) in illustrations"
               :key="index"
               class="lg:min-w-[100px] min-h-[78px] col-span-1 h-auto cursor-pointer rounded-md"
               :class="{
-                'border-2 border-gray-700': illustration.active,
+                'border-[3px] border-gray-700': illustration.active,
                 'border border-gray-400': !illustration.active,
               }"
               :src="illustration.imagen_estatica"
               alt=""
               @click="() => changeImage(index, illustration.imagen)"
-            >
+            />
           </div>
         </div>
         <div class="relative">
@@ -231,7 +228,7 @@ const changeImage = (indexItem, newImage) => {
             placeholder="Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆"
             type="text"
             @input="handleMeta"
-          >
+          />
           <div class="pt-2 lg:hidden flex justify-end mb-4">
             <p class="text-xs text-[#808080]">
               {{ graphemesNow.length > 65 ? 65 : graphemesNow.length || 0 }}/65

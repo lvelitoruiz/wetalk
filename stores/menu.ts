@@ -648,7 +648,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo/Categoria?institucion=upn`
+            '/Informativos/v1/Informativo/Categoria?institucion=upn'
           );
 
         this.categoriesData = response.data.data;

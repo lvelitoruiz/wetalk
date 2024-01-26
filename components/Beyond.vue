@@ -25,8 +25,8 @@ const menuStore = useMenuStore();
 const tabMapping = {};
 const selectedIntereses = ref([]);
 let nextTabIndex = 0;
-let externalCategory = ref("");
-let externalCareer = ref("");
+const externalCategory = ref('');
+const externalCareer = ref('');
 
 const props = defineProps({});
 

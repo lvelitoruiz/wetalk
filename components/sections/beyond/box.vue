@@ -1,3 +1,4 @@
+<!-- eslint-disable array-callback-return -->
 <!-- eslint-disable @typescript-eslint/comma-dangle -->
 <!-- eslint-disable @typescript-eslint/no-floating-promises -->
 <!-- eslint-disable @typescript-eslint/no-unsafe-argument -->
@@ -23,11 +24,11 @@ const interestedData = ref({
 });
 const selectedIntereses = ref([]);
 const tabMapping = {};
-let nextTabIndex = 0;
-let externalCategory = ref("");
-let externalCareer = ref("");
+const nextTabIndex = 0;
+const externalCategory = ref('');
+const externalCareer = ref('');
 
-const categorySelected = ref("");
+const categorySelected = ref('');
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
 
@@ -42,16 +43,14 @@ const handleTabChange = (selectedTab) => {
   const numericPart = selectedTab.match(/\d+/);
 
   if (numericPart) {
-
     const numericValue = parseInt(numericPart[0], 10);
 
     categorySelected.value = categories.value[numericValue].id;
     fetchData();
   } else {
-    categorySelected.value = "";
+    categorySelected.value = '';
     fetchData();
   }
-
 };
 
 const fetchData = async () => {
@@ -105,7 +104,7 @@ watchEffect(async () => {
   console.log('the values!! ', categories);
   categories.value.map((item) => {
     item.texto = item.nombre;
-  })
+  });
 
   if (interested) {
     const interestedDataValue = interested.map((item) => {
@@ -134,7 +133,11 @@ onMounted(() => {
   <div>
     <div class="pb-7">
       <BoxContainer color="black">
-        <img :src="bg_triangles_gray" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
+        <img
+          :src="bg_triangles_gray"
+          alt="Background Image"
+          class="absolute top-[0px] left-[0px] z-[-1]"
+        />
         <div class="flex items-baseline justify-between pb-2">
           <h3 class="text-[#404040] text-2xl">
             <span class="uppercase font-bold font-solano">Beyond WeTALK</span>
@@ -151,26 +154,47 @@ onMounted(() => {
           </p>
         </div>
         <div class="flex justify-center my-[20px]">
-          <div class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center">
-            <input type="text" placeholder="Buscar" v-model="term"
-              class="w-[95%] focus:outline-none placeholder:text-sm" />
+          <div
+            class="w-[423px] border border-[#A6A6A6] rounded px-3 py-2 flex items-center"
+          >
+            <input
+              type="text"
+              placeholder="Buscar"
+              v-model="term"
+              class="w-[95%] focus:outline-none placeholder:text-sm"
+            />
             <i class="icon-search" :onclick="searchTab"></i>
           </div>
         </div>
         <div class="relative flex mb-[20px] justify-center">
-          <TabContent :tabs="categories" @tab-change="handleTabChange" :option-all="true" :color-active="'black'">
+          <TabContent
+            :tabs="categories"
+            @tab-change="handleTabChange"
+            :option-all="true"
+            :color-active="'black'"
+          >
           </TabContent>
         </div>
-        <div v-if="newsData.length" class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]">
+        <div
+          v-if="newsData.length"
+          class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px]"
+        >
           <Card :data="newsData" :section="'beyond'" />
         </div>
-        <div v-else class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px] pt-20">
+        <div
+          v-else
+          class="relative black-scroll min-h-[300px] overflow-y-auto max-h-[550px] pt-20"
+        >
           <ErrorMensaje />
         </div>
       </BoxContainer>
       <div v-if="newsData.length" class="mt-5 flex justify-center items-center">
-        <Pagination :total-items="totalCount" :items-per-page="pageSize" :on-click-handler="onClickHandler"
-          :current-page="actualPage" />
+        <Pagination
+          :total-items="totalCount"
+          :items-per-page="pageSize"
+          :on-click-handler="onClickHandler"
+          :current-page="actualPage"
+        />
       </div>
     </div>
   </div>
