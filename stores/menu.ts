@@ -313,21 +313,13 @@ export const useMenuStore = defineStore({
           },
         };
 
+        const seccion = localStorage.getItem('seccion');
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${(await this.fetchData())?.localCodUser}&CodAlumno=${(await this.fetchData())?.localCodUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${(await this.fetchData())?.localIntitution}`
+            `/Horarios/v1/Horario_Alumno?institucion=${(await this.fetchData())?.localIntitution}&CodigoNivel=${seccion}`,
           );
-
-        if (response.status >= 200 && response.status < 300) {
-          return response.data.ListaDTOHorarioOBJAlumno;
-        } else {
-          console.error(
-            'Error en la respuesta de la solicitud:',
-            response.status,
-            response.data
-          );
-        }
+        this.calendarData = response.data;
       } catch (error) {
         if (error instanceof Error) {
           console.error('Error al procesar la solicitud:', error.message);
