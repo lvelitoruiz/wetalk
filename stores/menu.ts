@@ -312,8 +312,6 @@ export const useMenuStore = defineStore({
             Authorization: (await this.fetchData())?.localHeader,
           },
         };
-
-<<<<<<< HEAD
         // const response = await axios
         //   .create(axiosConf)
         //   .get<any>(
