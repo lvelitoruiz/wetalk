@@ -25,7 +25,7 @@ const nameToFind = 'beyond';
 const menuStore = useMenuStore();
 const tabMapping = {};
 const selectedIntereses = ref([]);
-let nextTabIndex = 0;
+const nextTabIndex = 0;
 const externalCategory = ref('');
 const externalCareer = ref('');
 
@@ -100,8 +100,6 @@ watchEffect(async () => {
       total: interestedDataValue?.length ?? 0,
     };
 
-    console.log('items data: *** ', interestedData.value.data.length);
-
     selectedIntereses.value = interestedDataValue.map((item) => item.answer);
     externalCategory.value = selectedIntereses.value[0];
     externalCareer.value = selectedIntereses.value[1];
@@ -151,13 +149,21 @@ onMounted(() => {
 <template>
   <BoxContainer color="black">
     <div class="flex items-center justify-between">
-      <img :src="bg_triangles_gray_card" alt="Background Image" class="absolute top-[0px] left-[0px] z-[-1]" />
+      <img
+        :src="bg_triangles_gray_card"
+        alt="Background Image"
+        class="absolute top-[0px] left-[0px] z-[-1]"
+      />
       <h3 class="text-[#404040] text-2xl">
         <span class="uppercase font-bold font-solano">
           {{ itemTitle?.texto ?? '' }}
         </span>
       </h3>
-      <router-link v-if="interestedData.total !== 0" class="flex items-center gap-2" to="/beyond">
+      <router-link
+        v-if="interestedData.total !== 0"
+        class="flex items-center gap-2"
+        to="/beyond"
+      >
         <span class="text-[#E50A17] font-bold font-zizou-bold text-sm">
           {{ itemSubtitle?.texto ?? '' }}
         </span>
