@@ -17,8 +17,8 @@ const menuStore = useMenuStore();
 const tabMapping = {};
 const nextTabIndex = 0;
 
-const course = menuStore.getProfileItems.data[0].desProducto;
-const career = menuStore.getProfileItems.data[0].descCurso;
+const career = menuStore.getProfileItems.data[0].desProducto;
+const course = menuStore.getProfileItems.data[0].descCurso;
 
 const interestedData = ref({
   value: [],
