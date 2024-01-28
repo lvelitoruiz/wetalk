@@ -31,8 +31,8 @@ const externalCareer = ref('');
 
 const props = defineProps({});
 
-const course = menuStore.getProfileItems.data[0].desProducto;
-const career = menuStore.getProfileItems.data[0].descCurso;
+const career = menuStore.getProfileItems.data[0].desProducto;
+const course = menuStore.getProfileItems.data[0].descCurso;
 
 const fetchData = async () => {
   await menuStore.fetchInterestData(apiUrl, 'beyond');

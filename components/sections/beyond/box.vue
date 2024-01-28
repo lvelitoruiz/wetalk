@@ -33,8 +33,8 @@ const categorySelected = ref('');
 
 const nameUser = userStore.getUserData?.name?.split(' ')[0];
 
-const course = menuStore.getProfileItems.data[0].desProducto;
-const career = menuStore.getProfileItems.data[0].descCurso;
+const career = menuStore.getProfileItems.data[0].desProducto;
+const course = menuStore.getProfileItems.data[0].descCurso;
 
 const props = defineProps({});
 
