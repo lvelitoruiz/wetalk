@@ -20,10 +20,7 @@ const itemFirstQuestions = ref(null);
 const itemSecondQuestions = ref(null);
 const itemBack = ref(null);
 const manageableData = ref(null);
-const idTitle = 5;
 const page = 'page1';
-const idFirstQuestions = 6;
-const idSecondQuestions = 7;
 const nameToFind = 'beyond';
 
 const fetchData = async () => {
@@ -43,10 +40,18 @@ const getFirstName = (fullName) => {
 const selectedIntereses = ref([]);
 const selectedTopics = ref([]);
 
+const handleSelectionChange = (selectedItems) => {
+  selectedTopics.value = selectedItems;
+};
+
 const saveInterested = async () => {
   try {
     const selectedInteresesArray = Object.values(selectedIntereses.value);
     const selectedTopicsArray = selectedTopics.value.map((item) => item.id);
+    const idFirstQuestions = itemFirstQuestions.value?.id ?? '';
+    const tagFirstQuestions = itemFirstQuestions.value?.etiqueta ?? '';
+    const idSecondQuestions = itemSecondQuestions.value?.id ?? '';
+    const tagSecondQuestions = itemSecondQuestions.value?.etiqueta ?? '';
 
     const registerData = {
       student_code: dataU.codUser,
@@ -56,12 +61,12 @@ const saveInterested = async () => {
         {
           contenido_dinamico_id: idFirstQuestions,
           answer: selectedTopicsArray.join(','),
-          tag: idFirstQuestions?.etiqueta,
+          tag: tagFirstQuestions,
         },
         {
           contenido_dinamico_id: idSecondQuestions,
           answer: selectedInteresesArray.join(','),
-          tag: idSecondQuestions?.etiqueta,
+          tag: tagSecondQuestions,
         },
       ],
     };
@@ -96,10 +101,14 @@ watchEffect(() => {
       value: interestedDataValue,
       total: interestedDataValue.length,
     };
-
-    selectedIntereses.value = interestedDataValue.find(
+    
+    const answers = interestedDataValue.find(
       (x) => x.etiqueta === 'hobby'
     )?.answer;
+    
+    if (answers) {
+      selectedIntereses.value = answers;
+    }
   }
 
   if (manageable) {
@@ -163,7 +172,7 @@ onMounted(() => {
         <div class="md:mx-[60px] mx-0">
           <h3 class="text-[#404040] text-center">
             <span
-              class="uppercase font-bold font-solano text-2xl text-[#000000]"
+              class="uppercase font-bold font-solano text-2xl"
             >
               {{ getFirstName(dataU.name) }},
             </span>
@@ -186,6 +195,7 @@ onMounted(() => {
                 :selected="
                   interestedData.value.find((x) => x.etiqueta == 'category')
                 "
+                @on-selection-change="handleSelectionChange"
               >
               </MultiSelect>
             </div>
