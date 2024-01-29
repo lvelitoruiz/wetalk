@@ -144,7 +144,7 @@ const markSelectedOptions = () => {
         (item) => item.id === selectedItem
       );
 
-      if (itemIndex && itemIndex !== -1) {
+      if (itemIndex !== -1) {
         items.value[itemIndex].checked = true;
 
         const selectedOptionIndex = selectedItems.value.findIndex(
