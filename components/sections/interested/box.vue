@@ -99,7 +99,7 @@ watchEffect(() => {
 
     selectedIntereses.value = interestedDataValue.find(
       (x) => x.etiqueta === 'hobby'
-    ).answer;
+    )?.answer;
   }
 
   if (manageable) {
