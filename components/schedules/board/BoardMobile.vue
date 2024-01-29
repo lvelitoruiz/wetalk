@@ -120,7 +120,7 @@ onBeforeUpdate(() => {
 </script>
 
 <template>
-	<div class="bg-white px-3 pt-4 mb-2 rounded-b-[14px] shadow-[0_10px_6px_0_rgba(0,0,0,0.05)]">
+	<div class="bg-white px-3 pt-4 mb-[25px] rounded-b-[14px] shadow-[0_10px_6px_0_rgba(0,0,0,0.05)]">
 		<div class="datesList">
 			<button
 				v-for="(item, i) in getWeekDates()"
