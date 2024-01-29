@@ -111,7 +111,7 @@ const eventClickLogout = (text) => {
 
 <template>
   <div
-    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-6 lg:px-9 justify-between"
+    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-50 px-6 lg:px-9 justify-between"
   >
     <div class="flex">
       <button class="lg:hidden mr-2" @click="openMenu">

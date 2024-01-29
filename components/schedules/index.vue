@@ -37,12 +37,6 @@ const eventClick = () => {
 						.value
 				} - ${useDateFormat(getWeekDates().Sunday, 'DD MMMM', { locales: 'es-ES' }).value}`"
 			/>
-			<SchedulesCourseFilter
-				v-if="isLargeScreen"
-				:selectedCourseWeek="selectedCourseWeek"
-				:handleCourse="states.handleFilter"
-				:filteredCourses="states.filter"
-			/>
 		</div>
 		<SchedulesBoardDesktop
 			v-if="isLargeScreen"
@@ -59,24 +53,6 @@ const eventClick = () => {
 			:errorService="errorService"
 			:error="error"
 		/>
-		<div class="py-[40px] text-sm">
-			<div class="flex">
-				<p class="mr-[13px] before:bg-[#FDBA30] disclaimer"> Curso Presencial</p>
-				<p class="mb-4 before:bg-[#00B9FF] disclaimer"> Curso Remoto</p>
-			</div>
-			<p class="leading-[1]">
-				*Para dudas con los horarios, consúltalo en
-				<a
-					class="text-blue_link underline"
-					href="https://contacto.upn.edu.pe/"
-					target="_blank"
-					@click="eventClick"
-				>
-					Contacto UPN</a
-				>, con nuestros “accesos rápidos”, o comunícate con nosotros en los
-				medios de contacto ubicados en el botón del menú “¿Necesitas ayuda?”.
-			</p>
-		</div>
 	</div>
 </template>
 

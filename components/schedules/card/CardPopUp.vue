@@ -132,7 +132,7 @@ onMounted(() => {
 							Salón
 						</p>
 						<p
-							v-if="course.descripMetodoEducativo !== 'Remoto'"
+							v-if="course.descripMetodoEducativo !== 'Virtual'"
 							class="font-publicSans font-bold text-[#000] text-sm"
 						>
 							{{ course.codAula || '-' }}
@@ -152,32 +152,12 @@ onMounted(() => {
 							>
 						</p>
 					</div>
-					<div v-if="course.descripMetodoEducativo == 'Presencial'">
-						<p
-							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[2px]"
-						>
-							Campus
-						</p>
-						<p class="font-publicSans font-bold text-[#000] text-sm">
-							{{ course.descripCampus || '-' }}
-						</p>
-					</div>
-					<div v-if="course.descripMetodoEducativo == 'Presencial'">
-						<p
-							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[2px]"
-						>
-							Referencia
-						</p>
-						<p class="font-publicSans font-bold text-[#000] text-sm">
-							{{ course.descripAula || '-' }}
-						</p>
-					</div>
 					<div v-if="course.profesor.length" class="col-span-2 lg:col-span-1">
 						<label
 							for="docentes"
 							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[6px] h-full"
 						>
-							Docente
+							Instructor
 						</label>
 						<select
 							id="docentes"
@@ -204,7 +184,7 @@ onMounted(() => {
 						<p
 							class="font-publicSans text-[#333333] leading-[1] text-xs pb-[6px] mt-auto"
 						>
-							Correo del docente
+							Correo del instructor
 						</p>
 						<div class="relative flex items-center lg:h-[31.2px] max-w-min">
 							<a

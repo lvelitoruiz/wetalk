@@ -18,13 +18,9 @@ const getDiff = (init: string, fin: string) => {
 
 <template>
 	<div
-		class="card-container"
+		class="card-container before:bg-primary"
 		role="button"
 		tabindex="1"
-		:class="{
-			'before:bg-primary': course.descripMetodoEducativo === 'Presencial',
-			'before:bg-[#E50A17]': course.descripMetodoEducativo === 'Remoto',
-		}"
 	>
 		<span class="text-[0.625rem]">
 			{{ course.horaInicio.slice(0, 5) }} - {{ course.horaFin.slice(0, 5) }}
@@ -33,7 +29,7 @@ const getDiff = (init: string, fin: string) => {
 			class="font-bold text-xs leading-[1] break-words capitalize"
 			:class="{ truncate: getDiff(course.horaInicio, course.horaFin) <= 60 }"
 		>
-			{{ course.descripMateria.toLowerCase() }}
+			{{ course.descripMateria }}
 		</p>
 		<p
 			v-if="getDiff(course.horaInicio, course.horaFin) > 60"
@@ -42,14 +38,14 @@ const getDiff = (init: string, fin: string) => {
 			{{ course.codMateria }}
 		</p>
 		<div
-			v-if="course.descripMetodoEducativo === 'Remoto' || course.codAula"
+			v-if="course.descripMetodoEducativo === 'Virtual' || course.codAula"
 			class="mt-auto flex gap-1"
 		>
 			<div
 				class="text-[0.725rem] text-black text-center font-telegraf font-extrabold pt-1"
 			>
 				{{
-					course.descripMetodoEducativo === 'Remoto'
+					course.descripMetodoEducativo === 'Virtual'
 						? 'Blackboard'
 						: course.codAula
 				}}
