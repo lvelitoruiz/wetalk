@@ -57,10 +57,9 @@ export default defineComponent({
         :class="[
           {
             'w-[0%]': wide === 'initial',
-            'w-[20%]': wide === 'first',
-            'w-[50%]': wide === 'second',
-            'w-[75%]': wide === 'third',
-            'w-[100%]': wide === 'fourth',
+            'w-[33%]': wide === 'first',
+            'w-[66%]': wide === 'second',
+            'w-[100%]': wide === 'third',
           },
         ]"
       ></div>
