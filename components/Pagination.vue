@@ -1,4 +1,7 @@
+<!-- eslint-disable vue/require-default-prop -->
 <script setup>
+import { defineProps, toRef, computed } from 'vue';
+
 const props = defineProps({
   totalItems: {
     type: Number,
@@ -47,8 +50,9 @@ const showPage = (val) => {
   if (
     val === currentPageRef.value - 1 &&
     (val === 1 || currentPageRef.value === totalPages.value)
-  )
+  ) {
     return true;
+  }
 };
 
 const showDot = (val) => {
@@ -57,8 +61,9 @@ const showDot = (val) => {
     val > 3 &&
     val === currentPageRef.value + 1 &&
     val !== totalPages.value - 1
-  )
+  ) {
     return false;
+  }
   return true;
 };
 </script>
@@ -68,7 +73,7 @@ const showDot = (val) => {
     <ul class="flex items-center justify-center font-solano text-[#A6A6A6]">
       <li class="relative mr-3">
         <Button
-          iconLeft
+          icon-left
           secundary
           @click.prevent="goTo(1)"
           :disabled="currentPageRef === 1"
@@ -133,7 +138,7 @@ const showDot = (val) => {
           @click.prevent="next"
           :disabled="currentPageRef === totalPages"
           aria-label="Ir a la siguiente página"
-          iconRight
+          icon-right
           secundary
         >
         </Button>
@@ -144,12 +149,10 @@ const showDot = (val) => {
           @click.prevent="goTo(totalPages)"
           :disabled="currentPageRef === totalPages"
           aria-label="Ir a la última página"
-          iconRight
+          icon-right
           secundary
         />
       </li>
     </ul>
   </nav>
 </template>
-
-

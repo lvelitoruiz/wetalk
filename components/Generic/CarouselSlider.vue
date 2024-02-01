@@ -1,8 +1,9 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, ref, watchEffect } from 'vue';
 
-defineProps({
+const dataSlider = ref([]);
+const props = defineProps({
   dataList: {
     type: Array,
     default: [],
@@ -12,11 +13,16 @@ defineProps({
     default: 1,
   },
 });
+
+watchEffect(() => {
+  dataSlider.value = props.dataList;
+});
 </script>
 <template>
   <div class="content_destacados">
     <ClientOnly>
-      <Swiper
+      <div v-if="dataSlider.length > 0">
+        <Swiper
         :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination]"
         :slides-per-view="1"
         :loop="true"
@@ -41,29 +47,28 @@ defineProps({
           clickable: true,
         }"
       >
-        <SwiperSlide
-          v-for="page in dataList"
-          :key="page.id"
-        >
+        <SwiperSlide v-for="page in dataSlider" :key="page.id">
           <slot :item="page" />
         </SwiperSlide>
         <div class="c-navigation_destacados">
           <div
             class="swiper-button-prev"
             id="prev"
-            :class="dataList?.length > 5 ? 'hide-mobile' : ''"
+            :class="dataSlider?.length > 5 ? 'hide-mobile' : ''"
           />
           <div class="swiper-pagination" />
           <div
             class="swiper-button-next"
             id="next"
-            :class="dataList?.length > 5 ? 'hide-mobile' : ''"
+            :class="dataSlider?.length > 5 ? 'hide-mobile' : ''"
           />
         </div>
       </Swiper>
+      </div>
     </ClientOnly>
   </div>
 </template>
+
 <style lang="postcss">
 .content_destacados {
   width: 200px;

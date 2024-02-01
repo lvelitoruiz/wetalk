@@ -36,7 +36,7 @@ onMounted(() => {
   }
 
   menuStore.fetchContenidoData(apiUrl, '0').then((response) => {
-    console.log(response.data);
+    return null;
   });
 });
 

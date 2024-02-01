@@ -50,7 +50,7 @@ const fetchMetaInfo = async () => {
         carrera: profileData?.desProducto,
         ciclo: profileData?.descCurso,
         codigoAlumno: profileData?.codAlumno,
-        institucion: profileData?.institucion
+        institucion: profileData?.institucion,
       });
     }
   });
@@ -91,13 +91,11 @@ watchEffect(async () => {
   const data = metaStore.getMetaData;
   if (data && data.length > 0) {
     referenceData.value = true;
-    console.log('metadata values: ', data.length);
     metaData.value = data;
     if (data[0].imagen !== '') {
       selectedImage.value = data[0].imagen;
     }
   } else {
-    console.log('no metadata values: ', data?.length);
     referenceData.value = false;
     metaData.value = data;
   }
@@ -117,14 +115,12 @@ watchEffect(async () => {
 
   const profile = menuStore.getProfileItems;
   if (profile.data !== undefined) {
-    console.log('the profile data: ', profile.data);
     localStorage.setItem('periodo', profile.data[0].periodo);
     localStorage.setItem('curso', profile.data[0].salon);
     localStorage.setItem('seccion', profile.data[0].seccion);
     localStorage.setItem('foto', profile.data[0].fotoUrl);
+    localStorage.setItem('carrera', profile.data[0].desProducto);
   }
-
-  // console.log('with value: ',allDataLoaded.value);
 
   if (allDataLoaded.value) {
     handleOpen();
@@ -216,15 +212,12 @@ watchEffect(async () => {
           @click="handleOpen"
         />
       </div>
-      <a
-        class="absolute top-[40px] right-4"
-        @click="handleOpenLogin"
-      >
+      <a class="absolute top-[40px] right-4" @click="handleOpenLogin">
         <img
           class="h-[39px]"
           src="@/assets/images/wetalk_logo_upn.svg"
           alt=""
-        >
+        />
       </a>
     </div>
   </section>

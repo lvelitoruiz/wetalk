@@ -50,6 +50,10 @@ const scrollTabs = (direction: 'left' | 'right') => {
     }
   }
 };
+
+onMounted(() => {
+  console.log('the categories: ', props.tabs);
+});
 </script>
 
 <template>

@@ -10,7 +10,6 @@ const userStore = useUserStore();
 const menuStore = useMenuStore();
 
 const nameUser = userStore.getUserData?.name;
-console.log(nameUser, 'name user');
 const pres = ref(false);
 const nots = ref(false);
 
@@ -63,7 +62,7 @@ const openPres = () => {
 onMounted(() => {
   foto.value = localStorage.getItem('foto');
   menuStore.fetchNotificationData(apiUrl, '0').then((response) => {
-    console.log('obtaining the response here: ', response);
+    return null;
   });
 });
 
@@ -112,13 +111,10 @@ const eventClickLogout = (text) => {
 
 <template>
   <div
-    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-20 px-6 lg:px-9 justify-between"
+    class="bg-white shadow-md w-screen h-[68px] lg:h-20 fixed flex top-0 left-0 z-50 px-6 lg:px-9 justify-between"
   >
     <div class="flex">
-      <button
-        class="lg:hidden mr-2"
-        @click="openMenu"
-      >
+      <button class="lg:hidden mr-2" @click="openMenu">
         <i class="text-[28px] text-[#191919] icon-nav" />
       </button>
       <div
@@ -140,25 +136,16 @@ const eventClickLogout = (text) => {
             @click="eventClickCorreo('https://outlook.live.com/')"
             class="hidden lg:block"
           >
-            <a
-              href="https://outlook.live.com/"
-              target="_blank"
-            >
+            <a href="https://outlook.live.com/" target="_blank">
               <i class="text-3xl text-[#191919] icon-email" /></a>
           </button>
           <div class="relative">
             <Bell @show="openClose" />
             <Transition>
-              <PreNotifications
-                v-if="pres"
-                @close="pres = false"
-              />
+              <PreNotifications v-if="pres" @close="pres = false" />
             </Transition>
             <Transition>
-              <Notifications
-                v-if="nots"
-                @close="nots = false"
-              />
+              <Notifications v-if="nots" @close="nots = false" />
             </Transition>
           </div>
         </div>
@@ -179,11 +166,7 @@ const eventClickLogout = (text) => {
                 to="/meta"
                 class="h-full hidden lg:flex justify-center items-center"
               >
-                <img
-                  class="h-full w-full object-cover"
-                  :src="foto"
-                  alt=""
-                >
+                <img class="h-full w-full object-cover" :src="foto" alt="" />
               </RouterLink>
               <div class="h-full flex lg:hidden justify-center items-center">
                 <img
@@ -191,13 +174,10 @@ const eventClickLogout = (text) => {
                   class="h-full w-full object-cover"
                   :src="foto"
                   alt=""
-                >
+                />
               </div>
             </div>
-            <button
-              class="hidden lg:block"
-              @click="openList"
-            >
+            <button class="hidden lg:block" @click="openList">
               <i class="icon-arrow-down text-[#191919]" />
             </button>
           </div>
@@ -222,15 +202,12 @@ const eventClickLogout = (text) => {
               </div>
             </div>
           </div>
-          <RouterLink
-            to="/"
-            class="h-full flex justify-center items-center"
-          >
+          <RouterLink to="/" class="h-full flex justify-center items-center">
             <img
               class="lg:h-[39px] h-7"
               src="@/assets/images/wetalk_logo_upn.svg"
               alt=""
-            >
+            />
           </RouterLink>
         </div>
       </div>

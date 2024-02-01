@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable @typescript-eslint/member-delimiter-style */
+/* eslint-disable @typescript-eslint/space-before-function-paren */
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable no-undef */
 import axios from 'axios';
@@ -20,8 +23,13 @@ export const useMenuStore = defineStore({
     companionsData: [] as any,
     newsData: [] as any,
     newsDataMeta: [] as any,
+    newsDataRecomended: [] as any,
     newsDataId: [] as any,
     journalData: [] as any,
+    interestedData: [] as any,
+    manageableData: [] as any,
+    recommendedData: [] as any,
+    categoriesData: [] as any,
   }),
   persist: {
     storage: persistedState.localStorage,
@@ -37,12 +45,17 @@ export const useMenuStore = defineStore({
     getCourses: (state) => state.coursesData,
     getNews: (state) => state.newsData,
     getNewsMeta: (state) => state.newsDataMeta,
+    getNewsRecomended: (state) => state.newsDataRecomended,
     getNewsId: (state) => state.newsDataId,
     getNotasItems: (state) => state.notasData,
     getfaltasItems: (state) => state.faltasData,
     getListStudents: (state) => state.companionsData,
     getProfesorItems: (state) => state.profesorData,
     getJournalData: (state) => state.journalData,
+    getInterestedItems: (state) => state.interestedData,
+    getManageableItems: (state) => state.manageableData,
+    getRecommendedItems: (state) => state.recommendedData,
+    getCategoryItems: (state) => state.categoriesData,
   },
   actions: {
     async fetchData() {
@@ -87,25 +100,27 @@ export const useMenuStore = defineStore({
       const periodo = localStorage.getItem('periodo');
       const seccion = localStorage.getItem('seccion');
 
-      try {
-        const axiosConf = {
-          baseURL: apiUrl,
-          common: {
-            Accept: 'application/json, text/plain, */*',
-          },
-          headers: {
-            Authorization: (await this.fetchData())?.localHeader,
-          },
-        };
+      if (curso && periodo && seccion) {
+        try {
+          const axiosConf = {
+            baseURL: apiUrl,
+            common: {
+              Accept: 'application/json, text/plain, */*',
+            },
+            headers: {
+              Authorization: (await this.fetchData())?.localHeader,
+            },
+          };
 
-        const response = await axios
-          .create(axiosConf)
-          .get<any>(
-            `/Cursos/v1/Detalle_Curso?CodAlumno=${(await this.fetchData())?.localCodUser}&institucion=${(await this.fetchData())?.localIntitution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
-          );
-        this.notasData = response.data.data;
-      } catch (error) {
-        console.error('Error fetching menu data:', error);
+          const response = await axios
+            .create(axiosConf)
+            .get<any>(
+              `/Cursos/v1/Detalle_Curso?CodAlumno=${(await this.fetchData())?.localCodUser}&institucion=${(await this.fetchData())?.localIntitution}&CodCurso=${curso}&Seccion=${seccion}&CodPeriodo=${periodo}`
+            );
+          this.notasData = response.data.data;
+        } catch (error) {
+          console.error('Error fetching menu data:', error);
+        }
       }
     },
 
@@ -114,26 +129,31 @@ export const useMenuStore = defineStore({
       const periodo = localStorage.getItem('periodo');
       const seccion = localStorage.getItem('seccion');
 
-      try {
-        const axiosConf = {
-          baseURL: apiUrl,
-          common: {
-            Accept: 'application/json, text/plain, */*',
-          },
-          headers: {
-            Authorization: (await this.fetchData())?.localHeader,
-          },
-        };
+      if (curso && periodo && seccion) {
+        try {
+          const axiosConf = {
+            baseURL: apiUrl,
+            common: {
+              Accept: 'application/json, text/plain, */*',
+            },
+            headers: {
+              Authorization: (await this.fetchData())?.localHeader,
+            },
+          };
 
-        const response = await axios
-          .create(axiosConf)
-          .get<any>(
-            `/Cursos/v1/ListaDeAlumnosPorCurso?institucion=${(await this.fetchData())?.localIntitution}&CodPeriodo=${periodo}&CodCurso=${curso}&Seccion=${seccion}`
-          );
-        console.log(this.companionsData);
-        this.companionsData = response.data.data;
-      } catch (error) {
-        console.error('Error fetching menu data:', error);
+          const response = await axios
+            .create(axiosConf)
+            .get<any>(
+              `/Cursos/v1/ListaDeAlumnosPorCurso?institucion=${(await this.fetchData())?.localIntitution}&CodPeriodo=${periodo}&CodCurso=${curso}&Seccion=${seccion}`
+            );
+          this.companionsData = response.data.data;
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error('Error al procesar la solicitud:', error.message);
+          } else {
+            console.error('Error de tipo desconocido:', error);
+          }
+        }
       }
     },
 
@@ -141,25 +161,28 @@ export const useMenuStore = defineStore({
       const curso = localStorage.getItem('curso');
       const periodo = localStorage.getItem('periodo');
       const seccion = localStorage.getItem('seccion');
-      try {
-        const axiosConf = {
-          baseURL: apiUrl,
-          common: {
-            Accept: 'application/json, text/plain, */*',
-          },
-          headers: {
-            Authorization: (await this.fetchData())?.localHeader,
-          },
-        };
 
-        const response = await axios
-          .create(axiosConf)
-          .get<any>(
-            `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${(await this.fetchData())?.localCodUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=${(await this.fetchData())?.localIntitution}&CodSeccion=${seccion}`
-          );
-        this.faltasData = response.data.data;
-      } catch (error) {
-        console.error('Error fetching menu data:', error);
+      if (curso && periodo && seccion) {
+        try {
+          const axiosConf = {
+            baseURL: apiUrl,
+            common: {
+              Accept: 'application/json, text/plain, */*',
+            },
+            headers: {
+              Authorization: (await this.fetchData())?.localHeader,
+            },
+          };
+
+          const response = await axios
+            .create(axiosConf)
+            .get<any>(
+              `/Cursos/v1/Inasistencias_Alumno?CodAlumno=${(await this.fetchData())?.localCodUser}&CodCurso=${curso}&CodPeriodo=${periodo}&institucion=${(await this.fetchData())?.localIntitution}&CodSeccion=${seccion}`
+            );
+          this.faltasData = response.data.data;
+        } catch (error) {
+          console.error('Error fetching menu data:', error);
+        }
       }
     },
 
@@ -233,9 +256,21 @@ export const useMenuStore = defineStore({
             notificationData
           );
 
-        return response.data?.registerCount ?? 0;
+        if (response.status >= 200 && response.status < 300) {
+          return response.data?.registerCount ?? 0;
+        } else {
+          console.error(
+            'Error en la respuesta de la solicitud:',
+            response.status,
+            response.data
+          );
+        }
       } catch (error) {
-        console.error('Error saving notification data', error);
+        if (error instanceof Error) {
+          console.error('Error al procesar la solicitud:', error.message);
+        } else {
+          console.error('Error de tipo desconocido:', error);
+        }
       }
     },
 
@@ -257,8 +292,6 @@ export const useMenuStore = defineStore({
             `/Home/v1/Notificaciones?codAlumno=${(await this.fetchData())?.localCodUser}&poblacion=AC&ciclo=10&institucion=${(await this.fetchData())?.localIntitution}`
           );
 
-        console.log(response.data.data);
-
         this.notificationData = response.data.data;
       } catch (error) {
         console.error('Error fetching acceso directo data:', error);
@@ -277,14 +310,19 @@ export const useMenuStore = defineStore({
           },
         };
 
+        const seccion = localStorage.getItem('seccion');
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Horarios/v1/Horario_Alumno?CodLineaNegocio=U&CodModalEst=FC&CodUsuario=${(await this.fetchData())?.localCodUser}&CodAlumno=${(await this.fetchData())?.localCodUser}&CodPeriodo=202301&FechaSesion2=2023-11-05T23:00:00Z&FechaSesion1=2023-10-30T00:00:00Z&institucion=${(await this.fetchData())?.localIntitution}`
+            `/Horarios/v1/Horario_Alumno?institucion=${(await this.fetchData())?.localIntitution}&CodigoNivel=${seccion}`
           );
-        this.calendarData = response.data.ListaDTOHorarioOBJAlumno;
+        this.calendarData = response.data;
       } catch (error) {
-        console.error('Error fetching acceso directo data:', error);
+        if (error instanceof Error) {
+          console.error('Error al procesar la solicitud:', error.message);
+        } else {
+          console.error('Error de tipo desconocido:', error);
+        }
       }
     },
 
@@ -332,8 +370,6 @@ export const useMenuStore = defineStore({
             `/Home/v1/Ciclos?institucion=${(await this.fetchData())?.localIntitution}&ciclo_actual=` +
               cycle
           );
-
-        console.log('the response data: ', response.data);
 
         newData.push(response.data.data.ciclo_actual);
         newData.push(response.data.data.ciclo_siguiente);
@@ -418,9 +454,15 @@ export const useMenuStore = defineStore({
       page: string = '1',
       searchTerm: string = '',
       limit: string = '15',
-      career = '',
-      course = ''
+      course: string = '',
+      career: string = '',
+      category: string = '',
+      categories: string = '',
+      hobbies: string = ''
     ) {
+      categories = categories ? Object.values(categories).join(',') : '';
+      hobbies = hobbies ? Object.values(hobbies).join(',') : '';
+
       try {
         const axiosConf = {
           baseURL: apiUrl,
@@ -435,7 +477,7 @@ export const useMenuStore = defineStore({
         const response = await axios
           .create(axiosConf)
           .get<any>(
-            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${career}&user_career_name=${course}`
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&category=${category}&user_hooby_ids=${hobbies}&user_category_ids=${categories}`
           );
         this.newsData = response.data?.data ?? [];
         this.newsDataMeta = response.data ?? [];
@@ -443,6 +485,43 @@ export const useMenuStore = defineStore({
         console.error('Error fetching News data:', error);
       }
     },
+
+    async fetchNewsRecomended(
+      apiUrl: string,
+      page: string = '1',
+      searchTerm: string = '',
+      limit: string = '15',
+      course: string = '',
+      career: string = '',
+      recomendados: boolean = false,
+      categories: string,
+      hobbies: string
+    ) {
+      categories = categories ? Object.values(categories).join(',') : '';
+      hobbies = hobbies ? Object.values(hobbies).join(',') : '';
+
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Informativos/v1/Informativo?institucion=upn&page=${page}&search=${searchTerm}&limit=${limit}&user_course_name=${course}&user_career_name=${career}&user_hooby_ids=${hobbies}&user_category_ids=${categories}&solo_recomendados=${recomendados}`
+          );
+        this.newsDataRecomended = response.data?.data ?? [];
+      } catch (error) {
+        console.error('Error fetching News data:', error);
+      }
+    },
+
     async fetchNewsDataId(apiUrl: string, id: number) {
       try {
         const axiosConf = {
@@ -461,6 +540,179 @@ export const useMenuStore = defineStore({
         this.newsDataId = response.data?.data ?? [];
       } catch (error) {
         console.error('Error fetching News data:', error);
+      }
+    },
+
+    async fetchInterestData(apiUrl: string, landingType: string) {
+      const curso = localStorage.getItem('curso');
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}&course_code=${curso}&student_code=${(await this.fetchData())?.localCodUser}`
+          );
+        console.log(`${(await this.fetchData())?.localCodUser}`);
+
+        if (response.status >= 200 && response.status < 300) {
+          if (response.data) {
+            this.interestedData = response.data.data;
+          } else {
+            this.interestedData = null;
+          }
+        }
+        console.log(`${(await this.fetchData())?.localCodUser}`);
+      } catch (error) {
+        // if (error.response.status === 404) {
+        //   return null;
+        // }
+        console.log(error);
+      }
+    },
+
+    async fetchManageableData(apiUrl: string, landingType: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Masservicios/v1/ContenidoDinamico?institucion=${(await this.fetchData())?.localIntitution}&component_name=${landingType}`
+          );
+
+        if (response.status >= 200 && response.status < 300) {
+          if (response.data) {
+            this.manageableData = response.data.data;
+          } else {
+            return null;
+          }
+        }
+      } catch (error) {
+        // if (error.response.status === 404) {
+        //   return null;
+        // }
+        console.log(error);
+      }
+    },
+
+    async registerInterestedData(
+      apiUrl: string,
+      answers: RegisterInterestedData
+    ) {
+      try {
+        const axiosConfig = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+
+        const response = await axios
+          .create(axiosConfig)
+          .post(
+            `/Masservicios/v1/ContenidoDinamico/Respuesta?institucion=${(await this.fetchData())?.localIntitution}`,
+            answers
+          );
+
+        if (response.status >= 200 && response.status < 300) {
+          return response.data?.registerCount ?? 0;
+        } else {
+          console.error(
+            'Error en la respuesta de la solicitud:',
+            response.status,
+            response.data
+          );
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error('Error al procesar la solicitud:', error.message);
+        } else {
+          console.error('Error de tipo desconocido:', error);
+        }
+      }
+    },
+
+    async fetchCategories(apiUrl: string) {
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>('/Informativos/v1/Informativo/Categoria?institucion=upn');
+
+        this.categoriesData = response.data.data;
+      } catch (error) {
+        // if (error.response.status === 404) {
+        //   return null;
+        // }
+        console.log(error);
+      }
+    },
+
+    async clearInterestData() {
+      this.interestedData = [];
+    },
+
+    async fetchRecommendedData(
+      apiUrl: string,
+      categories: string,
+      hobbies: string
+    ) {
+      const curso = localStorage.getItem('curso');
+      const carrera = localStorage.getItem('carrera');
+      categories = categories ? Object.values(categories).join(',') : '';
+      hobbies = hobbies ? Object.values(hobbies).join(',') : '';
+
+      try {
+        const axiosConf = {
+          baseURL: apiUrl,
+          common: {
+            Accept: 'application/json, text/plain, */*',
+          },
+          headers: {
+            Authorization: (await this.fetchData())?.localHeader,
+          },
+        };
+        const response = await axios
+          .create(axiosConf)
+          .get<any>(
+            `/Informativos/v1/Informativo?institucion=${(await this.fetchData())?.localIntitution}&user_category_ids=${categories}&user_course_name=${curso}&user_hooby_ids=${hobbies}&user_career_name=${carrera}&solo_recomendados=true`
+          );
+
+        if (response.status >= 200 && response.status < 300) {
+          if (response.data) {
+            this.recommendedData = response.data.data;
+          } else {
+            return null;
+          }
+        }
+      } catch (error) {
+        console.error(error);
       }
     },
   },
@@ -516,4 +768,16 @@ interface NotificatioDataItem {
 interface RegisterNotificationData {
   codAlumno: string;
   notificaciones: NotificatioDataItem[];
+}
+
+interface AnswersDataItem {
+  contenido_dinamico_id: number;
+  answer: string;
+}
+
+interface RegisterInterestedData {
+  student_code: string;
+  course_code: string;
+  component_name: string;
+  answers: AnswersDataItem[];
 }
