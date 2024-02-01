@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import { useMenuStore } from "../stores/menu";
+import { apiUrl } from "~/consts";
 
 const tabs = [
   { texto: 'Semana 16/10 - 21/10', value: false },
@@ -7,12 +9,27 @@ const tabs = [
 ];
 
 const currentTabs = ref(true);
+const menuStore = useMenuStore();
 
 const navWidth = ref('initial');
 
 const handleChangeTab = (value) => {
   currentTabs.value = value;
 };
+
+const fetchData = async () => {
+  await menuStore.fetchJournalData(apiUrl);
+};
+
+onMounted(() => {
+  fetchData();
+});
+
+const journalData = menuStore.getJournalData;
+
+watchEffect(async () => {
+
+});
 
 const currentIndex = ref(0);
 
@@ -98,93 +115,49 @@ const retroceder = () => {
               </p>
             </div>
             <div class="flex justify-center w-full" v-show="currentIndex === 0">
-              <div
-                class="grid grid-cols-1 justify-items-center mt-9 max-w-[287px]"
-              >
-                <img
-                  src="@/assets/images/group-1595596.png"
-                  alt=""
-                  class="w-[199px] mb-[22px]"
-                />
+              <div class="grid grid-cols-1 justify-items-center mt-9 max-w-[287px]">
+                <img src="@/assets/images/group-1595596.png" alt="" class="w-[199px] mb-[22px]" />
                 <p class="font-publicSans text-center text-sm mb-[32px]">
                   Reflexionar sobre tu aprendizaje de inglés te permitirá lograr
                   un mejor avance.
                 </p>
-                <Button
-                  @click="continuar"
-                  class="min-w-[200px]"
-                  primary
-                  label="Comenzar"
-                />
+                <Button @click="continuar" class="min-w-[200px]" primary label="Comenzar" />
               </div>
             </div>
-            <div
-              class="flex justify-center items-center w-full"
-              v-show="currentIndex === 1"
-            >
-              <div
-                class="grid grid-cols-1 justify-items-center mt-9 lg:max-w-[523px] max-w-[266px]"
-              >
+            <div class="flex justify-center items-center w-full" v-show="currentIndex === 1">
+              <div class="grid grid-cols-1 justify-items-center mt-9 lg:max-w-[523px] max-w-[266px]">
                 <p class="font-bold font-publicSans mb-5">
                   ¿Cómo te fue con el inglés esta semana?
                 </p>
                 <div class="grid grid-cols-5 gap-5 mb-8">
-                  <div
-                    class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
-                    v-for="(item, index) in data"
-                    :key="index"
-                  >
-                    <div
-                      :class="[item.isActive ? item.imgActive : item.img]"
-                      @click="() => toggleActiveState(index)"
-                      class="w-20 h-20 bg-cover grayscale bg-no-repeat hover:grayscale-0 active:grayscale-0 active:scale-90"
-                    />
-                    <span
-                      class="text-sm leading-[22px] flex justify-center mt-2"
-                    >
+                  <div class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]" v-for="(item, index) in data"
+                    :key="index">
+                    <div :class="[item.isActive ? item.imgActive : item.img]" @click="() => toggleActiveState(index)"
+                      class="w-20 h-20 bg-cover grayscale bg-no-repeat hover:grayscale-0 active:grayscale-0 active:scale-90" />
+                    <span class="text-sm leading-[22px] flex justify-center mt-2">
                       {{ item.title }}
                     </span>
                   </div>
                 </div>
                 <div class="flex justify-between items-center mb-8 gap-3">
-                  <figure
-                    class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
-                  >
-                    <img
-                      src="@/assets/images/bien.svg"
-                      alt=""
-                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0"
-                    />
+                  <figure class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]">
+                    <img src="@/assets/images/bien.svg" alt=""
+                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0" />
                     <figcaption class="text-sm text-center">Bien</figcaption>
                   </figure>
-                  <figure
-                    class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]"
-                  >
-                    <img
-                      src="@/assets/images/excelente.svg"
-                      alt=""
-                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0"
-                    />
+                  <figure class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]">
+                    <img src="@/assets/images/excelente.svg" alt=""
+                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0" />
                     <figcaption class="text-sm text-center">
                       Excelente
                     </figcaption>
                   </figure>
                 </div>
-                <Button
-                  @click="continuar"
-                  class="min-w-[196px]"
-                  primary
-                  label="Siguiente"
-                />
+                <Button @click="continuar" class="min-w-[196px]" primary label="Siguiente" />
               </div>
             </div>
-            <div
-              class="flex justify-center items-center w-full"
-              v-show="currentIndex === 2"
-            >
-              <div
-                class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]"
-              >
+            <div class="flex justify-center items-center w-full" v-show="currentIndex === 2">
+              <div class="grid grid-cols-1 justify-items-center mt-9 max-w-[523px]">
                 <p class="font-bold font-publicSans mb-5">
                   Reflexiona sobre las siguientes preguntas
                 </p>
@@ -193,67 +166,33 @@ const retroceder = () => {
                     <label for="" class="text-sm">
                       ¿Qué sientes que podrías mejorar en tu aprendizaje?
                     </label>
-                    <textarea
-                      name="mejorar"
-                      id=""
-                      cols="30"
-                      rows="3"
-                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"
-                    ></textarea>
+                    <textarea name="mejorar" id="" cols="30" rows="3"
+                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"></textarea>
                   </div>
                   <div class="mb-7">
-                    <label for="" class="text-sm"
-                      >¿Cómo crees poder mejorarlo?</label
-                    >
-                    <textarea
-                      name="mejorar"
-                      id=""
-                      cols="30"
-                      rows="3"
-                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"
-                    ></textarea>
+                    <label for="" class="text-sm">¿Cómo crees poder mejorarlo?</label>
+                    <textarea name="mejorar" id="" cols="30" rows="3"
+                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"></textarea>
                   </div>
                   <div class="">
-                    <label for="" class="text-sm"
-                      >¿Cuál es tu objetivo para la siguiente semana?</label
-                    >
-                    <textarea
-                      name="mejorar"
-                      id=""
-                      cols="30"
-                      rows="3"
-                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"
-                    ></textarea>
+                    <label for="" class="text-sm">¿Cuál es tu objetivo para la siguiente semana?</label>
+                    <textarea name="mejorar" id="" cols="30" rows="3"
+                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"></textarea>
                   </div>
                 </form>
 
                 <div class="lg:flex gap-4 mt-8">
                   <div>
-                    <Button
-                      class="min-w-[129px] lg:min-w-[196px] lg:mb-0 mb-3"
-                      @click="retroceder"
-                      secundary
-                      label="Atrás"
-                    />
+                    <Button class="min-w-[129px] lg:min-w-[196px] lg:mb-0 mb-3" @click="retroceder" secundary
+                      label="Atrás" />
                   </div>
-                  <Button
-                    class="min-w-[129px] lg:min-w-[196px]"
-                    @click="continuar"
-                    primary
-                    label="Guardar"
-                  />
+                  <Button class="min-w-[129px] lg:min-w-[196px]" @click="continuar" primary label="Guardar" />
                 </div>
               </div>
             </div>
             <div class="flex justify-center w-full" v-show="currentIndex === 3">
-              <div
-                class="grid grid-cols-1 justify-items-center mt-9 max-w-[454px]"
-              >
-                <img
-                  src="@/assets/images/group-1595596.png"
-                  alt=""
-                  class="w-[199px] mb-[22px]"
-                />
+              <div class="grid grid-cols-1 justify-items-center mt-9 max-w-[454px]">
+                <img src="@/assets/images/group-1595596.png" alt="" class="w-[199px] mb-[22px]" />
                 <p class="font-publicSans text-center text-sm mb-[32px]">
                   Revisa las recomendaciones personalizadas para mejorar en el
                   curso. ¡Tu journal te espera de nuevo la próxima semana!
@@ -262,9 +201,7 @@ const retroceder = () => {
                   <span class="text-primary font-bold text-sm">
                     Ver recomendaciones
                   </span>
-                  <i
-                    class="icon-arrow-right ml-2 text-sm text-primary font-bold"
-                  ></i>
+                  <i class="icon-arrow-right ml-2 text-sm text-primary font-bold"></i>
                 </RouterLink>
               </div>
             </div>
@@ -284,20 +221,14 @@ const retroceder = () => {
                 Reporte de respuestas anteriores.
               </p>
             </div>
-            <div
-              class="grid grid-cols-9 justify-items-start w-full overflow-y-auto gap-x-4 gap-y-5 mt-5"
-            >
+            <div class="grid grid-cols-9 justify-items-start w-full overflow-y-auto gap-x-4 gap-y-5 mt-5">
               <div class="col-span-3 p-4 border border-[#D9D9D9] rounded-lg">
                 <p class="font-bold text-sm font-publicSans mb-2">
                   La semana pasada te fue...
                 </p>
                 <div class="flex justify-center items-center">
                   <figure class="">
-                    <img
-                      src="@/assets/images/muy-mal-active.svg"
-                      alt=""
-                      class="h-[50px] w-[50px]"
-                    />
+                    <img src="@/assets/images/muy-mal-active.svg" alt="" class="h-[50px] w-[50px]" />
                     <figcaption class="text-sm text-center mt-2">
                       Muy mal
                     </figcaption>
