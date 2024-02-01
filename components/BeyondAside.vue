@@ -47,7 +47,7 @@ watchEffect(async () => {
   filteredNewsData.value = newsData.value;
   newsData.value = menuStore.getNewsRecomended;
   const interested = menuStore.getInterestedItems;
-  const editPreferenceItem = menuStore.getManageableItems?.find(item => item.codigo_item === "hyperlink" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === true);
+  const editPreferenceItem = menuStore.getManageableItems?.find(item => item.codigo_item === 'hyperlink' && item.nombre === 'beyond' && item.pagina === 'page1' && item.es_vista_interna === true);
   editPreferences.value = editPreferenceItem.texto;
 
   if (interested) {

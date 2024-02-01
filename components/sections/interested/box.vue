@@ -101,11 +101,11 @@ watchEffect(() => {
       value: interestedDataValue,
       total: interestedDataValue.length,
     };
-    
+
     const answers = interestedDataValue.find(
       (x) => x.etiqueta === 'hobby'
     )?.answer;
-    
+
     if (answers) {
       selectedIntereses.value = answers;
     }

@@ -1,56 +1,56 @@
 <script setup lang="ts">
 const props = withDefaults(
-	defineProps<{
-		hours: { [key: string]: number };
-		hour: string;
-		nowMark: Date;
-		rowNumber: number;
-		columnNumber: number;
-		currentDay: number;
-	}>(),
-	{
-		hour: '55',
-		rowNumber: 0,
-		columnNumber: 0,
-		currentDay: 1,
-	},
+  defineProps<{
+    hours: Record<string, number>
+    hour: string
+    nowMark: Date
+    rowNumber: number
+    columnNumber: number
+    currentDay: number
+  }>(),
+  {
+    hour: '55',
+    rowNumber: 0,
+    columnNumber: 0,
+    currentDay: 1,
+  },
 );
 const currentHour = computed(() =>
-	props.nowMark.getHours() < 7 ? 7 : props.nowMark.getHours(),
+  props.nowMark.getHours() < 7 ? 7 : props.nowMark.getHours(),
 );
 const positionFromTop = computed(() =>
-	props.nowMark.getHours() < 7
-		? '-1px'
-		: `${(72 / 60) * props.nowMark.getMinutes() - 1}px`,
+  props.nowMark.getHours() < 7
+    ? '-1px'
+    : `${(72 / 60) * props.nowMark.getMinutes() - 1}px`,
 );
 </script>
 
 <template>
-	<div
-		v-if="rowNumber !== Object.keys(hours!).length - 1"
-		class="grid-box h-[72px] relative"
-	>
-		<div
-			v-if="columnNumber === 0 && Number(hour) === currentHour"
-			class="hour-mark top-[10px]"
-			:style="{
-				top: positionFromTop,
-			}"
-		>
-			{{ getHourMinutes(props.nowMark) }}
-		</div>
-		<div
-			v-if="Number(hour) === currentHour"
-			class="absolute top-[10px] h-[1px] w-full z-[15]"
-			:class="{
-				'bg-[#A9616D]': columnNumber !== currentDay,
-				'mark-today': columnNumber === currentDay,
-			}"
-			:style="{
-				top: positionFromTop,
-			}"
-		></div>
-	</div>
+  <div
+    v-if="rowNumber !== Object.keys(hours!).length - 1"
+    class="grid-box h-[72px] relative"
+  >
+    <div
+      v-if="columnNumber === 0 && Number(hour) === currentHour"
+      class="hour-mark top-[10px]"
+      :style="{
+        top: positionFromTop,
+      }"
+    >
+      {{ getHourMinutes(props.nowMark) }}
+    </div>
+    <div
+      v-if="Number(hour) === currentHour"
+      class="absolute top-[10px] h-[1px] w-full z-[15]"
+      :class="{
+        'bg-[#A9616D]': columnNumber !== currentDay,
+        'mark-today': columnNumber === currentDay,
+      }"
+      :style="{
+        top: positionFromTop,
+      }"
+    ></div>
+  </div>
 </template>
 
 <style lang="postcss" scoped>

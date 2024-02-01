@@ -17,7 +17,7 @@
       </li>
     </ul>
     <div>
-      <slot :tabSelected="tabActive" />
+      <slot :tab-selected="tabActive" />
     </div>
   </div>
 </template>
@@ -41,4 +41,4 @@ const handleActiveTab = (tab: string, value: boolean) => {
   // console.log(value);
   instance?.emit('tabChange', value);
 };
-</script> 
+</script>

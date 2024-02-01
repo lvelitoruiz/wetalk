@@ -1,3 +1,3 @@
 export interface UserStore {
-	codAlumno: null | string;
+  codAlumno: null | string
 }

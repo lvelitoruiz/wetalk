@@ -23,47 +23,47 @@ watchEffect(() => {
     <ClientOnly>
       <div v-if="dataSlider.length > 0">
         <Swiper
-        :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination]"
-        :slides-per-view="1"
-        :loop="true"
-        :breakpoints="{
-          1024: {
-            slidesPerView: slideQty,
-          },
-        }"
-        :speed="1000"
-        :space-between="50"
-        :navigation="{
-          prevEl: '#prev',
-          nextEl: '#next',
-        }"
-        :autoplay="{
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }"
-        :pagination="{
-          el: '.swiper-pagination',
-          clickable: true,
-        }"
-      >
-        <SwiperSlide v-for="page in dataSlider" :key="page.id">
-          <slot :item="page" />
-        </SwiperSlide>
-        <div class="c-navigation_destacados">
-          <div
-            class="swiper-button-prev"
-            id="prev"
-            :class="dataSlider?.length > 5 ? 'hide-mobile' : ''"
-          />
-          <div class="swiper-pagination" />
-          <div
-            class="swiper-button-next"
-            id="next"
-            :class="dataSlider?.length > 5 ? 'hide-mobile' : ''"
-          />
-        </div>
-      </Swiper>
+          :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination]"
+          :slides-per-view="1"
+          :loop="true"
+          :breakpoints="{
+            1024: {
+              slidesPerView: slideQty,
+            },
+          }"
+          :speed="1000"
+          :space-between="50"
+          :navigation="{
+            prevEl: '#prev',
+            nextEl: '#next',
+          }"
+          :autoplay="{
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }"
+          :pagination="{
+            el: '.swiper-pagination',
+            clickable: true,
+          }"
+        >
+          <SwiperSlide v-for="page in dataSlider" :key="page.id">
+            <slot :item="page" />
+          </SwiperSlide>
+          <div class="c-navigation_destacados">
+            <div
+              class="swiper-button-prev"
+              id="prev"
+              :class="dataSlider?.length > 5 ? 'hide-mobile' : ''"
+            />
+            <div class="swiper-pagination" />
+            <div
+              class="swiper-button-next"
+              id="next"
+              :class="dataSlider?.length > 5 ? 'hide-mobile' : ''"
+            />
+          </div>
+        </Swiper>
       </div>
     </ClientOnly>
   </div>

@@ -103,10 +103,10 @@ watchEffect(async () => {
   newsData.value = menuStore.getNews;
   texts.value = menuStore.getManageableItems;
 
-  const greetingItem = texts.value.find(item => item.codigo_item === "title_2" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === true);
+  const greetingItem = texts.value.find(item => item.codigo_item === 'title_2' && item.nombre === 'beyond' && item.pagina === 'page1' && item.es_vista_interna === true);
   greeting.value = greetingItem.texto;
 
-  const headerTextItem = texts.value.find(item => item.codigo_item === "title" && item.nombre === "beyond" && item.pagina === "page1" && item.es_vista_interna === false);
+  const headerTextItem = texts.value.find(item => item.codigo_item === 'title' && item.nombre === 'beyond' && item.pagina === 'page1' && item.es_vista_interna === false);
   headerText.value = headerTextItem.texto;
 
   const meta = menuStore.getNewsMeta;

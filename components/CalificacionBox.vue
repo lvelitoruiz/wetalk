@@ -1,7 +1,10 @@
+<!-- eslint-disable vue/first-attribute-linebreak -->
+<!-- eslint-disable @typescript-eslint/no-floating-promises -->
+<!-- eslint-disable no-undef -->
 <script setup>
 import { ref } from 'vue';
-import { useMenuStore } from "../stores/menu";
-import { apiUrl } from "~/consts";
+import { useMenuStore } from '../stores/menu';
+import { apiUrl } from '~/consts';
 
 const tabs = [
   { texto: 'Semana 16/10 - 21/10', value: false },
@@ -12,6 +15,26 @@ const currentTabs = ref(true);
 const menuStore = useMenuStore();
 
 const navWidth = ref('initial');
+
+const journalToSend = ref(null);
+
+const nameToFind = 'journal';
+
+const elements = ref(null);
+const elements1 = ref(null);
+const elements2 = ref(null);
+const elements3 = ref(null);
+
+const data = ref([]);
+
+const pregunta1 = ref('');
+const pregunta2 = ref('');
+const pregunta3 = ref('');
+const pregunta4 = ref('');
+
+const respuesta1 = ref('');
+const respuesta2 = ref('');
+const respuesta3 = ref('');
 
 const handleChangeTab = (value) => {
   currentTabs.value = value;
@@ -25,49 +48,95 @@ onMounted(() => {
   fetchData();
 });
 
-const journalData = menuStore.getJournalData;
-
 watchEffect(async () => {
+  const journalData = menuStore.getJournalData;
+  if (journalData) {
+    journalToSend.value = journalData;
 
+    elements.value = journalToSend.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === 'page2' &&
+        item.codigo_item === 'title' &&
+        item.es_vista_interna === false,
+    );
+
+    elements1.value = journalToSend.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === 'page3' &&
+        item.codigo_item === 'question' &&
+        item.es_vista_interna === false &&
+        item.texto === '¿Qué sientes que podrías mejorar en tu aprendizaje?', // no hay nada que pueda diferenciar las preguntas, aunque sea el código item debería ser diferente
+    );
+
+    elements2.value = journalToSend.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === 'page3' &&
+        item.codigo_item === 'question' &&
+        item.es_vista_interna === false &&
+        item.texto === '¿Cómo crees poder mejorarlo?', // no hay nada que pueda diferenciar las preguntas, aunque sea el código item debería ser diferente
+    );
+
+    elements3.value = journalToSend.value.find(
+      (item) =>
+        item.nombre === nameToFind &&
+        item.pagina === 'page3' &&
+        item.codigo_item === 'question' &&
+        item.es_vista_interna === false &&
+        item.texto === '¿Cuál es tu objetivo para la siguiente semana?', // no hay nada que pueda diferenciar las preguntas, aunque sea el código item debería ser diferente
+    );
+
+    pregunta2.value = elements1.value.id;
+    pregunta3.value = elements2.value.id;
+    pregunta4.value = elements3.value.id;
+  }
 });
 
 const currentIndex = ref(0);
 
-const data = [
+data.value = [
   {
     img: 'bg-[url(@/assets/images/muy-mal.svg)]',
     imgActive: 'bg-[url(@/assets/images/muy-mal-active.svg)] grayscale-0',
-    title: 'Muy mal',
+    title: elements.value.alternativas[0].nombre,
+    id: elements.value.alternativas[0].id,
     isActive: false,
   },
   {
     img: 'bg-[url(@/assets/images/mal.svg)]',
     imgActive: 'bg-[url(@/assets/images/mal-active.svg)] grayscale-0',
-    title: 'Mal',
+    title: elements.value.alternativas[1].nombre,
+    id: elements.value.alternativas[1].id,
     isActive: false,
   },
   {
     img: 'bg-[url(@/assets/images/regular.svg)]',
     imgActive: 'bg-[url(@/assets/images/regular-active.svg)] grayscale-0',
-    title: 'Regular',
+    title: elements.value.alternativas[2].nombre,
+    id: elements.value.alternativas[2].id,
     isActive: false,
   },
   {
     img: 'bg-[url(@/assets/images/bien.svg)]',
     imgActive: 'bg-[url(@/assets/images/bien-active.svg)] grayscale-0',
-    title: 'Bien',
+    title: elements.value.alternativas[3].nombre,
+    id: elements.value.alternativas[3].id,
     isActive: false,
   },
   {
     img: 'bg-[url(@/assets/images/excelente.svg)]',
     imgActive: 'bg-[url(@/assets/images/excelente-active.svg)] grayscale-0',
-    title: 'Excelente',
+    title: elements.value.alternativas[4].nombre,
+    id: elements.value.alternativas[4].id,
     isActive: false,
   },
 ];
 
-const toggleActiveState = (clickedIndex) => {
-  data.forEach((item, index) => {
+const toggleActiveState = (clickedIndex, itemId) => {
+  pregunta1.value = itemId;
+  data.value.forEach((item, index) => {
     item.isActive = index === clickedIndex;
   });
 };
@@ -107,7 +176,7 @@ const retroceder = () => {
           <p class="uppercase font-solano font-bold text-2xl leading-7 mb-3">
             registro de desempeño en clases
           </p>
-          <TabJournal :tabs="tabs" @tabChange="handleChangeTab" />
+          <TabJournal :tabs="tabs" @tab-change="handleChangeTab" />
           <div v-if="currentTabs">
             <div class="mt-2">
               <p class="text-[#808080] text-sm">
@@ -121,7 +190,11 @@ const retroceder = () => {
                   Reflexionar sobre tu aprendizaje de inglés te permitirá lograr
                   un mejor avance.
                 </p>
-                <Button @click="continuar" class="min-w-[200px]" primary label="Comenzar" />
+                <Button
+                  @click="continuar" class="min-w-[200px]"
+                  primary
+                  label="Comenzar"
+                />
               </div>
             </div>
             <div class="flex justify-center items-center w-full" v-show="currentIndex === 1">
@@ -130,30 +203,42 @@ const retroceder = () => {
                   ¿Cómo te fue con el inglés esta semana?
                 </p>
                 <div class="grid grid-cols-5 gap-5 mb-8">
-                  <div class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]" v-for="(item, index) in data"
-                    :key="index">
-                    <div :class="[item.isActive ? item.imgActive : item.img]" @click="() => toggleActiveState(index)"
-                      class="w-20 h-20 bg-cover grayscale bg-no-repeat hover:grayscale-0 active:grayscale-0 active:scale-90" />
+                  <div
+                    class="lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]" v-for="(item, index) in data"
+                    :key="index"
+                  >
+                    <div
+                      :class="[item.isActive ? item.imgActive : item.img]" @click="() => toggleActiveState(index, item.id)"
+                      class="w-20 h-20 bg-cover grayscale bg-no-repeat hover:grayscale-0 active:grayscale-0 active:scale-90"
+                    />
                     <span class="text-sm leading-[22px] flex justify-center mt-2">
                       {{ item.title }}
                     </span>
                   </div>
                 </div>
-                <div class="flex justify-between items-center mb-8 gap-3">
+                <!-- <div class="flex justify-between items-center mb-8 gap-3">
                   <figure class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]">
-                    <img src="@/assets/images/bien.svg" alt=""
-                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0" />
+                    <img
+                      src="@/assets/images/bien.svg" alt=""
+                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0"
+                    />
                     <figcaption class="text-sm text-center">Bien</figcaption>
                   </figure>
                   <figure class="lg:hidden lg:max-h-[117px] max-h-[88px] max-w-[68px] lg:max-w-[95px]">
-                    <img src="@/assets/images/excelente.svg" alt=""
-                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0" />
+                    <img
+                      src="@/assets/images/excelente.svg" alt=""
+                      class="p-1 lg:p-[6.5px] w-20 grayscale hover:grayscale-0 active:scale-90 active:grayscale-0"
+                    />
                     <figcaption class="text-sm text-center">
                       Excelente
                     </figcaption>
                   </figure>
-                </div>
-                <Button @click="continuar" class="min-w-[196px]" primary label="Siguiente" />
+                </div> -->
+                <Button
+                  @click="continuar" class="min-w-[196px]"
+                  primary
+                  label="Siguiente"
+                />
               </div>
             </div>
             <div class="flex justify-center items-center w-full" v-show="currentIndex === 2">
@@ -166,27 +251,46 @@ const retroceder = () => {
                     <label for="" class="text-sm">
                       ¿Qué sientes que podrías mejorar en tu aprendizaje?
                     </label>
-                    <textarea name="mejorar" id="" cols="30" rows="3"
-                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"></textarea>
+                    <textarea
+                      name="mejorar" id=""
+                      cols="30" rows="3"
+                      v-model="respuesta1"
+                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"
+                    ></textarea>
                   </div>
                   <div class="mb-7">
                     <label for="" class="text-sm">¿Cómo crees poder mejorarlo?</label>
-                    <textarea name="mejorar" id="" cols="30" rows="3"
-                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"></textarea>
+                    <textarea
+                      name="mejorar" id=""
+                      cols="30" rows="3"
+                      v-model="respuesta2"
+                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"
+                    ></textarea>
                   </div>
                   <div class="">
                     <label for="" class="text-sm">¿Cuál es tu objetivo para la siguiente semana?</label>
-                    <textarea name="mejorar" id="" cols="30" rows="3"
-                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"></textarea>
+                    <textarea
+                      name="mejorar" id=""
+                      cols="30" rows="3"
+                      v-model="respuesta3"
+                      class="border w-full px-3 py-[10px] rounded mt-2 text-[#404040] focus:outline-none"
+                    ></textarea>
                   </div>
                 </form>
 
                 <div class="lg:flex gap-4 mt-8">
                   <div>
-                    <Button class="min-w-[129px] lg:min-w-[196px] lg:mb-0 mb-3" @click="retroceder" secundary
-                      label="Atrás" />
+                    <Button
+                      class="min-w-[129px] lg:min-w-[196px] lg:mb-0 mb-3" @click="retroceder"
+                      secundary
+                      label="Atrás"
+                    />
                   </div>
-                  <Button class="min-w-[129px] lg:min-w-[196px]" @click="continuar" primary label="Guardar" />
+                  <Button
+                    class="min-w-[129px] lg:min-w-[196px]" @click="continuar"
+                    primary
+                    label="Guardar"
+                  />
                 </div>
               </div>
             </div>

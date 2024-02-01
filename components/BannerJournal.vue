@@ -15,8 +15,7 @@
       <router-link to="/calificacion" class="flex items-center">
         <span
           class="font-bold font-zizou-bold text-sm mr-2 tracking-widest"
-          >Ver más</span
-        >
+        >Ver más</span>
         <i class="icon-arrow-right"></i>
       </router-link>
     </div>

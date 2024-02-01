@@ -14,7 +14,7 @@ const courseName = menuStore.getProfileItems?.data?.at(0)?.descCurso ?? '';
 const selectedImage = ref('');
 const anotherImage = ref('');
 const metaText = ref(
-  'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆'
+  'Cuéntanos tu meta al estudiar inglés, y alcancémosla juntos 🏁🏆',
 );
 const metaStore = useMetaStore();
 const dataMeta = ref(null);
@@ -64,7 +64,8 @@ const haveLink = true;
     <div class="lg:flex items-center justify-between lg:w-[1023px] mx-auto gap-5 pb-[28px]">
       <div>
         <h1
-          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-8 lg:leading-none lg:whitespace-nowrap mb-1 w-full">
+          class="text-[#191919] text-[28px] lg:text-[32px] font-bold font-solano uppercase leading-8 lg:leading-none lg:whitespace-nowrap mb-1 w-full"
+        >
           Welcome, {{ nameUser }}
         </h1>
         <p class="text-[#191919] text-[18px] leading-6 lg:pb-[18px] pb-9 mt-2 whitespace-nowrap">
@@ -74,16 +75,23 @@ const haveLink = true;
         </p>
       </div>
       <div
-        class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[220px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex lg:flex-row flex-col justify-center items-center rounded-lg triangle relative">
+        class="bg-white shadow-[0_0_20px_0_rgba(77,39,37,0.25)] h-[220px] lg:h-[71px] px-6 lg:px-5 py-5 lg:py-2 w-full lg:flex lg:flex-row flex-col justify-center items-center rounded-lg triangle relative"
+      >
         <div class="lg:w-[70px] mb-4 lg:mb-0">
           <client-only>
-            <Vue3Lottie v-if="selectedImage !== ''" :animation-link="selectedImage" :height="55" width="auto"
-              class="lg:min-h-[55px] min-h-[87px] w-auto" />
+            <Vue3Lottie
+              v-if="selectedImage !== ''" :animation-link="selectedImage"
+              :height="55" width="auto"
+              class="lg:min-h-[55px] min-h-[87px] w-auto"
+            />
             <!-- <img v-if="selectedImage !== ''" :src="selectedImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" /> -->
           </client-only>
           <client-only>
-            <Vue3Lottie v-if="selectedImage === ''" :animation-link="anotherImage" :height="55" width="auto"
-              class="lg:min-h-[55px] min-h-[87px] w-auto" />
+            <Vue3Lottie
+              v-if="selectedImage === ''" :animation-link="anotherImage"
+              :height="55" width="auto"
+              class="lg:min-h-[55px] min-h-[87px] w-auto"
+            />
             <!-- <img v-if="selectedImage === ''" :src="anotherImage" class="lg:min-h-[55px] min-h-[87px] max-h-[100px] w-auto" /> -->
           </client-only>
         </div>
